@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<LogPath>C:/MBData/Log</LogPath>
+	<DataPath>c:/MBData</DataPath>
+	<AddDataPath>
+		<string>z:/MBData</string>
+	</AddDataPath>
+	<HoursDiff>2</HoursDiff>	
+	<InitFiles>
+		<string>Data\SV.xml</string>
+		<string>Data\MBDiscrete.xml</string>
+	</InitFiles>
+	<InitCalcFile>Data\MBDataCalc.xml</InitCalcFile>
+	<DBDateFormat>yyyy-MM-dd HH:mm:ss</DBDateFormat>
+</Settings>	

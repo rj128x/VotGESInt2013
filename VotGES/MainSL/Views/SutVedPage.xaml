@@ -1,0 +1,40 @@
+﻿<navigation:Page x:Class="MainSL.Views.SutVedPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			  xmlns:usr="clr-namespace:MainSL.Views"
+			  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Суточная ведомость">
+    <Grid x:Name="LayoutRoot">
+		<StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">		 	 
+		<Grid Name="pnlSettings" Width="300" HorizontalAlignment="Left">
+			<StackPanel>
+				<sdk:Calendar  
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+						SelectedDate="{Binding Date, Mode=TwoWay}"/>
+				<Button Content="Получить суточную ведомость" Name="btnGetReport"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnGetReport_Click"/>
+					<Button Content="Получить ПБР" Name="btnGetPBR"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnGetPBR_Click"/>
+					<Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnPrikaz20_Click"/>
+				</StackPanel>
+		</Grid>
+			<Grid Name="pnlReport" Width="300">
+				<StackPanel>
+					<usr:ReportSettingsControl x:Name="SettingsControl" 
+														IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+					<Button Name="btnGetPuskStop" Content="Получить пуски/остановы" Click="btnGetPuskStop_Click"/>
+					<Button Name="btnGetPuskStopFull" Content="Получить пуски/остановы (подробно)" Click="btnGetPuskStopFull_Click"/>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</navigation:Page>

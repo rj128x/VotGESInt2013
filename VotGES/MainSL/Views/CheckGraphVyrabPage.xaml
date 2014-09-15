@@ -1,0 +1,68 @@
+﻿<navigation:Page xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="MainSL.Views.CheckGraphVyrabPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+			  xmlns:usr="clr-namespace:MainSL.Views" 
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Факт нагрузка">
+    <Grid x:Name="LayoutRoot">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<sdk:TabControl >
+				<sdk:TabItem Name="tabChart" Header="График">
+					<usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
+				</sdk:TabItem>
+				<sdk:TabItem Name="tabChartRGE" Header="РГЕ">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*"/>
+							<RowDefinition Height="1*"/>
+							<RowDefinition Height="1*"/>
+							<RowDefinition Height="1*"/>
+						</Grid.RowDefinitions>
+						<usr:ChartControl x:Name="chartControlRGE1" VerticalAlignment="Stretch" Grid.Row="0"/>
+						<usr:ChartControl x:Name="chartControlRGE2" VerticalAlignment="Stretch" Grid.Row="1"/>
+						<usr:ChartControl x:Name="chartControlRGE3" VerticalAlignment="Stretch" Grid.Row="2"/>
+						<usr:ChartControl x:Name="chartControlRGE4" VerticalAlignment="Stretch" Grid.Row="3"/>
+					</Grid>
+				</sdk:TabItem>
+				<sdk:TabItem Name="tabHHReport" Header="Данные по 30 минут">
+					<usr:CheckGraphVyrabReportControl x:Name="cntrlHHReport"/>						
+				</sdk:TabItem>
+				<sdk:TabItem Name="tabHReport" Header="Данные по часам" >
+					<usr:CheckGraphVyrabReportControl x:Name="cntrlHReport"/>
+				</sdk:TabItem>
+				<sdk:TabItem Name="tabHHRGEReport" Header="Данные по 30 минут">
+					<usr:CheckGraphVyrabRGEReportControl x:Name="cntrlHHRGEReport"/>
+				</sdk:TabItem>
+				<sdk:TabItem Name="tabHRGEReport" Header="Данные по часам" >
+					<usr:CheckGraphVyrabRGEReportControl x:Name="cntrlHRGEReport"/>
+				</sdk:TabItem>
+			</sdk:TabControl>
+			
+			<Grid Name="pnlSettings" Grid.Column="1">
+				<StackPanel>					
+					<sdk:Calendar Name="clnDate" SelectedDate="{Binding Date, Mode=TwoWay}"
+									  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+					<CheckBox Content="График ступенями" Style="{StaticResource LabelChb}" HorizontalAlignment="Left"
+										 Name="chbIsSteppedPBR" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+					<Button Name="btnMin" Content="По минутам ГТП" Click="btnMin_Click"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+					<Button Name="btnHH" Content="По получасовкам ГТП" Click="btnHH_Click"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+					
+					<Button Name="btnMinRGE" Content="По минутам РГЕ" Click="btnMinRGE_Click"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+					<Button Name="btnHHRGE" Content="По получасовкам РГЕ" Click="btnHHRGE_Click"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }"/>
+				</StackPanel>
+			</Grid>
+		</Grid>
+	</Grid>
+</navigation:Page>
