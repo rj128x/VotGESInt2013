@@ -28,7 +28,7 @@
 				</StackPanel>
 		</Grid>
 			<Grid Name="pnlReport" Width="300">
-				<StackPanel>
+				<StackPanel Visibility="Collapsed">
 					<usr:ReportSettingsControl x:Name="SettingsControl" 
 														IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
 					<Button Name="btnGetPuskStop" Content="Получить пуски/остановы" Click="btnGetPuskStop_Click"/>
