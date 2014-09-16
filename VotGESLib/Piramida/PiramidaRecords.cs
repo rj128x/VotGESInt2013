@@ -457,7 +457,7 @@ namespace VotGES.Piramida
 		public static PiramidaRecord MB_GA10_NaporZad=new PiramidaRecord(2, 3, 680, "Г10 Контроль напора");
 
 		public static PiramidaRecord MB_Rashod=new PiramidaRecord(2, 3, 708, "Расход воды (Q) ГЭС");
-		public static PiramidaRecord MB_RashodCalc=new PiramidaRecord(2, 30, 4, "Расход воды (Q) ГЭС");
+		public static PiramidaRecord MB_RashodCalc=new PiramidaRecord(2, 30, 4, "Расход воды (Q) ГЭС расч");
 		public static PiramidaRecord MB_T=new PiramidaRecord(2, 3, 746, "Температура наружного воздуха");
 		public static PiramidaRecord MB_P_GES=new PiramidaRecord(2, 3, 750, "Суммарная Р ГЭС");
 		public static PiramidaRecord MB_Q_GES=new PiramidaRecord(2, 3, 764, "Суммарная Q ГЭС");

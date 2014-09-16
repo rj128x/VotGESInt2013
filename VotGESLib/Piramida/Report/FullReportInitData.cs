@@ -67,7 +67,7 @@ namespace VotGES.Piramida.Report
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_NB));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_QGES));
 			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_QGTP1));
-			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_QGTP1));
+			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_QGTP2));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_Temp));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_VB));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_QOptGES));
