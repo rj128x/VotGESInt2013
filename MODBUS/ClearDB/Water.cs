@@ -121,7 +121,9 @@ namespace ClearDB
 					data.Add(itemQ, 0);
 				}
 				double napor=data[itemNapor];
-				double p=dataPFull[itemP];
+                double p = 0;
+                try { p = dataPFull[itemP];  }
+                    catch { }
 				p = p > 100000 ? 100000 : p;
 				double q=RashodTable.getRashod(ga, p / 1000, napor);
 				if (data[itemQ] <= 0) {
@@ -227,11 +229,11 @@ namespace ClearDB
 					}
 					double q = rec.Value[104] + rec.Value[129] + rec.Value[154] + rec.Value[179] + rec.Value[204] +
 						rec.Value[229] + rec.Value[254] + rec.Value[279] + rec.Value[304] + rec.Value[329];
-					if (rec.Value[354] <= 0) {
+					if ((rec.Value[354] <= 0)&&(q>=0)) {
 						rec.Value[354] = q;
 					}
 					try {
-						if (Math.Abs(rec.Value[354] - q) > 10) {
+						if ((Math.Abs(rec.Value[354] - q) > 10)&&(q>0)) {
 							rec.Value[354] = q;
 						}
 					} catch { }
