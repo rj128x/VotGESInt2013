@@ -47,11 +47,11 @@ namespace VotGES.Piramida.Report
 			});
 
 			P_SN_8N.CalcFunction=new RecordCalcDelegate((report, date) => {
-				return report[date,PiramidaRecords.P_KRU1_37T.Key] + report[date,PiramidaRecords.P_KRU1_38T.Key];
+				return report[date,PiramidaRecords.P_KRU1_37T.Key] + report[date,PiramidaRecords.P_KRU2_38T.Key];
 			});
 
 			P_SN_9N.CalcFunction=new RecordCalcDelegate((report, date) => {
-				return report[date,PiramidaRecords.P_KRU2_29T.Key] + report[date,PiramidaRecords.P_KRU2_30T.Key];
+				return report[date,PiramidaRecords.P_KRU3_29T.Key] + report[date,PiramidaRecords.P_KRU2_30T.Key];
 			});
 
 			P_SN_10N.CalcFunction= new RecordCalcDelegate((report, date) => {
@@ -67,17 +67,7 @@ namespace VotGES.Piramida.Report
 			});
 
 			P_SN.CalcFunction=new RecordCalcDelegate((report, date) => {
-				return
-					/*report[date, ReportSNRecords.P_SN_10N.ID] +
-					report[date, ReportSNRecords.P_SN_1N.ID] +
-					report[date, ReportSNRecords.P_SN_2N.ID] +
-					report[date, ReportSNRecords.P_SN_36N.ID] +
-					report[date, ReportSNRecords.P_SN_3N.ID] +
-					report[date, ReportSNRecords.P_SN_7N.ID] +
-					report[date, ReportSNRecords.P_SN_8N.ID] +
-					report[date, ReportSNRecords.P_SN_9N.ID] +
-					report[date, ReportSNRecords.P_SN_Nasos.ID]+
-					report[date,PiramidaRecords.P_SN_TVI_Priem.Key];*/				
+				return		
 					report[date, ReportGARecords.P_SN_GA.ID] +
 					report[date, PiramidaRecords.P_SN_7T_Priem.Key] +
 					report[date, PiramidaRecords.P_SN_8T_Priem.Key] +
@@ -114,7 +104,7 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_26T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_27T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_28T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
-			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_29T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_29T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_30T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_31T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_32T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
@@ -123,7 +113,7 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_35T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_36T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_37T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
-			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_38T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_38T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_1VS_N1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_2VS_N1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_TVI, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			

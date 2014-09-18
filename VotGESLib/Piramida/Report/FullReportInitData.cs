@@ -538,10 +538,10 @@ namespace VotGES.Piramida.Report
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_8N));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_37T));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_38T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_38T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_9N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_29T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_29T));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_30T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_10N));
