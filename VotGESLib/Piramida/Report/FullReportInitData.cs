@@ -518,42 +518,45 @@ namespace VotGES.Piramida.Report
             childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_9T_Priem));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_1N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_21T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_22T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_21T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_22T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_2N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_23T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_24T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_23T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_24T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_3N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_27T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_28T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_27T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_28T));
+
+            child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_5N));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_26T));            
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_7N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1KU_31T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_32T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_31T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_32T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_8N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_25T_37T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_38T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_37T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_38T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_9N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_29T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_30T_31T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_29T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_30T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_10N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_33T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_34T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_33T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_34T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_36N));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_35T_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_36T_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_35T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_36T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_Nasos));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_20NDS1_Priem));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_SN_20NDS2_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1VS_N1));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_2VS_N1));
 
-			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_TVI_Priem));
+			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TVI));
 
 			record = RootSN.addChild(GetFullReportRecord("МБ", "mb"));
 			record.addChild(GetFullReportRecord(ReportMBRecords.MB_GA1_Istator));
