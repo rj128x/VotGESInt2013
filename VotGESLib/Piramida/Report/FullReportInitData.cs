@@ -410,11 +410,11 @@ namespace VotGES.Piramida.Report
 			record = RootLines.addChild(GetFullReportRecord("Главные трансформаторы", "mainTrans"));
 			childRecord = record.addChild(GetFullReportRecord("1Т", "1T"));
 			child2 = childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_1T_110));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_56AT_110_Otd));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.P_56AT_110_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1T_110_Otd));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1T_110_Priem));
 			child2 = childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.Q_1T_110));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_56AT_110_Otd));
-			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_56AT_110_Priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_1T_110_Otd));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_1T_110_Priem));
 
 			childRecord = record.addChild(GetFullReportRecord("2АТ", "2AT"));
 			child2 = childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_2AT_220));
