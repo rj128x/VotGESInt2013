@@ -107,7 +107,7 @@ namespace VotGES.Piramida
 		public static PiramidaRecord P_Vozb_GA2_Priem=new PiramidaRecord(0, 8740, 35, "Возбуждение Г/А 2 прием (P)");
 		public static PiramidaRecord P_SN_11T_Priem=new PiramidaRecord(0, 8740, 36, "СН 11Т прием (P)");
 		public static PiramidaRecord P_SN_12T_Priem=new PiramidaRecord(0, 8740, 37, "СН 12Т прием (P)");
-		public static PiramidaRecord P_SN_7T_Priem=new PiramidaRecord(0, 8740, 38, "СН 7Т прием (P)");
+		public static PiramidaRecord P_SN_7T_Priem=new PiramidaRecord(0, 8739, 37, "СН 7Т прием (P)");
 
 		public static PiramidaRecord P_Vozb_GA3_Priem=new PiramidaRecord(0, 8740, 39, "Возбуждение Г/А 3 прием (P)");
 		public static PiramidaRecord P_Vozb_GA4_Priem=new PiramidaRecord(0, 8740, 40, "Возбуждение Г/А 4 прием (P)");
@@ -276,6 +276,8 @@ namespace VotGES.Piramida
 		public static PiramidaRecord P_GA10_Otd=new PiramidaRecord(0, 8738, 54, "Генератор-10 отдача (P)");
 		public static PiramidaRecord Q_GA10_Priem=new PiramidaRecord(0, 8738, 55, "Генератор-10 прием (Q)");
 		public static PiramidaRecord Q_GA10_Otd=new PiramidaRecord(0, 8738, 56, "Генератор-10 отдача (Q)");
+
+        public static PiramidaRecord P_SN_9T_Priem = new PiramidaRecord(0, 8740, 57, "СН 9Т прием (P)");
 
 		public static PiramidaRecord Water_NB=new PiramidaRecord(2, 1, 275, "НБ");
 		public static PiramidaRecord Water_VB=new PiramidaRecord(2, 1, 274, "ВБ");

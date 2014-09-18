@@ -90,7 +90,8 @@ namespace VotGES.Piramida.Report
 						- (report[date,PiramidaRecords.P_Vozb_GA9_Priem.Key] + report[date,PiramidaRecords.P_Vozb_GA10_Priem.Key])
 						- (report[date,PiramidaRecords.P_SN_19T_Priem.Key] + report[date,PiramidaRecords.P_SN_20T_Priem.Key])
 						- (report[date,PiramidaRecords.P_56AT_220_Priem.Key] - report[date,PiramidaRecords.P_56AT_220_Otd.Key])
-						- (report[date,PiramidaRecords.P_56AT_110_Priem.Key] - report[date,PiramidaRecords.P_56AT_110_Otd.Key]);
+						- (report[date,PiramidaRecords.P_56AT_110_Priem.Key] - report[date,PiramidaRecords.P_56AT_110_Otd.Key])
+                        - report[date, PiramidaRecords.P_SN_9T_Priem.Key];
 				});
 
 			P_T_Nebalans.CalcFunction=
@@ -264,7 +265,8 @@ namespace VotGES.Piramida.Report
 			ReportGARecords.AddPRecordsGAAdd(report, parNumber, scaleMult, scaleDiv, visible, toChart, oper, result);
 			ReportGARecords.AddPRecordsGAP(report, parNumber, scaleMult, scaleDiv, visible, toChart, oper, result);
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_SN_7T_Priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
-			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_SN_8T_Priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));		
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_SN_8T_Priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_SN_9T_Priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));		
 			
 		}
 	}

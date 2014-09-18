@@ -75,6 +75,7 @@ namespace VotGES.Piramida.Report
 					report[date, ReportGARecords.P_SN_GA.ID] +
 					report[date, PiramidaRecords.P_SN_7T_Priem.Key] +
 					report[date, PiramidaRecords.P_SN_8T_Priem.Key] +
+                    report[date,PiramidaRecords.P_SN_9T_Priem.Key] +
 					report[date, ReportLinesRecords.P_KL6_Saldo.ID];
 			});
 
