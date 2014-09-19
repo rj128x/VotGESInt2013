@@ -559,15 +559,11 @@ namespace VotGES.Piramida.Report
 
             child2 = childRecord.addChild(GetFullReportRecord("Р Емелино","rEmelino"));
             child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_otd));
             child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_otd));
 
             child2 = childRecord.addChild(GetFullReportRecord("Р Вятка", "rVyatka"));
             child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_otd));
             child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_otd));
             
 
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TVI));

@@ -25,36 +25,32 @@ namespace VotGES.Piramida
 		public static PiramidaRecord Q_2AT_500_Priem=new PiramidaRecord(0, 8739, 7, "2АТ 500 кВ Прием (Q)");
 		public static PiramidaRecord Q_2AT_500_Otd=new PiramidaRecord(0, 8739, 8, "2АТ 500 кВ Отдача (Q)");
 
-		public static PiramidaRecord P_1VS_N1=new PiramidaRecord(0, 8739, 9, "1ВС Насос 1 (P)");
+		public static PiramidaRecord P_1VS_N1=new PiramidaRecord(0, 8739, 9, "1-1 ВС (P)");
 		public static PiramidaRecord P_KRU2_24T=new PiramidaRecord(0, 8739, 10, "КРУ-2 24Т (P)");
-		public static PiramidaRecord P_KRU2_TVI=new PiramidaRecord(0, 8739, 11, "КРУ-2 ТВИ");
-		public static PiramidaRecord P_KRU2_TP2=new PiramidaRecord(0, 8739, 12, "КРУ-2 ТП2");
-		public static PiramidaRecord P_KRU1_31T=new PiramidaRecord(0, 8739, 13, "КРУ-1 31Т");
-		public static PiramidaRecord P_KRU2_RUSN=new PiramidaRecord(0, 8739, 14, "КРУ-2 РУСН");
-        
-        
-        public static PiramidaRecord P_KRU2_36T = new PiramidaRecord(0, 8739, 16, "КРУ-2 36Т");
-        public static PiramidaRecord P_KRU1_27T = new PiramidaRecord(0, 8739, 17, "КРУ-1 27Т");
-        public static PiramidaRecord P_KRU1_37T = new PiramidaRecord(0, 8739, 18, "КРУ-1 37Т");
-        public static PiramidaRecord P_KRU2_30T = new PiramidaRecord(0, 8739, 19, "КРУ-2 30Т");
-        public static PiramidaRecord P_KRU2_28T = new PiramidaRecord(0, 8739, 20, "КРУ-2 28Т");
-        public static PiramidaRecord P_KRU1_33T = new PiramidaRecord(0, 8739, 21, "КРУ-1 33Т");
-        public static PiramidaRecord P_KRU1_21T = new PiramidaRecord(0, 8739, 22, "КРУ-1 21Т");
-        public static PiramidaRecord P_KRU1_25T = new PiramidaRecord(0, 8739, 23, "КРУ-1 25Т");
-        public static PiramidaRecord P_KRU2_38T = new PiramidaRecord(0, 8739, 24, "КРУ-2 38Т");
+        public static PiramidaRecord P_KRU2_TVI = new PiramidaRecord(0, 8739, 11, "КРУ-2 ТВИ (P)");
+        public static PiramidaRecord P_KRU2_TP2 = new PiramidaRecord(0, 8739, 12, "КРУ-2 ТП2 (P)");
+        public static PiramidaRecord P_KRU1_31T = new PiramidaRecord(0, 8739, 13, "КРУ-1 31Т (P)");
+        public static PiramidaRecord P_KRU2_RUSN = new PiramidaRecord(0, 8739, 14, "КРУ-2 РУСН (P)");
+
+
+        public static PiramidaRecord P_KRU2_36T = new PiramidaRecord(0, 8739, 16, "КРУ-2 36Т (P)");
+        public static PiramidaRecord P_KRU1_27T = new PiramidaRecord(0, 8739, 17, "КРУ-1 27Т (P)");
+        public static PiramidaRecord P_KRU1_37T = new PiramidaRecord(0, 8739, 18, "КРУ-1 37Т (P)");
+        public static PiramidaRecord P_KRU2_30T = new PiramidaRecord(0, 8739, 19, "КРУ-2 30Т (P)");
+        public static PiramidaRecord P_KRU2_28T = new PiramidaRecord(0, 8739, 20, "КРУ-2 28Т (P)");
+        public static PiramidaRecord P_KRU1_33T = new PiramidaRecord(0, 8739, 21, "КРУ-1 33Т (P)");
+        public static PiramidaRecord P_KRU1_21T = new PiramidaRecord(0, 8739, 22, "КРУ-1 21Т (P)");
+        public static PiramidaRecord P_KRU1_25T = new PiramidaRecord(0, 8739, 23, "КРУ-1 25Т (P)");
+        public static PiramidaRecord P_KRU2_38T = new PiramidaRecord(0, 8739, 24, "КРУ-2 38Т (P)");
         public static PiramidaRecord P_KRU1_Rez1 = new PiramidaRecord(0, 8739, 25, "Резерв #1@КРУ-1:11");
         public static PiramidaRecord P_KRU1_Rez2 = new PiramidaRecord(0, 8739, 26, "Резерв #2@КРУ-1:12");
-        public static PiramidaRecord P_KRU1_35T = new PiramidaRecord(0, 8739, 27, "КРУ-1 35Т");
+        public static PiramidaRecord P_KRU1_35T = new PiramidaRecord(0, 8739, 27, "КРУ-1 35Т (P)");
         public static PiramidaRecord P_KRU1_Rez3 = new PiramidaRecord(0, 8739, 28, "Резерв #3@КРУ-1:13");
 
-        public static PiramidaRecord P_R500_Emelino_priem = new PiramidaRecord(0, 8739, 29, "R 500 Емелино [А+]");
-        public static PiramidaRecord P_R500_Emelino_otd = new PiramidaRecord(0, 8739, 30, "R 500 Емелино [А-]");
-        public static PiramidaRecord Q_R500_Emelino_priem = new PiramidaRecord(0, 8739, 31, "R 500 Емелино [R+]");
-        public static PiramidaRecord Q_R500_Emelino_otd = new PiramidaRecord(0, 8739, 32, "R 500 Емелино [R-]");
-        public static PiramidaRecord P_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 33, "R 500 Вятка [A+]");
-        public static PiramidaRecord P_R500_Vyatka_otd = new PiramidaRecord(0, 8739, 34, "R 500 Вятка [A-]");
-        public static PiramidaRecord Q_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 35, "R 500 Вятка [R+]");
-        public static PiramidaRecord Q_R500_Vyatka_otd = new PiramidaRecord(0, 8739, 36, "R 500 Вятка [R-]");
+        public static PiramidaRecord P_R500_Emelino_priem = new PiramidaRecord(0, 8739, 29, "R 500 Емелино прием (P)");
+        public static PiramidaRecord Q_R500_Emelino_priem = new PiramidaRecord(0, 8739, 31, "R 500 Емелино прием (Q)");
+        public static PiramidaRecord P_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 33, "R 500 Вятка прием (P)");
+        public static PiramidaRecord Q_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 35, "R 500 Вятка прием (Q)");
         
 
 		public static PiramidaRecord P_Vozb_GA9_Priem=new PiramidaRecord(0, 8740, 1, "Возбуждение Г/А 9 прием (P)");
@@ -114,14 +110,14 @@ namespace VotGES.Piramida
 		public static PiramidaRecord Q_56AT_110_Otd=new PiramidaRecord(0, 8740, 46, "5-6АТ 110 кВ Отдача (Q)");
 
 
-        public static PiramidaRecord P_KRU3_29T = new PiramidaRecord(0, 8740, 47, "КРУ-3 29Т");
-        public static PiramidaRecord P_KRU3_22T = new PiramidaRecord(0, 8740, 48, "КРУ-3 22Т");
-        public static PiramidaRecord P_2VS_N1 = new PiramidaRecord(0, 8740, 49, "2ВС Н1");
-        public static PiramidaRecord P_KRU3_32T = new PiramidaRecord(0, 8740, 50, "КРУ-3 32Т");
-        public static PiramidaRecord P_KRU3_23T = new PiramidaRecord(0, 8740, 51, "КРУ-3 23Т");
-        public static PiramidaRecord P_KRU3_TP1 = new PiramidaRecord(0, 8740, 52, "КРУ-3 ТП1");
-        public static PiramidaRecord P_KRU3_34T = new PiramidaRecord(0, 8740, 53, "КРУ-3 34Т");
-        public static PiramidaRecord P_KRU3_26T = new PiramidaRecord(0, 8740, 55, "КРУ-3 26Т");
+        public static PiramidaRecord P_KRU3_29T = new PiramidaRecord(0, 8740, 47, "КРУ-3 29Т (P)");
+        public static PiramidaRecord P_KRU3_22T = new PiramidaRecord(0, 8740, 48, "КРУ-3 22Т (P)");
+        public static PiramidaRecord P_2VS_N1 = new PiramidaRecord(0, 8740, 49, "1-2 ВС (P)");
+        public static PiramidaRecord P_KRU3_32T = new PiramidaRecord(0, 8740, 50, "КРУ-3 32Т (P)");
+        public static PiramidaRecord P_KRU3_23T = new PiramidaRecord(0, 8740, 51, "КРУ-3 23Т (P)");
+        public static PiramidaRecord P_KRU3_TP1 = new PiramidaRecord(0, 8740, 52, "КРУ-3 ТП1 (P)");
+        public static PiramidaRecord P_KRU3_34T = new PiramidaRecord(0, 8740, 53, "КРУ-3 34Т (P)");
+        public static PiramidaRecord P_KRU3_26T = new PiramidaRecord(0, 8740, 55, "КРУ-3 26Т (P)");
         
         public static PiramidaRecord P_VL110_Svetlaya_Priem=new PiramidaRecord(0, 8737, 1, "ВЛ 110 Светлая прием (P)");
 		public static PiramidaRecord P_VL110_Svetlaya_Otd=new PiramidaRecord(0, 8737, 2, "ВЛ 110 Светлая отдача (P)");

@@ -121,14 +121,10 @@ namespace VotGES.Piramida.Report
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_TP1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_TP2, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 
-            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Emelino_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Emelino_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
-            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Emelino_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Emelino_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 
-            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Vyatka_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Vyatka_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
-            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Vyatka_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Vyatka_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
 		}
 
