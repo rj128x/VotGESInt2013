@@ -82,15 +82,17 @@ namespace ModbusLib
 
 		#region Rashod
 		public double Rashod_GES() {
-			return this["MB_238"] + this["MB_288"] + this["MB_338"] + this["MB_388"] + this["MB_438"] + this["MB_488"] + this["MB_538"] + this["MB_588"] + this["MB_638"] + this["MB_688"];
+            return this["MB_GA1_Rash"] + this["MB_GA2_Rash"] + this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
+                this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
 		}
 
 		public double Rashod_GTP1() {
-			return this["MB_238"] + this["MB_288"];
+            return this["MB_GA1_Rash"] + this["MB_GA2_Rash"];
 		}
 
 		public double Rashod_GTP2() {
-			return this["MB_338"] + this["MB_388"] + this["MB_438"] + this["MB_488"] + this["MB_538"] + this["MB_588"] + this["MB_638"] + this["MB_688"];
+            return this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
+                this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
 		}
 
 		public static List<int>gtp1=new List<int>(new int[] { 1, 2 });
@@ -98,45 +100,19 @@ namespace ModbusLib
 		public static List<int>ges=new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 
 		public double OptRashod_GTP1() {
-			return RUSA.getOptimRashod(this["Calc_P_GTP1"], this["MB_2014"], true, null, gtp1);
+			return RUSA.getOptimRashod(this["Calc_P_GTP1"], this["MB_Napor"], true, null, gtp1);
 		}
 
 		public double OptRashod_GTP2() {
-			return RUSA.getOptimRashod(this["Calc_P_GTP2"], this["MB_2014"], true, null, gtp2);
+            return RUSA.getOptimRashod(this["Calc_P_GTP2"], this["MB_Napor"], true, null, gtp2);
 		}
 
 		public double OptRashod_GES() {
-			return RUSA.getOptimRashod(this["Calc_P_GES"], this["MB_2014"], true, null, ges);
+            return RUSA.getOptimRashod(this["Calc_P_GES"], this["MB_Napor"], true, null, ges);
 		}
 		#endregion
 
-		public double GA1_Gen() { return this["MB_216"] > 10 ? 1 : 0; }
-		public double GA1_SK() { return (this["MB_216"] < 0 && this["MBDiscr_g1_sk"] == 1) ? 1 : 0; }
-		public double GA1_Run() { return (this["MB_216"] > 10 || this["MBDiscr_g1_sk"] == 1) ? 1 : 0; }
-
-		public double GA2_Gen() { return this["MB_266"] > 10 ? 1 : 0; }
-		public double GA2_SK() { return (this["MB_266"] < 0 && this["MBDiscr_g2_sk"] == 1) ? 1 : 0; }
-		public double GA2_Run() { return (this["MB_266"] > 10 || this["MBDiscr_g2_sk"] == 1) ? 1 : 0; }
-
-		public double GA3_Run() { return this["MB_316"] > 10 ? 1 : 0; }
-
-		public double GA4_Run() { return this["MB_366"] > 10 ? 1 : 0; }
-
-		public double GA5_Run() { return this["MB_416"] > 10 ? 1 : 0; }
-
-		public double GA6_Run() { return this["MB_466"] > 10 ? 1 : 0; }
-
-		public double GA7_Run() { return this["MB_516"] > 10 ? 1 : 0; }
-
-		public double GA8_Run() { return this["MB_566"] > 10 ? 1 : 0; }
-
-		public double GA9_Gen() { return this["MB_616"] > 10 ? 1 : 0; }
-		public double GA9_SK() { return (this["MB_616"] < 0 && this["MBDiscr_g9_sk"] == 1) ? 1 : 0; }
-		public double GA9_Run() { return (this["MB_616"] > 10 || this["MBDiscr_g9_sk"] == 1) ? 1 : 0; }
-
-		public double GA10_Gen() { return this["MB_666"] > 10 ? 1 : 0; }
-		public double GA10_SK() { return (this["MB_666"] < 0 && this["MBDiscr_g10_sk"] == 1) ? 1 : 0; }
-		public double GA10_Run() { return (this["MB_666"] > 10 || this["MBDiscr_g10_sk"] == 1) ? 1 : 0; }
+    
 
 	}
 }
