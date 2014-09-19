@@ -530,6 +530,7 @@ namespace VotGES.Piramida.Report
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_28T));
 
             child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_5N));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_25T));    
             child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_26T));            
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_7N));
@@ -556,7 +557,22 @@ namespace VotGES.Piramida.Report
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1VS_N1));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_2VS_N1));
 
+            child2 = childRecord.addChild(GetFullReportRecord("Р Емелино","rEmelino"));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_priem));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_otd));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_priem));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_otd));
+
+            child2 = childRecord.addChild(GetFullReportRecord("Р Вятка", "rVyatka"));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_priem));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_otd));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_priem));
+            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_otd));
+            
+
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TVI));
+            child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_TP1));
+            child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TP2));
 
 			record = RootSN.addChild(GetFullReportRecord("МБ", "mb"));
 			record.addChild(GetFullReportRecord(ReportMBRecords.MB_GA1_Istator));

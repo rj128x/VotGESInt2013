@@ -39,7 +39,7 @@ namespace VotGES.Piramida.Report
 
             P_SN_5N.CalcFunction = new RecordCalcDelegate((report, date) =>
             {
-                return report[date, PiramidaRecords.P_KRU3_26T.Key];
+                return report[date, PiramidaRecords.P_KRU3_26T.Key]+ report[date, PiramidaRecords.P_KRU1_25T.Key];
             });
 
 			P_SN_7N.CalcFunction=new RecordCalcDelegate((report, date) => {
@@ -100,6 +100,7 @@ namespace VotGES.Piramida.Report
 
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_23T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
             report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_24T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_25T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_26T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU1_27T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
@@ -116,7 +117,19 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_38T, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_1VS_N1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_2VS_N1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
-            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_TVI, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_TVI, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU3_TP1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_KRU2_TP2, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Emelino_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Emelino_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Emelino_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Emelino_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Vyatka_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Vyatka_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Vyatka_otd, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+            report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_R500_Vyatka_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
 		}
 
 
