@@ -6,6 +6,10 @@
 			<IP>192.168.140.230</IP>
 			<Port>502</Port>
 		</ServerInfo>
+    <ServerInfo>
+      <IP>10.7.101.251</IP>
+      <Port>510</Port>
+    </ServerInfo>
 	</ServerInfoArray>
 	
 	<ID>MB</ID>

@@ -54,27 +54,27 @@ namespace ModbusLib
 
 		#region P
 		public double P_GTP1() {
-			return this["MB_216"] + this["MB_266"];
+            return this["MB_GA1_P"] + this["MB_GA2_P"];
 		}
 
 		public double P_GTP2() {
-			return this["MB_316"] + this["MB_366"] + this["MB_416"] + this["MB_466"] + this["MB_516"] + this["MB_566"] + this["MB_616"] + this["MB_666"];
+            return this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 		public double P_GES() {
-			return this["MB_216"] + this["MB_266"] + this["MB_316"] + this["MB_366"] + this["MB_416"] + this["MB_466"] + this["MB_516"] + this["MB_566"] + this["MB_616"] + this["MB_666"];
+            return this["MB_GA1_P"] + this["MB_GA2_P"] + this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 		public double P_RGE2() {
-			return this["MB_316"] + this["MB_366"];
+            return this["MB_GA3_P"] + this["MB_GA4_P"];
 		}
 
 		public double P_RGE3() {
-			return this["MB_416"] + this["MB_466"];
+            return this["MB_GA5_P"] + this["MB_GA6_P"];
 		}
 
 		public double P_RGE4() {
-			return this["MB_516"] + this["MB_566"] + this["MB_616"] + this["MB_666"];
+            return this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 
