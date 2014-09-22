@@ -327,6 +327,82 @@ namespace VotGES.Piramida
 		public static PiramidaRecord GSV27=new PiramidaRecord(2, 7, 27, "Приток КамГЭС");
 		public static PiramidaRecord GSV28=new PiramidaRecord(2, 1, 373, "Температура","sut");
 
+        public static PiramidaRecord MBW_GES_Rash = new PiramidaRecord(2, 3, 1, "ГЭС Расход");
+        public static PiramidaRecord MBW_VB = new PiramidaRecord(2, 3, 2, "ВБ");
+        public static PiramidaRecord MBW_NB = new PiramidaRecord(2, 3, 3, "НБ");
+        public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напро");
+        public static PiramidaRecord MBW_Temp = new PiramidaRecord(2, 3, 5, "Температура");
+        public static PiramidaRecord MBW_TempShit = new PiramidaRecord(2, 3, 6, "Температура щитовых сооружений");
+        
+
+        public static PiramidaRecord MBW_GA1_Rash = new PiramidaRecord(2, 3, 101, "ГА-1 Расход");
+        public static PiramidaRecord MBW_GA2_Rash = new PiramidaRecord(2, 3, 102, "ГА-2 Расход");
+        public static PiramidaRecord MBW_GA3_Rash = new PiramidaRecord(2, 3, 103, "ГА-3 Расход");
+        public static PiramidaRecord MBW_GA4_Rash = new PiramidaRecord(2, 3, 104, "ГА-4 Расход");
+        public static PiramidaRecord MBW_GA5_Rash = new PiramidaRecord(2, 3, 105, "ГА-5 Расход");
+        public static PiramidaRecord MBW_GA6_Rash = new PiramidaRecord(2, 3, 106, "ГА-6 Расход");
+        public static PiramidaRecord MBW_GA7_Rash = new PiramidaRecord(2, 3, 107, "ГА-7 Расход");
+        public static PiramidaRecord MBW_GA8_Rash = new PiramidaRecord(2, 3, 108, "ГА-8 Расход");
+        public static PiramidaRecord MBW_GA9_Rash = new PiramidaRecord(2, 3, 109, "ГА-9 Расход");
+        public static PiramidaRecord MBW_GA10_Rash = new PiramidaRecord(2, 3, 110, "ГА-10 Расход");
+
+        public static PiramidaRecord MBW_GA1_P = new PiramidaRecord(2, 3, 201, "ГА-1 P");
+        public static PiramidaRecord MBW_GA2_P = new PiramidaRecord(2, 3, 202, "ГА-2 P");
+        public static PiramidaRecord MBW_GA3_P = new PiramidaRecord(2, 3, 203, "ГА-3 P");
+        public static PiramidaRecord MBW_GA4_P = new PiramidaRecord(2, 3, 204, "ГА-4 P");
+        public static PiramidaRecord MBW_GA5_P = new PiramidaRecord(2, 3, 205, "ГА-5 P");
+        public static PiramidaRecord MBW_GA6_P = new PiramidaRecord(2, 3, 206, "ГА-6 P");
+        public static PiramidaRecord MBW_GA7_P = new PiramidaRecord(2, 3, 207, "ГА-7 P");
+        public static PiramidaRecord MBW_GA8_P = new PiramidaRecord(2, 3, 208, "ГА-8 P");
+        public static PiramidaRecord MBW_GA9_P = new PiramidaRecord(2, 3, 209, "ГА-9 P");
+        public static PiramidaRecord MBW_GA10_P = new PiramidaRecord(2, 3, 210, "ГА-10 P");
+
+        public static PiramidaRecord MBW_GA1_Q = new PiramidaRecord(2, 3, 301, "ГА-1 Q");
+        public static PiramidaRecord MBW_GA2_Q = new PiramidaRecord(2, 3, 302, "ГА-2 Q");
+        public static PiramidaRecord MBW_GA3_Q = new PiramidaRecord(2, 3, 303, "ГА-3 Q");
+        public static PiramidaRecord MBW_GA4_Q = new PiramidaRecord(2, 3, 304, "ГА-4 Q");
+        public static PiramidaRecord MBW_GA5_Q = new PiramidaRecord(2, 3, 305, "ГА-5 Q");
+        public static PiramidaRecord MBW_GA6_Q = new PiramidaRecord(2, 3, 306, "ГА-6 Q");
+        public static PiramidaRecord MBW_GA7_Q = new PiramidaRecord(2, 3, 307, "ГА-7 Q");
+        public static PiramidaRecord MBW_GA8_Q = new PiramidaRecord(2, 3, 308, "ГА-8 Q");
+        public static PiramidaRecord MBW_GA9_Q = new PiramidaRecord(2, 3, 309, "ГА-9 Q");
+        public static PiramidaRecord MBW_GA10_Q = new PiramidaRecord(2, 3, 310, "ГА-10 Q");
+
+        public static PiramidaRecord MBW_GA1_OtkrNA = new PiramidaRecord(2, 3, 401, "ГА-1 Открытие НА");
+        public static PiramidaRecord MBW_GA2_OtkrNA = new PiramidaRecord(2, 3, 402, "ГА-2 Открытие НА");
+        public static PiramidaRecord MBW_GA3_OtkrNA = new PiramidaRecord(2, 3, 403, "ГА-3 Открытие НА");
+        public static PiramidaRecord MBW_GA4_OtkrNA = new PiramidaRecord(2, 3, 404, "ГА-4 Открытие НА");
+        public static PiramidaRecord MBW_GA5_OtkrNA = new PiramidaRecord(2, 3, 405, "ГА-5 Открытие НА");
+        public static PiramidaRecord MBW_GA6_OtkrNA = new PiramidaRecord(2, 3, 406, "ГА-6 Открытие НА");
+        public static PiramidaRecord MBW_GA7_OtkrNA = new PiramidaRecord(2, 3, 407, "ГА-7 Открытие НА");
+        public static PiramidaRecord MBW_GA8_OtkrNA = new PiramidaRecord(2, 3, 408, "ГА-8 Открытие НА");
+        public static PiramidaRecord MBW_GA9_OtkrNA = new PiramidaRecord(2, 3, 409, "ГА-9 Открытие НА");
+        public static PiramidaRecord MBW_GA10_OtkrNA = new PiramidaRecord(2, 3, 410, "ГА-10 Открытие НА");
+
+        public static PiramidaRecord MBW_GA1_UgolRK = new PiramidaRecord(2, 3, 501, "ГА-1 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA2_UgolRK = new PiramidaRecord(2, 3, 502, "ГА-2 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA3_UgolRK = new PiramidaRecord(2, 3, 503, "ГА-3 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA4_UgolRK = new PiramidaRecord(2, 3, 504, "ГА-4 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA5_UgolRK = new PiramidaRecord(2, 3, 505, "ГА-5 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA6_UgolRK = new PiramidaRecord(2, 3, 506, "ГА-6 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA7_UgolRK = new PiramidaRecord(2, 3, 507, "ГА-7 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA8_UgolRK = new PiramidaRecord(2, 3, 508, "ГА-8 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA9_UgolRK = new PiramidaRecord(2, 3, 509, "ГА-9 Угол открытия  РК");
+        public static PiramidaRecord MBW_GA10_UgolRK = new PiramidaRecord(2, 3, 510, "ГА-10 Угол открытия  РК");
+
+        public static PiramidaRecord MBW_GA1_Napor = new PiramidaRecord(2, 3, 601, "ГА-1 Напор");
+        public static PiramidaRecord MBW_GA2_Napor = new PiramidaRecord(2, 3, 602, "ГА-2 Напор");
+        public static PiramidaRecord MBW_GA3_Napor = new PiramidaRecord(2, 3, 603, "ГА-3 Напор");
+        public static PiramidaRecord MBW_GA4_Napor = new PiramidaRecord(2, 3, 604, "ГА-4 Напор");
+        public static PiramidaRecord MBW_GA5_Napor = new PiramidaRecord(2, 3, 605, "ГА-5 Напор");
+        public static PiramidaRecord MBW_GA6_Napor = new PiramidaRecord(2, 3, 606, "ГА-6 Напор");
+        public static PiramidaRecord MBW_GA7_Napor = new PiramidaRecord(2, 3, 607, "ГА-7 Напор");
+        public static PiramidaRecord MBW_GA8_Napor = new PiramidaRecord(2, 3, 608, "ГА-8 Напор");
+        public static PiramidaRecord MBW_GA9_Napor = new PiramidaRecord(2, 3, 609, "ГА-9 Напор");
+        public static PiramidaRecord MBW_GA10_Napor = new PiramidaRecord(2, 3, 610, "ГА-10 Напор");
+
+
+
 		public static PiramidaRecord MB_I_SHSV_220=new PiramidaRecord(2, 3, 0, "Ток ШСВ 220");
 		public static PiramidaRecord MB_I_SHSV_110=new PiramidaRecord(2, 3, 2, "Ток ШСВ 110");
 		public static PiramidaRecord MB_U_1SH_220=new PiramidaRecord(2, 3, 6, "U 1 с.ш. 220");
