@@ -96,13 +96,21 @@ namespace VotGES.Web.Services
 			FullGraphVyrab answer=new FullGraphVyrab();
 			answer.GTP = getGraphVyrab(steppedPBR);
 			answer.RGE = getGraphVyrabRGE(steppedPBR);
-			answer.TimeStopGA = PuskStopReportFull.TimeStopGA(false);
-			try {
-				List<PiramidaEnrty>list=PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-4), DateTime.Now.AddHours(-2), 1, 2, 12, (new int[] { 276 }).ToList(), true, true, "P3000");
-				answer.Napor = list.Last().Value0;
-			} catch (Exception e) {
-				Logger.Error("Ошибка при получении напора" + e);
-			}
+            answer.TimeStopGA = new Dictionary<int, string>();
+            for (int ga = 1; ga <= 10; ga++)
+            {
+                answer.TimeStopGA.Add(ga, "0");
+            }
+
+            try
+            {
+                List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-4), DateTime.Now.AddHours(-2), 1, 2, 12, (new int[] { 276 }).ToList(), true, true, "P3000");
+                answer.Napor = list.Last().Value0;
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Ошибка при получении напора" + e);
+            }
 			
 			return answer;
 		}

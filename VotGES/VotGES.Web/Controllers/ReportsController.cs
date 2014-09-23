@@ -60,30 +60,7 @@ namespace VotGES.Web.Controllers
 			return View("Prikaz20", report);
 		}
 
-		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult PuskStop(int year1, int month1, int day1, int year2, int month2, int day2) {
-			DateTime dateStart=new DateTime(year1, month1, day1);
-			DateTime dateEnd=new DateTime(year2, month2, day2);
-			dateEnd = dateEnd > DateTime.Now.AddHours(-2) ? DateTime.Now.AddHours(-2) : dateEnd;
-			Logger.Info(String.Format("Пуски-остановы с {0} по {1}", dateStart,dateEnd));
-			PuskStopReport puskStop=new PuskStopReport(dateStart, dateEnd);
-			puskStop.ReadData();
-			
-			return View("PuskStop", puskStop);
-		}
-
-		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult PuskStopFull(int year1, int month1, int day1, int year2, int month2, int day2) {
-			DateTime dateStart=new DateTime(year1, month1, day1);
-			DateTime dateEnd=new DateTime(year2, month2, day2);
-			dateEnd = dateEnd > DateTime.Now.AddHours(-2) ? DateTime.Now.AddHours(-2) : dateEnd;
-			Logger.Info(String.Format("Пуски-остановы (подробно) с {0} по {1}", dateStart, dateEnd));
-			PuskStopReportFull puskStop=new PuskStopReportFull(dateStart, dateEnd);
-			puskStop.ReadData();
-
-			return View("PuskStopFull", puskStop);
-		}
-
+		
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult FullReport(string guid) {
 			ReportAnswer report=null;

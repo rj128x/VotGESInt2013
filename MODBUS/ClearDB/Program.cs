@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using VotGES.Piramida;
 using VotGES;
 using VotGES.Rashod;
+using VotGES.OgranGA;
 
 namespace ClearDB
 {
@@ -135,6 +136,10 @@ namespace ClearDB
 							hh = 4;
 							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 204 }).ToList(), "PMin");
 							break;
+                        case "processOgran":
+                            hh = 4;
+                            OgranGA.processData(date, date.AddHours(hh), 30);
+                            break;
 					}
 					date = date.AddHours(hh);
 				}

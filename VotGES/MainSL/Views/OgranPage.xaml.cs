@@ -25,7 +25,6 @@ namespace MainSL.Views
         {
             List<KeyValuePair<int, int>> lst = new List<KeyValuePair<int, int>>();
             lst.Add(new KeyValuePair<int, int>(5, 5));
-            serie1.ser
 
         }
 

@@ -7575,28 +7575,6 @@ namespace VotGES.Web.Services
         }
         
         /// <summary>
-        /// Асинхронно вызывает метод "getStopGA" службы DomainService.
-        /// </summary>
-        /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
-        /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
-        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<Dictionary<int, string>> getStopGA(Action<InvokeOperation<Dictionary<int, string>>> callback, object userState)
-        {
-            this.ValidateMethod("getStopGA", null);
-            return ((InvokeOperation<Dictionary<int, string>>)(this.InvokeOperation("getStopGA", typeof(Dictionary<int, string>), null, true, callback, userState)));
-        }
-        
-        /// <summary>
-        /// Асинхронно вызывает метод "getStopGA" службы DomainService.
-        /// </summary>
-        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<Dictionary<int, string>> getStopGA()
-        {
-            this.ValidateMethod("getStopGA", null);
-            return ((InvokeOperation<Dictionary<int, string>>)(this.InvokeOperation("getStopGA", typeof(Dictionary<int, string>), null, true, null, null)));
-        }
-        
-        /// <summary>
         /// Асинхронно вызывает метод "processMaket" службы DomainService.
         /// </summary>
         /// <param name="data">Значение параметра "data" для данного действия.</param>
@@ -7718,23 +7696,6 @@ namespace VotGES.Web.Services
             /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetChart".</param>
             /// <returns>Объект "ChartAnswer", возвращенный из операции "getChart".</returns>
             ChartAnswer EndgetChart(IAsyncResult result);
-            
-            /// <summary>
-            /// Асинхронно вызывает операцию "getStopGA".
-            /// </summary>
-            /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
-            /// <param name="asyncState">Необязательный объект состояния.</param>
-            /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
-            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/RUSADomainService/getStopGADomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
-            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/RUSADomainService/getStopGA", ReplyAction="http://tempuri.org/RUSADomainService/getStopGAResponse")]
-            IAsyncResult BegingetStopGA(AsyncCallback callback, object asyncState);
-            
-            /// <summary>
-            /// Завершает асинхронную операцию, начатую "BegingetStopGA".
-            /// </summary>
-            /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetStopGA".</param>
-            /// <returns>Объект "Dictionary`2", возвращенный из операции "getStopGA".</returns>
-            Dictionary<int, string> EndgetStopGA(IAsyncResult result);
             
             /// <summary>
             /// Асинхронно вызывает операцию "processMaket".

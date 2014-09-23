@@ -45,11 +45,7 @@ using VotGES.Rashod;
 			return data;
 		}
 
-		public Dictionary<int, string> getStopGA() {
-			WebLogger.Info("Get Pusk Stop GA", VotGES.Logger.LoggerSource.service);
-			return PuskStopReportFull.TimeStopGA();
-		}
-
+		
 		public ChartAnswer getChart(RashodHarsData data, RHChartType type) {
 			WebLogger.Info("RashodHars Chart process "+type.ToString(), VotGES.Logger.LoggerSource.service);
 			switch (type) {

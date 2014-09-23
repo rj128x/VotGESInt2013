@@ -9,6 +9,7 @@ namespace VotGES.Piramida
 {
 	public class DBInfo
 	{
+        public static string DateFormat = "yyyy-MM-dd HH:mm:ss";
 		private string id;
 		public string ID {
 			get { return id; }
@@ -47,6 +48,7 @@ namespace VotGES.Piramida
 		public int Object { get; set; }
 		public int ObjType { get; set; }
 		public double Value0 { get; set; }
+        public double Value1 { get; set; }
 		public int Item { get; set; }
 	}
 
@@ -83,7 +85,7 @@ namespace VotGES.Piramida
 					dateStartCond, dateEndCond, parNumber, objType, obj, itemsStr);
 
 
-				command.CommandText = String.Format("SELECT d.[DATA_DATE], d.[OBJECT], d.[OBJTYPE], d.[ITEM], d.[PARNUMBER], d.[VALUE0] from DATA as d  WHERE {0}", valueParams);
+				command.CommandText = String.Format("SELECT d.[DATA_DATE], d.[OBJECT], d.[OBJTYPE], d.[ITEM], d.[PARNUMBER], d.[VALUE0], d.[VALUE1] from DATA as d  WHERE {0}", valueParams);
 
 
 
@@ -97,6 +99,7 @@ namespace VotGES.Piramida
 					entry.Item = reader.GetInt32(3);
 					entry.ParNumber = reader.GetInt32(4);
 					entry.Value0 = reader.GetDouble(5);
+                    entry.Value1 = reader.GetDouble(5);
 
 					result.Add(entry);
 				}

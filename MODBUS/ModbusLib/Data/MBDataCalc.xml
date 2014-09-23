@@ -87,6 +87,17 @@
     <ModbusInitData ID="GA9_HHT" Name="ГА-9 ХХ турбины" FuncName="GA9_HHT" WriteToDBHH="0" Item="609" WriteToDBDiff="1"/>
     <ModbusInitData ID="GA10_HHT" Name="ГА-10 ХХ турбины" FuncName="GA10_HHT" WriteToDBHH="0" Item="610" WriteToDBDiff="1"/>
 
+    <ModbusInitData ID="GA1_RUN" Name="ГА-1 запущен" FuncName="GA1_RUN" WriteToDBHH="0" Item="701" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_RUN" Name="ГА-2 запущен" FuncName="GA2_RUN" WriteToDBHH="0" Item="702" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_RUN" Name="ГА-3 запущен" FuncName="GA3_RUN" WriteToDBHH="0" Item="703" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_RUN" Name="ГА-4 запущен" FuncName="GA4_RUN" WriteToDBHH="0" Item="704" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_RUN" Name="ГА-5 запущен" FuncName="GA5_RUN" WriteToDBHH="0" Item="705" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_RUN" Name="ГА-6 запущен" FuncName="GA6_RUN" WriteToDBHH="0" Item="706" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_RUN" Name="ГА-7 запущен" FuncName="GA7_RUN" WriteToDBHH="0" Item="707" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_RUN" Name="ГА-8 запущен" FuncName="GA8_RUN" WriteToDBHH="0" Item="708" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_RUN" Name="ГА-9 запущен" FuncName="GA9_RUN" WriteToDBHH="0" Item="709" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_RUN" Name="ГА-10 запущен" FuncName="GA10_RUN" WriteToDBHH="0" Item="710" WriteToDBDiff="1"/>
+
 
   </Data>
 
