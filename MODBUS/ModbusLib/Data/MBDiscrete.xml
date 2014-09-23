@@ -21,10 +21,10 @@
 	<ParNumberDiff>13</ParNumberDiff>
 	
 	<Data>				
-		<ModbusInitData ID='g1_sk' Addr='123' Name='Г1 СК' />
-		<ModbusInitData ID='g2_sk' Addr='683' Name='Г2 СК' />
-		<ModbusInitData ID='g9_sk' Addr='4603' Name='Г9 СК' />
-		<ModbusInitData ID='g10_sk' Addr='5163' Name='Г10 СК' />
+		<ModbusInitData ID='g1_sk' Addr='123' Name='Г1 СК' WriteToDBHH='0' />
+		<ModbusInitData ID='g2_sk' Addr='683' Name='Г2 СК' WriteToDBHH='0'/>
+		<ModbusInitData ID='g9_sk' Addr='4603' Name='Г9 СК' WriteToDBHH='0'/>
+		<ModbusInitData ID='g10_sk' Addr='5163' Name='Г10 СК' WriteToDBHH='0'/>
 
 	</Data>
 

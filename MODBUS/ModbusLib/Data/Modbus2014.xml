@@ -163,6 +163,48 @@
 		<ModbusInitData ID='GA9_Napor_FLAG' Addr='639' Scale='1'/>
 		<ModbusInitData ID='GA10_Napor' Addr='688' Name='Г10 Напор' Scale='1'   Item='610'/>
 		<ModbusInitData ID='GA10_Napor_FLAG' Addr='689' Scale='1'/>
+
+    <ModbusInitData ID='GA1_MAXP_TEC' Addr='238' Name='Г1 Макс мощность' Scale='1'   Item='701'/>
+    <ModbusInitData ID='GA1_MAXP_TEC_FLAG' Addr='239' Scale='1'/>
+    <ModbusInitData ID='GA2_MAXP_TEC' Addr='288' Name='Г2 Макс мощность' Scale='1'   Item='702'/>
+    <ModbusInitData ID='GA2_MAXP_TEC_FLAG' Addr='289' Scale='1'/>
+    <ModbusInitData ID='GA3_MAXP_TEC' Addr='338' Name='Г3 Макс мощность' Scale='1'   Item='703'/>
+    <ModbusInitData ID='GA3_MAXP_TEC_FLAG' Addr='339' Scale='1'/>
+    <ModbusInitData ID='GA4_MAXP_TEC' Addr='388' Name='Г4 Макс мощность' Scale='1'   Item='704'/>
+    <ModbusInitData ID='GA4_MAXP_TEC_FLAG' Addr='389' Scale='1'/>
+    <ModbusInitData ID='GA5_MAXP_TEC' Addr='438' Name='Г5 Макс мощность' Scale='1'   Item='705'/>
+    <ModbusInitData ID='GA5_MAXP_TEC_FLAG' Addr='439' Scale='1'/>
+    <ModbusInitData ID='GA6_MAXP_TEC' Addr='488' Name='Г6 Макс мощность' Scale='1'   Item='706'/>
+    <ModbusInitData ID='GA6_MAXP_TEC_FLAG' Addr='489' Scale='1'/>
+    <ModbusInitData ID='GA7_MAXP_TEC' Addr='538' Name='Г7 Макс мощность' Scale='1'   Item='707'/>
+    <ModbusInitData ID='GA7_MAXP_TEC_FLAG' Addr='539' Scale='1'/>
+    <ModbusInitData ID='GA8_MAXP_TEC' Addr='588' Name='Г8 Макс мощность' Scale='1'   Item='708'/>
+    <ModbusInitData ID='GA8_MAXP_TEC_FLAG' Addr='589' Scale='1'/>
+    <ModbusInitData ID='GA9_MAXP_TEC' Addr='638' Name='Г9 Макс мощность' Scale='1'   Item='709'/>
+    <ModbusInitData ID='GA9_MAXP_TEC_FLAG' Addr='639' Scale='1'/>
+    <ModbusInitData ID='GA10_MAXP_TEC' Addr='688' Name='Г10 Макс мощность' Scale='1'   Item='710'/>
+    <ModbusInitData ID='GA10_MAXP_TEC_FLAG' Addr='689' Scale='1'/>
+
+    <ModbusInitData ID='GA1_MINP_TEC' Addr='238' Name='Г1 Мин мощность' Scale='1'   Item='801'/>
+    <ModbusInitData ID='GA1_MINP_TEC_FLAG' Addr='239' Scale='1'/>
+    <ModbusInitData ID='GA2_MINP_TEC' Addr='288' Name='Г2 Мин мощность' Scale='1'   Item='802'/>
+    <ModbusInitData ID='GA2_MINP_TEC_FLAG' Addr='289' Scale='1'/>
+    <ModbusInitData ID='GA3_MINP_TEC' Addr='338' Name='Г3 Мин мощность' Scale='1'   Item='803'/>
+    <ModbusInitData ID='GA3_MINP_TEC_FLAG' Addr='339' Scale='1'/>
+    <ModbusInitData ID='GA4_MINP_TEC' Addr='388' Name='Г4 Мин мощность' Scale='1'   Item='804'/>
+    <ModbusInitData ID='GA4_MINP_TEC_FLAG' Addr='389' Scale='1'/>
+    <ModbusInitData ID='GA5_MINP_TEC' Addr='438' Name='Г5 Мин мощность' Scale='1'   Item='805'/>
+    <ModbusInitData ID='GA5_MINP_TEC_FLAG' Addr='439' Scale='1'/>
+    <ModbusInitData ID='GA6_MINP_TEC' Addr='488' Name='Г6 Мин мощность' Scale='1'   Item='806'/>
+    <ModbusInitData ID='GA6_MINP_TEC_FLAG' Addr='489' Scale='1'/>
+    <ModbusInitData ID='GA7_MINP_TEC' Addr='538' Name='Г7 Мин мощность' Scale='1'   Item='807'/>
+    <ModbusInitData ID='GA7_MINP_TEC_FLAG' Addr='539' Scale='1'/>
+    <ModbusInitData ID='GA8_MINP_TEC' Addr='588' Name='Г8 Мин мощность' Scale='1'   Item='808'/>
+    <ModbusInitData ID='GA8_MINP_TEC_FLAG' Addr='589' Scale='1'/>
+    <ModbusInitData ID='GA9_MINP_TEC' Addr='638' Name='Г9 Мин мощность' Scale='1'   Item='809'/>
+    <ModbusInitData ID='GA9_MINP_TEC_FLAG' Addr='639' Scale='1'/>
+    <ModbusInitData ID='GA10_MINP_TEC' Addr='688' Name='Г10 Мин мощность' Scale='1'   Item='810'/>
+    <ModbusInitData ID='GA10_MINP_TEC_FLAG' Addr='689' Scale='1'/>
 		
 		>
 

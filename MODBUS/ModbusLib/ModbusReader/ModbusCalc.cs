@@ -112,7 +112,72 @@ namespace ModbusLib
 		}
 		#endregion
 
-    
+        #region Ogran
 
-	}
+        public double GA1_AFTER_MAX() { return this["MB_GA1_P"] > this["GA1_MAXP_TEC"] ? 1 : 0; }
+        public double GA2_AFTER_MAX() { return this["MB_GA2_P"] > this["GA2_MAXP_TEC"] ? 1 : 0; }
+        public double GA3_AFTER_MAX() { return this["MB_GA3_P"] > this["GA3_MAXP_TEC"] ? 1 : 0; }
+        public double GA4_AFTER_MAX() { return this["MB_GA4_P"] > this["GA4_MAXP_TEC"] ? 1 : 0; }
+        public double GA5_AFTER_MAX() { return this["MB_GA5_P"] > this["GA5_MAXP_TEC"] ? 1 : 0; }
+        public double GA6_AFTER_MAX() { return this["MB_GA6_P"] > this["GA6_MAXP_TEC"] ? 1 : 0; }
+        public double GA7_AFTER_MAX() { return this["MB_GA7_P"] > this["GA7_MAXP_TEC"] ? 1 : 0; }
+        public double GA8_AFTER_MAX() { return this["MB_GA8_P"] > this["GA8_MAXP_TEC"] ? 1 : 0; }
+        public double GA9_AFTER_MAX() { return this["MB_GA9_P"] > this["GA9_MAXP_TEC"] ? 1 : 0; }
+        public double GA10_AFTER_MAX() { return this["MB_GA10_P"] > this["GA10_MAXP_TEC"] ? 1 : 0; }
+
+        public double GA1_LESS_MIN() { return this["MB_GA1_P"] < this["GA1_MINP_TEC"] ? 1 : 0; }
+        public double GA2_LESS_MIN() { return this["MB_GA2_P"] < this["GA2_MINP_TEC"] ? 1 : 0; }
+        public double GA3_LESS_MIN() { return this["MB_GA3_P"] < this["GA3_MINP_TEC"] ? 1 : 0; }
+        public double GA4_LESS_MIN() { return this["MB_GA4_P"] < this["GA4_MINP_TEC"] ? 1 : 0; }
+        public double GA5_LESS_MIN() { return this["MB_GA5_P"] < this["GA5_MINP_TEC"] ? 1 : 0; }
+        public double GA6_LESS_MIN() { return this["MB_GA6_P"] < this["GA6_MINP_TEC"] ? 1 : 0; }
+        public double GA7_LESS_MIN() { return this["MB_GA7_P"] < this["GA7_MINP_TEC"] ? 1 : 0; }
+        public double GA8_LESS_MIN() { return this["MB_GA8_P"] < this["GA8_MINP_TEC"] ? 1 : 0; }
+        public double GA9_LESS_MIN() { return this["MB_GA9_P"] < this["GA9_MINP_TEC"] ? 1 : 0; }
+        public double GA10_LESS_MIN() { return this["MB_GA10_P"] < this["GA10_MINP_TEC"] ? 1 : 0; }
+
+        public double GA1_SK() { return this["MB_GA1_P"] < 0 ? 1 : 0; }
+        public double GA2_SK() { return this["MB_GA2_P"] < 0 ? 1 : 0; }
+        public double GA9_SK() { return this["MB_GA9_P"] < 0 ? 1 : 0; }
+        public double GA10_SK() { return this["MB_GA10_P"] < 0 ? 1 : 0; }
+
+        public double GA1_GEN() { return this["MB_GA1_P"] > 0 ? 1 : 0; }
+        public double GA2_GEN() { return this["MB_GA2_P"] > 0 ? 1 : 0; }
+        public double GA3_GEN() { return this["MB_GA3_P"] > 0 ? 1 : 0; }
+        public double GA4_GEN() { return this["MB_GA4_P"] > 0 ? 1 : 0; }
+        public double GA5_GEN() { return this["MB_GA5_P"] > 0 ? 1 : 0; }
+        public double GA6_GEN() { return this["MB_GA6_P"] > 0 ? 1 : 0; }
+        public double GA7_GEN() { return this["MB_GA7_P"] > 0 ? 1 : 0; }
+        public double GA8_GEN() { return this["MB_GA8_P"] > 0 ? 1 : 0; }
+        public double GA9_GEN() { return this["MB_GA9_P"] > 0 ? 1 : 0; }
+        public double GA10_GEN() { return this["MB_GA10_P"] > 0 ? 1 : 0; }
+
+        public double GA1_HHG() { return 0; }
+        public double GA2_HHG() { return 0; }
+        public double GA3_HHG() { return 0; }
+        public double GA4_HHG() { return 0; }
+        public double GA5_HHG() { return 0; }
+        public double GA6_HHG() { return 0; }
+        public double GA7_HHG() { return 0; }
+        public double GA8_HHG() { return 0; }
+        public double GA9_HHG() { return 0; }
+        public double GA10_HHG() { return 0; }
+
+        public double GA1_HHT() { return 0; }
+        public double GA2_HHT() { return 0; }
+        public double GA3_HHT() { return 0; }
+        public double GA4_HHT() { return 0; }
+        public double GA5_HHT() { return 0; }
+        public double GA6_HHT() { return 0; }
+        public double GA7_HHT() { return 0; }
+        public double GA8_HHT() { return 0; }
+        public double GA9_HHT() { return 0; }
+        public double GA10_HHT() { return 0; }
+
+        #endregion
+
+
+
+
+    }
 }

@@ -26,8 +26,68 @@
 		<ModbusInitData ID="OptRashod_GTP1" Name="Опт Расход ГТП1" FuncName="OptRashod_GTP1" WriteToDBHH="1" Item="2" Obj="10" ObjType="2" DBNameHH="P3000"/>
 		<ModbusInitData ID="OptRashod_GTP2" Name="Опт Расход ГТП2" FuncName="OptRashod_GTP2" WriteToDBHH="1" Item="3" Obj="10" ObjType="2" DBNameHH="P3000"/>
 		<ModbusInitData ID="OptRashod_GES" Name="Опт Расход ГЭС" FuncName="OptRashod_GES" WriteToDBHH="1" Item="1" Obj="10" ObjType="2" DBNameHH="P3000"/>
-		
-		
-	</Data>
+
+    <ModbusInitData ID="GA1_AFTER_MAX" Name="ГА-1 Режим больше макс мощности" FuncName="GA1_AFTER_MAX" WriteToDBHH="0" Item="101" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_AFTER_MAX" Name="ГА-2 Режим больше макс мощности" FuncName="GA2_AFTER_MAX" WriteToDBHH="0" Item="102" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_AFTER_MAX" Name="ГА-3 Режим больше макс мощности" FuncName="GA3_AFTER_MAX" WriteToDBHH="0" Item="103" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_AFTER_MAX" Name="ГА-4 Режим больше макс мощности" FuncName="GA4_AFTER_MAX" WriteToDBHH="0" Item="104" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_AFTER_MAX" Name="ГА-5 Режим больше макс мощности" FuncName="GA5_AFTER_MAX" WriteToDBHH="0" Item="105" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_AFTER_MAX" Name="ГА-6 Режим больше макс мощности" FuncName="GA6_AFTER_MAX" WriteToDBHH="0" Item="106" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_AFTER_MAX" Name="ГА-7 Режим больше макс мощности" FuncName="GA7_AFTER_MAX" WriteToDBHH="0" Item="107" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_AFTER_MAX" Name="ГА-8 Режим больше макс мощности" FuncName="GA8_AFTER_MAX" WriteToDBHH="0" Item="108" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_AFTER_MAX" Name="ГА-9 Режим больше макс мощности" FuncName="GA9_AFTER_MAX" WriteToDBHH="0" Item="109" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_AFTER_MAX" Name="ГА-10 Режим больше макс мощности" FuncName="GA10_AFTER_MAX" WriteToDBHH="0" Item="110" WriteToDBDiff="1"/>
+
+    <ModbusInitData ID="GA1_LESS_MIN" Name="ГА-1 Режим меньше мин мощности" FuncName="GA1_LESS_MIN" WriteToDBHH="0" Item="201" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_LESS_MIN" Name="ГА-2 Режим меньше мин мощности" FuncName="GA2_LESS_MIN" WriteToDBHH="0" Item="202" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_LESS_MIN" Name="ГА-3 Режим меньше мин мощности" FuncName="GA3_LESS_MIN" WriteToDBHH="0" Item="203" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_LESS_MIN" Name="ГА-4 Режим меньше мин мощности" FuncName="GA4_LESS_MIN" WriteToDBHH="0" Item="204" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_LESS_MIN" Name="ГА-5 Режим меньше мин мощности" FuncName="GA5_LESS_MIN" WriteToDBHH="0" Item="205" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_LESS_MIN" Name="ГА-6 Режим меньше мин мощности" FuncName="GA6_LESS_MIN" WriteToDBHH="0" Item="206" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_LESS_MIN" Name="ГА-7 Режим меньше мин мощности" FuncName="GA7_LESS_MIN" WriteToDBHH="0" Item="207" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_LESS_MIN" Name="ГА-8 Режим меньше мин мощности" FuncName="GA8_LESS_MIN" WriteToDBHH="0" Item="208" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_LESS_MIN" Name="ГА-9 Режим меньше мин мощности" FuncName="GA9_LESS_MIN" WriteToDBHH="0" Item="209" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_LESS_MIN" Name="ГА-10 Режим меньше мин мощности" FuncName="GA10_LESS_MIN" WriteToDBHH="0" Item="210" WriteToDBDiff="1"/>
+
+    <ModbusInitData ID="GA1_SK" Name="ГА-1 СК" FuncName="GA1_SK" WriteToDBHH="0" Item="301" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_SK" Name="ГА-2 СК" FuncName="GA2_SK" WriteToDBHH="0" Item="302" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_SK" Name="ГА-9 СК" FuncName="GA9_SK" WriteToDBHH="0" Item="309" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_SK" Name="ГА-10 СК" FuncName="GA10_SK" WriteToDBHH="0" Item="310" WriteToDBDiff="1"/>
+
+    <ModbusInitData ID="GA1_GEN" Name="ГА-1 Генерация" FuncName="GA1_GEN" WriteToDBHH="0" Item="401" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_GEN" Name="ГА-2 Генерация" FuncName="GA2_GEN" WriteToDBHH="0" Item="402" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_GEN" Name="ГА-3 Генерация" FuncName="GA3_GEN" WriteToDBHH="0" Item="403" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_GEN" Name="ГА-4 Генерация" FuncName="GA4_GEN" WriteToDBHH="0" Item="404" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_GEN" Name="ГА-5 Генерация" FuncName="GA5_GEN" WriteToDBHH="0" Item="405" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_GEN" Name="ГА-6 Генерация" FuncName="GA6_GEN" WriteToDBHH="0" Item="406" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_GEN" Name="ГА-7 Генерация" FuncName="GA7_GEN" WriteToDBHH="0" Item="407" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_GEN" Name="ГА-8 Генерация" FuncName="GA8_GEN" WriteToDBHH="0" Item="408" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_GEN" Name="ГА-9 Генерация" FuncName="GA9_GEN" WriteToDBHH="0" Item="409" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_GEN" Name="ГА-10 Генерация" FuncName="GA10_GEN" WriteToDBHH="0" Item="410" WriteToDBDiff="1"/>
+
+    <ModbusInitData ID="GA1_HHG" Name="ГА-1 ХХ генератора" FuncName="GA1_HHG" WriteToDBHH="0" Item="501" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_HHG" Name="ГА-2 ХХ генератора" FuncName="GA2_HHG" WriteToDBHH="0" Item="502" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_HHG" Name="ГА-3 ХХ генератора" FuncName="GA3_HHG" WriteToDBHH="0" Item="503" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_HHG" Name="ГА-4 ХХ генератора" FuncName="GA4_HHG" WriteToDBHH="0" Item="504" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_HHG" Name="ГА-5 ХХ генератора" FuncName="GA5_HHG" WriteToDBHH="0" Item="505" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_HHG" Name="ГА-6 ХХ генератора" FuncName="GA6_HHG" WriteToDBHH="0" Item="506" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_HHG" Name="ГА-7 ХХ генератора" FuncName="GA7_HHG" WriteToDBHH="0" Item="507" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_HHG" Name="ГА-8 ХХ генератора" FuncName="GA8_HHG" WriteToDBHH="0" Item="508" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_HHG" Name="ГА-9 ХХ генератора" FuncName="GA9_HHG" WriteToDBHH="0" Item="509" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_HHG" Name="ГА-10 ХХ генератора" FuncName="GA10_HHG" WriteToDBHH="0" Item="510" WriteToDBDiff="1"/>
+
+    <ModbusInitData ID="GA1_HHT" Name="ГА-1 ХХ турбины" FuncName="GA1_HHT" WriteToDBHH="0" Item="601" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA2_HHT" Name="ГА-2 ХХ турбины" FuncName="GA2_HHT" WriteToDBHH="0" Item="602" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA3_HHT" Name="ГА-3 ХХ турбины" FuncName="GA3_HHT" WriteToDBHH="0" Item="603" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA4_HHT" Name="ГА-4 ХХ турбины" FuncName="GA4_HHT" WriteToDBHH="0" Item="604" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA5_HHT" Name="ГА-5 ХХ турбины" FuncName="GA5_HHT" WriteToDBHH="0" Item="605" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA6_HHT" Name="ГА-6 ХХ турбины" FuncName="GA6_HHT" WriteToDBHH="0" Item="606" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA7_HHT" Name="ГА-7 ХХ турбины" FuncName="GA7_HHT" WriteToDBHH="0" Item="607" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA8_HHT" Name="ГА-8 ХХ турбины" FuncName="GA8_HHT" WriteToDBHH="0" Item="608" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA9_HHT" Name="ГА-9 ХХ турбины" FuncName="GA9_HHT" WriteToDBHH="0" Item="609" WriteToDBDiff="1"/>
+    <ModbusInitData ID="GA10_HHT" Name="ГА-10 ХХ турбины" FuncName="GA10_HHT" WriteToDBHH="0" Item="610" WriteToDBDiff="1"/>
+
+
+  </Data>
 
 </ModbusInitDataArray>
