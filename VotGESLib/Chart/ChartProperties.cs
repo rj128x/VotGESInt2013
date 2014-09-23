@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace VotGES.Chart
 {
-	public enum ChartSerieType { line, bar, pie, column, stepLine }
+	public enum ChartSerieType { line, bar, pie, column, stepLine, area }
 	public enum XAxisTypeEnum { numeric, datetime }	
 
 	[Serializable]

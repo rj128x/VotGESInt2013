@@ -55,7 +55,7 @@ namespace VotGES.OgranGA
     public class OgranGA
     {
         protected static OgranGARecord calcOgran(DateTime dateStart, DateTime dateEnd, int gaNumber, List<PiramidaEnrty> data)
-        {       
+        {
             OgranGARecord result = new OgranGARecord();
             result.GA = gaNumber;
 
@@ -85,7 +85,7 @@ namespace VotGES.OgranGA
                     addCnt++;
                     timeToEnd = OgranGARecord.dateDiff(record.Date, dateEnd);
                 }
-                
+
                 OgranGARecord.ITEM_ENUM itemType = OgranGARecord.getItemType(record.Item);
                 switch (itemType)
                 {
@@ -115,7 +115,7 @@ namespace VotGES.OgranGA
                         result.cntStop += addCnt;
                         result.cntPusk += (1 - addCnt);
                         timeRunToEnd = timeToEnd;
-                        break;                        
+                        break;
                 }
             }
 
@@ -136,15 +136,15 @@ namespace VotGES.OgranGA
                 items.Add(h * 100 + gaNumber);
             }
 
-            Logger.Info("====Чтение исходных данных",Logger.LoggerSource.service);
+            Logger.Info("====Чтение исходных данных", Logger.LoggerSource.service);
             List<PiramidaEnrty> data = PiramidaAccess.GetDataFromDB(dateStart, dateEnd, 30, 2, 13, items, true, true, "PSV");
             List<OgranGARecord> result = new List<OgranGARecord>();
-            
+
             DateTime date = dateStart.AddHours(0);
             List<PiramidaEnrty> smallData = new List<PiramidaEnrty>();
             while (date < dateEnd)
             {
-                DateTime de=date.AddMinutes(minutes);
+                DateTime de = date.AddMinutes(minutes);
                 foreach (PiramidaEnrty rec in data)
                 {
                     if (rec.Date > date && rec.Date <= de)
@@ -159,13 +159,13 @@ namespace VotGES.OgranGA
             writeToDB(result);
         }
 
-        public static void processData(DateTime dateStart, DateTime dateEnd,int minutes)
+        public static void processData(DateTime dateStart, DateTime dateEnd, int minutes)
         {
-            Logger.Info("Обработка пусков-остановов",Logger.LoggerSource.service);
+            Logger.Info("Обработка пусков-остановов", Logger.LoggerSource.service);
             for (int ga = 1; ga <= 10; ga++)
             {
-                Logger.Info("===GA"+ga, Logger.LoggerSource.service);
-                procesPuskStopData(dateStart, dateEnd,minutes, ga);
+                Logger.Info("===GA" + ga, Logger.LoggerSource.service);
+                procesPuskStopData(dateStart, dateEnd, minutes, ga);
             }
         }
 
@@ -173,51 +173,64 @@ namespace VotGES.OgranGA
 
         protected static void writeToDB(List<OgranGARecord> data)
         {
-            Logger.Info("====запись пусков-остановов", Logger.LoggerSource.service);            
+            SqlCommand command = null;
+            Logger.Info("====запись пусков-остановов", Logger.LoggerSource.service);
             SqlConnection connection = PiramidaAccess.getConnection("PSV");
-            SqlCommand command = connection.CreateCommand();
-
-            string query = "DELETE FROM PuskStopTable WHERE";
-            string qOR = "(dateStart='{0}' and dateEnd='{1}' and gaNumber={2})";
-            List<string> qList=new List<string>();
-
-            int index = 0;
-            foreach (OgranGARecord record in data)
+            command = connection.CreateCommand();
+            connection.Open();
+            try
             {
-                string q = String.Format(qOR, record.dateStart.ToString(DBInfo.DateFormat), record.dateEnd.ToString(DBInfo.DateFormat),record.GA);
-                qList.Add(q);
-                index++;
+                string query = "DELETE FROM PuskStopTable WHERE";
+                string qOR = "(dateStart='{0}' and dateEnd='{1}' and gaNumber={2})";
+                List<string> qList = new List<string>();
 
-                if (index == 20 || record==data.Last())
+                int index = 0;
+                foreach (OgranGARecord record in data)
                 {
-                    command.CommandText= query + String.Join(" OR ", qList);
-                    int count=command.ExecuteNonQuery();
-                    Logger.Info(String.Format("=====Удаление пусков-остановов: {0}", count), Logger.LoggerSource.service);
-                    qList.Clear();
-                    index = 0;
-                }                
-            }    
+                    string q = String.Format(qOR, record.dateStart.ToString(DBInfo.DateFormat), record.dateEnd.ToString(DBInfo.DateFormat), record.GA);
+                    qList.Add(q);
+                    index++;
+
+                    if (index == 20 || record == data.Last())
+                    {
+                        command.CommandText = query + String.Join(" OR ", qList);
+                        int count = command.ExecuteNonQuery();
+                        Logger.Info(String.Format("=====Удаление пусков-остановов: {0}", count), Logger.LoggerSource.service);
+                        qList.Clear();
+                        index = 0;
+                    }
+                }
 
 
-            string insertStr = "INSERT INTO PuskStopTable (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG)";
-            string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}";
-            List<string> insertList = new List<string>();
-            index = 0;
-            foreach (OgranGARecord record in data)
+                string insertStr = "INSERT INTO PuskStopTable (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG)";
+                string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}";
+                List<string> insertList = new List<string>();
+                index = 0;
+                foreach (OgranGARecord record in data)
+                {
+                    string insert = string.Format(dataFormat, record.dateStart, record.dateEnd, record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
+                        record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG);
+                    insertList.Add(insert);
+                    if (index == 20 || record == data.Last())
+                    {
+                        command.CommandText = insertStr + " \n " + String.Join(" \nUNION ALL\n ", insertList);
+                        int count = command.ExecuteNonQuery();
+                        Logger.Info(String.Format("======запись пусков-остановов: {0}", count), Logger.LoggerSource.service);
+                        insertList.Clear();
+                        index = 0;
+                    }
+                }
+            }
+            finally
             {
-                string insert = string.Format(dataFormat, record.dateStart, record.dateEnd, record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
-                    record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG);
-                insertList.Add(insert);
-                if (index == 20 || record == data.Last())
-                {
-                    command.CommandText = insertStr +" \n " + String.Join(" \nUNION ALL\n ", insertList);
-                    int count = command.ExecuteNonQuery();
-                    Logger.Info(String.Format("======запись пусков-остановов: {0}", count), Logger.LoggerSource.service);
-                    insertList.Clear();
-                    index = 0;
-                }     
+                try { command.Dispose(); }
+                catch { }
+                try { connection.Close(); }
+                catch { }
             }
         }
+
+
 
 
     }

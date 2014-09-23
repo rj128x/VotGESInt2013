@@ -84,7 +84,16 @@
 								</StackPanel>
 							</StackPanel>
 						</Border>
-					</StackPanel>
+                        <Border Style="{StaticResource borderGray}" Margin="0,10,0,0" Grid.Row="0">
+                            <StackPanel>
+                                <TextBlock Text="КПД" Grid.Row="0" Grid.Column="0" Style="{StaticResource Label}"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <Button Name="btnKPDLine" Width="60" Click="btnKPDLine_Click" Content="КПД" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                                    
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
 				</Border>
 
 				<Border Style="{StaticResource borderGray}" Margin="0,10,0,0" Grid.Row="0" Grid.Column="1">

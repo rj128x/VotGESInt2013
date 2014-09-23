@@ -217,6 +217,16 @@ namespace MainSL
 					lineSerie.PointStroke = tr;					
 					Serie = lineSerie;
 					break;
+                case ChartSerieType.area:
+                    lineSerie = new LineSeries();
+                    lineSerie.LineStrokeThickness = 0;
+                    lineSerie.LineStroke = br;
+                    lineSerie.HighlightingEnabled = true;
+                    lineSerie.PointSize = 10;
+                    lineSerie.PointFill = br;
+                    lineSerie.PointStroke = br;
+                    Serie = lineSerie;
+                    break;
 				case ChartSerieType.stepLine:
 					StaircaseSeries stairSerie=new StaircaseSeries();
 					stairSerie.LineStrokeThickness=serieProp.LineWidth+1;

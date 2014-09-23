@@ -8,11 +8,5 @@
            mc:Ignorable="d"
            d:DesignWidth="640" d:DesignHeight="480"
            Title="OgranPage Page">
-    <Grid x:Name="LayoutRoot">
-
-        <toolkit:Chart >
-            <toolkit:BarSeries Name="serie1"  />
-        </toolkit:Chart>
-
-    </Grid>
+    <Grid x:Name="LayoutRoot"/>
 </navigation:Page>

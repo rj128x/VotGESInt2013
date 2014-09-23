@@ -72,7 +72,9 @@ using VotGES.Rashod;
 				case RHChartType.CMPST_QotH:
 					return RashodHars.GetCMPST_QotH(false, data.Power);
 				case RHChartType.CMPST_KPDotH:
-					return RashodHars.GetCMPST_QotH(true, data.Power);	
+					return RashodHars.GetCMPST_QotH(true, data.Power);
+                case RHChartType.KPD_Line:
+                    return KPDLine.createKPDTable(data.GANumber);	
 			}
 			return null;
 		}

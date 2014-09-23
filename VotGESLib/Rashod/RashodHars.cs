@@ -10,7 +10,8 @@ namespace VotGES.Rashod
 	{
 		GA_QotP, GA_KPDotP, GA_QotH, GA_KPDotH,
 		CMPGA_QotP, CMPGA_KPDotP, CMPGA_QotH, CMPGA_KPDotH,
-		CMPST_QotP, CMPST_KPDotP, CMPST_QotH, CMPST_KPDotH
+		CMPST_QotP, CMPST_KPDotP, CMPST_QotH, CMPST_KPDotH,
+        KPD_Line
 	};
 	public class RashodHars
 	{

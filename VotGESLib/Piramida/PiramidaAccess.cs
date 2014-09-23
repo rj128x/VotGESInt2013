@@ -65,8 +65,7 @@ namespace VotGES.Piramida
 		}
 
 		public static List<PiramidaEnrty> GetDataFromDB(DateTime dateStart, DateTime dateEnd, int obj, int objType, int parNumber, List<int> items, bool includeFirst = false, bool includeLast = true, string dbName="P3000") {
-
-			List<PiramidaEnrty> result=new List<PiramidaEnrty>();
+            List<PiramidaEnrty> result=new List<PiramidaEnrty>();
 			SqlConnection connection=getConnection(dbName);
 			SqlDataReader reader=null;
 			SqlCommand command=null;

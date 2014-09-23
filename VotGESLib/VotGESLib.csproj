@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="NNET\NNET.cs" />
     <Compile Include="OgranGA\OgranGA.cs" />
+    <Compile Include="OgranGA\OgranGAReport.cs" />
     <Compile Include="PBR\GraphVyrab.cs" />
     <Compile Include="PBR\PBRData.cs" />
     <Compile Include="PBR\PBRDataHH.cs" />
@@ -102,6 +103,7 @@
       <DependentUpon>rashods.resx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Rashod\KPDLine.cs" />
     <Compile Include="Rashod\RashodHars.cs" />
     <Compile Include="Rashod\RashodTable.cs" />
     <Compile Include="Rashod\RUSA.cs" />

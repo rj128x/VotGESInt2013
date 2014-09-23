@@ -210,5 +210,10 @@ namespace MainSL.Views
 			loadChart(RHChartType.CMPST_KPDotH);
 		}
 
+        private void btnKPDLine_Click(object sender, RoutedEventArgs e)
+        {
+            loadChart(RHChartType.KPD_Line);
+        }
+
 	}
 }
