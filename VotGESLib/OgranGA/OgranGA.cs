@@ -17,7 +17,7 @@ namespace VotGES.OgranGA
         public int cntPusk { get; set; }
         public int cntStop { get; set; }
         public int cntAfterMax { get; set; }
-        public int cntLessMin { get; set; }
+        public int cntLessMin { get; set; }        
         public double timeSK { get; set; }
         public double timeGen { get; set; }
         public double timeRun { get; set; }

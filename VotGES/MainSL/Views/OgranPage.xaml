@@ -5,8 +5,148 @@
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
            xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" x:Class="MainSL.Views.OgranPage"
+           xmlns:usr="clr-namespace:MainSL.Views" 
            mc:Ignorable="d"
-           d:DesignWidth="640" d:DesignHeight="480"
+           d:DesignWidth="900" d:DesignHeight="600"
            Title="OgranPage Page">
-    <Grid x:Name="LayoutRoot"/>
+    <Grid x:Name="LayoutRoot">
+        <StackPanel  Width="900">
+        </StackPanel>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition Width="400" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource borderGray}" Grid.Column="0" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Button Name="ga1Btn" Content="ГА-1" Width="50" Click="ga1Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga2Btn" Content="ГА-2" Width="50" Click="ga2Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga3Btn" Content="ГА-3" Width="50" Click="ga3Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga4Btn" Content="ГА-4" Width="50" Click="ga4Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga5Btn" Content="ГА-5" Width="50" Click="ga5Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga6Btn" Content="ГА-6" Width="50" Click="ga6Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga7Btn" Content="ГА-7" Width="50" Click="ga7Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga8Btn" Content="ГА-8" Width="50" Click="ga8Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga9Btn" Content="ГА-9" Width="50" Click="ga9Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        <Button Name="ga10Btn" Content="ГА-10" Width="50" Click="ga10Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource borderGray}" Grid.Column="1" Grid.Row="0">
+                <StackPanel>
+                    <Grid Background="AliceBlue" Name="grdAnswer">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="---" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="НЭ" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="КР" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="НГ" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="НМ" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="НС" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+                        <TextBlock Text="Пусков" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Остановов" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Запр мин" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Запр макс" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="В работе" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Генерация" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="СК" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="ХХТ" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="ХХГ" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Макс" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Мин" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+
+                        <TextBlock Text="{Binding ExpStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.cntStop, Mode=OneWay, StringFormat='0'}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.cntStop, Mode=OneWay, StringFormat='0'}" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.cntStop, Mode=OneWay, StringFormat='0'}" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.cntStop, Mode=OneWay, StringFormat='0'}" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.cntAfterMax, Mode=OneWay, StringFormat='0'}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.cntAfterMax, Mode=OneWay, StringFormat='0'}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.cntAfterMax, Mode=OneWay, StringFormat='0'}" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.cntAfterMax, Mode=OneWay, StringFormat='0'}" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.cntLessMin, Mode=OneWay, StringFormat='0'}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.cntLessMin, Mode=OneWay, StringFormat='0'}" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.cntLessMin, Mode=OneWay, StringFormat='0'}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.cntLessMin, Mode=OneWay, StringFormat='0'}" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeRun, Mode=OneWay, StringFormat='0.0'}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeRun, Mode=OneWay, StringFormat='0.0'}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeRun, Mode=OneWay, StringFormat='0.0'}" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeRun, Mode=OneWay, StringFormat='0.0'}" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeGen, Mode=OneWay, StringFormat='0.0'}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeGen, Mode=OneWay, StringFormat='0.0'}" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeGen, Mode=OneWay, StringFormat='0.0'}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeGen, Mode=OneWay, StringFormat='0.0'}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeSK, Mode=OneWay, StringFormat='0.0'}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeSK, Mode=OneWay, StringFormat='0.0'}" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeSK, Mode=OneWay, StringFormat='0.0'}" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeSK, Mode=OneWay, StringFormat='0.0'}" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeHHT, Mode=OneWay, StringFormat='0.0'}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeHHT, Mode=OneWay, StringFormat='0.0'}" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeHHT, Mode=OneWay, StringFormat='0.0'}" Grid.Row="8" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeHHT, Mode=OneWay, StringFormat='0.0'}" Grid.Row="8" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeHHG, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeHHG, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeHHG, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeHHG, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeAfterMax, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeAfterMax, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeAfterMax, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeAfterMax, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="5" HorizontalAlignment="Center" />
+
+                        <TextBlock Text="{Binding ExpStartRecord.timeLessMin, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding YearStartRecord.timeLessMin, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding MonthStartRecord.timeLessMin, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding DayStartRecord.timeLessMin, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="5" HorizontalAlignment="Center" />
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </navigation:Page>

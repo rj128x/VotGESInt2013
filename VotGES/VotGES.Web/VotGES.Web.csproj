@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Logging\WebLogger.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\OgranGAAnswer.cs" />
     <Compile Include="Models\ProcessRUSAData.cs" />
     <Compile Include="Models\RUSAData.cs" />
     <Compile Include="Models\RashodHarsData.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Services\PrognozNBService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\ReportBaseDomainService.cs" />
+    <Compile Include="Services\OgranGAService.cs" />
     <Compile Include="Services\RUSADomainService.cs" />
   </ItemGroup>
   <ItemGroup>

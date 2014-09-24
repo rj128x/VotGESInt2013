@@ -34,6 +34,7 @@ namespace VotGES.OgranGA
             for (int ga = 1; ga <= 10; ga++)
             {
                 data.Add(ga, new List<OgranGARecord>());
+                sumData.Add(ga, new OgranGARecord());
             }
         }
 

@@ -63,9 +63,13 @@
 					
 					<Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
 					<HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/RUSAPage" TargetName="ContentFrame" Content="РУСА"/>					
+                                     NavigateUri="/RUSAPage" TargetName="ContentFrame" Content="РУСА"/>
+                    
+                    <Rectangle x:Name="Divider10" Style="{StaticResource DividerStyle}"/>
+                    <HyperlinkButton x:Name="Link10" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/OgranPage" TargetName="ContentFrame" Content="Ограничения"/>
 
-				</StackPanel>
+                </StackPanel>
 			</Border>
 
 

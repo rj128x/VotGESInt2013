@@ -1177,6 +1177,438 @@ namespace VotGES.Chart
         datetime = 1,
     }
 }
+namespace VotGES.OgranGA
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    
+    
+    /// <summary>
+    /// Класс "OgranGARecord".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.OgranGA")]
+    public sealed partial class OgranGARecord : ComplexObject
+    {
+        
+        private int _cntAfterMax;
+        
+        private int _cntLessMin;
+        
+        private int _cntPusk;
+        
+        private int _cntStop;
+        
+        private DateTime _dateEnd;
+        
+        private DateTime _dateStart;
+        
+        private int _ga;
+        
+        private double _timeAfterMax;
+        
+        private double _timeGen;
+        
+        private double _timeHHG;
+        
+        private double _timeHHT;
+        
+        private double _timeLessMin;
+        
+        private double _timeRun;
+        
+        private double _timeSK;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OncntAfterMaxChanging(int value);
+        partial void OncntAfterMaxChanged();
+        partial void OncntLessMinChanging(int value);
+        partial void OncntLessMinChanged();
+        partial void OncntPuskChanging(int value);
+        partial void OncntPuskChanged();
+        partial void OncntStopChanging(int value);
+        partial void OncntStopChanged();
+        partial void OndateEndChanging(DateTime value);
+        partial void OndateEndChanged();
+        partial void OndateStartChanging(DateTime value);
+        partial void OndateStartChanged();
+        partial void OnGAChanging(int value);
+        partial void OnGAChanged();
+        partial void OntimeAfterMaxChanging(double value);
+        partial void OntimeAfterMaxChanged();
+        partial void OntimeGenChanging(double value);
+        partial void OntimeGenChanged();
+        partial void OntimeHHGChanging(double value);
+        partial void OntimeHHGChanged();
+        partial void OntimeHHTChanging(double value);
+        partial void OntimeHHTChanged();
+        partial void OntimeLessMinChanging(double value);
+        partial void OntimeLessMinChanged();
+        partial void OntimeRunChanging(double value);
+        partial void OntimeRunChanged();
+        partial void OntimeSKChanging(double value);
+        partial void OntimeSKChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="OgranGARecord"/>.
+        /// </summary>
+        public OgranGARecord()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntAfterMax".
+        /// </summary>
+        [DataMember()]
+        public int cntAfterMax
+        {
+            get
+            {
+                return this._cntAfterMax;
+            }
+            set
+            {
+                if ((this._cntAfterMax != value))
+                {
+                    this.OncntAfterMaxChanging(value);
+                    this.RaiseDataMemberChanging("cntAfterMax");
+                    this.ValidateProperty("cntAfterMax", value);
+                    this._cntAfterMax = value;
+                    this.RaiseDataMemberChanged("cntAfterMax");
+                    this.OncntAfterMaxChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntLessMin".
+        /// </summary>
+        [DataMember()]
+        public int cntLessMin
+        {
+            get
+            {
+                return this._cntLessMin;
+            }
+            set
+            {
+                if ((this._cntLessMin != value))
+                {
+                    this.OncntLessMinChanging(value);
+                    this.RaiseDataMemberChanging("cntLessMin");
+                    this.ValidateProperty("cntLessMin", value);
+                    this._cntLessMin = value;
+                    this.RaiseDataMemberChanged("cntLessMin");
+                    this.OncntLessMinChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntPusk".
+        /// </summary>
+        [DataMember()]
+        public int cntPusk
+        {
+            get
+            {
+                return this._cntPusk;
+            }
+            set
+            {
+                if ((this._cntPusk != value))
+                {
+                    this.OncntPuskChanging(value);
+                    this.RaiseDataMemberChanging("cntPusk");
+                    this.ValidateProperty("cntPusk", value);
+                    this._cntPusk = value;
+                    this.RaiseDataMemberChanged("cntPusk");
+                    this.OncntPuskChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntStop".
+        /// </summary>
+        [DataMember()]
+        public int cntStop
+        {
+            get
+            {
+                return this._cntStop;
+            }
+            set
+            {
+                if ((this._cntStop != value))
+                {
+                    this.OncntStopChanging(value);
+                    this.RaiseDataMemberChanging("cntStop");
+                    this.ValidateProperty("cntStop", value);
+                    this._cntStop = value;
+                    this.RaiseDataMemberChanged("cntStop");
+                    this.OncntStopChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "dateEnd".
+        /// </summary>
+        [DataMember()]
+        public DateTime dateEnd
+        {
+            get
+            {
+                return this._dateEnd;
+            }
+            set
+            {
+                if ((this._dateEnd != value))
+                {
+                    this.OndateEndChanging(value);
+                    this.RaiseDataMemberChanging("dateEnd");
+                    this.ValidateProperty("dateEnd", value);
+                    this._dateEnd = value;
+                    this.RaiseDataMemberChanged("dateEnd");
+                    this.OndateEndChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "dateStart".
+        /// </summary>
+        [DataMember()]
+        public DateTime dateStart
+        {
+            get
+            {
+                return this._dateStart;
+            }
+            set
+            {
+                if ((this._dateStart != value))
+                {
+                    this.OndateStartChanging(value);
+                    this.RaiseDataMemberChanging("dateStart");
+                    this.ValidateProperty("dateStart", value);
+                    this._dateStart = value;
+                    this.RaiseDataMemberChanged("dateStart");
+                    this.OndateStartChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "GA".
+        /// </summary>
+        [DataMember()]
+        public int GA
+        {
+            get
+            {
+                return this._ga;
+            }
+            set
+            {
+                if ((this._ga != value))
+                {
+                    this.OnGAChanging(value);
+                    this.RaiseDataMemberChanging("GA");
+                    this.ValidateProperty("GA", value);
+                    this._ga = value;
+                    this.RaiseDataMemberChanged("GA");
+                    this.OnGAChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeAfterMax".
+        /// </summary>
+        [DataMember()]
+        public double timeAfterMax
+        {
+            get
+            {
+                return this._timeAfterMax;
+            }
+            set
+            {
+                if ((this._timeAfterMax != value))
+                {
+                    this.OntimeAfterMaxChanging(value);
+                    this.RaiseDataMemberChanging("timeAfterMax");
+                    this.ValidateProperty("timeAfterMax", value);
+                    this._timeAfterMax = value;
+                    this.RaiseDataMemberChanged("timeAfterMax");
+                    this.OntimeAfterMaxChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeGen".
+        /// </summary>
+        [DataMember()]
+        public double timeGen
+        {
+            get
+            {
+                return this._timeGen;
+            }
+            set
+            {
+                if ((this._timeGen != value))
+                {
+                    this.OntimeGenChanging(value);
+                    this.RaiseDataMemberChanging("timeGen");
+                    this.ValidateProperty("timeGen", value);
+                    this._timeGen = value;
+                    this.RaiseDataMemberChanged("timeGen");
+                    this.OntimeGenChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeHHG".
+        /// </summary>
+        [DataMember()]
+        public double timeHHG
+        {
+            get
+            {
+                return this._timeHHG;
+            }
+            set
+            {
+                if ((this._timeHHG != value))
+                {
+                    this.OntimeHHGChanging(value);
+                    this.RaiseDataMemberChanging("timeHHG");
+                    this.ValidateProperty("timeHHG", value);
+                    this._timeHHG = value;
+                    this.RaiseDataMemberChanged("timeHHG");
+                    this.OntimeHHGChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeHHT".
+        /// </summary>
+        [DataMember()]
+        public double timeHHT
+        {
+            get
+            {
+                return this._timeHHT;
+            }
+            set
+            {
+                if ((this._timeHHT != value))
+                {
+                    this.OntimeHHTChanging(value);
+                    this.RaiseDataMemberChanging("timeHHT");
+                    this.ValidateProperty("timeHHT", value);
+                    this._timeHHT = value;
+                    this.RaiseDataMemberChanged("timeHHT");
+                    this.OntimeHHTChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeLessMin".
+        /// </summary>
+        [DataMember()]
+        public double timeLessMin
+        {
+            get
+            {
+                return this._timeLessMin;
+            }
+            set
+            {
+                if ((this._timeLessMin != value))
+                {
+                    this.OntimeLessMinChanging(value);
+                    this.RaiseDataMemberChanging("timeLessMin");
+                    this.ValidateProperty("timeLessMin", value);
+                    this._timeLessMin = value;
+                    this.RaiseDataMemberChanged("timeLessMin");
+                    this.OntimeLessMinChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeRun".
+        /// </summary>
+        [DataMember()]
+        public double timeRun
+        {
+            get
+            {
+                return this._timeRun;
+            }
+            set
+            {
+                if ((this._timeRun != value))
+                {
+                    this.OntimeRunChanging(value);
+                    this.RaiseDataMemberChanging("timeRun");
+                    this.ValidateProperty("timeRun", value);
+                    this._timeRun = value;
+                    this.RaiseDataMemberChanged("timeRun");
+                    this.OntimeRunChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeSK".
+        /// </summary>
+        [DataMember()]
+        public double timeSK
+        {
+            get
+            {
+                return this._timeSK;
+            }
+            set
+            {
+                if ((this._timeSK != value))
+                {
+                    this.OntimeSKChanging(value);
+                    this.RaiseDataMemberChanging("timeSK");
+                    this.ValidateProperty("timeSK", value);
+                    this._timeSK = value;
+                    this.RaiseDataMemberChanged("timeSK");
+                    this.OntimeSKChanged();
+                }
+            }
+        }
+    }
+}
 namespace VotGES.PBR
 {
     using System;
@@ -4360,6 +4792,8 @@ namespace VotGES.Web.Models
     using System.ServiceModel.DomainServices;
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    using VotGES.Chart;
+    using VotGES.OgranGA;
     
     
     /// <summary>
@@ -4943,6 +5377,183 @@ namespace VotGES.Web.Models
                     this._rashodTime = value;
                     this.RaiseDataMemberChanged("RashodTime");
                     this.OnRashodTimeChanged();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Класс "OgranGAAnswer".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.Web.Models")]
+    public sealed partial class OgranGAAnswer : ComplexObject
+    {
+        
+        private ChartAnswer _chartAnswer;
+        
+        private OgranGARecord _dayStartRecord;
+        
+        private OgranGARecord _expStartRecord;
+        
+        private OgranGARecord _monthStartRecord;
+        
+        private OgranGARecord _yearStartRecord;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnChartAnswerChanging(ChartAnswer value);
+        partial void OnChartAnswerChanged();
+        partial void OnDayStartRecordChanging(OgranGARecord value);
+        partial void OnDayStartRecordChanged();
+        partial void OnExpStartRecordChanging(OgranGARecord value);
+        partial void OnExpStartRecordChanged();
+        partial void OnMonthStartRecordChanging(OgranGARecord value);
+        partial void OnMonthStartRecordChanged();
+        partial void OnYearStartRecordChanging(OgranGARecord value);
+        partial void OnYearStartRecordChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="OgranGAAnswer"/>.
+        /// </summary>
+        public OgranGAAnswer()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "ChartAnswer".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public ChartAnswer ChartAnswer
+        {
+            get
+            {
+                return this._chartAnswer;
+            }
+            set
+            {
+                if ((this._chartAnswer != value))
+                {
+                    this.OnChartAnswerChanging(value);
+                    this.ValidateProperty("ChartAnswer", value);
+                    this._chartAnswer = value;
+                    this.RaisePropertyChanged("ChartAnswer");
+                    this.OnChartAnswerChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "DayStartRecord".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public OgranGARecord DayStartRecord
+        {
+            get
+            {
+                return this._dayStartRecord;
+            }
+            set
+            {
+                if ((this._dayStartRecord != value))
+                {
+                    this.OnDayStartRecordChanging(value);
+                    this.ValidateProperty("DayStartRecord", value);
+                    this._dayStartRecord = value;
+                    this.RaisePropertyChanged("DayStartRecord");
+                    this.OnDayStartRecordChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "ExpStartRecord".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public OgranGARecord ExpStartRecord
+        {
+            get
+            {
+                return this._expStartRecord;
+            }
+            set
+            {
+                if ((this._expStartRecord != value))
+                {
+                    this.OnExpStartRecordChanging(value);
+                    this.ValidateProperty("ExpStartRecord", value);
+                    this._expStartRecord = value;
+                    this.RaisePropertyChanged("ExpStartRecord");
+                    this.OnExpStartRecordChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "MonthStartRecord".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public OgranGARecord MonthStartRecord
+        {
+            get
+            {
+                return this._monthStartRecord;
+            }
+            set
+            {
+                if ((this._monthStartRecord != value))
+                {
+                    this.OnMonthStartRecordChanging(value);
+                    this.ValidateProperty("MonthStartRecord", value);
+                    this._monthStartRecord = value;
+                    this.RaisePropertyChanged("MonthStartRecord");
+                    this.OnMonthStartRecordChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "YearStartRecord".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public OgranGARecord YearStartRecord
+        {
+            get
+            {
+                return this._yearStartRecord;
+            }
+            set
+            {
+                if ((this._yearStartRecord != value))
+                {
+                    this.OnYearStartRecordChanging(value);
+                    this.ValidateProperty("YearStartRecord", value);
+                    this._yearStartRecord = value;
+                    this.RaisePropertyChanged("YearStartRecord");
+                    this.OnYearStartRecordChanged();
                 }
             }
         }
@@ -7002,6 +7613,122 @@ namespace VotGES.Web.Services
         {
             
             public LoggerContextEntityContainer()
+            {
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Контекст DomainContext, соответствующий службе "OgranGAService" DomainService.
+    /// </summary>
+    public sealed partial class OgranGAContext : DomainContext
+    {
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="OgranGAContext"/>.
+        /// </summary>
+        public OgranGAContext() : 
+                this(new WebDomainClient<IOgranGAServiceContract>(new Uri("VotGES-Web-Services-OgranGAService.svc", UriKind.Relative)))
+        {
+        }
+        
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="OgranGAContext"/> с указанным URI службы.
+        /// </summary>
+        /// <param name="serviceUri">Идентификатор URI службы OgranGAService.</param>
+        public OgranGAContext(Uri serviceUri) : 
+                this(new WebDomainClient<IOgranGAServiceContract>(serviceUri))
+        {
+        }
+        
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="OgranGAContext"/> с указанным параметром <paramref name="domainClient"/>.
+        /// </summary>
+        /// <param name="domainClient">Экземпляр DomainClient для использования в этом контексте DomainContext.</param>
+        public OgranGAContext(DomainClient domainClient) : 
+                base(domainClient)
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Асинхронно вызывает метод "getOgranGAAnswer" службы DomainService.
+        /// </summary>
+        /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+        /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
+        /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<OgranGAAnswer> getOgranGAAnswer(int ga, Action<InvokeOperation<OgranGAAnswer>> callback, object userState)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("ga", ga);
+            this.ValidateMethod("getOgranGAAnswer", parameters);
+            return ((InvokeOperation<OgranGAAnswer>)(this.InvokeOperation("getOgranGAAnswer", typeof(OgranGAAnswer), parameters, true, callback, userState)));
+        }
+        
+        /// <summary>
+        /// Асинхронно вызывает метод "getOgranGAAnswer" службы DomainService.
+        /// </summary>
+        /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<OgranGAAnswer> getOgranGAAnswer(int ga)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("ga", ga);
+            this.ValidateMethod("getOgranGAAnswer", parameters);
+            return ((InvokeOperation<OgranGAAnswer>)(this.InvokeOperation("getOgranGAAnswer", typeof(OgranGAAnswer), parameters, true, null, null)));
+        }
+        
+        /// <summary>
+        /// Создает новый объект EntityContainer для наборов сущностей EntitySets данного контекста DomainContext.
+        /// </summary>
+        /// <returns>Новый экземпляр контейнера.</returns>
+        protected override EntityContainer CreateEntityContainer()
+        {
+            return new OgranGAContextEntityContainer();
+        }
+        
+        /// <summary>
+        /// Контракт службы (Service) "OgranGAService" DomainService.
+        /// </summary>
+        [ServiceContract()]
+        public interface IOgranGAServiceContract
+        {
+            
+            /// <summary>
+            /// Асинхронно вызывает операцию "getOgranGAAnswer".
+            /// </summary>
+            /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+            /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
+            /// <param name="asyncState">Необязательный объект состояния.</param>
+            /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/OgranGAService/getOgranGAAnswerDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/OgranGAService/getOgranGAAnswer", ReplyAction="http://tempuri.org/OgranGAService/getOgranGAAnswerResponse")]
+            IAsyncResult BegingetOgranGAAnswer(int ga, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Завершает асинхронную операцию, начатую "BegingetOgranGAAnswer".
+            /// </summary>
+            /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetOgranGAAnswer".</param>
+            /// <returns>Объект "OgranGAAnswer", возвращенный из операции "getOgranGAAnswer".</returns>
+            OgranGAAnswer EndgetOgranGAAnswer(IAsyncResult result);
+        }
+        
+        internal sealed class OgranGAContextEntityContainer : EntityContainer
+        {
+            
+            public OgranGAContextEntityContainer()
             {
             }
         }
