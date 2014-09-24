@@ -8,7 +8,7 @@ namespace VotGES.Rashod
 {
     public class KPDLine
     {
-        protected static ChartProperties getChartPropertiesKPDS(int[] kpd)
+        protected static ChartProperties getChartPropertiesKPDS(int[] kpd,bool ogran)
         {
             ChartProperties props = new ChartProperties();
             props.XAxisType = XAxisTypeEnum.numeric;
@@ -21,9 +21,9 @@ namespace VotGES.Rashod
             {
                 string post = kpd[index].ToString();
                 ChartSerieProperties serie = new ChartSerieProperties();
-                serie.Color = index == kpd.Length - 1 ? "0-0-0" : ChartColor.NextColor();
+                serie.Color = ChartColor.GetColorStr(index);
                 serie.LineWidth = 0;
-                serie.SerieType = ChartSerieType.area;
+                serie.SerieType = ChartSerieType.kpdLine;
                 serie.Marker = true;
                 serie.LineWidth = -1;
                 serie.Title = "КПД " + post;
@@ -32,18 +32,42 @@ namespace VotGES.Rashod
                 serie.YAxisIndex = 0;
                 props.addSerie(serie);
             }
+
+            if (ogran)
+            {
+                ChartSerieProperties ser = new ChartSerieProperties();
+                ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
+                ser.LineWidth = 3;
+                ser.SerieType = ChartSerieType.line;
+                ser.Title = "Ограничения макс";
+                ser.TagName = "ogrMax";
+                ser.Enabled = true;
+                ser.YAxisIndex = 0;
+                props.addSerie(ser);
+
+                ser = new ChartSerieProperties();
+                ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
+                ser.LineWidth = 3;
+                ser.SerieType = ChartSerieType.line;
+                ser.Title = "Ограничения мин";
+                ser.TagName = "ogrMin";
+                ser.Enabled = true;
+                ser.YAxisIndex = 0;
+                props.addSerie(ser);
+            }
+
             props.addAxis(yAx);
             return props;
         }
 
         public static ChartAnswer createKPDTable(int ga)
         {
-            ChartAnswer answer=new ChartAnswer();
-            int[] kpds={83,84,85,86};
+            ChartAnswer answer = new ChartAnswer();
+            int[] kpds = { 75, 80, 85, 90 };
             RashodTable table = RashodTable.getRashodTable(ga);
 
-            answer.Properties = getChartPropertiesKPDS(kpds);
-			answer.Data = new ChartData();
+            answer.Properties = getChartPropertiesKPDS(kpds,(ga>=1&&ga<=10));
+            answer.Data = new ChartData();
 
             Dictionary<int, ChartDataSerie> dataSeries = new Dictionary<int, ChartDataSerie>();
             foreach (int kpd in kpds)
@@ -57,12 +81,12 @@ namespace VotGES.Rashod
             {
                 for (double napor = table.minNapor; napor < table.maxNapor; napor += table.stepNapor)
                 {
-                    double rashod=RashodTable.getRashod(ga,power,napor);
+                    double rashod = RashodTable.getRashod(ga, power, napor);
                     double kpd = RashodTable.KPD(power, napor, rashod);
-                    int kpdInt = (int)Math.Round(kpd*100);
+                    int kpdInt = (int)(kpd * 100);
                     if (kpds.Contains(kpdInt))
                     {
-                        dataSeries[kpdInt].Points.Add(new ChartDataPoint(power,napor));
+                        dataSeries[kpdInt].Points.Add(new ChartDataPoint(power, napor));
                     }
                 }
             }
@@ -71,6 +95,26 @@ namespace VotGES.Rashod
             {
                 answer.Data.addSerie(dataSeries[kpd]);
             }
+
+            if (ga >= 1 && ga <= 10)
+            {
+                ChartDataSerie ogranMin = new ChartDataSerie();
+                ogranMin.Name = "ogrMin";
+
+                ChartDataSerie ogranMax = new ChartDataSerie();
+                ogranMax.Name = "ogrMax";
+
+                foreach (KeyValuePair<double, double> de in OgranLineTable.OgranData[ga])
+                {
+                    ogranMax.Points.Add(new ChartDataPoint(de.Value, de.Key));
+                    ogranMin.Points.Add(new ChartDataPoint(35, de.Key));
+                }
+                answer.Data.addSerie(ogranMin);
+                answer.Data.addSerie(ogranMax);
+            }
+
+
+
             return answer;
         }
     }

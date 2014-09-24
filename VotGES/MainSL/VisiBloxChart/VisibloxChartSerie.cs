@@ -205,6 +205,8 @@ namespace MainSL
 			} else {
 				//br = ChartActions.Actions().getNextColor();
 			}
+
+            bool isKPD = false;
 			switch (serieProp.SerieType){
 				case ChartSerieType.line:
 					LineSeries lineSerie=new LineSeries();
@@ -217,15 +219,22 @@ namespace MainSL
 					lineSerie.PointStroke = tr;					
 					Serie = lineSerie;
 					break;
-                case ChartSerieType.area:
-                    lineSerie = new LineSeries();
-                    lineSerie.LineStrokeThickness = 0;
-                    lineSerie.LineStroke = br;
-                    lineSerie.HighlightingEnabled = true;
-                    lineSerie.PointSize = 10;
-                    lineSerie.PointFill = br;
-                    lineSerie.PointStroke = br;
-                    Serie = lineSerie;
+                case ChartSerieType.kpdLine:
+                    StaircaseSeries ser = new StaircaseSeries();
+                    ser.LineStrokeThickness = 2;
+                    ser.LineStroke = br;
+                    LineStroke = ser.LineStroke;
+                    ser.HighlightingEnabled = false;
+                    ser.ToolTipEnabled = false;
+                    ser.PointShape = Visiblox.Charts.Primitives.ShapeType.Cross;                    
+                    ser.PointSize = 10;
+                    ser.PointFill = br;
+                    ser.PointStroke = br;
+                    ser.PointStrokeThickness = 1;
+                    ser.ShowPoints = true;
+                    ser.ShowLine = false;                    
+                    Serie = ser;
+                    isKPD = true;
                     break;
 				case ChartSerieType.stepLine:
 					StaircaseSeries stairSerie=new StaircaseSeries();
@@ -236,7 +245,8 @@ namespace MainSL
 					Serie = stairSerie;
 					stairSerie.PointSize = 10;
 					stairSerie.PointFill = tr;
-					stairSerie.PointStroke = tr;					
+					stairSerie.PointStroke = tr;
+                    silverChartControl.TrackBehaviour.HideTrackballsOnMouseLeave = true;
 					break;		
 				case ChartSerieType.column:
 					ColumnSeries columnSerie=new ColumnSeries();
@@ -256,9 +266,17 @@ namespace MainSL
 			Serie.PropertyChanged += new PropertyChangedEventHandler(Serie_PropertyChanged);
 			silverChartControl.CurrentChart.Series.Add(Serie);
 			
-			YAxisIndex = serieProp.YAxisIndex;			
-			
-			silverChartControl.TrackBehaviour.PropertyChanged += new PropertyChangedEventHandler(TrackBehaviour_PropertyChanged);
+			YAxisIndex = serieProp.YAxisIndex;
+
+            if (!isKPD)
+            {
+                silverChartControl.TrackBehaviour.PropertyChanged += new PropertyChangedEventHandler(TrackBehaviour_PropertyChanged);
+            }
+            else
+            {
+                silverChartControl.TrackBehaviour.HideTrackballsOnMouseLeave = false;
+                silverChartControl.TrackBehaviour.IsEnabled = false;
+            }
 			refresh(serieData);
 			Enabled = serieProp.Enabled;
 		}

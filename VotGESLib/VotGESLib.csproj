@@ -104,6 +104,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Rashod\KPDLine.cs" />
+    <Compile Include="Rashod\OgranLineTable.cs" />
     <Compile Include="Rashod\RashodHars.cs" />
     <Compile Include="Rashod\RashodTable.cs" />
     <Compile Include="Rashod\RUSA.cs" />
