@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using VotGES.Web.Logging;
 using VotGES.Piramida;
+using VotGES.OgranGA;
 
 namespace VotGES.Web
 {
@@ -28,6 +29,7 @@ namespace VotGES.Web
 
 		protected void Application_Start() {
 			DBSettings.init(Server.MapPath("/bin/Data/DBSettings.xml"));
+			KapRemontsData.init(Server.MapPath("/bin/Data/KapRemontsData.xml"));
 			VotGES.GlobalVotGES.setCulture();
 
 			Logger logger=new WebLogger();

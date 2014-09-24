@@ -7,6 +7,7 @@ using VotGES.Piramida;
 using VotGES;
 using VotGES.Rashod;
 using VotGES.OgranGA;
+using VotGES.XMLSer;
 
 namespace ClearDB
 {
@@ -30,6 +31,7 @@ namespace ClearDB
 
 
 		static void Main(string[] args) {
+
 			DBSettings.init();
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;

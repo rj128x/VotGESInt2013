@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KapRemontsData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Data>
+    <KapRemontsRecord>
+      <GA>1</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>2</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>3</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>4</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>5</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>6</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>7</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>8</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>9</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>10</GA>
+      <Date>2014-01-01T00:00:00.00+06:00</Date>
+    </KapRemontsRecord>
+  </Data>
+</KapRemontsData>

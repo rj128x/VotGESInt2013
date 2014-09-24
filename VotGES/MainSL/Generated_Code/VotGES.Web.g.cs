@@ -5395,6 +5395,8 @@ namespace VotGES.Web.Models
         
         private OgranGARecord _expStartRecord;
         
+        private OgranGARecord _krRecord;
+        
         private OgranGARecord _monthStartRecord;
         
         private OgranGARecord _yearStartRecord;
@@ -5412,6 +5414,8 @@ namespace VotGES.Web.Models
         partial void OnDayStartRecordChanged();
         partial void OnExpStartRecordChanging(OgranGARecord value);
         partial void OnExpStartRecordChanged();
+        partial void OnKRRecordChanging(OgranGARecord value);
+        partial void OnKRRecordChanged();
         partial void OnMonthStartRecordChanging(OgranGARecord value);
         partial void OnMonthStartRecordChanged();
         partial void OnYearStartRecordChanging(OgranGARecord value);
@@ -5502,6 +5506,32 @@ namespace VotGES.Web.Models
                     this._expStartRecord = value;
                     this.RaisePropertyChanged("ExpStartRecord");
                     this.OnExpStartRecordChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "KRRecord".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public OgranGARecord KRRecord
+        {
+            get
+            {
+                return this._krRecord;
+            }
+            set
+            {
+                if ((this._krRecord != value))
+                {
+                    this.OnKRRecordChanging(value);
+                    this.ValidateProperty("KRRecord", value);
+                    this._krRecord = value;
+                    this.RaisePropertyChanged("KRRecord");
+                    this.OnKRRecordChanged();
                 }
             }
         }

@@ -68,6 +68,7 @@
       <DependentUpon>nnet.resx</DependentUpon>
     </Compile>
     <Compile Include="NNET\NNET.cs" />
+    <Compile Include="OgranGA\KapRemontsData.cs" />
     <Compile Include="OgranGA\OgranGA.cs" />
     <Compile Include="OgranGA\OgranGAReport.cs" />
     <Compile Include="PBR\GraphVyrab.cs" />
@@ -141,6 +142,9 @@
     <None Include="Data\rashods\rashod.xls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\KapRemontsData.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\nnet\vges_nb.txt" />
     <Content Include="Data\DBSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
