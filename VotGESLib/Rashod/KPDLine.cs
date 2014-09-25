@@ -4,66 +4,107 @@ using System.Linq;
 using System.Text;
 using VotGES.Chart;
 
-namespace VotGES.Rashod
-{
-    public class KPDLine
-    {
-        protected static ChartProperties getChartPropertiesKPDS(int[] kpd,bool ogran)
-        {
-            ChartProperties props = new ChartProperties();
-            props.XAxisType = XAxisTypeEnum.numeric;
-            props.XValueFormatString = "0.##";
-            ChartAxisProperties yAx = new ChartAxisProperties();
-            yAx.Auto = true;
-            yAx.Index = 0;
+namespace VotGES.Rashod {
+	public class KPDLine {
+		protected static ChartProperties getChartPropertiesKPDS(int[] kpd, bool ogran) {
+			ChartProperties props = new ChartProperties();
+			props.XAxisType = XAxisTypeEnum.numeric;
+			props.XValueFormatString = "0.##";
+			ChartAxisProperties yAx = new ChartAxisProperties();
+			yAx.Auto = false;
+			yAx.Index = 0;
+			yAx.Min = 15;
+			yAx.Max = 23;
 
-            for (int index = 0; index < kpd.Length; index++)
-            {
-                string post = kpd[index].ToString();
-                ChartSerieProperties serie = new ChartSerieProperties();
-                serie.Color = ChartColor.GetColorStr(index);
-                serie.LineWidth = 0;
-                serie.SerieType = ChartSerieType.kpdLine;
-                serie.Marker = true;
-                serie.LineWidth = -1;
-                serie.Title = "КПД " + post;
-                serie.TagName = "kpd_" + post;
-                serie.Enabled = true;
-                serie.YAxisIndex = 0;
-                props.addSerie(serie);
-            }
+			for (int index = 0; index < kpd.Length; index++) {
+				string post = kpd[index].ToString();
+				ChartSerieProperties serie = new ChartSerieProperties();
+				serie.Color = ChartColor.GetColorStr(index);
+				serie.LineWidth = 0;
+				serie.SerieType = ChartSerieType.kpdLine;
+				serie.Marker = true;
+				serie.LineWidth = -1;
+				serie.Title = "КПД " + post;
+				serie.TagName = "kpd_" + post;
+				serie.Enabled = true;
+				serie.YAxisIndex = 0;
+				props.addSerie(serie);
+			}
 
-            if (ogran)
-            {
-                ChartSerieProperties ser = new ChartSerieProperties();
-                ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
-                ser.LineWidth = 3;
-                ser.SerieType = ChartSerieType.line;
-                ser.Title = "Ограничения макс";
-                ser.TagName = "ogrMax";
-                ser.Enabled = true;
-                ser.YAxisIndex = 0;
-                props.addSerie(ser);
+			if (ogran) {
+				ChartSerieProperties ser = new ChartSerieProperties();
+				ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
+				ser.LineWidth = 3;
+				ser.SerieType = ChartSerieType.line;
+				ser.Title = "Ограничения макс";
+				ser.TagName = "ogrMax";
+				ser.Enabled = true;
+				ser.YAxisIndex = 0;
+				props.addSerie(ser);
 
-                ser = new ChartSerieProperties();
-                ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
-                ser.LineWidth = 3;
-                ser.SerieType = ChartSerieType.line;
-                ser.Title = "Ограничения мин";
-                ser.TagName = "ogrMin";
-                ser.Enabled = true;
-                ser.YAxisIndex = 0;
-                props.addSerie(ser);
-            }
+				ser = new ChartSerieProperties();
+				ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
+				ser.LineWidth = 3;
+				ser.SerieType = ChartSerieType.line;
+				ser.Title = "Ограничения мин";
+				ser.TagName = "ogrMin";
+				ser.Enabled = true;
+				ser.YAxisIndex = 0;
+				props.addSerie(ser);
+			}
 
-            props.addAxis(yAx);
-            return props;
-        }
+			props.addAxis(yAx);
+			return props;
+		}
 
-        public static ChartAnswer createKPDTable(int ga)
+		public static ChartAnswer createKPDTable(int ga)
         {
             ChartAnswer answer = new ChartAnswer();
-            int[] kpds = { 75, 80, 85, 90 };
+
+            int[] kpds={80,85,87};
+						switch (ga) {
+							case 1:
+								int[] ks1={78,79,80,81,82,83,84,85,86,87};
+								kpds = ks1;
+								break;
+							case 2:
+								int[] ks2 = { 80,81, 82, 83, 84, 85, 86, 87, 88, 89};
+								kpds = ks2;
+								break;
+							case 3:
+								int[] ks3 = { 81, 82, 83, 84, 85, 86, 87, 88, 89,90 };
+								kpds = ks3;
+								break;
+							case 4:
+								int[] ks4 = { 79,80, 81, 82, 83, 84, 85, 86, 87, 88 };
+								kpds = ks4;
+								break;
+							case 5:
+								int[] ks5 = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
+								kpds = ks5;
+								break;
+							case 6:
+								int[] ks6 = {  81, 82, 83, 84, 85, 86, 87, 88, 89,90 };
+								kpds = ks6;
+								break;
+							case 7:
+								int[] ks7 = {  81, 82, 83, 84, 85, 86, 87, 88, 89,90 };
+								kpds = ks7;
+								break;
+							case 8:
+								int[] ks8 = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
+								kpds = ks8;
+								break;
+							case 9:
+								int[] ks9 = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
+								kpds = ks9;
+								break;
+							case 10:
+								int[] ks10 = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
+								kpds = ks10;
+								break;
+
+						}
             RashodTable table = RashodTable.getRashodTable(ga);
 
             answer.Properties = getChartPropertiesKPDS(kpds,(ga>=1&&ga<=10));
@@ -117,5 +158,5 @@ namespace VotGES.Rashod
 
             return answer;
         }
-    }
+	}
 }
