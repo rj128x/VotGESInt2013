@@ -228,8 +228,8 @@ namespace MainSL {
 					LineStroke = ser.LineStroke;
 					ser.HighlightingEnabled = false;
 					ser.ToolTipEnabled = false;
-					ser.PointShape = Visiblox.Charts.Primitives.ShapeType.Plus;
-					ser.PointSize = 20;
+					ser.PointShape = Visiblox.Charts.Primitives.ShapeType.Cross;
+					ser.PointSize = 15;
 					ser.PointFill = br;
 					ser.PointStroke = br;
 					ser.PointStrokeThickness = 1;

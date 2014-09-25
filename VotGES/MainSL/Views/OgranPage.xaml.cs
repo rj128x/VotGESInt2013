@@ -22,6 +22,7 @@ namespace MainSL.Views {
 		public SettingsGraphVyab settings;
 		protected OgranGAAnswer currentAnswer;
 		protected int CurrentGA;
+		protected ChartDataSerie CurrentChartData;
 		
 
 		public OgranGAAnswer CurrentAnswer {
@@ -72,7 +73,9 @@ namespace MainSL.Views {
 					GlobalStatus.Current.StartProcess();
 					OgranGAAnswer answer = (OgranGAAnswer)oper.Value;
 					chartControl.ChartSeries.Last().refresh(answer.CurrentData);
+					CurrentChartData = answer.CurrentData;
 					grdCurrent.DataContext = answer;
+					manualPaintCurrent(CurrentGA);
 				}
 				catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());
@@ -142,10 +145,16 @@ namespace MainSL.Views {
 					bot = hei * 0.90;
 					right = wid * 0.97;
 					break;
-			}
+			}			
 
 			double recWidth = right - left;
 			double recHeight = bot - top;
+
+			double stepPower = (ga==5 || ga==6)?(recWidth / 90.0):(recWidth/100.0);
+			double stepNapor = recHeight / 6.0;
+
+			
+
 
 			rect.Width = recWidth;
 			rect.Height = recHeight;
@@ -153,14 +162,32 @@ namespace MainSL.Views {
 			rect.StrokeThickness = 2;			
 			rect.Margin = new Thickness(left,top,right,bot);
 
-			canvas.Children.Add(rect);
+			
+			foreach (ChartDataPoint point in CurrentChartData.Points) {
+				
+				Ellipse el = new Ellipse();
+				el.Width = 10;
+				el.Height = 10;
+				el.Fill = new SolidColorBrush(Colors.Blue);
+
+
+				double pointLeft = (point.XValDouble - 20) * stepPower;
+				double pointTop = rect.Height-(point.YVal-16) * stepNapor;
+
+				el.Margin = new Thickness(left+pointLeft,top+pointTop,0,0);
+				
+
+				canvas.Children.Add(el);
+				
+			}
+
+			//canvas.Children.Add(rect);
 		}
 
 		protected void loadGAInfo(int ga) {
 			CurrentGA = ga;
 			ImageSourceConverter src=new ImageSourceConverter();
-			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));
-			manualPaintCurrent(ga);
+			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));			
 			InvokeOperation currentOper = context.getOgranGAAnswer(ga, oper => {
 				if (oper.IsCanceled) {
 					return;
@@ -171,7 +198,8 @@ namespace MainSL.Views {
 					chartControl.Create(CurrentAnswer.ChartAnswer);
 					grdNarab.DataContext = CurrentAnswer;
 					grdCurrent.DataContext = CurrentAnswer;
-
+					CurrentChartData = CurrentAnswer.CurrentData;
+					manualPaintCurrent(ga);
 				}
 				catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());
