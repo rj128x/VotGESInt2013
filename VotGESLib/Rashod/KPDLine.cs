@@ -40,7 +40,9 @@ namespace VotGES.Rashod {
 				ser.TagName = "ogrMax";
 				ser.Enabled = true;
 				ser.YAxisIndex = 0;
+				ser.AllowHigh = false;
 				props.addSerie(ser);
+				
 
 				ser = new ChartSerieProperties();
 				ser.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
@@ -50,6 +52,7 @@ namespace VotGES.Rashod {
 				ser.TagName = "ogrMin";
 				ser.Enabled = true;
 				ser.YAxisIndex = 0;
+				ser.AllowHigh = false;
 				props.addSerie(ser);
 			}
 			

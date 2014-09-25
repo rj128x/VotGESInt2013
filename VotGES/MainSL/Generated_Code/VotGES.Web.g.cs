@@ -97,6 +97,10 @@ namespace VotGES.Chart
     public sealed partial class ChartAnswer : ComplexObject
     {
         
+        private bool _allowTrack;
+        
+        private bool _allowZoom;
+        
         private ChartData _data;
         
         private ChartProperties _properties;
@@ -110,6 +114,10 @@ namespace VotGES.Chart
         /// не может быть использован для последующей настройки объекта.
         /// </summary>
         partial void OnCreated();
+        partial void OnAllowTrackChanging(bool value);
+        partial void OnAllowTrackChanged();
+        partial void OnAllowZoomChanging(bool value);
+        partial void OnAllowZoomChanged();
         partial void OnDataChanging(ChartData value);
         partial void OnDataChanged();
         partial void OnPropertiesChanging(ChartProperties value);
@@ -126,6 +134,54 @@ namespace VotGES.Chart
         public ChartAnswer()
         {
             this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "AllowTrack".
+        /// </summary>
+        [DataMember()]
+        public bool AllowTrack
+        {
+            get
+            {
+                return this._allowTrack;
+            }
+            set
+            {
+                if ((this._allowTrack != value))
+                {
+                    this.OnAllowTrackChanging(value);
+                    this.RaiseDataMemberChanging("AllowTrack");
+                    this.ValidateProperty("AllowTrack", value);
+                    this._allowTrack = value;
+                    this.RaiseDataMemberChanged("AllowTrack");
+                    this.OnAllowTrackChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "AllowZoom".
+        /// </summary>
+        [DataMember()]
+        public bool AllowZoom
+        {
+            get
+            {
+                return this._allowZoom;
+            }
+            set
+            {
+                if ((this._allowZoom != value))
+                {
+                    this.OnAllowZoomChanging(value);
+                    this.RaiseDataMemberChanging("AllowZoom");
+                    this.ValidateProperty("AllowZoom", value);
+                    this._allowZoom = value;
+                    this.RaiseDataMemberChanged("AllowZoom");
+                    this.OnAllowZoomChanged();
+                }
+            }
         }
         
         /// <summary>
@@ -909,6 +965,8 @@ namespace VotGES.Chart
     public sealed partial class ChartSerieProperties : ComplexObject
     {
         
+        private bool _allowHigh;
+        
         private string _color;
         
         private bool _enabled;
@@ -932,6 +990,8 @@ namespace VotGES.Chart
         /// не может быть использован для последующей настройки объекта.
         /// </summary>
         partial void OnCreated();
+        partial void OnAllowHighChanging(bool value);
+        partial void OnAllowHighChanged();
         partial void OnColorChanging(string value);
         partial void OnColorChanged();
         partial void OnEnabledChanging(bool value);
@@ -958,6 +1018,30 @@ namespace VotGES.Chart
         public ChartSerieProperties()
         {
             this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "AllowHigh".
+        /// </summary>
+        [DataMember()]
+        public bool AllowHigh
+        {
+            get
+            {
+                return this._allowHigh;
+            }
+            set
+            {
+                if ((this._allowHigh != value))
+                {
+                    this.OnAllowHighChanging(value);
+                    this.RaiseDataMemberChanging("AllowHigh");
+                    this.ValidateProperty("AllowHigh", value);
+                    this._allowHigh = value;
+                    this.RaiseDataMemberChanged("AllowHigh");
+                    this.OnAllowHighChanged();
+                }
+            }
         }
         
         /// <summary>
@@ -5391,6 +5475,8 @@ namespace VotGES.Web.Models
         
         private ChartAnswer _chartAnswer;
         
+        private ChartDataSerie _currentData;
+        
         private double _currentKPD;
         
         private double _currentNapor;
@@ -5422,6 +5508,8 @@ namespace VotGES.Web.Models
         partial void OnCreated();
         partial void OnChartAnswerChanging(ChartAnswer value);
         partial void OnChartAnswerChanged();
+        partial void OnCurrentDataChanging(ChartDataSerie value);
+        partial void OnCurrentDataChanged();
         partial void OnCurrentKPDChanging(double value);
         partial void OnCurrentKPDChanged();
         partial void OnCurrentNaporChanging(double value);
@@ -5461,8 +5549,6 @@ namespace VotGES.Web.Models
         /// </summary>
         [DataMember()]
         [Display(AutoGenerateField=false)]
-        [Editable(false)]
-        [ReadOnly(true)]
         public ChartAnswer ChartAnswer
         {
             get
@@ -5474,10 +5560,36 @@ namespace VotGES.Web.Models
                 if ((this._chartAnswer != value))
                 {
                     this.OnChartAnswerChanging(value);
+                    this.RaiseDataMemberChanging("ChartAnswer");
                     this.ValidateProperty("ChartAnswer", value);
                     this._chartAnswer = value;
-                    this.RaisePropertyChanged("ChartAnswer");
+                    this.RaiseDataMemberChanged("ChartAnswer");
                     this.OnChartAnswerChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentData".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public ChartDataSerie CurrentData
+        {
+            get
+            {
+                return this._currentData;
+            }
+            set
+            {
+                if ((this._currentData != value))
+                {
+                    this.OnCurrentDataChanging(value);
+                    this.RaiseDataMemberChanging("CurrentData");
+                    this.ValidateProperty("CurrentData", value);
+                    this._currentData = value;
+                    this.RaiseDataMemberChanged("CurrentData");
+                    this.OnCurrentDataChanged();
                 }
             }
         }
@@ -7901,12 +8013,12 @@ namespace VotGES.Web.Services
         /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
         /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartDataSerie> getOgranGAData(int ga, Action<InvokeOperation<ChartDataSerie>> callback, object userState)
+        public InvokeOperation<OgranGAAnswer> getOgranGAData(int ga, Action<InvokeOperation<OgranGAAnswer>> callback, object userState)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("ga", ga);
             this.ValidateMethod("getOgranGAData", parameters);
-            return ((InvokeOperation<ChartDataSerie>)(this.InvokeOperation("getOgranGAData", typeof(ChartDataSerie), parameters, true, callback, userState)));
+            return ((InvokeOperation<OgranGAAnswer>)(this.InvokeOperation("getOgranGAData", typeof(OgranGAAnswer), parameters, true, callback, userState)));
         }
         
         /// <summary>
@@ -7914,12 +8026,12 @@ namespace VotGES.Web.Services
         /// </summary>
         /// <param name="ga">Значение параметра "ga" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartDataSerie> getOgranGAData(int ga)
+        public InvokeOperation<OgranGAAnswer> getOgranGAData(int ga)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("ga", ga);
             this.ValidateMethod("getOgranGAData", parameters);
-            return ((InvokeOperation<ChartDataSerie>)(this.InvokeOperation("getOgranGAData", typeof(ChartDataSerie), parameters, true, null, null)));
+            return ((InvokeOperation<OgranGAAnswer>)(this.InvokeOperation("getOgranGAData", typeof(OgranGAAnswer), parameters, true, null, null)));
         }
         
         /// <summary>
@@ -7971,8 +8083,8 @@ namespace VotGES.Web.Services
             /// Завершает асинхронную операцию, начатую "BegingetOgranGAData".
             /// </summary>
             /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetOgranGAData".</param>
-            /// <returns>Объект "ChartDataSerie", возвращенный из операции "getOgranGAData".</returns>
-            ChartDataSerie EndgetOgranGAData(IAsyncResult result);
+            /// <returns>Объект "OgranGAAnswer", возвращенный из операции "getOgranGAData".</returns>
+            OgranGAAnswer EndgetOgranGAData(IAsyncResult result);
         }
         
         internal sealed class OgranGAContextEntityContainer : EntityContainer

@@ -208,14 +208,13 @@ namespace MainSL {
 				//br = ChartActions.Actions().getNextColor();
 			}
 
-			bool isKPD = false;
 			switch (serieProp.SerieType) {
 				case ChartSerieType.line:
 					LineSeries lineSerie = new LineSeries();
 					lineSerie.LineStrokeThickness = serieProp.LineWidth + 1;
 					lineSerie.LineStroke = br;
 					LineStroke = lineSerie.LineStroke;
-					lineSerie.HighlightingEnabled = true;
+					lineSerie.HighlightingEnabled = serieProp.AllowHigh;
 					lineSerie.PointSize = 10;
 					lineSerie.PointFill = br;
 					lineSerie.PointStroke = br;
@@ -230,14 +229,13 @@ namespace MainSL {
 					ser.HighlightingEnabled = false;
 					ser.ToolTipEnabled = false;
 					ser.PointShape = Visiblox.Charts.Primitives.ShapeType.Plus;
-					ser.PointSize = 10;
+					ser.PointSize = 20;
 					ser.PointFill = br;
 					ser.PointStroke = br;
 					ser.PointStrokeThickness = 1;
 					ser.ShowPoints = true;
 					ser.ShowLine = false;
 					Serie = ser;
-					isKPD = true;
 					break;
 				case ChartSerieType.stepLine:
 					StaircaseSeries stairSerie = new StaircaseSeries();
@@ -271,8 +269,8 @@ namespace MainSL {
 
 			YAxisIndex = serieProp.YAxisIndex;
 
-			if (!isKPD) {
-				silverChartControl.TrackBehaviour.PropertyChanged += new PropertyChangedEventHandler(TrackBehaviour_PropertyChanged);
+			if (this.silverChartControl.Answer.AllowTrack) {
+				silverChartControl.TrackBehaviour.PropertyChanged += new PropertyChangedEventHandler(TrackBehaviour_PropertyChanged);				
 			}
 			else {
 				silverChartControl.TrackBehaviour.HideTrackballsOnMouseLeave = false;

@@ -136,19 +136,21 @@ namespace MainSL.Views
 			manager.AllowMultipleEnabled = true;
 			manager.IsEnabled = true;
 
+
 			TrackballBehaviour track=new TrackballBehaviour();
 			manager.Behaviours.Add(track);
 			track.IsEnabled = true;
 			track.TrackingMode = TrackingPointPattern.LineOnX;
 			track.HideTrackballsOnMouseLeave = true;
 
-
-			ZoomBehaviour zoom=new ZoomBehaviour();
-			zoom.AnimationEnabled = false;
-			zoom.ZoomMode = ZoomMode.MouseDrag;
-			zoom.DisableAxisRendering = true;
-			manager.Behaviours.Add(zoom);
-			zoom.IsEnabled = true;
+			if (Answer.AllowZoom) {
+				ZoomBehaviour zoom = new ZoomBehaviour();
+				zoom.AnimationEnabled = false;
+				zoom.ZoomMode = ZoomMode.MouseDrag;
+				zoom.DisableAxisRendering = true;
+				manager.Behaviours.Add(zoom);
+				zoom.IsEnabled = true;
+			}
 
 			TrackBehaviour = track;
 

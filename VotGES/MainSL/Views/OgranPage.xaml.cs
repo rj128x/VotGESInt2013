@@ -70,9 +70,9 @@ namespace MainSL.Views {
 				}
 				try {
 					GlobalStatus.Current.StartProcess();
-					ChartDataSerie dataSerie = (ChartDataSerie)oper.Value;
-					chartControl.ChartSeries.Last().refresh(dataSerie);
-
+					OgranGAAnswer answer = (OgranGAAnswer)oper.Value;
+					chartControl.ChartSeries.Last().refresh(answer.CurrentData);
+					grdCurrent.DataContext = answer;
 				}
 				catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());

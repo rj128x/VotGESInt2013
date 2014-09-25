@@ -9,8 +9,14 @@ namespace VotGES.Chart
 	{
 		public ChartData Data { get; set; }
 		public ChartProperties Properties { get; set; }
+		public bool AllowZoom { get; set; }
+		public bool AllowTrack { get; set; }
 		public string Title { get; set; }
 
+		public ChartAnswer() {
+			AllowZoom = true;
+			AllowTrack = true;
+		}
 		public void processAxes() {
 			foreach (ChartAxisProperties ax in Properties.Axes) {
 				if (ax.Auto && ax.ProcessAuto) {

@@ -22,7 +22,7 @@ namespace VotGES.Chart
 		public string Color { get; set; }
 		public bool Marker { get; set; }
 		public int YAxisIndex { get; set; }
-		
+		public bool AllowHigh { get; set; }
 
 
 		public ChartSerieProperties() {
@@ -31,6 +31,7 @@ namespace VotGES.Chart
 			Color = null;
 			Marker = true;
 			YAxisIndex = 0;
+			AllowHigh = true;
 		}
 	}
 	

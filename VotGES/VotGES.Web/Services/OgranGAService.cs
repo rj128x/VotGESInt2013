@@ -21,7 +21,7 @@ namespace VotGES.Web.Services {
 		public OgranGAAnswer getOgranGAAnswer(int ga) {
 			WebLogger.Info("OgranGATable process", VotGES.Logger.LoggerSource.service);
 			OgranGAAnswer answer = new OgranGAAnswer();
-			answer.createAnswer(ga);
+			answer.createAnswer(ga,true,true);
 
 			ChartSerieProperties serie = new ChartSerieProperties();
 			serie.Color = ChartColor.GetColorStr(System.Drawing.Color.Black);
@@ -34,26 +34,21 @@ namespace VotGES.Web.Services {
 			serie.Enabled = true;
 			serie.YAxisIndex = 0;
 
-
+			answer.ChartAnswer = KPDLine.createKPDTable(ga);
+			answer.ChartAnswer.AllowZoom = false;
+			answer.ChartAnswer.AllowTrack = false;
 			answer.ChartAnswer.Properties.Series.Add(serie);
-			answer.ChartAnswer.Data.addSerie(getCurrent(ga));
+			answer.ChartAnswer.Data.addSerie(answer.CurrentData);
+						
 			return answer;
 		}
 
-		protected ChartDataSerie getCurrent(int ga) {
-			ChartDataSerie data = new ChartDataSerie();
-			Random rand=new Random();
-			data.Points.Add(new ChartDataPoint(rand.Next(60,100), rand.Next(17,18)));
-			data.Points.Add(new ChartDataPoint(rand.Next(60, 100), rand.Next(17, 18)));
-			data.Points.Add(new ChartDataPoint(rand.Next(60, 100), rand.Next(17, 18)));
-			data.Name = "dataWork";
-			return data;
-		}
-
-		public ChartDataSerie getOgranGAData(int ga) {
+		public OgranGAAnswer getOgranGAData(int ga) {
 			WebLogger.Info("OgranGAData process", VotGES.Logger.LoggerSource.service);
-			return getCurrent(ga);
-			
+			OgranGAAnswer answer = new OgranGAAnswer();
+			answer.createAnswer(ga, false, true);
+			answer.ChartAnswer.Data.addSerie(answer.CurrentData);
+			return answer;
 		}
 	}
 }
