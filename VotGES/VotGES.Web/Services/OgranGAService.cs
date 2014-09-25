@@ -47,7 +47,8 @@ namespace VotGES.Web.Services {
 			WebLogger.Info("OgranGAData process", VotGES.Logger.LoggerSource.service);
 			OgranGAAnswer answer = new OgranGAAnswer();
 			answer.createAnswer(ga, false, true);
-			answer.ChartAnswer.Data.addSerie(answer.CurrentData);
+			//answer.ChartAnswer.Data.addSerie(answer.CurrentData);
+			
 			return answer;
 		}
 	}
