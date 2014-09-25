@@ -5,12 +5,15 @@
 					  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 					  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
 					  xmlns:usr="clr-namespace:MainSL.Views" 
-					  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" Title="Тест" 
-					  Style="{StaticResource PageStyle}">
+					  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480" Title="Тест" 
+					  Style="{StaticResource PageStyle}"
+                 xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts">
 
     <Grid x:Name="LayoutRoot">
-		<usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
-		<Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="test" Click="Button_Click"/>
-	</Grid>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="test" Click="Button_Click"/>
+        <Image Name="img" Margin="0,0,0,0" Source="/MainSL;component/Image1.png" Stretch="Fill"/>
+        <charts:Chart Name="CurrentChart" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+						  LegendVisibility="Collapsed" Margin="56,20,26,54" />
+    </Grid>
 
 </navigation:Page>

@@ -91,6 +91,9 @@ namespace MainSL.Views {
 
 		protected void loadGAInfo(int ga) {
 			CurrentGA = ga;
+			ImageSourceConverter src=new ImageSourceConverter();
+			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));
+			
 			InvokeOperation currentOper = context.getOgranGAAnswer(ga, oper => {
 				if (oper.IsCanceled) {
 					return;

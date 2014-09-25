@@ -1,4 +1,4 @@
-﻿<navigation:Page 
+﻿<navigation:Page xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -39,7 +39,14 @@
                         <Button Name="ga10Btn" Content="ГА-10" Width="50" Click="ga10Btn_Click" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
                     </StackPanel>
                     <Grid Grid.Row="1">
-                        <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
+                        <sdk:TabControl >
+                            <sdk:TabItem Name="tabImage" Header="Изображение" >
+                                <Image Name="imgHar" Source="/MainSL;component/Images/gaHar/ga1.jpg"/>         
+                            </sdk:TabItem>
+                            <sdk:TabItem Name="tabTable" Header="***" >
+                                <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
+                            </sdk:TabItem>
+                        </sdk:TabControl>
                     </Grid>
                 </Grid>
             </Border>

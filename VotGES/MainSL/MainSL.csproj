@@ -369,6 +369,21 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gaHar\ga1.jpg" />
+    <Resource Include="Images\gaHar\ga10.jpg" />
+    <Resource Include="Images\gaHar\ga2.jpg" />
+    <Resource Include="Images\gaHar\ga3.jpg" />
+    <Resource Include="Images\gaHar\ga4.jpg" />
+    <Resource Include="Images\gaHar\ga5.jpg" />
+    <Resource Include="Images\gaHar\ga6.jpg" />
+    <Resource Include="Images\gaHar\ga7.jpg" />
+    <Resource Include="Images\gaHar\ga8.jpg" />
+    <Resource Include="Images\gaHar\ga9.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
