@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace VotGES.Chart
 {
-	class ChartColor
+	public class ChartColor
 	{
 		protected static int current;
 		protected static Dictionary<int,string> Colors;

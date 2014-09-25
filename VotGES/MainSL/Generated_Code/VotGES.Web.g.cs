@@ -5391,6 +5391,18 @@ namespace VotGES.Web.Models
         
         private ChartAnswer _chartAnswer;
         
+        private double _currentKPD;
+        
+        private double _currentNapor;
+        
+        private double _currentOtkrNA;
+        
+        private double _currentP;
+        
+        private double _currentRashod;
+        
+        private double _currentUgolRK;
+        
         private OgranGARecord _dayStartRecord;
         
         private OgranGARecord _expStartRecord;
@@ -5410,6 +5422,18 @@ namespace VotGES.Web.Models
         partial void OnCreated();
         partial void OnChartAnswerChanging(ChartAnswer value);
         partial void OnChartAnswerChanged();
+        partial void OnCurrentKPDChanging(double value);
+        partial void OnCurrentKPDChanged();
+        partial void OnCurrentNaporChanging(double value);
+        partial void OnCurrentNaporChanged();
+        partial void OnCurrentOtkrNAChanging(double value);
+        partial void OnCurrentOtkrNAChanged();
+        partial void OnCurrentPChanging(double value);
+        partial void OnCurrentPChanged();
+        partial void OnCurrentRashodChanging(double value);
+        partial void OnCurrentRashodChanged();
+        partial void OnCurrentUgolRKChanging(double value);
+        partial void OnCurrentUgolRKChanged();
         partial void OnDayStartRecordChanging(OgranGARecord value);
         partial void OnDayStartRecordChanged();
         partial void OnExpStartRecordChanging(OgranGARecord value);
@@ -5454,6 +5478,156 @@ namespace VotGES.Web.Models
                     this._chartAnswer = value;
                     this.RaisePropertyChanged("ChartAnswer");
                     this.OnChartAnswerChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentKPD".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentKPD
+        {
+            get
+            {
+                return this._currentKPD;
+            }
+            set
+            {
+                if ((this._currentKPD != value))
+                {
+                    this.OnCurrentKPDChanging(value);
+                    this.ValidateProperty("CurrentKPD", value);
+                    this._currentKPD = value;
+                    this.RaisePropertyChanged("CurrentKPD");
+                    this.OnCurrentKPDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentNapor".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentNapor
+        {
+            get
+            {
+                return this._currentNapor;
+            }
+            set
+            {
+                if ((this._currentNapor != value))
+                {
+                    this.OnCurrentNaporChanging(value);
+                    this.ValidateProperty("CurrentNapor", value);
+                    this._currentNapor = value;
+                    this.RaisePropertyChanged("CurrentNapor");
+                    this.OnCurrentNaporChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentOtkrNA".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentOtkrNA
+        {
+            get
+            {
+                return this._currentOtkrNA;
+            }
+            set
+            {
+                if ((this._currentOtkrNA != value))
+                {
+                    this.OnCurrentOtkrNAChanging(value);
+                    this.ValidateProperty("CurrentOtkrNA", value);
+                    this._currentOtkrNA = value;
+                    this.RaisePropertyChanged("CurrentOtkrNA");
+                    this.OnCurrentOtkrNAChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentP".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentP
+        {
+            get
+            {
+                return this._currentP;
+            }
+            set
+            {
+                if ((this._currentP != value))
+                {
+                    this.OnCurrentPChanging(value);
+                    this.ValidateProperty("CurrentP", value);
+                    this._currentP = value;
+                    this.RaisePropertyChanged("CurrentP");
+                    this.OnCurrentPChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentRashod".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentRashod
+        {
+            get
+            {
+                return this._currentRashod;
+            }
+            set
+            {
+                if ((this._currentRashod != value))
+                {
+                    this.OnCurrentRashodChanging(value);
+                    this.ValidateProperty("CurrentRashod", value);
+                    this._currentRashod = value;
+                    this.RaisePropertyChanged("CurrentRashod");
+                    this.OnCurrentRashodChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "CurrentUgolRK".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public double CurrentUgolRK
+        {
+            get
+            {
+                return this._currentUgolRK;
+            }
+            set
+            {
+                if ((this._currentUgolRK != value))
+                {
+                    this.OnCurrentUgolRKChanging(value);
+                    this.ValidateProperty("CurrentUgolRK", value);
+                    this._currentUgolRK = value;
+                    this.RaisePropertyChanged("CurrentUgolRK");
+                    this.OnCurrentUgolRKChanged();
                 }
             }
         }
@@ -7721,6 +7895,34 @@ namespace VotGES.Web.Services
         }
         
         /// <summary>
+        /// Асинхронно вызывает метод "getOgranGAData" службы DomainService.
+        /// </summary>
+        /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+        /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
+        /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<ChartDataSerie> getOgranGAData(int ga, Action<InvokeOperation<ChartDataSerie>> callback, object userState)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("ga", ga);
+            this.ValidateMethod("getOgranGAData", parameters);
+            return ((InvokeOperation<ChartDataSerie>)(this.InvokeOperation("getOgranGAData", typeof(ChartDataSerie), parameters, true, callback, userState)));
+        }
+        
+        /// <summary>
+        /// Асинхронно вызывает метод "getOgranGAData" службы DomainService.
+        /// </summary>
+        /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<ChartDataSerie> getOgranGAData(int ga)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("ga", ga);
+            this.ValidateMethod("getOgranGAData", parameters);
+            return ((InvokeOperation<ChartDataSerie>)(this.InvokeOperation("getOgranGAData", typeof(ChartDataSerie), parameters, true, null, null)));
+        }
+        
+        /// <summary>
         /// Создает новый объект EntityContainer для наборов сущностей EntitySets данного контекста DomainContext.
         /// </summary>
         /// <returns>Новый экземпляр контейнера.</returns>
@@ -7753,6 +7955,24 @@ namespace VotGES.Web.Services
             /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetOgranGAAnswer".</param>
             /// <returns>Объект "OgranGAAnswer", возвращенный из операции "getOgranGAAnswer".</returns>
             OgranGAAnswer EndgetOgranGAAnswer(IAsyncResult result);
+            
+            /// <summary>
+            /// Асинхронно вызывает операцию "getOgranGAData".
+            /// </summary>
+            /// <param name="ga">Значение параметра "ga" для данного действия.</param>
+            /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
+            /// <param name="asyncState">Необязательный объект состояния.</param>
+            /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/OgranGAService/getOgranGADataDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/OgranGAService/getOgranGAData", ReplyAction="http://tempuri.org/OgranGAService/getOgranGADataResponse")]
+            IAsyncResult BegingetOgranGAData(int ga, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Завершает асинхронную операцию, начатую "BegingetOgranGAData".
+            /// </summary>
+            /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegingetOgranGAData".</param>
+            /// <returns>Объект "ChartDataSerie", возвращенный из операции "getOgranGAData".</returns>
+            ChartDataSerie EndgetOgranGAData(IAsyncResult result);
         }
         
         internal sealed class OgranGAContextEntityContainer : EntityContainer
