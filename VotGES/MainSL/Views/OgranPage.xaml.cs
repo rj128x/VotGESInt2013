@@ -89,11 +89,78 @@ namespace MainSL.Views {
 			refresh();
 		}
 
+		protected void manualPaintCurrent(int ga) {
+			canvas.Children.Clear();
+			Rectangle rect = new Rectangle();
+
+			double wid = imgHar.ActualWidth;
+			double hei = imgHar.ActualHeight;
+			
+			double left = wid * 0.055;
+			double top = hei * 0.025;
+			double bot = hei * 0.89;
+			double right = wid * 0.975;
+
+			switch (ga) {
+				case 1:
+					break;
+				case 2:
+					top = hei * 0.04;
+					break;
+				case 3:
+					top = hei * 0.05;
+					bot = hei * 0.89;
+					break;
+				case 4:
+					top = hei * 0.04;
+					bot = hei * 0.90;
+					break;
+				case 5:
+					top = hei * 0.04;
+					bot = hei * 0.90;
+					break;
+				case 6:
+					top = hei * 0.04;
+					bot = hei * 0.90;
+					break;
+				case 7:
+					left = wid * 0.06;
+					top = hei * 0.05;
+					bot = hei * 0.90;
+					right = wid * 0.98;
+					break;
+				case 8:
+					top = hei * 0.05;
+					bot = hei * 0.90;
+					break;
+				case 9:
+					top = hei * 0.035;
+					bot = hei * 0.90;
+					break;
+				case 10:
+					top = hei * 0.03;
+					bot = hei * 0.90;
+					right = wid * 0.97;
+					break;
+			}
+
+			double recWidth = right - left;
+			double recHeight = bot - top;
+
+			rect.Width = recWidth;
+			rect.Height = recHeight;
+			rect.Stroke = new SolidColorBrush(Colors.Blue);
+			rect.StrokeThickness = 2;			
+			rect.Margin = new Thickness(left,top,right,bot);
+
+			canvas.Children.Add(rect);
+		}
+
 		protected void loadGAInfo(int ga) {
 			CurrentGA = ga;
 			ImageSourceConverter src=new ImageSourceConverter();
 			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));
-			
+			manualPaintCurrent(ga);
 			InvokeOperation currentOper = context.getOgranGAAnswer(ga, oper => {
 				if (oper.IsCanceled) {
 					return;

@@ -41,7 +41,11 @@
                     <Grid Grid.Row="1">
                         <sdk:TabControl >
                             <sdk:TabItem Name="tabImage" Header="Изображение" >
-                                <Image Name="imgHar" Source="/MainSL;component/Images/gaHar/ga1.jpg"/>         
+                                <Grid >
+                                    <Image Name="imgHar" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                    <Canvas Name="canvas"/>
+                                </Grid>
+                                
                             </sdk:TabItem>
                             <sdk:TabItem Name="tabTable" Header="***" >
                                 <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
