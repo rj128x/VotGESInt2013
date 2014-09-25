@@ -52,7 +52,7 @@ namespace VotGES.Rashod {
 				ser.YAxisIndex = 0;
 				props.addSerie(ser);
 			}
-
+			
 			props.addAxis(yAx);
 			return props;
 		}
@@ -100,7 +100,7 @@ namespace VotGES.Rashod {
 								kpds = ks9;
 								break;
 							case 10:
-								int[] ks10 = { 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 };
+								int[] ks10 = {79, 80, 81, 82, 83, 84, 85, 86, 87, 88};
 								kpds = ks10;
 								break;
 
