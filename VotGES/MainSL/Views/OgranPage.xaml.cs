@@ -108,61 +108,72 @@ namespace MainSL.Views {
 				case 1:
 					break;
 				case 2:
-					top = hei * 0.04;
+					top = hei * 0.05;
 					break;
 				case 3:
 					top = hei * 0.05;
 					bot = hei * 0.89;
 					break;
 				case 4:
-					top = hei * 0.04;
-					bot = hei * 0.90;
+					left = wid * 0.06;
+					top = hei * 0.05;
+					bot = hei * 0.89;
 					break;
 				case 5:
-					top = hei * 0.04;
-					bot = hei * 0.90;
+					left = wid * 0.055;
+					top = hei * 0.05;
+					bot = hei * 0.88;
+					right = wid * 0.97;
 					break;
 				case 6:
-					top = hei * 0.04;
-					bot = hei * 0.90;
+					left = wid * 0.06;
+					top = hei * 0.05;
+					bot = hei * 0.89;
+					right = wid * 0.97;
 					break;
 				case 7:
 					left = wid * 0.06;
 					top = hei * 0.05;
 					bot = hei * 0.90;
-					right = wid * 0.98;
+					right = wid * 0.97;
 					break;
 				case 8:
-					top = hei * 0.05;
-					bot = hei * 0.90;
+					top = hei * 0.06;
+					bot = hei * 0.88;
 					break;
 				case 9:
+					left = wid * 0.06;
 					top = hei * 0.035;
 					bot = hei * 0.90;
 					break;
 				case 10:
+					left = wid * 0.06;
 					top = hei * 0.03;
 					bot = hei * 0.90;
-					right = wid * 0.97;
+					right = wid * 0.98;
 					break;
 			}			
 
 			double recWidth = right - left;
 			double recHeight = bot - top;
 
-			double stepPower = (ga==5 || ga==6)?(recWidth / 90.0):(recWidth/100.0);
+
+			double stepPower =recWidth/100.0;
+			if (ga == 5 || ga == 6)
+				stepPower = recWidth / 90.0;
+			if (ga == 8 || ga == 9)
+				stepPower = recWidth / 110.0;
 			double stepNapor = recHeight / 6.0;
-
 			
-
-
 			rect.Width = recWidth;
 			rect.Height = recHeight;
 			rect.Stroke = new SolidColorBrush(Colors.Blue);
 			rect.StrokeThickness = 2;			
 			rect.Margin = new Thickness(left,top,right,bot);
 
-			
+
+			double prevX = -1;
+			double prevY = -1;
 			foreach (ChartDataPoint point in CurrentChartData.Points) {
 				
 				Ellipse el = new Ellipse();
@@ -172,22 +183,34 @@ namespace MainSL.Views {
 
 
 				double pointLeft = (point.XValDouble - 20) * stepPower;
+				if (ga == 8 || ga == 9)
+					stepPower = (point.XValDouble - 10) * stepPower;
 				double pointTop = rect.Height-(point.YVal-16) * stepNapor;
 
-				el.Margin = new Thickness(left+pointLeft,top+pointTop,0,0);
-				
+				double x=left+pointLeft;
+				double y=top+pointTop;
+				el.Margin = new Thickness(x,y,0,0);
 
+				if (prevX != -1) {
+					Line line = new Line();
+					line.Stroke = new SolidColorBrush(Colors.Blue);
+					line.StrokeThickness = 2;
+					line.Margin = new Thickness(prevX, prevY, x, y);
+					canvas.Children.Add(line);
+				}
+				prevX = x;
+				prevY = y;
 				canvas.Children.Add(el);
 				
 			}
 
-			//canvas.Children.Add(rect);
+			canvas.Children.Add(rect);
 		}
 
-		protected void loadGAInfo(int ga) {
+		protected void loadGAInfo(int ga) {			
 			CurrentGA = ga;
 			ImageSourceConverter src=new ImageSourceConverter();
-			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));			
+			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));
 			InvokeOperation currentOper = context.getOgranGAAnswer(ga, oper => {
 				if (oper.IsCanceled) {
 					return;

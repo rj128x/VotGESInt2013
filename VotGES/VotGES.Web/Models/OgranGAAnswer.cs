@@ -77,10 +77,13 @@ namespace VotGES.Web.Models {
 
 				ChartDataSerie data = new ChartDataSerie();
 				Random rand = new Random();
-				for (int index = 0; index < 20; index++) {
-					data.Points.Add(new ChartDataPoint(rand.Next(60, 100), rand.Next(17, 20)));
-				}
-
+				data.Points.Add(new ChartDataPoint(30,16));
+				data.Points.Add(new ChartDataPoint(40, 17));
+				data.Points.Add(new ChartDataPoint(50, 18));
+				data.Points.Add(new ChartDataPoint(60, 19));
+				data.Points.Add(new ChartDataPoint(70, 20));
+				data.Points.Add(new ChartDataPoint(80, 21));
+				data.Points.Add(new ChartDataPoint(90, 22));
 				data.Name = "dataWork";
 				CurrentData = data;
 			}
