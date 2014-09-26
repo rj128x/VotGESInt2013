@@ -71,6 +71,9 @@ namespace ModbusLib
 		public double Diff { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
+		public double Add { get; set; }
+
+		[System.Xml.Serialization.XmlAttribute]
 		public int FlagBit { get; set; }
 
 		public ModbusInitData() {
@@ -90,6 +93,7 @@ namespace ModbusLib
 			Name = "";
 			Diff = 0;
 			Scale = 1;
+			FlagBit = -1;
 		}
 	}
 
@@ -153,9 +157,9 @@ namespace ModbusLib
 			foreach (ModbusInitData data in Data) {
 				if (data.Addr == addr) {
 					if (DataArray.ContainsKey(data.ID)) {
-						DataArray[data.ID] = val*data.Scale+data.Diff;
+						DataArray[data.ID] = val*data.Scale+data.Add;
 					} else {
-						DataArray.Add(data.ID, val * data.Scale+data.Diff);
+						DataArray.Add(data.ID, val * data.Scale+data.Add);
 					}
 				}
 			}

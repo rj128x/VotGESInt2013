@@ -280,10 +280,10 @@ namespace ModbusLib
 				if (key.Contains("_FLAG")) {
 					if (InitArr.FullData[key].FlagBit > 0) {						
 						string binary = Convert.ToString((short)Data[key], 2);
+						char[] rev=binary.Reverse<char>().ToArray();
 						int v = 0;
 						try {
-							v = binary[InitArr.FullData[key].FlagBit] == '0' ? 0 : 1;
-
+							v = rev[InitArr.FullData[key].FlagBit] == '0' ? 0 : 1;
 						}
 						catch { }
 						Data[key] = v;

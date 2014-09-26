@@ -44,14 +44,12 @@ namespace ModbusLib {
 
 		public double this[string key] {
 			get {
-				if (!Data.ContainsKey(key))
-					Logger.Info("not found " + key);
 				if (Double.IsNaN(Data[key])) {
 					throw new Exception("FlagError");
 				}
-				
-					return Data[key];
-				
+
+				return Data[key];
+
 			}
 		}
 
