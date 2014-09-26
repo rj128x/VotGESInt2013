@@ -6,10 +6,8 @@ using System.Reflection;
 using VotGES;
 using VotGES.Rashod;
 
-namespace ModbusLib
-{
-	public class ModbusCalc
-	{
+namespace ModbusLib {
+	public class ModbusCalc {
 		#region InitClass
 
 		public SortedList<string, double> Data { get; set; }
@@ -21,11 +19,12 @@ namespace ModbusLib
 		}
 
 		public void call(string name, ModbusInitData data) {
-			double val=Double.NaN;
+			double val = Double.NaN;
 			try {
 				MethodInfo mi = typeof(ModbusCalc).GetMethod(name, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 				val = (double)mi.Invoke(this, new object[] { });
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				if (!e.ToString().Contains("FlagError")) {
 					Logger.Error("Ошибка при расчете метода " + name);
 					Logger.Error(e.ToString());
@@ -45,36 +44,40 @@ namespace ModbusLib
 
 		public double this[string key] {
 			get {
+				if (!Data.ContainsKey(key))
+					Logger.Info("not found " + key);
 				if (Double.IsNaN(Data[key])) {
 					throw new Exception("FlagError");
 				}
-				return Data[key];
+				
+					return Data[key];
+				
 			}
 		}
 
 		#region P
 		public double P_GTP1() {
-            return this["MB_GA1_P"] + this["MB_GA2_P"];
+			return this["MB_GA1_P"] + this["MB_GA2_P"];
 		}
 
 		public double P_GTP2() {
-            return this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
+			return this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 		public double P_GES() {
-            return this["MB_GA1_P"] + this["MB_GA2_P"] + this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
+			return this["MB_GA1_P"] + this["MB_GA2_P"] + this["MB_GA3_P"] + this["MB_GA4_P"] + this["MB_GA5_P"] + this["MB_GA6_P"] + this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 		public double P_RGE2() {
-            return this["MB_GA3_P"] + this["MB_GA4_P"];
+			return this["MB_GA3_P"] + this["MB_GA4_P"];
 		}
 
 		public double P_RGE3() {
-            return this["MB_GA5_P"] + this["MB_GA6_P"];
+			return this["MB_GA5_P"] + this["MB_GA6_P"];
 		}
 
 		public double P_RGE4() {
-            return this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
+			return this["MB_GA7_P"] + this["MB_GA8_P"] + this["MB_GA9_P"] + this["MB_GA10_P"];
 		}
 
 
@@ -82,102 +85,113 @@ namespace ModbusLib
 
 		#region Rashod
 		public double Rashod_GES() {
-            return this["MB_GA1_Rash"] + this["MB_GA2_Rash"] + this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
-                this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
+			return this["MB_GA1_Rash"] + this["MB_GA2_Rash"] + this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
+					this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
 		}
 
 		public double Rashod_GTP1() {
-            return this["MB_GA1_Rash"] + this["MB_GA2_Rash"];
+			return this["MB_GA1_Rash"] + this["MB_GA2_Rash"];
 		}
 
 		public double Rashod_GTP2() {
-            return this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
-                this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
+			return this["MB_GA3_Rash"] + this["MB_GA4_Rash"] + this["MB_GA5_Rash"] +
+					this["MB_GA6_Rash"] + this["MB_GA7_Rash"] + this["MB_GA8_Rash"] + this["MB_GA9_Rash"] + this["MB_GA10_Rash"];
 		}
 
-		public static List<int>gtp1=new List<int>(new int[] { 1, 2 });
-		public static List<int>gtp2=new List<int>(new int[] { 3, 4, 5, 6, 7, 8, 9, 10 });
-		public static List<int>ges=new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+		public static List<int> gtp1 = new List<int>(new int[] { 1, 2 });
+		public static List<int> gtp2 = new List<int>(new int[] { 3, 4, 5, 6, 7, 8, 9, 10 });
+		public static List<int> ges = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 
 		public double OptRashod_GTP1() {
 			return RUSA.getOptimRashod(this["Calc_P_GTP1"], this["MB_Napor"], true, null, gtp1);
 		}
 
 		public double OptRashod_GTP2() {
-            return RUSA.getOptimRashod(this["Calc_P_GTP2"], this["MB_Napor"], true, null, gtp2);
+			return RUSA.getOptimRashod(this["Calc_P_GTP2"], this["MB_Napor"], true, null, gtp2);
 		}
 
 		public double OptRashod_GES() {
-            return RUSA.getOptimRashod(this["Calc_P_GES"], this["MB_Napor"], true, null, ges);
+			return RUSA.getOptimRashod(this["Calc_P_GES"], this["MB_Napor"], true, null, ges);
 		}
 		#endregion
 
-        #region Ogran
+		#region Ogran
 
-        public double GA1_AFTER_MAX() { return this["MB_GA1_P"] > this["GA1_MAXP_TEC"] ? 1 : 0; }
-        public double GA2_AFTER_MAX() { return this["MB_GA2_P"] > this["GA2_MAXP_TEC"] ? 1 : 0; }
-        public double GA3_AFTER_MAX() { return this["MB_GA3_P"] > this["GA3_MAXP_TEC"] ? 1 : 0; }
-        public double GA4_AFTER_MAX() { return this["MB_GA4_P"] > this["GA4_MAXP_TEC"] ? 1 : 0; }
-        public double GA5_AFTER_MAX() { return this["MB_GA5_P"] > this["GA5_MAXP_TEC"] ? 1 : 0; }
-        public double GA6_AFTER_MAX() { return this["MB_GA6_P"] > this["GA6_MAXP_TEC"] ? 1 : 0; }
-        public double GA7_AFTER_MAX() { return this["MB_GA7_P"] > this["GA7_MAXP_TEC"] ? 1 : 0; }
-        public double GA8_AFTER_MAX() { return this["MB_GA8_P"] > this["GA8_MAXP_TEC"] ? 1 : 0; }
-        public double GA9_AFTER_MAX() { return this["MB_GA9_P"] > this["GA9_MAXP_TEC"] ? 1 : 0; }
-        public double GA10_AFTER_MAX() { return this["MB_GA10_P"] > this["GA10_MAXP_TEC"] ? 1 : 0; }
+		public double GA1_AFTER_MAX() { return this["MB_GA1_P"] > this["MB_GA1_MAXP_TEC"] ? 1 : 0; }
+		public double GA2_AFTER_MAX() { return this["MB_GA2_P"] > this["MB_GA2_MAXP_TEC"] ? 1 : 0; }
+		public double GA3_AFTER_MAX() { return this["MB_GA3_P"] > this["MB_GA3_MAXP_TEC"] ? 1 : 0; }
+		public double GA4_AFTER_MAX() { return this["MB_GA4_P"] > this["MB_GA4_MAXP_TEC"] ? 1 : 0; }
+		public double GA5_AFTER_MAX() { return this["MB_GA5_P"] > this["MB_GA5_MAXP_TEC"] ? 1 : 0; }
+		public double GA6_AFTER_MAX() { return this["MB_GA6_P"] > this["MB_GA6_MAXP_TEC"] ? 1 : 0; }
+		public double GA7_AFTER_MAX() { return this["MB_GA7_P"] > this["MB_GA7_MAXP_TEC"] ? 1 : 0; }
+		public double GA8_AFTER_MAX() { return this["MB_GA8_P"] > this["MB_GA8_MAXP_TEC"] ? 1 : 0; }
+		public double GA9_AFTER_MAX() { return this["MB_GA9_P"] > this["MB_GA9_MAXP_TEC"] ? 1 : 0; }
+		public double GA10_AFTER_MAX() { return this["MB_GA10_P"] > this["MB_GA10_MAXP_TEC"] ? 1 : 0; }
 
-        public double GA1_LESS_MIN() { return this["MB_GA1_P"] < this["GA1_MINP_TEC"] ? 1 : 0; }
-        public double GA2_LESS_MIN() { return this["MB_GA2_P"] < this["GA2_MINP_TEC"] ? 1 : 0; }
-        public double GA3_LESS_MIN() { return this["MB_GA3_P"] < this["GA3_MINP_TEC"] ? 1 : 0; }
-        public double GA4_LESS_MIN() { return this["MB_GA4_P"] < this["GA4_MINP_TEC"] ? 1 : 0; }
-        public double GA5_LESS_MIN() { return this["MB_GA5_P"] < this["GA5_MINP_TEC"] ? 1 : 0; }
-        public double GA6_LESS_MIN() { return this["MB_GA6_P"] < this["GA6_MINP_TEC"] ? 1 : 0; }
-        public double GA7_LESS_MIN() { return this["MB_GA7_P"] < this["GA7_MINP_TEC"] ? 1 : 0; }
-        public double GA8_LESS_MIN() { return this["MB_GA8_P"] < this["GA8_MINP_TEC"] ? 1 : 0; }
-        public double GA9_LESS_MIN() { return this["MB_GA9_P"] < this["GA9_MINP_TEC"] ? 1 : 0; }
-        public double GA10_LESS_MIN() { return this["MB_GA10_P"] < this["GA10_MINP_TEC"] ? 1 : 0; }
+		public double GA1_LESS_MIN() { return this["MB_GA1_P"] < this["MB_GA1_MINP_TEC"] ? 1 : 0; }
+		public double GA2_LESS_MIN() { return this["MB_GA2_P"] < this["MB_GA2_MINP_TEC"] ? 1 : 0; }
+		public double GA3_LESS_MIN() { return this["MB_GA3_P"] < this["MB_GA3_MINP_TEC"] ? 1 : 0; }
+		public double GA4_LESS_MIN() { return this["MB_GA4_P"] < this["MB_GA4_MINP_TEC"] ? 1 : 0; }
+		public double GA5_LESS_MIN() { return this["MB_GA5_P"] < this["MB_GA5_MINP_TEC"] ? 1 : 0; }
+		public double GA6_LESS_MIN() { return this["MB_GA6_P"] < this["MB_GA6_MINP_TEC"] ? 1 : 0; }
+		public double GA7_LESS_MIN() { return this["MB_GA7_P"] < this["MB_GA7_MINP_TEC"] ? 1 : 0; }
+		public double GA8_LESS_MIN() { return this["MB_GA8_P"] < this["MB_GA8_MINP_TEC"] ? 1 : 0; }
+		public double GA9_LESS_MIN() { return this["MB_GA9_P"] < this["MB_GA9_MINP_TEC"] ? 1 : 0; }
+		public double GA10_LESS_MIN() { return this["MB_GA10_P"] < this["MB_GA10_MINP_TEC"] ? 1 : 0; }
 
-        public double GA1_SK() { return this["MB_GA1_P"] < 0 ? 1 : 0; }
-        public double GA2_SK() { return this["MB_GA2_P"] < 0 ? 1 : 0; }
-        public double GA9_SK() { return this["MB_GA9_P"] < 0 ? 1 : 0; }
-        public double GA10_SK() { return this["MB_GA10_P"] < 0 ? 1 : 0; }
+		public double GA1_SK() { return this["MB_GA1_P"] < 0 ? 1 : 0; }
+		public double GA2_SK() { return this["MB_GA2_P"] < 0 ? 1 : 0; }
+		public double GA9_SK() { return this["MB_GA9_P"] < 0 ? 1 : 0; }
+		public double GA10_SK() { return this["MB_GA10_P"] < 0 ? 1 : 0; }
 
-        public double GA1_GEN() { return this["MB_GA1_P"] > 0 ? 1 : 0; }
-        public double GA2_GEN() { return this["MB_GA2_P"] > 0 ? 1 : 0; }
-        public double GA3_GEN() { return this["MB_GA3_P"] > 0 ? 1 : 0; }
-        public double GA4_GEN() { return this["MB_GA4_P"] > 0 ? 1 : 0; }
-        public double GA5_GEN() { return this["MB_GA5_P"] > 0 ? 1 : 0; }
-        public double GA6_GEN() { return this["MB_GA6_P"] > 0 ? 1 : 0; }
-        public double GA7_GEN() { return this["MB_GA7_P"] > 0 ? 1 : 0; }
-        public double GA8_GEN() { return this["MB_GA8_P"] > 0 ? 1 : 0; }
-        public double GA9_GEN() { return this["MB_GA9_P"] > 0 ? 1 : 0; }
-        public double GA10_GEN() { return this["MB_GA10_P"] > 0 ? 1 : 0; }
+		public double GA1_GEN() { return this["MB_GA1_P"] > 0 ? 1 : 0; }
+		public double GA2_GEN() { return this["MB_GA2_P"] > 0 ? 1 : 0; }
+		public double GA3_GEN() { return this["MB_GA3_P"] > 0 ? 1 : 0; }
+		public double GA4_GEN() { return this["MB_GA4_P"] > 0 ? 1 : 0; }
+		public double GA5_GEN() { return this["MB_GA5_P"] > 0 ? 1 : 0; }
+		public double GA6_GEN() { return this["MB_GA6_P"] > 0 ? 1 : 0; }
+		public double GA7_GEN() { return this["MB_GA7_P"] > 0 ? 1 : 0; }
+		public double GA8_GEN() { return this["MB_GA8_P"] > 0 ? 1 : 0; }
+		public double GA9_GEN() { return this["MB_GA9_P"] > 0 ? 1 : 0; }
+		public double GA10_GEN() { return this["MB_GA10_P"] > 0 ? 1 : 0; }
 
-        public double GA1_HHG() { return 0; }
-        public double GA2_HHG() { return 0; }
-        public double GA3_HHG() { return 0; }
-        public double GA4_HHG() { return 0; }
-        public double GA5_HHG() { return 0; }
-        public double GA6_HHG() { return 0; }
-        public double GA7_HHG() { return 0; }
-        public double GA8_HHG() { return 0; }
-        public double GA9_HHG() { return 0; }
-        public double GA10_HHG() { return 0; }
+		public double GA1_HHG() { return 0; }
+		public double GA2_HHG() { return 0; }
+		public double GA3_HHG() { return 0; }
+		public double GA4_HHG() { return 0; }
+		public double GA5_HHG() { return 0; }
+		public double GA6_HHG() { return 0; }
+		public double GA7_HHG() { return 0; }
+		public double GA8_HHG() { return 0; }
+		public double GA9_HHG() { return 0; }
+		public double GA10_HHG() { return 0; }
 
-        public double GA1_HHT() { return 0; }
-        public double GA2_HHT() { return 0; }
-        public double GA3_HHT() { return 0; }
-        public double GA4_HHT() { return 0; }
-        public double GA5_HHT() { return 0; }
-        public double GA6_HHT() { return 0; }
-        public double GA7_HHT() { return 0; }
-        public double GA8_HHT() { return 0; }
-        public double GA9_HHT() { return 0; }
-        public double GA10_HHT() { return 0; }
+		public double GA1_HHT() { return 0; }
+		public double GA2_HHT() { return 0; }
+		public double GA3_HHT() { return 0; }
+		public double GA4_HHT() { return 0; }
+		public double GA5_HHT() { return 0; }
+		public double GA6_HHT() { return 0; }
+		public double GA7_HHT() { return 0; }
+		public double GA8_HHT() { return 0; }
+		public double GA9_HHT() { return 0; }
+		public double GA10_HHT() { return 0; }
 
-        #endregion
+		public double GA1_RUN() { return this["MB_GA1_RUN"]; }
+		public double GA2_RUN() { return this["MB_GA2_RUN"]; ; }
+		public double GA3_RUN() { return this["MB_GA3_RUN"]; ; }
+		public double GA4_RUN() { return this["MB_GA4_RUN"]; ; }
+		public double GA5_RUN() { return this["MB_GA5_RUN"]; ; }
+		public double GA6_RUN() { return this["MB_GA6_RUN"]; ; }
+		public double GA7_RUN() { return this["MB_GA7_RUN"]; ; }
+		public double GA8_RUN() { return this["MB_GA8_RUN"]; ; }
+		public double GA9_RUN() { return this["MB_GA9_RUN"]; ; }
+		public double GA10_RUN() { return this["MB_GA10_RUN"]; ; }
+
+		#endregion
 
 
 
 
-    }
+	}
 }

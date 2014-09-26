@@ -256,6 +256,7 @@ namespace ModbusLib
 						}
 					}
 				}
+				
 				ushort startAddr=id;
 				foreach (int w in word) {
 					InitArr.WriteVal(startAddr, w, Data);
@@ -269,17 +270,43 @@ namespace ModbusLib
 			}
 		}
 
+
 		public SortedList<string, double> getResultData() {
 			SortedList<string, double> ResultData=new SortedList<string, double>(CountData);
 			double val=0;
 			string nm;
-			foreach (KeyValuePair<string,double> de in Data) {
-				val = de.Value;
-				nm = de.Key + "_FLAG";
-				if (Data.ContainsKey(nm) && Data[nm] < 0) {
-					val = Double.NaN;
+			string[] keys = Data.Keys.ToArray();
+			foreach (string key in keys) {
+				if (key.Contains("_FLAG")) {
+					if (InitArr.FullData[key].FlagBit > 0) {						
+						string binary = Convert.ToString((short)Data[key], 2);
+						int v = 0;
+						try {
+							v = binary[InitArr.FullData[key].FlagBit] == '0' ? 0 : 1;
+
+						}
+						catch { }
+						Data[key] = v;
+					}
+				} 
+			}
+
+			foreach (string key in keys) {
+				val = Data[key];
+				nm = key + "_FLAG";
+				if (Data.ContainsKey(nm)) {					
+					if (InitArr.FullData[nm].FlagBit > 0) {
+						if (Data[nm] != 0) {
+							val = Double.NaN;							
+						}
+					}
+					else {
+						if (Data[nm] != 0) {
+							val = Double.NaN;
+						}
+					}
 				}
-				ResultData.Add(de.Key, val);
+				ResultData.Add(key, val);
 			}
 			return ResultData;
 		}

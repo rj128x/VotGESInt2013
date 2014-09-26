@@ -70,6 +70,8 @@ namespace ModbusLib
 		[System.Xml.Serialization.XmlAttribute]
 		public double Diff { get; set; }
 
+		[System.Xml.Serialization.XmlAttribute]
+		public int FlagBit { get; set; }
 
 		public ModbusInitData() {
 			WriteToDBMin = false;
