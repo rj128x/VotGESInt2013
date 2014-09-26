@@ -159,12 +159,13 @@ namespace MainSL.Views {
 
 
 			double stepPower =recWidth/100.0;
-			if (ga == 5 || ga == 6)
+			if (ga == 6)
 				stepPower = recWidth / 90.0;
 			if (ga == 8 || ga == 9)
 				stepPower = recWidth / 110.0;
 			double stepNapor = recHeight / 6.0;
-			
+			if (ga==2 || ga==9)
+				stepNapor = recHeight / 7.0;
 			rect.Width = recWidth;
 			rect.Height = recHeight;
 			rect.Stroke = new SolidColorBrush(Colors.Blue);
@@ -183,19 +184,28 @@ namespace MainSL.Views {
 
 
 				double pointLeft = (point.XValDouble - 20) * stepPower;
-				if (ga == 8 || ga == 9)
-					stepPower = (point.XValDouble - 10) * stepPower;
+				if (ga == 8 || ga == 9 ||ga==5)
+					pointLeft = (point.XValDouble - 10) * stepPower;
 				double pointTop = rect.Height-(point.YVal-16) * stepNapor;
+				if (ga == 2 ||ga==9) {
+					pointTop = rect.Height - (point.YVal - 15) * stepNapor;
+				}
+
 
 				double x=left+pointLeft;
 				double y=top+pointTop;
-				el.Margin = new Thickness(x,y,0,0);
+				el.Margin = new Thickness(x-5,y-5,x+5,y+5);
 
 				if (prevX != -1) {
 					Line line = new Line();
 					line.Stroke = new SolidColorBrush(Colors.Blue);
 					line.StrokeThickness = 2;
-					line.Margin = new Thickness(prevX, prevY, x, y);
+					line.X1 = prevX;
+					line.X2 = x;
+					line.Y1 = prevY;
+					line.Y2 = y;
+					
+					//line.Margin = new Thickness(prevX, prevY, x, y);
 					canvas.Children.Add(line);
 				}
 				prevX = x;
@@ -204,7 +214,7 @@ namespace MainSL.Views {
 				
 			}
 
-			canvas.Children.Add(rect);
+			//canvas.Children.Add(rect);
 		}
 
 		protected void loadGAInfo(int ga) {			
