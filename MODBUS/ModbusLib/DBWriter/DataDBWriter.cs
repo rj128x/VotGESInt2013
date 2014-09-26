@@ -293,6 +293,7 @@ namespace ModbusLib
 							prevDate = diff.Key;
 							
 						}
+
 					}
 				}
 			}

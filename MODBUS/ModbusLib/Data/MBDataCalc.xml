@@ -13,7 +13,7 @@
 	<ParNumberDiff>13</ParNumberDiff>
 	<ParNumberMin>4</ParNumberMin>	
 	<Data>
-		<ModbusInitData ID="P_GTP1" Name="P ГТП 1" FuncName="P_GTP1" WriteToDBHH="1" Item="2" />
+		<ModbusInitData ID="P_GTP1" Name="P ГТП 1" FuncName="P_GTP1" WriteToDBHH="1"  Item="2" />
 		<ModbusInitData ID="P_GTP2" Name="P ГТП 2" FuncName="P_GTP2" WriteToDBHH="1" Item="3"  />
 		<ModbusInitData ID="P_GES" Name="P ГЭС" FuncName="P_GES" WriteToDBHH="1" Item="1"  />
 		<ModbusInitData ID="P_RGE2" Name="P РГЕ2" FuncName="P_RGE2" WriteToDBHH="1" Item="32"  />

@@ -59,7 +59,8 @@ namespace VotGES.Web.Models {
 			if (createCurrent) {
 				int itemP = 200 + ga;
 				List<int> items = new List<int>() { 200 + ga, 100 + ga, 400 + ga, 500 + ga, 600 + ga };
-				List<PiramidaEnrty> currentData = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-2), DateTime.Now.AddHours(-2).AddMinutes(-10), 3, 2, 4, items, false, true, "PSV");
+				ChartDataSerie data = new ChartDataSerie();
+				List<PiramidaEnrty> currentData = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-2), DateTime.Now.AddHours(-2).AddMinutes(-50), 3, 2, 4, items, false, true, "PMin");
 				foreach (PiramidaEnrty rec in currentData) {
 					if (rec.Item == 200 + ga)
 						CurrentP = rec.Value0;
@@ -71,21 +72,24 @@ namespace VotGES.Web.Models {
 						CurrentUgolRK = rec.Value0;
 					if (rec.Item == 600 + ga)
 						CurrentNapor = rec.Value0;
+					data.Points.Add(new ChartDataPoint(CurrentP, CurrentNapor));
 				}
 				CurrentKPD = RashodTable.KPD(CurrentP, CurrentNapor, CurrentRashod);
-
-
-				ChartDataSerie data = new ChartDataSerie();
-				Random rand = new Random();
-				data.Points.Add(new ChartDataPoint(30,16));
-				data.Points.Add(new ChartDataPoint(40, 17));
-				data.Points.Add(new ChartDataPoint(50, 18));
-				data.Points.Add(new ChartDataPoint(60, 19));
-				data.Points.Add(new ChartDataPoint(70, 20));
-				data.Points.Add(new ChartDataPoint(80, 21));
-				data.Points.Add(new ChartDataPoint(90, 22));
 				data.Name = "dataWork";
 				CurrentData = data;
+
+
+				/*ChartDataSerie data1 = new ChartDataSerie();
+				Random rand = new Random();
+				data1.Points.Add(new ChartDataPoint(30,16));
+				data1.Points.Add(new ChartDataPoint(40, 17));
+				data1.Points.Add(new ChartDataPoint(50, 18));
+				data1.Points.Add(new ChartDataPoint(60, 19));
+				data1.Points.Add(new ChartDataPoint(70, 20));
+				data1.Points.Add(new ChartDataPoint(80, 21));
+				data1.Points.Add(new ChartDataPoint(90, 22));
+				data1.Name = "dataWork";
+				CurrentData = data1;*/
 			}
 		}
 	}

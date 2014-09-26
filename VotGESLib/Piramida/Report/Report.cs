@@ -428,8 +428,10 @@ namespace VotGES.Piramida.Report
 
 
 			connection = Interval != IntervalReportEnum.minute ? PiramidaAccess.getConnection("P3000") : PiramidaAccess.getConnection("PMin");
-			if (objType == "2" && (obj == "3" || obj == "30")) {
-				connection = PiramidaAccess.getConnection("PSV");
+			if (Interval != IntervalReportEnum.minute) {
+				if (objType == "2" && (obj == "3" || obj == "30")) {
+					connection = PiramidaAccess.getConnection("PSV");
+				}
 			}
 						
 			connection.Open();
