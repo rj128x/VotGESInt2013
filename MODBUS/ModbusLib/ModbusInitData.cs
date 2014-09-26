@@ -153,9 +153,9 @@ namespace ModbusLib
 			foreach (ModbusInitData data in Data) {
 				if (data.Addr == addr) {
 					if (DataArray.ContainsKey(data.ID)) {
-						DataArray[data.ID] = val*data.Scale;
+						DataArray[data.ID] = val*data.Scale+data.Diff;
 					} else {
-						DataArray.Add(data.ID, val * data.Scale);
+						DataArray.Add(data.ID, val * data.Scale+data.Diff);
 					}
 				}
 			}

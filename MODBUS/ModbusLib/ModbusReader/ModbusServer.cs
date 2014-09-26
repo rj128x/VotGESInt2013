@@ -198,7 +198,7 @@ namespace ModbusLib
 		protected void ProcessConnect() {
 			StartAddr = (ushort)StartedPart.First((KeyValuePair<int, bool> de) => { return de.Value == false; }).Key;
 			if (!InitArr.IsDiscrete) {
-				Server.ModbusMaster.ReadInputRegister(StartAddr, StartAddr, (ushort)(StepData * 2));
+				Server.ModbusMaster.ReadHoldingRegister(StartAddr, StartAddr, (ushort)(StepData * 2));
 			} else {
 				Server.ModbusMaster.ReadDiscreteInputs(StartAddr, StartAddr, (ushort)(StepData / 8));
 			}
