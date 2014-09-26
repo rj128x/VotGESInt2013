@@ -41,7 +41,7 @@ namespace MainSL.Views {
 			pnlRefresh.DataContext = settings;
 			timer = new DispatcherTimer();
 			timer.Tick += new EventHandler(timer_Tick);
-			timer.Interval = new TimeSpan(0, 0, 1);
+			timer.Interval = new TimeSpan(0, 0, 1);			
 		}
 
 		void timer_Tick(object sender, EventArgs e) {
@@ -57,6 +57,7 @@ namespace MainSL.Views {
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 			timer.Start();
 		}
+				
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e) {
 			GlobalStatus.Current.StopLoad();
@@ -217,7 +218,8 @@ namespace MainSL.Views {
 			//canvas.Children.Add(rect);
 		}
 
-		protected void loadGAInfo(int ga) {			
+		protected void loadGAInfo(int ga) {
+			textGenerator.Text = "Генератор №" + ga;
 			CurrentGA = ga;
 			ImageSourceConverter src=new ImageSourceConverter();
 			imgHar.Source=(ImageSource)src.ConvertFromString(String.Format("/MainSL;component/Images/gaHar/ga{0}.jpg",ga));
