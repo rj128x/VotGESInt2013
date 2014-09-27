@@ -74,6 +74,7 @@ namespace VotGES.Piramida.Report
 			ReportMainRecords.AddCalcRecords(this, false, false, result);
 
 			ReportMBRecords.AddRecordsMB(this, parNumber, 1, 1, false, false, otherType ? oper : DBOperEnum.avg, otherType ? result : ResultTypeEnum.avg);
+			ReportMBRecords.AddRecordsMBW(this, parNumber, 1, 1, false, false, otherType ? oper : DBOperEnum.avg, otherType ? result : ResultTypeEnum.avg);
 			ReportMBRecords.AddCalcRecords(this, false, false, ResultTypeEnum.avg);
 		}
 

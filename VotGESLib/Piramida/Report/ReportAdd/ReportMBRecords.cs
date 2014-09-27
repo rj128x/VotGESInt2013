@@ -3,33 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VotGES.Piramida.Report
-{
-	public class ReportMBRecords
-	{
-		public static RecordTypeCalc MB_GA1_Istator=new RecordTypeCalc("MB_GA1_Istator", "ГА-1 ток статора", null);
-		public static RecordTypeCalc MB_GA2_Istator=new RecordTypeCalc("MB_GA2_Istator", "ГА-2 ток статора", null);
-		public static RecordTypeCalc MB_GA3_Istator=new RecordTypeCalc("MB_GA3_Istator", "ГА-3 ток статора", null);
-		public static RecordTypeCalc MB_GA4_Istator=new RecordTypeCalc("MB_GA4_Istator", "ГА-4 ток статора", null);
-		public static RecordTypeCalc MB_GA5_Istator=new RecordTypeCalc("MB_GA5_Istator", "ГА-5 ток статора", null);
-		public static RecordTypeCalc MB_GA6_Istator=new RecordTypeCalc("MB_GA6_Istator", "ГА-6 ток статора", null);
-		public static RecordTypeCalc MB_GA7_Istator=new RecordTypeCalc("MB_GA7_Istator", "ГА-7 ток статора", null);
-		public static RecordTypeCalc MB_GA8_Istator=new RecordTypeCalc("MB_GA8_Istator", "ГА-8 ток статора", null);
-		public static RecordTypeCalc MB_GA9_Istator=new RecordTypeCalc("MB_GA9_Istator", "ГА-9 ток статора", null);
-		public static RecordTypeCalc MB_GA10_Istator=new RecordTypeCalc("MB_GA10_Istator", "ГА-10 ток статора", null);
-		public static RecordTypeCalc MB_U_220=new RecordTypeCalc("MB_U_220", "U 220", null);
-		public static RecordTypeCalc MB_U_110=new RecordTypeCalc("MB_U_110", "U 110", null);
-		public static RecordTypeCalc MB_U_500=new RecordTypeCalc("MB_U_500", "U 500", null);
-		public static RecordTypeCalc MB_F_220=new RecordTypeCalc("MB_F_220", "F 220", null);
-		public static RecordTypeCalc MB_F_110=new RecordTypeCalc("MB_F_110", "F 110", null);
+namespace VotGES.Piramida.Report {
+	public class ReportMBRecords {
+		public static RecordTypeCalc MB_GA1_Istator = new RecordTypeCalc("MB_GA1_Istator", "ГА-1 ток статора", null);
+		public static RecordTypeCalc MB_GA2_Istator = new RecordTypeCalc("MB_GA2_Istator", "ГА-2 ток статора", null);
+		public static RecordTypeCalc MB_GA3_Istator = new RecordTypeCalc("MB_GA3_Istator", "ГА-3 ток статора", null);
+		public static RecordTypeCalc MB_GA4_Istator = new RecordTypeCalc("MB_GA4_Istator", "ГА-4 ток статора", null);
+		public static RecordTypeCalc MB_GA5_Istator = new RecordTypeCalc("MB_GA5_Istator", "ГА-5 ток статора", null);
+		public static RecordTypeCalc MB_GA6_Istator = new RecordTypeCalc("MB_GA6_Istator", "ГА-6 ток статора", null);
+		public static RecordTypeCalc MB_GA7_Istator = new RecordTypeCalc("MB_GA7_Istator", "ГА-7 ток статора", null);
+		public static RecordTypeCalc MB_GA8_Istator = new RecordTypeCalc("MB_GA8_Istator", "ГА-8 ток статора", null);
+		public static RecordTypeCalc MB_GA9_Istator = new RecordTypeCalc("MB_GA9_Istator", "ГА-9 ток статора", null);
+		public static RecordTypeCalc MB_GA10_Istator = new RecordTypeCalc("MB_GA10_Istator", "ГА-10 ток статора", null);
+		public static RecordTypeCalc MB_U_220 = new RecordTypeCalc("MB_U_220", "U 220", null);
+		public static RecordTypeCalc MB_U_110 = new RecordTypeCalc("MB_U_110", "U 110", null);
+		public static RecordTypeCalc MB_U_500 = new RecordTypeCalc("MB_U_500", "U 500", null);
+		public static RecordTypeCalc MB_F_220 = new RecordTypeCalc("MB_F_220", "F 220", null);
+		public static RecordTypeCalc MB_F_110 = new RecordTypeCalc("MB_F_110", "F 110", null);
 
 
 		public static void CreateMB() {
 			MB_GA1_Istator.CalcFunction =
 				new RecordCalcDelegate((report, date) => {
-					return (report[date, PiramidaRecords.MB_GA1_IstatorA.Key] + 
-						report[date, PiramidaRecords.MB_GA1_IstatorB.Key] + 
-						report[date, PiramidaRecords.MB_GA1_IstatorC.Key])/3;
+					return (report[date, PiramidaRecords.MB_GA1_IstatorA.Key] +
+						report[date, PiramidaRecords.MB_GA1_IstatorB.Key] +
+						report[date, PiramidaRecords.MB_GA1_IstatorC.Key]) / 3;
 				});
 
 			MB_GA2_Istator.CalcFunction =
@@ -117,7 +115,7 @@ namespace VotGES.Piramida.Report
 
 			MB_U_500.CalcFunction =
 				new RecordCalcDelegate((report, date) => {
-					return (report[date, PiramidaRecords.MB_U_Emelino_500.Key] + report[date, PiramidaRecords.MB_U_Karmanovo_500.Key]+
+					return (report[date, PiramidaRecords.MB_U_Emelino_500.Key] + report[date, PiramidaRecords.MB_U_Karmanovo_500.Key] +
 						report[date, PiramidaRecords.MB_U_Vyatka_500.Key]) / 3;
 				});
 		}
@@ -142,6 +140,77 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeCalc(MB_F_110, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(MB_F_220, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(MB_U_500, toChart, visible, oper));
+		}
+
+		public static void AddRecordsMBW(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_Napor, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_Rash, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_P, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_Q, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_UgolRK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA1_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA2_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA3_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA4_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA5_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA6_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA7_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA8_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA9_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.MBW_GA10_OtkrNA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+
+
 		}
 
 		public static void AddRecordsMB(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {

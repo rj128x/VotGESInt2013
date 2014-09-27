@@ -3,610 +3,608 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VotGES.Piramida
-{
-	public static class PiramidaRecords
-	{
-		public static PiramidaRecord P_GES=new PiramidaRecord(2, 0, 1, "P ГЭС");
-		public static PiramidaRecord P_GTP1=new PiramidaRecord(2, 0, 2, "P ГТП1");
-		public static PiramidaRecord P_GTP2=new PiramidaRecord(2, 0, 3, "P ГТП2");
-
-		public static PiramidaRecord P_IKM_SN=new PiramidaRecord(2, 0, 14, "Расход на собственные нужды ГЭС");
-		public static PiramidaRecord P_IKM_Nebalans_GES=new PiramidaRecord(2, 0, 24, "Небаланс по ГЭС");		
-		public static PiramidaRecord P_IKM_SP=new PiramidaRecord(2, 0, 52, "Собственное потребление");
-        
-		public static PiramidaRecord P_3AT_500_Priem=new PiramidaRecord(0, 8739, 1, "3АТ 500 кВ Прием (P)");
-		public static PiramidaRecord P_3AT_500_Otd=new PiramidaRecord(0, 8739, 2, "3АТ 500 кВ Отдача (P)");
-		public static PiramidaRecord Q_3AT_500_Priem=new PiramidaRecord(0, 8739, 3, "3АТ 500 кВ Прием (Q)");
-		public static PiramidaRecord Q_3AT_500_Otd=new PiramidaRecord(0, 8739, 4, "3АТ 500 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_2AT_500_Priem=new PiramidaRecord(0, 8739, 5, "2АТ 500 кВ Прием (P)");
-		public static PiramidaRecord P_2AT_500_Otd=new PiramidaRecord(0, 8739, 6, "2АТ 500 кВ Отдача (P)");
-		public static PiramidaRecord Q_2AT_500_Priem=new PiramidaRecord(0, 8739, 7, "2АТ 500 кВ Прием (Q)");
-		public static PiramidaRecord Q_2AT_500_Otd=new PiramidaRecord(0, 8739, 8, "2АТ 500 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_1VS_N1=new PiramidaRecord(0, 8739, 9, "1-1 ВС (P)");
-		public static PiramidaRecord P_KRU2_24T=new PiramidaRecord(0, 8739, 10, "КРУ-2 24Т (P)");
-        public static PiramidaRecord P_KRU2_TVI = new PiramidaRecord(0, 8739, 11, "КРУ-2 ТВИ (P)");
-        public static PiramidaRecord P_KRU2_TP2 = new PiramidaRecord(0, 8739, 12, "КРУ-2 ТП2 (P)");
-        public static PiramidaRecord P_KRU1_31T = new PiramidaRecord(0, 8739, 13, "КРУ-1 31Т (P)");
-        public static PiramidaRecord P_KRU2_RUSN = new PiramidaRecord(0, 8739, 14, "КРУ-2 РУСН (P)");
-
-
-        public static PiramidaRecord P_KRU2_36T = new PiramidaRecord(0, 8739, 16, "КРУ-2 36Т (P)");
-        public static PiramidaRecord P_KRU1_27T = new PiramidaRecord(0, 8739, 17, "КРУ-1 27Т (P)");
-        public static PiramidaRecord P_KRU1_37T = new PiramidaRecord(0, 8739, 18, "КРУ-1 37Т (P)");
-        public static PiramidaRecord P_KRU2_30T = new PiramidaRecord(0, 8739, 19, "КРУ-2 30Т (P)");
-        public static PiramidaRecord P_KRU2_28T = new PiramidaRecord(0, 8739, 20, "КРУ-2 28Т (P)");
-        public static PiramidaRecord P_KRU1_33T = new PiramidaRecord(0, 8739, 21, "КРУ-1 33Т (P)");
-        public static PiramidaRecord P_KRU1_21T = new PiramidaRecord(0, 8739, 22, "КРУ-1 21Т (P)");
-        public static PiramidaRecord P_KRU1_25T = new PiramidaRecord(0, 8739, 23, "КРУ-1 25Т (P)");
-        public static PiramidaRecord P_KRU2_38T = new PiramidaRecord(0, 8739, 24, "КРУ-2 38Т (P)");
-        public static PiramidaRecord P_KRU1_Rez1 = new PiramidaRecord(0, 8739, 25, "Резерв #1@КРУ-1:11");
-        public static PiramidaRecord P_KRU1_Rez2 = new PiramidaRecord(0, 8739, 26, "Резерв #2@КРУ-1:12");
-        public static PiramidaRecord P_KRU1_35T = new PiramidaRecord(0, 8739, 27, "КРУ-1 35Т (P)");
-        public static PiramidaRecord P_KRU1_Rez3 = new PiramidaRecord(0, 8739, 28, "Резерв #3@КРУ-1:13");
-
-        public static PiramidaRecord P_R500_Emelino_priem = new PiramidaRecord(0, 8739, 29, "R 500 Емелино прием (P)");
-        public static PiramidaRecord Q_R500_Emelino_priem = new PiramidaRecord(0, 8739, 31, "R 500 Емелино прием (Q)");
-        public static PiramidaRecord P_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 33, "R 500 Вятка прием (P)");
-        public static PiramidaRecord Q_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 35, "R 500 Вятка прием (Q)");
-        
-
-		public static PiramidaRecord P_Vozb_GA9_Priem=new PiramidaRecord(0, 8740, 1, "Возбуждение Г/А 9 прием (P)");
-		public static PiramidaRecord P_Vozb_GA10_Priem=new PiramidaRecord(0, 8740, 2, "Возбуждение Г/А 10 прием (P)");
-		public static PiramidaRecord P_SN_19T_Priem=new PiramidaRecord(0, 8740, 3, "СН 19Т прием (P)");
-		public static PiramidaRecord P_SN_20T_Priem=new PiramidaRecord(0, 8740, 4, "СН 20Т прием (P)");
-		public static PiramidaRecord P_Vozb_GA7_Priem=new PiramidaRecord(0, 8740, 5, "Возбуждение Г/А 7 прием (P)");
-		public static PiramidaRecord P_Vozb_GA8_Priem=new PiramidaRecord(0, 8740, 6, "Возбуждение Г/А 8 прием (P)");
-		public static PiramidaRecord P_SN_17T_Priem=new PiramidaRecord(0, 8740, 7, "СН 17Т прием (P)");
-		public static PiramidaRecord P_SN_18T_Priem=new PiramidaRecord(0, 8740, 8, "СН 28Т прием (P)");
-
-		public static PiramidaRecord P_1T_110_Priem=new PiramidaRecord(0, 8740, 9, "1Т 110 кВ Прием (P)");
-		public static PiramidaRecord P_1T_110_Otd=new PiramidaRecord(0, 8740, 10, "1Т 110 кВ Отдача (P)");
-		public static PiramidaRecord Q_1T_110_Priem=new PiramidaRecord(0, 8740, 11, "1Т 110 кВ Прием (Q)");
-		public static PiramidaRecord Q_1T_110_Otd=new PiramidaRecord(0, 8740, 12, "1Т 110 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_2AT_220_Priem=new PiramidaRecord(0, 8740, 13, "2АТ 220 кВ Прием (P)");
-		public static PiramidaRecord P_2AT_220_Otd=new PiramidaRecord(0, 8740, 14, "2АТ 220 кВ Отдача (P)");
-		public static PiramidaRecord Q_2AT_220_Priem=new PiramidaRecord(0, 8740, 15, "2АТ 220 кВ Прием (Q)");
-		public static PiramidaRecord Q_2AT_220_Otd=new PiramidaRecord(0, 8740, 16, "2АТ 220 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_3AT_220_Priem=new PiramidaRecord(0, 8740, 17, "3АТ 220 кВ Прием (P)");
-		public static PiramidaRecord P_3AT_220_Otd=new PiramidaRecord(0, 8740, 18, "3АТ 220 кВ Отдача (P)");
-		public static PiramidaRecord Q_3AT_220_Priem=new PiramidaRecord(0, 8740, 19, "3АТ 220 кВ Прием (Q)");
-		public static PiramidaRecord Q_3AT_220_Otd=new PiramidaRecord(0, 8740, 20, "3АТ 220 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_56AT_220_Priem=new PiramidaRecord(0, 8740, 21, "5-6АТ 220 кВ Прием (P)");
-		public static PiramidaRecord P_56AT_220_Otd=new PiramidaRecord(0, 8740, 22, "5-6АТ 220 кВ Отдача (P)");
-		public static PiramidaRecord Q_56AT_220_Priem=new PiramidaRecord(0, 8740, 23, "5-6АТ 220 кВ Прием (Q)");
-		public static PiramidaRecord Q_56AT_220_Otd=new PiramidaRecord(0, 8740, 24, "5-6АТ 220 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_4T_220_Priem=new PiramidaRecord(0, 8740, 25, "4Т 220 кВ Прием (P)");
-		public static PiramidaRecord P_4T_220_Otd=new PiramidaRecord(0, 8740, 26, "4Т 220 кВ Отдача (P)");
-		public static PiramidaRecord Q_4T_220_Priem=new PiramidaRecord(0, 8740, 27, "4Т 220 кВ Прием (Q)");
-		public static PiramidaRecord Q_4T_220_Otd=new PiramidaRecord(0, 8740, 28, "4Т 220 кВ Отдача (Q)");
-
-		public static PiramidaRecord P_Vozb_GA5_Priem=new PiramidaRecord(0, 8740, 29, "Возбуждение Г/А 5 прием (P)");
-		public static PiramidaRecord P_Vozb_GA6_Priem=new PiramidaRecord(0, 8740, 30, "Возбуждение Г/А 6 прием (P)");
-		public static PiramidaRecord P_SN_15T_Priem=new PiramidaRecord(0, 8740, 31, "СН 15Т прием (P)");
-		public static PiramidaRecord P_SN_16T_Priem=new PiramidaRecord(0, 8740, 32, "СН 26Т прием (P)");
-		public static PiramidaRecord P_SN_8T_Priem=new PiramidaRecord(0, 8740, 33, "СН 8Т прием (P)");
-
-		public static PiramidaRecord P_Vozb_GA1_Priem=new PiramidaRecord(0, 8740, 34, "Возбуждение Г/А 1 прием (P)");
-		public static PiramidaRecord P_Vozb_GA2_Priem=new PiramidaRecord(0, 8740, 35, "Возбуждение Г/А 2 прием (P)");
-		public static PiramidaRecord P_SN_11T_Priem=new PiramidaRecord(0, 8740, 36, "СН 11Т прием (P)");
-		public static PiramidaRecord P_SN_12T_Priem=new PiramidaRecord(0, 8740, 37, "СН 12Т прием (P)");
-		public static PiramidaRecord P_SN_7T_Priem=new PiramidaRecord(0, 8739, 37, "СН 7Т прием (P)");
-
-		public static PiramidaRecord P_Vozb_GA3_Priem=new PiramidaRecord(0, 8740, 39, "Возбуждение Г/А 3 прием (P)");
-		public static PiramidaRecord P_Vozb_GA4_Priem=new PiramidaRecord(0, 8740, 40, "Возбуждение Г/А 4 прием (P)");
-		public static PiramidaRecord P_SN_13T_Priem=new PiramidaRecord(0, 8740, 41, "СН 13Т прием (P)");
-		public static PiramidaRecord P_SN_14T_Priem=new PiramidaRecord(0, 8740, 42, "СН 14Т прием (P)");
-
-		public static PiramidaRecord P_56AT_110_Priem=new PiramidaRecord(0, 8740, 43, "5-6АТ 110 кВ Прием (P)");
-		public static PiramidaRecord P_56AT_110_Otd=new PiramidaRecord(0, 8740, 44, "5-6АТ 110 кВ Отдача (P)");
-		public static PiramidaRecord Q_56AT_110_Priem=new PiramidaRecord(0, 8740, 45, "5-6АТ 110 кВ Прием (Q)");
-		public static PiramidaRecord Q_56AT_110_Otd=new PiramidaRecord(0, 8740, 46, "5-6АТ 110 кВ Отдача (Q)");
-
-
-        public static PiramidaRecord P_KRU3_29T = new PiramidaRecord(0, 8740, 47, "КРУ-3 29Т (P)");
-        public static PiramidaRecord P_KRU3_22T = new PiramidaRecord(0, 8740, 48, "КРУ-3 22Т (P)");
-        public static PiramidaRecord P_2VS_N1 = new PiramidaRecord(0, 8740, 49, "1-2 ВС (P)");
-        public static PiramidaRecord P_KRU3_32T = new PiramidaRecord(0, 8740, 50, "КРУ-3 32Т (P)");
-        public static PiramidaRecord P_KRU3_23T = new PiramidaRecord(0, 8740, 51, "КРУ-3 23Т (P)");
-        public static PiramidaRecord P_KRU3_TP1 = new PiramidaRecord(0, 8740, 52, "КРУ-3 ТП1 (P)");
-        public static PiramidaRecord P_KRU3_34T = new PiramidaRecord(0, 8740, 53, "КРУ-3 34Т (P)");
-        public static PiramidaRecord P_KRU3_26T = new PiramidaRecord(0, 8740, 55, "КРУ-3 26Т (P)");
-        
-        public static PiramidaRecord P_VL110_Svetlaya_Priem=new PiramidaRecord(0, 8737, 1, "ВЛ 110 Светлая прием (P)");
-		public static PiramidaRecord P_VL110_Svetlaya_Otd=new PiramidaRecord(0, 8737, 2, "ВЛ 110 Светлая отдача (P)");
-		public static PiramidaRecord Q_VL110_Svetlaya_Priem=new PiramidaRecord(0, 8737, 3, "ВЛ 110 Светлая прием (Q)");
-		public static PiramidaRecord Q_VL110_Svetlaya_Otd=new PiramidaRecord(0, 8737, 4, "ВЛ 110 Светлая отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Ivanovka_Priem=new PiramidaRecord(0, 8737, 5, "ВЛ 110 Ивановка прием (P)");
-		public static PiramidaRecord P_VL110_Ivanovka_Otd=new PiramidaRecord(0, 8737, 6, "ВЛ 110 Ивановка отдача (P)");
-		public static PiramidaRecord Q_VL110_Ivanovka_Priem=new PiramidaRecord(0, 8737, 7, "ВЛ 110 Ивановка прием (Q)");
-		public static PiramidaRecord Q_VL110_Ivanovka_Otd=new PiramidaRecord(0, 8737, 8, "ВЛ 110 Ивановка отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Kauchuk_Priem=new PiramidaRecord(0, 8737, 9, "ВЛ 110 Каучук прием (P)");
-		public static PiramidaRecord P_VL110_Kauchuk_Otd=new PiramidaRecord(0, 8737, 10, "ВЛ 110 Каучук отдача (P)");
-		public static PiramidaRecord Q_VL110_Kauchuk_Priem=new PiramidaRecord(0, 8737, 11, "ВЛ 110 Каучук прием (Q)");
-		public static PiramidaRecord Q_VL110_Kauchuk_Otd=new PiramidaRecord(0, 8737, 12, "ВЛ 110 Каучук отдача (Q)");
-
-		public static PiramidaRecord P_VL110_TEC_Priem=new PiramidaRecord(0, 8737, 13, "ВЛ 110 ЧаТЭЦ прием (P)");
-		public static PiramidaRecord P_VL110_TEC_Otd=new PiramidaRecord(0, 8737, 14, "ВЛ 110 ЧаТЭЦ отдача (P)");
-		public static PiramidaRecord Q_VL110_TEC_Priem=new PiramidaRecord(0, 8737, 15, "ВЛ 110 ЧаТЭЦ прием (Q)");
-		public static PiramidaRecord Q_VL110_TEC_Otd=new PiramidaRecord(0, 8737, 16, "ВЛ 110 ЧаТЭЦ отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Berezovka_Priem=new PiramidaRecord(0, 8737, 17, "ВЛ 110 Березовка прием (P)");
-		public static PiramidaRecord P_VL110_Berezovka_Otd=new PiramidaRecord(0, 8737, 18, "ВЛ 110 Березовка отдача (P)");
-		public static PiramidaRecord Q_VL110_Berezovka_Priem=new PiramidaRecord(0, 8737, 19, "ВЛ 110 Березовка прием (Q)");
-		public static PiramidaRecord Q_VL110_Berezovka_Otd=new PiramidaRecord(0, 8737, 20, "ВЛ 110 Березовка отдача (Q)");
-
-		public static PiramidaRecord P_VL220_Svetlaya_Priem=new PiramidaRecord(0, 8737, 21, "ВЛ 220 Светлая прием (P)");
-		public static PiramidaRecord P_VL220_Svetlaya_Otd=new PiramidaRecord(0, 8737, 22, "ВЛ 220 Светлая отдача (P)");
-		public static PiramidaRecord Q_VL220_Svetlaya_Priem=new PiramidaRecord(0, 8737, 23, "ВЛ 220 Светлая прием (Q)");
-		public static PiramidaRecord Q_VL220_Svetlaya_Otd=new PiramidaRecord(0, 8737, 24, "ВЛ 220 Светлая отдача (Q)");
-
-		public static PiramidaRecord P_VL220_Kauchuk1_Priem=new PiramidaRecord(0, 8737, 25, "ВЛ 220 Каучук-1 прием (P)");
-		public static PiramidaRecord P_VL220_Kauchuk1_Otd=new PiramidaRecord(0, 8737, 26, "ВЛ 220 Каучук-1 отдача (P)");
-		public static PiramidaRecord Q_VL220_Kauchuk1_Priem=new PiramidaRecord(0, 8737, 27, "ВЛ 220 Каучук-1 прием (Q)");
-		public static PiramidaRecord Q_VL220_Kauchuk1_Otd=new PiramidaRecord(0, 8737, 28, "ВЛ 220 Каучук-1 отдача (Q)");
-
-		public static PiramidaRecord P_VL220_Kauchuk2_Priem=new PiramidaRecord(0, 8737, 29, "ВЛ 220 Каучук-2 прием (P)");
-		public static PiramidaRecord P_VL220_Kauchuk2_Otd=new PiramidaRecord(0, 8737, 30, "ВЛ 220 Каучук-2 отдача (P)");
-		public static PiramidaRecord Q_VL220_Kauchuk2_Priem=new PiramidaRecord(0, 8737, 31, "ВЛ 220 Каучук-2 прием (Q)");
-		public static PiramidaRecord Q_VL220_Kauchuk2_Otd=new PiramidaRecord(0, 8737, 32, "ВЛ 220 Каучук-2 отдача (Q)");
-
-		public static PiramidaRecord P_VL220_Izhevsk1_Priem=new PiramidaRecord(0, 8737, 33, "ВЛ 220 Ижевск-1 прием (P)");
-		public static PiramidaRecord P_VL220_Izhevsk1_Otd=new PiramidaRecord(0, 8737, 34, "ВЛ 220 Ижевск-1 отдача (P)");
-		public static PiramidaRecord Q_VL220_Izhevsk1_Priem=new PiramidaRecord(0, 8737, 35, "ВЛ 220 Ижевск-1 прием (Q)");
-		public static PiramidaRecord Q_VL220_Izhevsk1_Otd=new PiramidaRecord(0, 8737, 36, "ВЛ 220 Ижевск-1 отдача (Q)");
-
-		public static PiramidaRecord P_VL220_Izhevsk2_Priem=new PiramidaRecord(0, 8737, 37, "ВЛ 220 Ижевск-2 прием (P)");
-		public static PiramidaRecord P_VL220_Izhevsk2_Otd=new PiramidaRecord(0, 8737, 38, "ВЛ 220 Ижевск-2 отдача (P)");
-		public static PiramidaRecord Q_VL220_Izhevsk2_Priem=new PiramidaRecord(0, 8737, 39, "ВЛ 220 Ижевск-2 прием (Q)");
-		public static PiramidaRecord Q_VL220_Izhevsk2_Otd=new PiramidaRecord(0, 8737, 40, "ВЛ 220 Ижевск-2 отдача (Q)");
-
-		public static PiramidaRecord P_VL110_KSHT1_Priem=new PiramidaRecord(0, 8737, 41, "ВЛ 110 КШТ-1 прием (P)");
-		public static PiramidaRecord P_VL110_KSHT1_Otd=new PiramidaRecord(0, 8737, 42, "ВЛ 110 КШТ-1 отдача (P)");
-		public static PiramidaRecord Q_VL110_KSHT1_Priem=new PiramidaRecord(0, 8737, 43, "ВЛ 110 КШТ-1 прием (Q)");
-		public static PiramidaRecord Q_VL110_KSHT1_Otd=new PiramidaRecord(0, 8737, 44, "ВЛ 110 КШТ-1 отдача (Q)");
-
-		public static PiramidaRecord P_VL110_KSHT2_Priem=new PiramidaRecord(0, 8737, 45, "ВЛ 110 КШТ-2 прием (P)");
-		public static PiramidaRecord P_VL110_KSHT2_Otd=new PiramidaRecord(0, 8737, 46, "ВЛ 110 КШТ-2 отдача (P)");
-		public static PiramidaRecord Q_VL110_KSHT2_Priem=new PiramidaRecord(0, 8737, 47, "ВЛ 110 КШТ-2 прием (Q)");
-		public static PiramidaRecord Q_VL110_KSHT2_Otd=new PiramidaRecord(0, 8737, 48, "ВЛ 110 КШТ-2 отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Dubovaya_Priem=new PiramidaRecord(0, 8737, 49, "ВЛ 110 Дубовая прием (P)");
-		public static PiramidaRecord P_VL110_Dubovaya_Otd=new PiramidaRecord(0, 8737, 50, "ВЛ 110 Дубовая отдача (P)");
-		public static PiramidaRecord Q_VL110_Dubovaya_Priem=new PiramidaRecord(0, 8737, 51, "ВЛ 110 Дубовая прием (Q)");
-		public static PiramidaRecord Q_VL110_Dubovaya_Otd=new PiramidaRecord(0, 8737, 52, "ВЛ 110 Дубовая отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Vodozabor2_Priem=new PiramidaRecord(0, 8737, 53, "ВЛ 110 Водозабор-2 прием (P)");
-		public static PiramidaRecord P_VL110_Vodozabor2_Otd=new PiramidaRecord(0, 8737, 54, "ВЛ 110 Водозабор-2 отдача (P)");
-		public static PiramidaRecord Q_VL110_Vodozabor2_Priem=new PiramidaRecord(0, 8737, 55, "ВЛ 110 Водозабор-2 прием (Q)");
-		public static PiramidaRecord Q_VL110_Vodozabor2_Otd=new PiramidaRecord(0, 8737, 56, "ВЛ 110 Водозабор-2 отдача (Q)");
-
-		public static PiramidaRecord P_VL110_Vodozabor1_Priem=new PiramidaRecord(0, 8737, 57, "ВЛ 110 Водозабор-1 прием (P)");
-		public static PiramidaRecord P_VL110_Vodozabor1_Otd=new PiramidaRecord(0, 8737, 58, "ВЛ 110 Водозабор-1 отдача (P)");
-		public static PiramidaRecord Q_VL110_Vodozabor1_Priem=new PiramidaRecord(0, 8737, 59, "ВЛ 110 Водозабор-1 прием (Q)");
-		public static PiramidaRecord Q_VL110_Vodozabor1_Otd=new PiramidaRecord(0, 8737, 60, "ВЛ 110 Водозабор-1 отдача (Q)");
-
-		public static PiramidaRecord P_VL500_Emelino_Priem=new PiramidaRecord(0, 8737, 61, "ВЛ 500 Емелино прием (P)");
-		public static PiramidaRecord P_VL500_Emelino_Otd=new PiramidaRecord(0, 8737, 62, "ВЛ 500 Емелино отдача (P)");
-		public static PiramidaRecord Q_VL500_Emelino_Priem=new PiramidaRecord(0, 8737, 63, "ВЛ 500 Емелино прием (Q)");
-		public static PiramidaRecord Q_VL500_Emelino_Otd=new PiramidaRecord(0, 8737, 64, "ВЛ 500 Емелино отдача (Q)");
-
-		public static PiramidaRecord P_VL500_Karmanovo_Priem=new PiramidaRecord(0, 8737, 65, "ВЛ 500 Карманово прием (P)");
-		public static PiramidaRecord P_VL500_Karmanovo_Otd=new PiramidaRecord(0, 8737, 66, "ВЛ 500 Карманово отдача (P)");
-		public static PiramidaRecord Q_VL500_Karmanovo_Priem=new PiramidaRecord(0, 8737, 67, "ВЛ 500 Карманово прием (Q)");
-		public static PiramidaRecord Q_VL500_Karmanovo_Otd=new PiramidaRecord(0, 8737, 68, "ВЛ 500 Карманово отдача (Q)");
-
-		public static PiramidaRecord P_VL500_Vyatka_Priem=new PiramidaRecord(0, 8737, 69, "ВЛ 500 Вятка прием (P)");
-		public static PiramidaRecord P_VL500_Vyatka_Otd=new PiramidaRecord(0, 8737, 70, "ВЛ 500 Вятка отдача (P)");
-		public static PiramidaRecord Q_VL500_Vyatka_Priem=new PiramidaRecord(0, 8737, 71, "ВЛ 500 Вятка прием (Q)");
-		public static PiramidaRecord Q_VL500_Vyatka_Otd=new PiramidaRecord(0, 8737, 72, "ВЛ 500 Вятка отдача (Q)");
-
-		public static PiramidaRecord P_GA1_Priem=new PiramidaRecord(0, 8738, 1, "Генератор-1 прием (P)");
-		public static PiramidaRecord P_GA1_Otd=new PiramidaRecord(0, 8738, 2, "Генератор-1 отдача (P)");
-		public static PiramidaRecord Q_GA1_Priem=new PiramidaRecord(0, 8738, 3, "Генератор-1 прием (Q)");
-		public static PiramidaRecord Q_GA1_Otd=new PiramidaRecord(0, 8738, 4, "Генератор-1 отдача (Q)");
-
-		public static PiramidaRecord P_GA2_Priem=new PiramidaRecord(0, 8738, 5, "Генератор-2 прием (P)");
-		public static PiramidaRecord P_GA2_Otd=new PiramidaRecord(0, 8738, 6, "Генератор-2 отдача (P)");
-		public static PiramidaRecord Q_GA2_Priem=new PiramidaRecord(0, 8738, 7, "Генератор-2 прием (Q)");
-		public static PiramidaRecord Q_GA2_Otd=new PiramidaRecord(0, 8738, 8, "Генератор-2 отдача (Q)");
-
-		public static PiramidaRecord P_KL6_Shluz1_Priem=new PiramidaRecord(0, 8738, 9, "КЛ 6 Шлюз-1 прием (P)");
-		public static PiramidaRecord P_KL6_Shluz1_Otd=new PiramidaRecord(0, 8738, 10, "КЛ 6 Шлюз-1 отдача (P)");
-		public static PiramidaRecord Q_KL6_Shluz1_Priem=new PiramidaRecord(0, 8738, 11, "КЛ 6 Шлюз-1 прием (Q)");
-		public static PiramidaRecord Q_KL6_Shluz1_Otd=new PiramidaRecord(0, 8738, 12, "КЛ 6 Шлюз-1 отдача (Q)");
-		public static PiramidaRecord P_KL6_Shluz2_Priem=new PiramidaRecord(0, 8738, 13, "КЛ 6 Шлюз-2 прием (P)");
-		public static PiramidaRecord P_KL6_Shluz2_Otd=new PiramidaRecord(0, 8738, 14, "КЛ 6 Шлюз-2 отдача (P)");
-		public static PiramidaRecord Q_KL6_Shluz2_Priem=new PiramidaRecord(0, 8738, 15, "КЛ 6 Шлюз-2 прием (Q)");
-		public static PiramidaRecord Q_KL6_Shluz2_Otd=new PiramidaRecord(0, 8738, 16, "КЛ 6 Шлюз-2 отдача (Q)");
-
-		public static PiramidaRecord P_GA3_Priem=new PiramidaRecord(0, 8738, 17, "Генератор-3 прием (P)");
-		public static PiramidaRecord P_GA3_Otd=new PiramidaRecord(0, 8738, 18, "Генератор-3 отдача (P)");
-		public static PiramidaRecord Q_GA3_Priem=new PiramidaRecord(0, 8738, 18, "Генератор-3 прием (Q)");
-		public static PiramidaRecord Q_GA3_Otd=new PiramidaRecord(0, 8738, 20, "Генератор-3 отдача (Q)");
-
-		public static PiramidaRecord P_GA4_Priem=new PiramidaRecord(0, 8738, 21, "Генератор-4 прием (P)");
-		public static PiramidaRecord P_GA4_Otd=new PiramidaRecord(0, 8738, 22, "Генератор-4 отдача (P)");
-		public static PiramidaRecord Q_GA4_Priem=new PiramidaRecord(0, 8738, 23, "Генератор-4 прием (Q)");
-		public static PiramidaRecord Q_GA4_Otd=new PiramidaRecord(0, 8738, 24, "Генератор-4 отдача (Q)");
-
-		public static PiramidaRecord P_GA5_Priem=new PiramidaRecord(0, 8738, 25, "Генератор-5 прием (P)");
-		public static PiramidaRecord P_GA5_Otd=new PiramidaRecord(0, 8738, 26, "Генератор-5 отдача (P)");
-		public static PiramidaRecord Q_GA5_Priem=new PiramidaRecord(0, 8738, 27, "Генератор-5 прием (Q)");
-		public static PiramidaRecord Q_GA5_Otd=new PiramidaRecord(0, 8738, 28, "Генератор-5 отдача (Q)");
-
-		public static PiramidaRecord P_GA6_Priem=new PiramidaRecord(0, 8738, 29, "Генератор-6 прием (P)");
-		public static PiramidaRecord P_GA6_Otd=new PiramidaRecord(0, 8738, 30, "Генератор-6 отдача (P)");
-		public static PiramidaRecord Q_GA6_Priem=new PiramidaRecord(0, 8738, 31, "Генератор-6 прием (Q)");
-		public static PiramidaRecord Q_GA6_Otd=new PiramidaRecord(0, 8738, 32, "Генератор-6 отдача (Q)");
-
-		public static PiramidaRecord P_KL6_Filtr1_Priem=new PiramidaRecord(0, 8738, 33, "КЛ 6 Фильтр-1 прием (P)");
-		public static PiramidaRecord P_KL6_Filtr1_Otd=new PiramidaRecord(0, 8738, 34, "КЛ 6 Фильтр-1 отдача (P)");
-		public static PiramidaRecord Q_KL6_Filtr1_Priem=new PiramidaRecord(0, 8738, 35, "КЛ 6 Фильтр-1 прием (Q)");
-		public static PiramidaRecord Q_KL6_Filtr1_Otd=new PiramidaRecord(0, 8738, 36, "КЛ 6 Фильтр-1 отдача (Q)");
-		public static PiramidaRecord P_KL6_Filtr2_Priem=new PiramidaRecord(0, 8738, 37, "КЛ 6 Фильтр-2 прием (P)");
-		public static PiramidaRecord P_KL6_Filtr2_Otd=new PiramidaRecord(0, 8738, 38, "КЛ 6 Фильтр-2 отдача (P)");
-		public static PiramidaRecord Q_KL6_Filtr2_Priem=new PiramidaRecord(0, 8738, 39, "КЛ 6 Фильтр-2 прием (Q)");
-		public static PiramidaRecord Q_KL6_Filtr2_Otd=new PiramidaRecord(0, 8738, 40, "КЛ 6 Фильтр-2 отдача (Q)");
-
-		public static PiramidaRecord P_GA7_Priem=new PiramidaRecord(0, 8738, 41, "Генератор-7 прием (P)");
-		public static PiramidaRecord P_GA7_Otd=new PiramidaRecord(0, 8738, 42, "Генератор-7 отдача (P)");
-		public static PiramidaRecord Q_GA7_Priem=new PiramidaRecord(0, 8738, 43, "Генератор-7 прием (Q)");
-		public static PiramidaRecord Q_GA7_Otd=new PiramidaRecord(0, 8738, 44, "Генератор-7 отдача (Q)");
-
-		public static PiramidaRecord P_GA8_Priem=new PiramidaRecord(0, 8738, 45, "Генератор-8 прием (P)");
-		public static PiramidaRecord P_GA8_Otd=new PiramidaRecord(0, 8738, 46, "Генератор-8 отдача (P)");
-		public static PiramidaRecord Q_GA8_Priem=new PiramidaRecord(0, 8738, 47, "Генератор-8 прием (Q)");
-		public static PiramidaRecord Q_GA8_Otd=new PiramidaRecord(0, 8738, 48, "Генератор-8 отдача (Q)");
-
-		public static PiramidaRecord P_GA9_Priem=new PiramidaRecord(0, 8738, 49, "Генератор-9 прием (P)");
-		public static PiramidaRecord P_GA9_Otd=new PiramidaRecord(0, 8738, 50, "Генератор-9 отдача (P)");
-		public static PiramidaRecord Q_GA9_Priem=new PiramidaRecord(0, 8738, 51, "Генератор-9 прием (Q)");
-		public static PiramidaRecord Q_GA9_Otd=new PiramidaRecord(0, 8738, 52, "Генератор-9 отдача (Q)");
-
-		public static PiramidaRecord P_GA10_Priem=new PiramidaRecord(0, 8738, 53, "Генератор-10 прием (P)");
-		public static PiramidaRecord P_GA10_Otd=new PiramidaRecord(0, 8738, 54, "Генератор-10 отдача (P)");
-		public static PiramidaRecord Q_GA10_Priem=new PiramidaRecord(0, 8738, 55, "Генератор-10 прием (Q)");
-		public static PiramidaRecord Q_GA10_Otd=new PiramidaRecord(0, 8738, 56, "Генератор-10 отдача (Q)");
-
-        public static PiramidaRecord P_SN_9T_Priem = new PiramidaRecord(0, 8740, 57, "СН 9Т прием (P)");
-
-		public static PiramidaRecord Water_NB=new PiramidaRecord(2, 1, 275, "НБ");
-		public static PiramidaRecord Water_VB=new PiramidaRecord(2, 1, 274, "ВБ");
-		public static PiramidaRecord Water_Napor=new PiramidaRecord(2, 1, 276, "Напор");
-		public static PiramidaRecord Water_Temp=new PiramidaRecord(2, 1, 373, "Температура");
-		public static PiramidaRecord Water_QGES=new PiramidaRecord(2, 1, 354, "Расход ГЭС");
-		public static PiramidaRecord Water_QOptGES=new PiramidaRecord(2, 10, 1, "Опт. расход ГЭС");
-		public static PiramidaRecord Water_QOptGTP1=new PiramidaRecord(2, 10, 2, "Опт. расход ГТП-1");
-		public static PiramidaRecord Water_QOptGTP2=new PiramidaRecord(2, 10, 3, "Опт. расход ГТП-2");
-
-		public static PiramidaRecord Water_Q_GA1=new PiramidaRecord(2, 1, 104, "Расход ГА-1");
-		public static PiramidaRecord Water_Q_GA2=new PiramidaRecord(2, 1, 129, "Расход ГА-2");
-		public static PiramidaRecord Water_Q_GA3=new PiramidaRecord(2, 1, 154, "Расход ГА-3");
-		public static PiramidaRecord Water_Q_GA4=new PiramidaRecord(2, 1, 179, "Расход ГА-4");
-		public static PiramidaRecord Water_Q_GA5=new PiramidaRecord(2, 1, 204, "Расход ГА-5");
-		public static PiramidaRecord Water_Q_GA6=new PiramidaRecord(2, 1, 229, "Расход ГА-6");
-		public static PiramidaRecord Water_Q_GA7=new PiramidaRecord(2, 1, 254, "Расход ГА-7");
-		public static PiramidaRecord Water_Q_GA8=new PiramidaRecord(2, 1, 279, "Расход ГА-8");
-		public static PiramidaRecord Water_Q_GA9=new PiramidaRecord(2, 1, 304, "Расход ГА-9");
-		public static PiramidaRecord Water_Q_GA10=new PiramidaRecord(2, 1, 329, "Расход ГА-10");
-		
-		public static PiramidaRecord GSV2=new PiramidaRecord(2, 7, 2, "Верхний бьеф на 8 утра");
-		public static PiramidaRecord GSV3=new PiramidaRecord(2, 7, 3, "Нижний бьеф на 8 утра");
-		public static PiramidaRecord GSV4=new PiramidaRecord(2, 7, 4, "Нижний бьеф (средний за сутки)");
-		public static PiramidaRecord GSV5=new PiramidaRecord(2, 7, 5, "Нижний бьеф (макс. за сутки)");
-		public static PiramidaRecord GSV6=new PiramidaRecord(2, 7, 6, "Нижний бьеф (мин за сутки)");
-		public static PiramidaRecord GSV7=new PiramidaRecord(2, 7, 7, "Среднесуточный напор (брутто)");
-		public static PiramidaRecord GSV8=new PiramidaRecord(2, 7, 8, "Среднесуточный напор (нетто)");
-		public static PiramidaRecord GSV9=new PiramidaRecord(2, 7, 9, "Среднесуточный напор (нетто с учетом потери на сут.рег.)");
-		public static PiramidaRecord GSV10=new PiramidaRecord(2, 7, 10, "Перепад на решетках");
-		public static PiramidaRecord GSV11=new PiramidaRecord(2, 7, 11, "Суточная выработка эл.энергии");
-		public static PiramidaRecord GSV12=new PiramidaRecord(2, 7, 12, "Выработка эл.энергии с начала месяца");
-		public static PiramidaRecord GSV13=new PiramidaRecord(2, 7, 13, "Нагрузка ГЭС (средняя)");
-		public static PiramidaRecord GSV14=new PiramidaRecord(2, 7, 14, "Нагрузка ГЭС (макс)");
-		public static PiramidaRecord GSV15=new PiramidaRecord(2, 7, 15, "Нагрузка ГЭС (мин)");
-		public static PiramidaRecord GSV16=new PiramidaRecord(2, 7, 16, "Средний расход воды (турбины)");
-		public static PiramidaRecord GSV17=new PiramidaRecord(2, 7, 17, "Средний расход воды (водослив)");
-		public static PiramidaRecord GSV18=new PiramidaRecord(2, 7, 18, "Средний расход воды (фильтр)");
-		public static PiramidaRecord GSV19=new PiramidaRecord(2, 7, 19, "Средний расход воды (шлюзов.)");
-		public static PiramidaRecord GSV20=new PiramidaRecord(2, 7, 20, "Средний расход воды (общий)");
-		public static PiramidaRecord GSV21=new PiramidaRecord(2, 7, 21, "Удельный расход");
-		public static PiramidaRecord GSV22=new PiramidaRecord(2, 7, 22, "Расход в НБ КамГЭС");
-		public static PiramidaRecord GSV23=new PiramidaRecord(2, 7, 23, "Боковой приток");
-		public static PiramidaRecord GSV24=new PiramidaRecord(2, 7, 24, "Наш приток");
-		public static PiramidaRecord GSV25=new PiramidaRecord(2, 7, 25, "Верхний бьеф КамГЭС");
-		public static PiramidaRecord GSV26=new PiramidaRecord(2, 7, 26, "Нижний бьеф КамГЭС");
-		public static PiramidaRecord GSV27=new PiramidaRecord(2, 7, 27, "Приток КамГЭС");
-		public static PiramidaRecord GSV28=new PiramidaRecord(2, 1, 373, "Температура","sut");
-
-        public static PiramidaRecord MBW_GES_Rash = new PiramidaRecord(2, 3, 1, "ГЭС Расход");
-        public static PiramidaRecord MBW_VB = new PiramidaRecord(2, 3, 2, "ВБ");
-        public static PiramidaRecord MBW_NB = new PiramidaRecord(2, 3, 3, "НБ");
-        public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напро");
-        public static PiramidaRecord MBW_Temp = new PiramidaRecord(2, 3, 5, "Температура");
-        public static PiramidaRecord MBW_TempShit = new PiramidaRecord(2, 3, 6, "Температура щитовых сооружений");
-        
-
-        public static PiramidaRecord MBW_GA1_Rash = new PiramidaRecord(2, 3, 101, "ГА-1 Расход");
-        public static PiramidaRecord MBW_GA2_Rash = new PiramidaRecord(2, 3, 102, "ГА-2 Расход");
-        public static PiramidaRecord MBW_GA3_Rash = new PiramidaRecord(2, 3, 103, "ГА-3 Расход");
-        public static PiramidaRecord MBW_GA4_Rash = new PiramidaRecord(2, 3, 104, "ГА-4 Расход");
-        public static PiramidaRecord MBW_GA5_Rash = new PiramidaRecord(2, 3, 105, "ГА-5 Расход");
-        public static PiramidaRecord MBW_GA6_Rash = new PiramidaRecord(2, 3, 106, "ГА-6 Расход");
-        public static PiramidaRecord MBW_GA7_Rash = new PiramidaRecord(2, 3, 107, "ГА-7 Расход");
-        public static PiramidaRecord MBW_GA8_Rash = new PiramidaRecord(2, 3, 108, "ГА-8 Расход");
-        public static PiramidaRecord MBW_GA9_Rash = new PiramidaRecord(2, 3, 109, "ГА-9 Расход");
-        public static PiramidaRecord MBW_GA10_Rash = new PiramidaRecord(2, 3, 110, "ГА-10 Расход");
-
-        public static PiramidaRecord MBW_GA1_P = new PiramidaRecord(2, 3, 201, "ГА-1 P");
-        public static PiramidaRecord MBW_GA2_P = new PiramidaRecord(2, 3, 202, "ГА-2 P");
-        public static PiramidaRecord MBW_GA3_P = new PiramidaRecord(2, 3, 203, "ГА-3 P");
-        public static PiramidaRecord MBW_GA4_P = new PiramidaRecord(2, 3, 204, "ГА-4 P");
-        public static PiramidaRecord MBW_GA5_P = new PiramidaRecord(2, 3, 205, "ГА-5 P");
-        public static PiramidaRecord MBW_GA6_P = new PiramidaRecord(2, 3, 206, "ГА-6 P");
-        public static PiramidaRecord MBW_GA7_P = new PiramidaRecord(2, 3, 207, "ГА-7 P");
-        public static PiramidaRecord MBW_GA8_P = new PiramidaRecord(2, 3, 208, "ГА-8 P");
-        public static PiramidaRecord MBW_GA9_P = new PiramidaRecord(2, 3, 209, "ГА-9 P");
-        public static PiramidaRecord MBW_GA10_P = new PiramidaRecord(2, 3, 210, "ГА-10 P");
-
-        public static PiramidaRecord MBW_GA1_Q = new PiramidaRecord(2, 3, 301, "ГА-1 Q");
-        public static PiramidaRecord MBW_GA2_Q = new PiramidaRecord(2, 3, 302, "ГА-2 Q");
-        public static PiramidaRecord MBW_GA3_Q = new PiramidaRecord(2, 3, 303, "ГА-3 Q");
-        public static PiramidaRecord MBW_GA4_Q = new PiramidaRecord(2, 3, 304, "ГА-4 Q");
-        public static PiramidaRecord MBW_GA5_Q = new PiramidaRecord(2, 3, 305, "ГА-5 Q");
-        public static PiramidaRecord MBW_GA6_Q = new PiramidaRecord(2, 3, 306, "ГА-6 Q");
-        public static PiramidaRecord MBW_GA7_Q = new PiramidaRecord(2, 3, 307, "ГА-7 Q");
-        public static PiramidaRecord MBW_GA8_Q = new PiramidaRecord(2, 3, 308, "ГА-8 Q");
-        public static PiramidaRecord MBW_GA9_Q = new PiramidaRecord(2, 3, 309, "ГА-9 Q");
-        public static PiramidaRecord MBW_GA10_Q = new PiramidaRecord(2, 3, 310, "ГА-10 Q");
-
-        public static PiramidaRecord MBW_GA1_OtkrNA = new PiramidaRecord(2, 3, 401, "ГА-1 Открытие НА");
-        public static PiramidaRecord MBW_GA2_OtkrNA = new PiramidaRecord(2, 3, 402, "ГА-2 Открытие НА");
-        public static PiramidaRecord MBW_GA3_OtkrNA = new PiramidaRecord(2, 3, 403, "ГА-3 Открытие НА");
-        public static PiramidaRecord MBW_GA4_OtkrNA = new PiramidaRecord(2, 3, 404, "ГА-4 Открытие НА");
-        public static PiramidaRecord MBW_GA5_OtkrNA = new PiramidaRecord(2, 3, 405, "ГА-5 Открытие НА");
-        public static PiramidaRecord MBW_GA6_OtkrNA = new PiramidaRecord(2, 3, 406, "ГА-6 Открытие НА");
-        public static PiramidaRecord MBW_GA7_OtkrNA = new PiramidaRecord(2, 3, 407, "ГА-7 Открытие НА");
-        public static PiramidaRecord MBW_GA8_OtkrNA = new PiramidaRecord(2, 3, 408, "ГА-8 Открытие НА");
-        public static PiramidaRecord MBW_GA9_OtkrNA = new PiramidaRecord(2, 3, 409, "ГА-9 Открытие НА");
-        public static PiramidaRecord MBW_GA10_OtkrNA = new PiramidaRecord(2, 3, 410, "ГА-10 Открытие НА");
-
-        public static PiramidaRecord MBW_GA1_UgolRK = new PiramidaRecord(2, 3, 501, "ГА-1 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA2_UgolRK = new PiramidaRecord(2, 3, 502, "ГА-2 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA3_UgolRK = new PiramidaRecord(2, 3, 503, "ГА-3 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA4_UgolRK = new PiramidaRecord(2, 3, 504, "ГА-4 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA5_UgolRK = new PiramidaRecord(2, 3, 505, "ГА-5 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA6_UgolRK = new PiramidaRecord(2, 3, 506, "ГА-6 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA7_UgolRK = new PiramidaRecord(2, 3, 507, "ГА-7 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA8_UgolRK = new PiramidaRecord(2, 3, 508, "ГА-8 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA9_UgolRK = new PiramidaRecord(2, 3, 509, "ГА-9 Угол открытия  РК");
-        public static PiramidaRecord MBW_GA10_UgolRK = new PiramidaRecord(2, 3, 510, "ГА-10 Угол открытия  РК");
-
-        public static PiramidaRecord MBW_GA1_Napor = new PiramidaRecord(2, 3, 601, "ГА-1 Напор");
-        public static PiramidaRecord MBW_GA2_Napor = new PiramidaRecord(2, 3, 602, "ГА-2 Напор");
-        public static PiramidaRecord MBW_GA3_Napor = new PiramidaRecord(2, 3, 603, "ГА-3 Напор");
-        public static PiramidaRecord MBW_GA4_Napor = new PiramidaRecord(2, 3, 604, "ГА-4 Напор");
-        public static PiramidaRecord MBW_GA5_Napor = new PiramidaRecord(2, 3, 605, "ГА-5 Напор");
-        public static PiramidaRecord MBW_GA6_Napor = new PiramidaRecord(2, 3, 606, "ГА-6 Напор");
-        public static PiramidaRecord MBW_GA7_Napor = new PiramidaRecord(2, 3, 607, "ГА-7 Напор");
-        public static PiramidaRecord MBW_GA8_Napor = new PiramidaRecord(2, 3, 608, "ГА-8 Напор");
-        public static PiramidaRecord MBW_GA9_Napor = new PiramidaRecord(2, 3, 609, "ГА-9 Напор");
-        public static PiramidaRecord MBW_GA10_Napor = new PiramidaRecord(2, 3, 610, "ГА-10 Напор");
-
-
-
-		public static PiramidaRecord MB_I_SHSV_220=new PiramidaRecord(2, 3, 0, "Ток ШСВ 220");
-		public static PiramidaRecord MB_I_SHSV_110=new PiramidaRecord(2, 3, 2, "Ток ШСВ 110");
-		public static PiramidaRecord MB_U_1SH_220=new PiramidaRecord(2, 3, 6, "U 1 с.ш. 220");
-		public static PiramidaRecord MB_F_1SH_220=new PiramidaRecord(2, 3, 8, "F 1 с.ш. 220");
-		public static PiramidaRecord MB_U_1SH_110=new PiramidaRecord(2, 3, 10, "U 1 с.ш. 110");
-		public static PiramidaRecord MB_F_1SH_110=new PiramidaRecord(2, 3, 12, "F 1 с.ш. 110");
-		public static PiramidaRecord MB_U_2SH_220=new PiramidaRecord(2, 3, 18, "U 2 с.ш. 220");
-		public static PiramidaRecord MB_F_2SH_220=new PiramidaRecord(2, 3, 20, "F 2 с.ш. 220");
-		public static PiramidaRecord MB_U_2SH_110=new PiramidaRecord(2, 3, 22, "U 2 с.ш. 110");
-		public static PiramidaRecord MB_F_2SH_110=new PiramidaRecord(2, 3, 24, "F 2 с.ш. 110");
-		public static PiramidaRecord MB_I_Izhevsk1_220=new PiramidaRecord(2, 3, 30, "I Иж-1 220");
-		public static PiramidaRecord MB_P_Izhevsk1_220=new PiramidaRecord(2, 3, 32, "P Иж-1 220");
-		public static PiramidaRecord MB_Q_Izhevsk1_220=new PiramidaRecord(2, 3, 34, "Q Иж-1 220");
-		public static PiramidaRecord MB_I_Izhevsk2_220=new PiramidaRecord(2, 3, 48, "I Иж-2 220");
-		public static PiramidaRecord MB_P_Izhevsk2_220=new PiramidaRecord(2, 3, 50, "P Иж-2 220");
-		public static PiramidaRecord MB_Q_Izhevsk2_220=new PiramidaRecord(2, 3, 52, "Q Иж-2 220");
-		public static PiramidaRecord MB_I_Kauchuk1_220=new PiramidaRecord(2, 3, 66, "I Кау-1 220");
-		public static PiramidaRecord MB_P_Kauchuk1_220=new PiramidaRecord(2, 3, 68, "P Кау-1 220");
-		public static PiramidaRecord MB_Q_Kauchuk1_220=new PiramidaRecord(2, 3, 70, "Q Кау-1 220");
-		public static PiramidaRecord MB_I_Kauchuk2_220=new PiramidaRecord(2, 3, 84, "I Кау-2 220");
-		public static PiramidaRecord MB_P_Kauchuk2_220=new PiramidaRecord(2, 3, 86, "P Кау-2 220");
-		public static PiramidaRecord MB_Q_Kauchuk2_220=new PiramidaRecord(2, 3, 88, "Q Кау-2 220");
-		public static PiramidaRecord MB_P_GES_Zad=new PiramidaRecord(2, 3, 91, "Задание P");
-
-		public static PiramidaRecord MB_I_Svetlaya_220=new PiramidaRecord(2, 3, 102, "I Светлая 220");
-		public static PiramidaRecord MB_P_Svetlaya_220=new PiramidaRecord(2, 3, 104, "P Светлая 220");
-		public static PiramidaRecord MB_Q_Svetlaya_220=new PiramidaRecord(2, 3, 106, "Q Светлая 220");
-		public static PiramidaRecord MB_I_OVV_220=new PiramidaRecord(2, 3, 120, "I OBB 220");
-		public static PiramidaRecord MB_P_OVV_220=new PiramidaRecord(2, 3, 122, "P OBB 220");
-		public static PiramidaRecord MB_Q_OVV_220=new PiramidaRecord(2, 3, 124, "Q OBB 220");
-		public static PiramidaRecord MB_I_2AT_220=new PiramidaRecord(2, 3, 138, "I 2AT 220");
-		public static PiramidaRecord MB_P_2AT_220=new PiramidaRecord(2, 3, 140, "P 2AT 220");
-		public static PiramidaRecord MB_Q_2AT_220=new PiramidaRecord(2, 3, 142, "Q 2AT 220");
-		public static PiramidaRecord MB_I_3AT_220=new PiramidaRecord(2, 3, 156, "I 3AT 220");
-		public static PiramidaRecord MB_P_3AT_220=new PiramidaRecord(2, 3, 158, "P 3AT 220");
-		public static PiramidaRecord MB_Q_3AT_220=new PiramidaRecord(2, 3, 160, "Q 3AT 220");
-		public static PiramidaRecord MB_I_4T_220=new PiramidaRecord(2, 3, 174, "I 4T 220");
-		public static PiramidaRecord MB_P_4T_220=new PiramidaRecord(2, 3, 176, "P 4T 220");
-		public static PiramidaRecord MB_Q_4T_220=new PiramidaRecord(2, 3, 178, "Q 4T 220");
-		public static PiramidaRecord MB_I_56AT_220=new PiramidaRecord(2, 3, 192, "I 5,6 AT 220");
-		public static PiramidaRecord MB_P_56AT_220=new PiramidaRecord(2, 3, 194, "P 5,6 AT 220");
-		public static PiramidaRecord MB_Q_56AT_220=new PiramidaRecord(2, 3, 196, "Q 5,6 AT 220");
-		public static PiramidaRecord MB_GA1_Rashod=new PiramidaRecord(2, 3, 238, "Г1 Расход");
-		public static PiramidaRecord MB_GA1_Napor=new PiramidaRecord(2, 3, 230, "Г1 Напор");
-		public static PiramidaRecord MB_GA1_Irotor=new PiramidaRecord(2, 3, 210, "Г1 Ток ротора");
-		public static PiramidaRecord MB_GA1_P=new PiramidaRecord(2, 3, 216, "Г1 Активная мощность");
-		public static PiramidaRecord MB_GA1_Q=new PiramidaRecord(2, 3, 218, "Г1 Реактивная мощность");
-		public static PiramidaRecord MB_GA1_IstatorA=new PiramidaRecord(2, 3, 220, "Г1 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA1_IstatorB=new PiramidaRecord(2, 3, 222, "Г1 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA1_IstatorC=new PiramidaRecord(2, 3, 224, "Г1 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA2_Rashod=new PiramidaRecord(2, 3, 288, "Г2 Расход");
-		public static PiramidaRecord MB_GA2_Napor=new PiramidaRecord(2, 3, 280, "Г2 Напор");
-		public static PiramidaRecord MB_GA2_Irotor=new PiramidaRecord(2, 3, 260, "Г2 Ток ротора");
-		public static PiramidaRecord MB_GA2_P=new PiramidaRecord(2, 3, 266, "Г2 Активная мощность");
-		public static PiramidaRecord MB_GA2_Q=new PiramidaRecord(2, 3, 268, "Г2 Реактивная мощность");
-		public static PiramidaRecord MB_GA2_IstatorA=new PiramidaRecord(2, 3, 270, "Г2 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA2_IstatorB=new PiramidaRecord(2, 3, 272, "Г2 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA2_IstatorC=new PiramidaRecord(2, 3, 274, "Г2 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA3_Rashod=new PiramidaRecord(2, 3, 338, "Г3 Расход");
-		public static PiramidaRecord MB_GA3_Napor=new PiramidaRecord(2, 3, 330, "Г3 Напор");
-		public static PiramidaRecord MB_GA3_Irotor=new PiramidaRecord(2, 3, 310, "Г3 Ток ротора");
-		public static PiramidaRecord MB_GA3_P=new PiramidaRecord(2, 3, 316, "Г3 Активная мощность");
-		public static PiramidaRecord MB_GA3_Q=new PiramidaRecord(2, 3, 318, "Г3 Реактивная мощность");
-		public static PiramidaRecord MB_GA3_IstatorA=new PiramidaRecord(2, 3, 320, "Г3 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA3_IstatorB=new PiramidaRecord(2, 3, 322, "Г3 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA3_IstatorC=new PiramidaRecord(2, 3, 324, "Г3 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA4_Rashod=new PiramidaRecord(2, 3, 388, "Г4 Расход");
-		public static PiramidaRecord MB_GA4_Napor=new PiramidaRecord(2, 3, 380, "Г4 Напор");
-		public static PiramidaRecord MB_GA4_Irotor=new PiramidaRecord(2, 3, 360, "Г4 Ток ротора");
-		public static PiramidaRecord MB_GA4_P=new PiramidaRecord(2, 3, 366, "Г4 Активная мощность");
-		public static PiramidaRecord MB_GA4_Q=new PiramidaRecord(2, 3, 368, "Г4 Реактивная мощность");
-		public static PiramidaRecord MB_GA4_IstatorA=new PiramidaRecord(2, 3, 370, "Г4 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA4_IstatorB=new PiramidaRecord(2, 3, 372, "Г4 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA4_IstatorC=new PiramidaRecord(2, 3, 374, "Г4 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA5_Rashod=new PiramidaRecord(2, 3, 438, "Г5 Расход");
-		public static PiramidaRecord MB_GA5_Napor=new PiramidaRecord(2, 3, 430, "Г5 Напор");
-		public static PiramidaRecord MB_GA5_Irotor=new PiramidaRecord(2, 3, 410, "Г5 Ток ротора");
-		public static PiramidaRecord MB_GA5_P=new PiramidaRecord(2, 3, 416, "Г5 Активная мощность");
-		public static PiramidaRecord MB_GA5_Q=new PiramidaRecord(2, 3, 418, "Г5 Реактивная мощность");
-		public static PiramidaRecord MB_GA5_IstatorA=new PiramidaRecord(2, 3, 420, "Г5 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA5_IstatorB=new PiramidaRecord(2, 3, 422, "Г5 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA5_IstatorC=new PiramidaRecord(2, 3, 424, "Г5 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA6_Rashod=new PiramidaRecord(2, 3, 488, "Г6 Расход");
-		public static PiramidaRecord MB_GA6_Napor=new PiramidaRecord(2, 3, 480, "Г6 Напор");
-		public static PiramidaRecord MB_GA6_Irotor=new PiramidaRecord(2, 3, 460, "Г6 Ток ротора");
-		public static PiramidaRecord MB_GA6_P=new PiramidaRecord(2, 3, 466, "Г6 Активная мощность");
-		public static PiramidaRecord MB_GA6_Q=new PiramidaRecord(2, 3, 468, "Г1 Реактивная мощность");
-		public static PiramidaRecord MB_GA6_IstatorA=new PiramidaRecord(2, 3, 470, "Г6 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA6_IstatorB=new PiramidaRecord(2, 3, 472, "Г6 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA6_IstatorC=new PiramidaRecord(2, 3, 474, "Г6 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA7_Rashod=new PiramidaRecord(2, 3, 538, "Г7 Расход");
-		public static PiramidaRecord MB_GA7_Napor=new PiramidaRecord(2, 3, 530, "Г7 Напор");
-		public static PiramidaRecord MB_GA7_Irotor=new PiramidaRecord(2, 3, 510, "Г7 Ток ротора");
-		public static PiramidaRecord MB_GA7_P=new PiramidaRecord(2, 3, 516, "Г7 Активная мощность");
-		public static PiramidaRecord MB_GA7_Q=new PiramidaRecord(2, 3, 518, "Г7 Реактивная мощность");
-		public static PiramidaRecord MB_GA7_IstatorA=new PiramidaRecord(2, 3, 520, "Г7 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA7_IstatorB=new PiramidaRecord(2, 3, 522, "Г7 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA7_IstatorC=new PiramidaRecord(2, 3, 524, "Г7 Ток статора, фаза С");
-
-		public static PiramidaRecord MB_VB_Sgl=new PiramidaRecord(2, 3, 548, "Верхний бьеф сгл.");
-		public static PiramidaRecord MB_NB_Sgl=new PiramidaRecord(2, 3, 550, "Нижний бьеф сгл.");
-		public static PiramidaRecord MB_Napor_Sgl=new PiramidaRecord(2, 3, 552, "Напор сгл.");
-
-		public static PiramidaRecord MB_GA8_Rashod=new PiramidaRecord(2, 3, 588, "Г8 Расход");
-		public static PiramidaRecord MB_GA8_Napor=new PiramidaRecord(2, 3, 580, "Г8 Напор");
-		public static PiramidaRecord MB_GA8_Irotor=new PiramidaRecord(2, 3, 560, "Г8 Ток ротора");
-		public static PiramidaRecord MB_GA8_P=new PiramidaRecord(2, 3, 566, "Г8 Активная мощность");
-		public static PiramidaRecord MB_GA8_Q=new PiramidaRecord(2, 3, 568, "Г8 Реактивная мощность");
-		public static PiramidaRecord MB_GA8_IstatorA=new PiramidaRecord(2, 3, 570, "Г8 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA8_IstatorB=new PiramidaRecord(2, 3, 572, "Г8 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA8_IstatorC=new PiramidaRecord(2, 3, 574, "Г8 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA8_NaporZad=new PiramidaRecord(2, 3, 580, "Г8 Контроль напора");
-		public static PiramidaRecord MB_GA9_Rashod=new PiramidaRecord(2, 3, 638, "Г9 Расход");
-		public static PiramidaRecord MB_GA9_Napor=new PiramidaRecord(2, 3, 630, "Г9 Напор");
-		public static PiramidaRecord MB_GA9_Irotor=new PiramidaRecord(2, 3, 610, "Г9 Ток ротора");
-		public static PiramidaRecord MB_GA9_P=new PiramidaRecord(2, 3, 616, "Г9 Активная мощность");
-		public static PiramidaRecord MB_GA9_Q=new PiramidaRecord(2, 3, 618, "Г9 Реактивная мощность");
-		public static PiramidaRecord MB_GA9_IstatorA=new PiramidaRecord(2, 3, 620, "Г9 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA9_IstatorB=new PiramidaRecord(2, 3, 622, "Г9 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA9_IstatorC=new PiramidaRecord(2, 3, 624, "Г9 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA9_NaporZad=new PiramidaRecord(2, 3, 630, "Г9 Контроль напора");
-		public static PiramidaRecord MB_GA10_Rashod=new PiramidaRecord(2, 3, 688, "Г10 Расход");
-		public static PiramidaRecord MB_GA10_Napor=new PiramidaRecord(2, 3, 680, "Г10 Напор");
-		public static PiramidaRecord MB_GA10_Irotor=new PiramidaRecord(2, 3, 660, "Г10 Ток ротора");
-		public static PiramidaRecord MB_GA10_P=new PiramidaRecord(2, 3, 666, "Г10 Активная мощность");
-		public static PiramidaRecord MB_GA10_Q=new PiramidaRecord(2, 3, 668, "Г10 Реактивная мощность");
-		public static PiramidaRecord MB_GA10_IstatorA=new PiramidaRecord(2, 3, 670, "Г10 Ток статора, фаза А");
-		public static PiramidaRecord MB_GA10_IstatorB=new PiramidaRecord(2, 3, 672, "Г10 Ток статора, фаза В");
-		public static PiramidaRecord MB_GA10_IstatorC=new PiramidaRecord(2, 3, 674, "Г10 Ток статора, фаза С");
-		public static PiramidaRecord MB_GA10_NaporZad=new PiramidaRecord(2, 3, 680, "Г10 Контроль напора");
-
-		public static PiramidaRecord MB_Rashod=new PiramidaRecord(2, 3, 708, "Расход воды (Q) ГЭС");
-		public static PiramidaRecord MB_RashodCalc=new PiramidaRecord(2, 30, 4, "Расход воды (Q) ГЭС расч");
-		public static PiramidaRecord MB_T=new PiramidaRecord(2, 3, 746, "Температура наружного воздуха");
-		public static PiramidaRecord MB_P_GES=new PiramidaRecord(2, 3, 750, "Суммарная Р ГЭС");
-		public static PiramidaRecord MB_Q_GES=new PiramidaRecord(2, 3, 764, "Суммарная Q ГЭС");
-
-		public static PiramidaRecord MB_I_KSHT1_110=new PiramidaRecord(2, 3, 810, "I КШТ-1 110КВ");
-		public static PiramidaRecord MB_P_KSHT1_110=new PiramidaRecord(2, 3, 812, "P КШТ-1 110КВ");
-		public static PiramidaRecord MB_Q_KSHT1_110=new PiramidaRecord(2, 3, 814, "Q КШТ-1 110КВ");
-		public static PiramidaRecord MB_I_KSHT2_110=new PiramidaRecord(2, 3, 820, "I КШТ-2 110КВ");
-		public static PiramidaRecord MB_P_KSHT2_110=new PiramidaRecord(2, 3, 822, "P КШТ-2 110КВ");
-		public static PiramidaRecord MB_Q_KSHT2_110=new PiramidaRecord(2, 3, 824, "Q КШТ-2 110КВ");
-		public static PiramidaRecord MB_I_Kauchuk_110=new PiramidaRecord(2, 3, 830, "I Каучук 110КВ");
-		public static PiramidaRecord MB_P_Kauchuk_110=new PiramidaRecord(2, 3, 832, "P Каучук 110КВ");
-		public static PiramidaRecord MB_Q_Kauchuk_110=new PiramidaRecord(2, 3, 834, "Q Каучук 110КВ");
-		public static PiramidaRecord MB_I_TEC_110=new PiramidaRecord(2, 3, 840, "I ЧаТЭЦ 110 кВ");
-		public static PiramidaRecord MB_P_TEC_110=new PiramidaRecord(2, 3, 842, "P ЧаТЭЦ 110 кВ");
-		public static PiramidaRecord MB_Q_TEC_110=new PiramidaRecord(2, 3, 844, "Q ЧаТЭЦ 110 кВ");
-		public static PiramidaRecord MB_I_Berezovka_110=new PiramidaRecord(2, 3, 850, "I Березовка 110 кВ");
-		public static PiramidaRecord MB_P_Berezovka_110=new PiramidaRecord(2, 3, 852, "P Березовка 110 кВ");
-		public static PiramidaRecord MB_Q_Berezovka_110=new PiramidaRecord(2, 3, 854, "Q Березовка 110 кВ");
-		public static PiramidaRecord MB_I_Dubovaya_110=new PiramidaRecord(2, 3, 860, "I Дубовая 110 кВ");
-		public static PiramidaRecord MB_P_Dubovaya_110=new PiramidaRecord(2, 3, 862, "P Дубовая 110 кВ");
-		public static PiramidaRecord MB_Q_Dubovaya_110=new PiramidaRecord(2, 3, 864, "Q Дубовая 110 кВ");
-		public static PiramidaRecord MB_I_Vodozabor1_110=new PiramidaRecord(2, 3, 870, "I Водозабор 1 - 110 кВ");
-		public static PiramidaRecord MB_P_Vodozabor1_110=new PiramidaRecord(2, 3, 872, "P Водозабор 1 - 110 кВ");
-		public static PiramidaRecord MB_Q_Vodozabor1_110=new PiramidaRecord(2, 3, 874, "Q Водозабор 1 - 110 кВ");
-		public static PiramidaRecord MB_I_Vodozabor2_110=new PiramidaRecord(2, 3, 880, "I Водозабор 2 - 110 кВ");
-		public static PiramidaRecord MB_P_Vodozabor2_110=new PiramidaRecord(2, 3, 882, "P Водозабор 2 - 110 кВ");
-		public static PiramidaRecord MB_Q_Vodozabor2_110=new PiramidaRecord(2, 3, 884, "Q Водозабор 2 - 110 кВ");
-		public static PiramidaRecord MB_I_Svetlaya_110=new PiramidaRecord(2, 3, 890, "I Светлая 110 кВ");
-		public static PiramidaRecord MB_P_Svetlaya_110=new PiramidaRecord(2, 3, 892, "P Светлая 110 кВ");
-		public static PiramidaRecord MB_Q_Svetlaya_110=new PiramidaRecord(2, 3, 894, "Q Светлая 110 кВ");
-		public static PiramidaRecord MB_I_Ivanovka_110=new PiramidaRecord(2, 3, 900, "I Ивановка 110 кВ");
-		public static PiramidaRecord MB_P_Ivanovka_110=new PiramidaRecord(2, 3, 902, "P Ивановка 110 кВ");
-		public static PiramidaRecord MB_Q_Ivanovka_110=new PiramidaRecord(2, 3, 904, "Q Ивановка 110 кВ");
-		public static PiramidaRecord MB_I_OVV_110=new PiramidaRecord(2, 3, 910, "I ОВВ 110 кВ");
-		public static PiramidaRecord MB_P_OVV_110=new PiramidaRecord(2, 3, 912, "P ОВВ 110 кВ");
-		public static PiramidaRecord MB_Q_OVV_110=new PiramidaRecord(2, 3, 914, "Q ОВВ 110 кВ");
-		public static PiramidaRecord MB_I_Emelino_500=new PiramidaRecord(2, 3, 930, "I Емелино 500 кВ");
-		public static PiramidaRecord MB_P_Emelino_500=new PiramidaRecord(2, 3, 932, "P Емелино 500 кВ");
-		public static PiramidaRecord MB_Q_Emelino_500=new PiramidaRecord(2, 3, 934, "Q Емелино 500 кВ");
-		public static PiramidaRecord MB_U_Emelino_500=new PiramidaRecord(2, 3, 936, "U Емелино 500 кВ");
-		public static PiramidaRecord MB_F_Emelino_500=new PiramidaRecord(2, 3, 938, "F Емелино 500 кВ");
-		public static PiramidaRecord MB_I_Karmanovo_500=new PiramidaRecord(2, 3, 940, "I Карманово 500 кВ");
-		public static PiramidaRecord MB_P_Karmanovo_500=new PiramidaRecord(2, 3, 942, "P Карманово 500 кВ");
-		public static PiramidaRecord MB_Q_Karmanovo_500=new PiramidaRecord(2, 3, 944, "Q Карманово 500 кВ");
-		public static PiramidaRecord MB_U_Karmanovo_500=new PiramidaRecord(2, 3, 946, "U Карманово 500 кВ");
-		public static PiramidaRecord MB_F_Karmanovo_500=new PiramidaRecord(2, 3, 948, "F Карманово 500 кВ");
-		public static PiramidaRecord MB_I_Vyatka_500=new PiramidaRecord(2, 3, 950, "I Вятка 500 кВ");
-		public static PiramidaRecord MB_P_Vyatka_500=new PiramidaRecord(2, 3, 952, "P Вятка 500 кВ");
-		public static PiramidaRecord MB_Q_Vyatka_500=new PiramidaRecord(2, 3, 954, "Q Вятка 500 кВ");
-		public static PiramidaRecord MB_U_Vyatka_500=new PiramidaRecord(2, 3, 956, "U Вятка 500 кВ");
-		public static PiramidaRecord MB_F_Vyatka_500=new PiramidaRecord(2, 3, 958, "F Вятка 500 кВ");
-		public static PiramidaRecord MB_I_1T_110=new PiramidaRecord(2, 3, 970, "I ВВ 1Т 110 кВ");
-		public static PiramidaRecord MB_P_1T_110=new PiramidaRecord(2, 3, 972, "P ВВ 1Т 110 кВ");
-		public static PiramidaRecord MB_Q_1T_110=new PiramidaRecord(2, 3, 974, "Q ВВ 1Т 110 кВ");
-		public static PiramidaRecord MB_I_56AT_110=new PiramidaRecord(2, 3, 980, "I ВВ 5,6АТ 110 кВ");
-		public static PiramidaRecord MB_P_56AT_110=new PiramidaRecord(2, 3, 982, "P ВВ 5,6АТ 110 кВ");
-		public static PiramidaRecord MB_Q_56AT_110=new PiramidaRecord(2, 3, 984, "Q ВВ 5,6АТ 110 кВ");
-		public static PiramidaRecord MB_I_2AT_500=new PiramidaRecord(2, 3, 990, "I ВВ 2АТ 500 кВ");
-		public static PiramidaRecord MB_P_2AT_500=new PiramidaRecord(2, 3, 992, "P ВВ 2АТ 500 кВ");
-		public static PiramidaRecord MB_Q_2AT_500=new PiramidaRecord(2, 3, 994, "Q ВВ 2АТ 500 кВ");
-		public static PiramidaRecord MB_I_3AT_500=new PiramidaRecord(2, 3, 1000, "I ВВ 3АТ 500 кВ");
-		public static PiramidaRecord MB_P_3AT_500=new PiramidaRecord(2, 3, 1002, "P ВВ 3АТ 500 кВ");
-		public static PiramidaRecord MB_Q_3AT_500=new PiramidaRecord(2, 3, 1004, "Q ВВ 3АТ 500 кВ");
+namespace VotGES.Piramida {
+	public static class PiramidaRecords {
+		public static PiramidaRecord P_GES = new PiramidaRecord(2, 0, 1, "P ГЭС");
+		public static PiramidaRecord P_GTP1 = new PiramidaRecord(2, 0, 2, "P ГТП1");
+		public static PiramidaRecord P_GTP2 = new PiramidaRecord(2, 0, 3, "P ГТП2");
+
+		public static PiramidaRecord P_IKM_SN = new PiramidaRecord(2, 0, 14, "Расход на собственные нужды ГЭС");
+		public static PiramidaRecord P_IKM_Nebalans_GES = new PiramidaRecord(2, 0, 24, "Небаланс по ГЭС");
+		public static PiramidaRecord P_IKM_SP = new PiramidaRecord(2, 0, 52, "Собственное потребление");
+
+		public static PiramidaRecord P_3AT_500_Priem = new PiramidaRecord(0, 8739, 1, "3АТ 500 кВ Прием (P)");
+		public static PiramidaRecord P_3AT_500_Otd = new PiramidaRecord(0, 8739, 2, "3АТ 500 кВ Отдача (P)");
+		public static PiramidaRecord Q_3AT_500_Priem = new PiramidaRecord(0, 8739, 3, "3АТ 500 кВ Прием (Q)");
+		public static PiramidaRecord Q_3AT_500_Otd = new PiramidaRecord(0, 8739, 4, "3АТ 500 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_2AT_500_Priem = new PiramidaRecord(0, 8739, 5, "2АТ 500 кВ Прием (P)");
+		public static PiramidaRecord P_2AT_500_Otd = new PiramidaRecord(0, 8739, 6, "2АТ 500 кВ Отдача (P)");
+		public static PiramidaRecord Q_2AT_500_Priem = new PiramidaRecord(0, 8739, 7, "2АТ 500 кВ Прием (Q)");
+		public static PiramidaRecord Q_2AT_500_Otd = new PiramidaRecord(0, 8739, 8, "2АТ 500 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_1VS_N1 = new PiramidaRecord(0, 8739, 9, "1-1 ВС (P)");
+		public static PiramidaRecord P_KRU2_24T = new PiramidaRecord(0, 8739, 10, "КРУ-2 24Т (P)");
+		public static PiramidaRecord P_KRU2_TVI = new PiramidaRecord(0, 8739, 11, "КРУ-2 ТВИ (P)");
+		public static PiramidaRecord P_KRU2_TP2 = new PiramidaRecord(0, 8739, 12, "КРУ-2 ТП2 (P)");
+		public static PiramidaRecord P_KRU1_31T = new PiramidaRecord(0, 8739, 13, "КРУ-1 31Т (P)");
+		public static PiramidaRecord P_KRU2_RUSN = new PiramidaRecord(0, 8739, 14, "КРУ-2 РУСН (P)");
+
+
+		public static PiramidaRecord P_KRU2_36T = new PiramidaRecord(0, 8739, 16, "КРУ-2 36Т (P)");
+		public static PiramidaRecord P_KRU1_27T = new PiramidaRecord(0, 8739, 17, "КРУ-1 27Т (P)");
+		public static PiramidaRecord P_KRU1_37T = new PiramidaRecord(0, 8739, 18, "КРУ-1 37Т (P)");
+		public static PiramidaRecord P_KRU2_30T = new PiramidaRecord(0, 8739, 19, "КРУ-2 30Т (P)");
+		public static PiramidaRecord P_KRU2_28T = new PiramidaRecord(0, 8739, 20, "КРУ-2 28Т (P)");
+		public static PiramidaRecord P_KRU1_33T = new PiramidaRecord(0, 8739, 21, "КРУ-1 33Т (P)");
+		public static PiramidaRecord P_KRU1_21T = new PiramidaRecord(0, 8739, 22, "КРУ-1 21Т (P)");
+		public static PiramidaRecord P_KRU1_25T = new PiramidaRecord(0, 8739, 23, "КРУ-1 25Т (P)");
+		public static PiramidaRecord P_KRU2_38T = new PiramidaRecord(0, 8739, 24, "КРУ-2 38Т (P)");
+		public static PiramidaRecord P_KRU1_Rez1 = new PiramidaRecord(0, 8739, 25, "Резерв #1@КРУ-1:11");
+		public static PiramidaRecord P_KRU1_Rez2 = new PiramidaRecord(0, 8739, 26, "Резерв #2@КРУ-1:12");
+		public static PiramidaRecord P_KRU1_35T = new PiramidaRecord(0, 8739, 27, "КРУ-1 35Т (P)");
+		public static PiramidaRecord P_KRU1_Rez3 = new PiramidaRecord(0, 8739, 28, "Резерв #3@КРУ-1:13");
+
+		public static PiramidaRecord P_R500_Emelino_priem = new PiramidaRecord(0, 8739, 29, "R 500 Емелино прием (P)");
+		public static PiramidaRecord Q_R500_Emelino_priem = new PiramidaRecord(0, 8739, 31, "R 500 Емелино прием (Q)");
+		public static PiramidaRecord P_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 33, "R 500 Вятка прием (P)");
+		public static PiramidaRecord Q_R500_Vyatka_priem = new PiramidaRecord(0, 8739, 35, "R 500 Вятка прием (Q)");
+
+
+		public static PiramidaRecord P_Vozb_GA9_Priem = new PiramidaRecord(0, 8740, 1, "Возбуждение Г/А 9 прием (P)");
+		public static PiramidaRecord P_Vozb_GA10_Priem = new PiramidaRecord(0, 8740, 2, "Возбуждение Г/А 10 прием (P)");
+		public static PiramidaRecord P_SN_19T_Priem = new PiramidaRecord(0, 8740, 3, "СН 19Т прием (P)");
+		public static PiramidaRecord P_SN_20T_Priem = new PiramidaRecord(0, 8740, 4, "СН 20Т прием (P)");
+		public static PiramidaRecord P_Vozb_GA7_Priem = new PiramidaRecord(0, 8740, 5, "Возбуждение Г/А 7 прием (P)");
+		public static PiramidaRecord P_Vozb_GA8_Priem = new PiramidaRecord(0, 8740, 6, "Возбуждение Г/А 8 прием (P)");
+		public static PiramidaRecord P_SN_17T_Priem = new PiramidaRecord(0, 8740, 7, "СН 17Т прием (P)");
+		public static PiramidaRecord P_SN_18T_Priem = new PiramidaRecord(0, 8740, 8, "СН 28Т прием (P)");
+
+		public static PiramidaRecord P_1T_110_Priem = new PiramidaRecord(0, 8740, 9, "1Т 110 кВ Прием (P)");
+		public static PiramidaRecord P_1T_110_Otd = new PiramidaRecord(0, 8740, 10, "1Т 110 кВ Отдача (P)");
+		public static PiramidaRecord Q_1T_110_Priem = new PiramidaRecord(0, 8740, 11, "1Т 110 кВ Прием (Q)");
+		public static PiramidaRecord Q_1T_110_Otd = new PiramidaRecord(0, 8740, 12, "1Т 110 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_2AT_220_Priem = new PiramidaRecord(0, 8740, 13, "2АТ 220 кВ Прием (P)");
+		public static PiramidaRecord P_2AT_220_Otd = new PiramidaRecord(0, 8740, 14, "2АТ 220 кВ Отдача (P)");
+		public static PiramidaRecord Q_2AT_220_Priem = new PiramidaRecord(0, 8740, 15, "2АТ 220 кВ Прием (Q)");
+		public static PiramidaRecord Q_2AT_220_Otd = new PiramidaRecord(0, 8740, 16, "2АТ 220 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_3AT_220_Priem = new PiramidaRecord(0, 8740, 17, "3АТ 220 кВ Прием (P)");
+		public static PiramidaRecord P_3AT_220_Otd = new PiramidaRecord(0, 8740, 18, "3АТ 220 кВ Отдача (P)");
+		public static PiramidaRecord Q_3AT_220_Priem = new PiramidaRecord(0, 8740, 19, "3АТ 220 кВ Прием (Q)");
+		public static PiramidaRecord Q_3AT_220_Otd = new PiramidaRecord(0, 8740, 20, "3АТ 220 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_56AT_220_Priem = new PiramidaRecord(0, 8740, 21, "5-6АТ 220 кВ Прием (P)");
+		public static PiramidaRecord P_56AT_220_Otd = new PiramidaRecord(0, 8740, 22, "5-6АТ 220 кВ Отдача (P)");
+		public static PiramidaRecord Q_56AT_220_Priem = new PiramidaRecord(0, 8740, 23, "5-6АТ 220 кВ Прием (Q)");
+		public static PiramidaRecord Q_56AT_220_Otd = new PiramidaRecord(0, 8740, 24, "5-6АТ 220 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_4T_220_Priem = new PiramidaRecord(0, 8740, 25, "4Т 220 кВ Прием (P)");
+		public static PiramidaRecord P_4T_220_Otd = new PiramidaRecord(0, 8740, 26, "4Т 220 кВ Отдача (P)");
+		public static PiramidaRecord Q_4T_220_Priem = new PiramidaRecord(0, 8740, 27, "4Т 220 кВ Прием (Q)");
+		public static PiramidaRecord Q_4T_220_Otd = new PiramidaRecord(0, 8740, 28, "4Т 220 кВ Отдача (Q)");
+
+		public static PiramidaRecord P_Vozb_GA5_Priem = new PiramidaRecord(0, 8740, 29, "Возбуждение Г/А 5 прием (P)");
+		public static PiramidaRecord P_Vozb_GA6_Priem = new PiramidaRecord(0, 8740, 30, "Возбуждение Г/А 6 прием (P)");
+		public static PiramidaRecord P_SN_15T_Priem = new PiramidaRecord(0, 8740, 31, "СН 15Т прием (P)");
+		public static PiramidaRecord P_SN_16T_Priem = new PiramidaRecord(0, 8740, 32, "СН 26Т прием (P)");
+		public static PiramidaRecord P_SN_8T_Priem = new PiramidaRecord(0, 8740, 33, "СН 8Т прием (P)");
+
+		public static PiramidaRecord P_Vozb_GA1_Priem = new PiramidaRecord(0, 8740, 34, "Возбуждение Г/А 1 прием (P)");
+		public static PiramidaRecord P_Vozb_GA2_Priem = new PiramidaRecord(0, 8740, 35, "Возбуждение Г/А 2 прием (P)");
+		public static PiramidaRecord P_SN_11T_Priem = new PiramidaRecord(0, 8740, 36, "СН 11Т прием (P)");
+		public static PiramidaRecord P_SN_12T_Priem = new PiramidaRecord(0, 8740, 37, "СН 12Т прием (P)");
+		public static PiramidaRecord P_SN_7T_Priem = new PiramidaRecord(0, 8739, 37, "СН 7Т прием (P)");
+
+		public static PiramidaRecord P_Vozb_GA3_Priem = new PiramidaRecord(0, 8740, 39, "Возбуждение Г/А 3 прием (P)");
+		public static PiramidaRecord P_Vozb_GA4_Priem = new PiramidaRecord(0, 8740, 40, "Возбуждение Г/А 4 прием (P)");
+		public static PiramidaRecord P_SN_13T_Priem = new PiramidaRecord(0, 8740, 41, "СН 13Т прием (P)");
+		public static PiramidaRecord P_SN_14T_Priem = new PiramidaRecord(0, 8740, 42, "СН 14Т прием (P)");
+
+		public static PiramidaRecord P_56AT_110_Priem = new PiramidaRecord(0, 8740, 43, "5-6АТ 110 кВ Прием (P)");
+		public static PiramidaRecord P_56AT_110_Otd = new PiramidaRecord(0, 8740, 44, "5-6АТ 110 кВ Отдача (P)");
+		public static PiramidaRecord Q_56AT_110_Priem = new PiramidaRecord(0, 8740, 45, "5-6АТ 110 кВ Прием (Q)");
+		public static PiramidaRecord Q_56AT_110_Otd = new PiramidaRecord(0, 8740, 46, "5-6АТ 110 кВ Отдача (Q)");
+
+
+		public static PiramidaRecord P_KRU3_29T = new PiramidaRecord(0, 8740, 47, "КРУ-3 29Т (P)");
+		public static PiramidaRecord P_KRU3_22T = new PiramidaRecord(0, 8740, 48, "КРУ-3 22Т (P)");
+		public static PiramidaRecord P_2VS_N1 = new PiramidaRecord(0, 8740, 49, "1-2 ВС (P)");
+		public static PiramidaRecord P_KRU3_32T = new PiramidaRecord(0, 8740, 50, "КРУ-3 32Т (P)");
+		public static PiramidaRecord P_KRU3_23T = new PiramidaRecord(0, 8740, 51, "КРУ-3 23Т (P)");
+		public static PiramidaRecord P_KRU3_TP1 = new PiramidaRecord(0, 8740, 52, "КРУ-3 ТП1 (P)");
+		public static PiramidaRecord P_KRU3_34T = new PiramidaRecord(0, 8740, 53, "КРУ-3 34Т (P)");
+		public static PiramidaRecord P_KRU3_26T = new PiramidaRecord(0, 8740, 55, "КРУ-3 26Т (P)");
+
+		public static PiramidaRecord P_VL110_Svetlaya_Priem = new PiramidaRecord(0, 8737, 1, "ВЛ 110 Светлая прием (P)");
+		public static PiramidaRecord P_VL110_Svetlaya_Otd = new PiramidaRecord(0, 8737, 2, "ВЛ 110 Светлая отдача (P)");
+		public static PiramidaRecord Q_VL110_Svetlaya_Priem = new PiramidaRecord(0, 8737, 3, "ВЛ 110 Светлая прием (Q)");
+		public static PiramidaRecord Q_VL110_Svetlaya_Otd = new PiramidaRecord(0, 8737, 4, "ВЛ 110 Светлая отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Ivanovka_Priem = new PiramidaRecord(0, 8737, 5, "ВЛ 110 Ивановка прием (P)");
+		public static PiramidaRecord P_VL110_Ivanovka_Otd = new PiramidaRecord(0, 8737, 6, "ВЛ 110 Ивановка отдача (P)");
+		public static PiramidaRecord Q_VL110_Ivanovka_Priem = new PiramidaRecord(0, 8737, 7, "ВЛ 110 Ивановка прием (Q)");
+		public static PiramidaRecord Q_VL110_Ivanovka_Otd = new PiramidaRecord(0, 8737, 8, "ВЛ 110 Ивановка отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Kauchuk_Priem = new PiramidaRecord(0, 8737, 9, "ВЛ 110 Каучук прием (P)");
+		public static PiramidaRecord P_VL110_Kauchuk_Otd = new PiramidaRecord(0, 8737, 10, "ВЛ 110 Каучук отдача (P)");
+		public static PiramidaRecord Q_VL110_Kauchuk_Priem = new PiramidaRecord(0, 8737, 11, "ВЛ 110 Каучук прием (Q)");
+		public static PiramidaRecord Q_VL110_Kauchuk_Otd = new PiramidaRecord(0, 8737, 12, "ВЛ 110 Каучук отдача (Q)");
+
+		public static PiramidaRecord P_VL110_TEC_Priem = new PiramidaRecord(0, 8737, 13, "ВЛ 110 ЧаТЭЦ прием (P)");
+		public static PiramidaRecord P_VL110_TEC_Otd = new PiramidaRecord(0, 8737, 14, "ВЛ 110 ЧаТЭЦ отдача (P)");
+		public static PiramidaRecord Q_VL110_TEC_Priem = new PiramidaRecord(0, 8737, 15, "ВЛ 110 ЧаТЭЦ прием (Q)");
+		public static PiramidaRecord Q_VL110_TEC_Otd = new PiramidaRecord(0, 8737, 16, "ВЛ 110 ЧаТЭЦ отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Berezovka_Priem = new PiramidaRecord(0, 8737, 17, "ВЛ 110 Березовка прием (P)");
+		public static PiramidaRecord P_VL110_Berezovka_Otd = new PiramidaRecord(0, 8737, 18, "ВЛ 110 Березовка отдача (P)");
+		public static PiramidaRecord Q_VL110_Berezovka_Priem = new PiramidaRecord(0, 8737, 19, "ВЛ 110 Березовка прием (Q)");
+		public static PiramidaRecord Q_VL110_Berezovka_Otd = new PiramidaRecord(0, 8737, 20, "ВЛ 110 Березовка отдача (Q)");
+
+		public static PiramidaRecord P_VL220_Svetlaya_Priem = new PiramidaRecord(0, 8737, 21, "ВЛ 220 Светлая прием (P)");
+		public static PiramidaRecord P_VL220_Svetlaya_Otd = new PiramidaRecord(0, 8737, 22, "ВЛ 220 Светлая отдача (P)");
+		public static PiramidaRecord Q_VL220_Svetlaya_Priem = new PiramidaRecord(0, 8737, 23, "ВЛ 220 Светлая прием (Q)");
+		public static PiramidaRecord Q_VL220_Svetlaya_Otd = new PiramidaRecord(0, 8737, 24, "ВЛ 220 Светлая отдача (Q)");
+
+		public static PiramidaRecord P_VL220_Kauchuk1_Priem = new PiramidaRecord(0, 8737, 25, "ВЛ 220 Каучук-1 прием (P)");
+		public static PiramidaRecord P_VL220_Kauchuk1_Otd = new PiramidaRecord(0, 8737, 26, "ВЛ 220 Каучук-1 отдача (P)");
+		public static PiramidaRecord Q_VL220_Kauchuk1_Priem = new PiramidaRecord(0, 8737, 27, "ВЛ 220 Каучук-1 прием (Q)");
+		public static PiramidaRecord Q_VL220_Kauchuk1_Otd = new PiramidaRecord(0, 8737, 28, "ВЛ 220 Каучук-1 отдача (Q)");
+
+		public static PiramidaRecord P_VL220_Kauchuk2_Priem = new PiramidaRecord(0, 8737, 29, "ВЛ 220 Каучук-2 прием (P)");
+		public static PiramidaRecord P_VL220_Kauchuk2_Otd = new PiramidaRecord(0, 8737, 30, "ВЛ 220 Каучук-2 отдача (P)");
+		public static PiramidaRecord Q_VL220_Kauchuk2_Priem = new PiramidaRecord(0, 8737, 31, "ВЛ 220 Каучук-2 прием (Q)");
+		public static PiramidaRecord Q_VL220_Kauchuk2_Otd = new PiramidaRecord(0, 8737, 32, "ВЛ 220 Каучук-2 отдача (Q)");
+
+		public static PiramidaRecord P_VL220_Izhevsk1_Priem = new PiramidaRecord(0, 8737, 33, "ВЛ 220 Ижевск-1 прием (P)");
+		public static PiramidaRecord P_VL220_Izhevsk1_Otd = new PiramidaRecord(0, 8737, 34, "ВЛ 220 Ижевск-1 отдача (P)");
+		public static PiramidaRecord Q_VL220_Izhevsk1_Priem = new PiramidaRecord(0, 8737, 35, "ВЛ 220 Ижевск-1 прием (Q)");
+		public static PiramidaRecord Q_VL220_Izhevsk1_Otd = new PiramidaRecord(0, 8737, 36, "ВЛ 220 Ижевск-1 отдача (Q)");
+
+		public static PiramidaRecord P_VL220_Izhevsk2_Priem = new PiramidaRecord(0, 8737, 37, "ВЛ 220 Ижевск-2 прием (P)");
+		public static PiramidaRecord P_VL220_Izhevsk2_Otd = new PiramidaRecord(0, 8737, 38, "ВЛ 220 Ижевск-2 отдача (P)");
+		public static PiramidaRecord Q_VL220_Izhevsk2_Priem = new PiramidaRecord(0, 8737, 39, "ВЛ 220 Ижевск-2 прием (Q)");
+		public static PiramidaRecord Q_VL220_Izhevsk2_Otd = new PiramidaRecord(0, 8737, 40, "ВЛ 220 Ижевск-2 отдача (Q)");
+
+		public static PiramidaRecord P_VL110_KSHT1_Priem = new PiramidaRecord(0, 8737, 41, "ВЛ 110 КШТ-1 прием (P)");
+		public static PiramidaRecord P_VL110_KSHT1_Otd = new PiramidaRecord(0, 8737, 42, "ВЛ 110 КШТ-1 отдача (P)");
+		public static PiramidaRecord Q_VL110_KSHT1_Priem = new PiramidaRecord(0, 8737, 43, "ВЛ 110 КШТ-1 прием (Q)");
+		public static PiramidaRecord Q_VL110_KSHT1_Otd = new PiramidaRecord(0, 8737, 44, "ВЛ 110 КШТ-1 отдача (Q)");
+
+		public static PiramidaRecord P_VL110_KSHT2_Priem = new PiramidaRecord(0, 8737, 45, "ВЛ 110 КШТ-2 прием (P)");
+		public static PiramidaRecord P_VL110_KSHT2_Otd = new PiramidaRecord(0, 8737, 46, "ВЛ 110 КШТ-2 отдача (P)");
+		public static PiramidaRecord Q_VL110_KSHT2_Priem = new PiramidaRecord(0, 8737, 47, "ВЛ 110 КШТ-2 прием (Q)");
+		public static PiramidaRecord Q_VL110_KSHT2_Otd = new PiramidaRecord(0, 8737, 48, "ВЛ 110 КШТ-2 отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Dubovaya_Priem = new PiramidaRecord(0, 8737, 49, "ВЛ 110 Дубовая прием (P)");
+		public static PiramidaRecord P_VL110_Dubovaya_Otd = new PiramidaRecord(0, 8737, 50, "ВЛ 110 Дубовая отдача (P)");
+		public static PiramidaRecord Q_VL110_Dubovaya_Priem = new PiramidaRecord(0, 8737, 51, "ВЛ 110 Дубовая прием (Q)");
+		public static PiramidaRecord Q_VL110_Dubovaya_Otd = new PiramidaRecord(0, 8737, 52, "ВЛ 110 Дубовая отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Vodozabor2_Priem = new PiramidaRecord(0, 8737, 53, "ВЛ 110 Водозабор-2 прием (P)");
+		public static PiramidaRecord P_VL110_Vodozabor2_Otd = new PiramidaRecord(0, 8737, 54, "ВЛ 110 Водозабор-2 отдача (P)");
+		public static PiramidaRecord Q_VL110_Vodozabor2_Priem = new PiramidaRecord(0, 8737, 55, "ВЛ 110 Водозабор-2 прием (Q)");
+		public static PiramidaRecord Q_VL110_Vodozabor2_Otd = new PiramidaRecord(0, 8737, 56, "ВЛ 110 Водозабор-2 отдача (Q)");
+
+		public static PiramidaRecord P_VL110_Vodozabor1_Priem = new PiramidaRecord(0, 8737, 57, "ВЛ 110 Водозабор-1 прием (P)");
+		public static PiramidaRecord P_VL110_Vodozabor1_Otd = new PiramidaRecord(0, 8737, 58, "ВЛ 110 Водозабор-1 отдача (P)");
+		public static PiramidaRecord Q_VL110_Vodozabor1_Priem = new PiramidaRecord(0, 8737, 59, "ВЛ 110 Водозабор-1 прием (Q)");
+		public static PiramidaRecord Q_VL110_Vodozabor1_Otd = new PiramidaRecord(0, 8737, 60, "ВЛ 110 Водозабор-1 отдача (Q)");
+
+		public static PiramidaRecord P_VL500_Emelino_Priem = new PiramidaRecord(0, 8737, 61, "ВЛ 500 Емелино прием (P)");
+		public static PiramidaRecord P_VL500_Emelino_Otd = new PiramidaRecord(0, 8737, 62, "ВЛ 500 Емелино отдача (P)");
+		public static PiramidaRecord Q_VL500_Emelino_Priem = new PiramidaRecord(0, 8737, 63, "ВЛ 500 Емелино прием (Q)");
+		public static PiramidaRecord Q_VL500_Emelino_Otd = new PiramidaRecord(0, 8737, 64, "ВЛ 500 Емелино отдача (Q)");
+
+		public static PiramidaRecord P_VL500_Karmanovo_Priem = new PiramidaRecord(0, 8737, 65, "ВЛ 500 Карманово прием (P)");
+		public static PiramidaRecord P_VL500_Karmanovo_Otd = new PiramidaRecord(0, 8737, 66, "ВЛ 500 Карманово отдача (P)");
+		public static PiramidaRecord Q_VL500_Karmanovo_Priem = new PiramidaRecord(0, 8737, 67, "ВЛ 500 Карманово прием (Q)");
+		public static PiramidaRecord Q_VL500_Karmanovo_Otd = new PiramidaRecord(0, 8737, 68, "ВЛ 500 Карманово отдача (Q)");
+
+		public static PiramidaRecord P_VL500_Vyatka_Priem = new PiramidaRecord(0, 8737, 69, "ВЛ 500 Вятка прием (P)");
+		public static PiramidaRecord P_VL500_Vyatka_Otd = new PiramidaRecord(0, 8737, 70, "ВЛ 500 Вятка отдача (P)");
+		public static PiramidaRecord Q_VL500_Vyatka_Priem = new PiramidaRecord(0, 8737, 71, "ВЛ 500 Вятка прием (Q)");
+		public static PiramidaRecord Q_VL500_Vyatka_Otd = new PiramidaRecord(0, 8737, 72, "ВЛ 500 Вятка отдача (Q)");
+
+		public static PiramidaRecord P_GA1_Priem = new PiramidaRecord(0, 8738, 1, "Генератор-1 прием (P)");
+		public static PiramidaRecord P_GA1_Otd = new PiramidaRecord(0, 8738, 2, "Генератор-1 отдача (P)");
+		public static PiramidaRecord Q_GA1_Priem = new PiramidaRecord(0, 8738, 3, "Генератор-1 прием (Q)");
+		public static PiramidaRecord Q_GA1_Otd = new PiramidaRecord(0, 8738, 4, "Генератор-1 отдача (Q)");
+
+		public static PiramidaRecord P_GA2_Priem = new PiramidaRecord(0, 8738, 5, "Генератор-2 прием (P)");
+		public static PiramidaRecord P_GA2_Otd = new PiramidaRecord(0, 8738, 6, "Генератор-2 отдача (P)");
+		public static PiramidaRecord Q_GA2_Priem = new PiramidaRecord(0, 8738, 7, "Генератор-2 прием (Q)");
+		public static PiramidaRecord Q_GA2_Otd = new PiramidaRecord(0, 8738, 8, "Генератор-2 отдача (Q)");
+
+		public static PiramidaRecord P_KL6_Shluz1_Priem = new PiramidaRecord(0, 8738, 9, "КЛ 6 Шлюз-1 прием (P)");
+		public static PiramidaRecord P_KL6_Shluz1_Otd = new PiramidaRecord(0, 8738, 10, "КЛ 6 Шлюз-1 отдача (P)");
+		public static PiramidaRecord Q_KL6_Shluz1_Priem = new PiramidaRecord(0, 8738, 11, "КЛ 6 Шлюз-1 прием (Q)");
+		public static PiramidaRecord Q_KL6_Shluz1_Otd = new PiramidaRecord(0, 8738, 12, "КЛ 6 Шлюз-1 отдача (Q)");
+		public static PiramidaRecord P_KL6_Shluz2_Priem = new PiramidaRecord(0, 8738, 13, "КЛ 6 Шлюз-2 прием (P)");
+		public static PiramidaRecord P_KL6_Shluz2_Otd = new PiramidaRecord(0, 8738, 14, "КЛ 6 Шлюз-2 отдача (P)");
+		public static PiramidaRecord Q_KL6_Shluz2_Priem = new PiramidaRecord(0, 8738, 15, "КЛ 6 Шлюз-2 прием (Q)");
+		public static PiramidaRecord Q_KL6_Shluz2_Otd = new PiramidaRecord(0, 8738, 16, "КЛ 6 Шлюз-2 отдача (Q)");
+
+		public static PiramidaRecord P_GA3_Priem = new PiramidaRecord(0, 8738, 17, "Генератор-3 прием (P)");
+		public static PiramidaRecord P_GA3_Otd = new PiramidaRecord(0, 8738, 18, "Генератор-3 отдача (P)");
+		public static PiramidaRecord Q_GA3_Priem = new PiramidaRecord(0, 8738, 18, "Генератор-3 прием (Q)");
+		public static PiramidaRecord Q_GA3_Otd = new PiramidaRecord(0, 8738, 20, "Генератор-3 отдача (Q)");
+
+		public static PiramidaRecord P_GA4_Priem = new PiramidaRecord(0, 8738, 21, "Генератор-4 прием (P)");
+		public static PiramidaRecord P_GA4_Otd = new PiramidaRecord(0, 8738, 22, "Генератор-4 отдача (P)");
+		public static PiramidaRecord Q_GA4_Priem = new PiramidaRecord(0, 8738, 23, "Генератор-4 прием (Q)");
+		public static PiramidaRecord Q_GA4_Otd = new PiramidaRecord(0, 8738, 24, "Генератор-4 отдача (Q)");
+
+		public static PiramidaRecord P_GA5_Priem = new PiramidaRecord(0, 8738, 25, "Генератор-5 прием (P)");
+		public static PiramidaRecord P_GA5_Otd = new PiramidaRecord(0, 8738, 26, "Генератор-5 отдача (P)");
+		public static PiramidaRecord Q_GA5_Priem = new PiramidaRecord(0, 8738, 27, "Генератор-5 прием (Q)");
+		public static PiramidaRecord Q_GA5_Otd = new PiramidaRecord(0, 8738, 28, "Генератор-5 отдача (Q)");
+
+		public static PiramidaRecord P_GA6_Priem = new PiramidaRecord(0, 8738, 29, "Генератор-6 прием (P)");
+		public static PiramidaRecord P_GA6_Otd = new PiramidaRecord(0, 8738, 30, "Генератор-6 отдача (P)");
+		public static PiramidaRecord Q_GA6_Priem = new PiramidaRecord(0, 8738, 31, "Генератор-6 прием (Q)");
+		public static PiramidaRecord Q_GA6_Otd = new PiramidaRecord(0, 8738, 32, "Генератор-6 отдача (Q)");
+
+		public static PiramidaRecord P_KL6_Filtr1_Priem = new PiramidaRecord(0, 8738, 33, "КЛ 6 Фильтр-1 прием (P)");
+		public static PiramidaRecord P_KL6_Filtr1_Otd = new PiramidaRecord(0, 8738, 34, "КЛ 6 Фильтр-1 отдача (P)");
+		public static PiramidaRecord Q_KL6_Filtr1_Priem = new PiramidaRecord(0, 8738, 35, "КЛ 6 Фильтр-1 прием (Q)");
+		public static PiramidaRecord Q_KL6_Filtr1_Otd = new PiramidaRecord(0, 8738, 36, "КЛ 6 Фильтр-1 отдача (Q)");
+		public static PiramidaRecord P_KL6_Filtr2_Priem = new PiramidaRecord(0, 8738, 37, "КЛ 6 Фильтр-2 прием (P)");
+		public static PiramidaRecord P_KL6_Filtr2_Otd = new PiramidaRecord(0, 8738, 38, "КЛ 6 Фильтр-2 отдача (P)");
+		public static PiramidaRecord Q_KL6_Filtr2_Priem = new PiramidaRecord(0, 8738, 39, "КЛ 6 Фильтр-2 прием (Q)");
+		public static PiramidaRecord Q_KL6_Filtr2_Otd = new PiramidaRecord(0, 8738, 40, "КЛ 6 Фильтр-2 отдача (Q)");
+
+		public static PiramidaRecord P_GA7_Priem = new PiramidaRecord(0, 8738, 41, "Генератор-7 прием (P)");
+		public static PiramidaRecord P_GA7_Otd = new PiramidaRecord(0, 8738, 42, "Генератор-7 отдача (P)");
+		public static PiramidaRecord Q_GA7_Priem = new PiramidaRecord(0, 8738, 43, "Генератор-7 прием (Q)");
+		public static PiramidaRecord Q_GA7_Otd = new PiramidaRecord(0, 8738, 44, "Генератор-7 отдача (Q)");
+
+		public static PiramidaRecord P_GA8_Priem = new PiramidaRecord(0, 8738, 45, "Генератор-8 прием (P)");
+		public static PiramidaRecord P_GA8_Otd = new PiramidaRecord(0, 8738, 46, "Генератор-8 отдача (P)");
+		public static PiramidaRecord Q_GA8_Priem = new PiramidaRecord(0, 8738, 47, "Генератор-8 прием (Q)");
+		public static PiramidaRecord Q_GA8_Otd = new PiramidaRecord(0, 8738, 48, "Генератор-8 отдача (Q)");
+
+		public static PiramidaRecord P_GA9_Priem = new PiramidaRecord(0, 8738, 49, "Генератор-9 прием (P)");
+		public static PiramidaRecord P_GA9_Otd = new PiramidaRecord(0, 8738, 50, "Генератор-9 отдача (P)");
+		public static PiramidaRecord Q_GA9_Priem = new PiramidaRecord(0, 8738, 51, "Генератор-9 прием (Q)");
+		public static PiramidaRecord Q_GA9_Otd = new PiramidaRecord(0, 8738, 52, "Генератор-9 отдача (Q)");
+
+		public static PiramidaRecord P_GA10_Priem = new PiramidaRecord(0, 8738, 53, "Генератор-10 прием (P)");
+		public static PiramidaRecord P_GA10_Otd = new PiramidaRecord(0, 8738, 54, "Генератор-10 отдача (P)");
+		public static PiramidaRecord Q_GA10_Priem = new PiramidaRecord(0, 8738, 55, "Генератор-10 прием (Q)");
+		public static PiramidaRecord Q_GA10_Otd = new PiramidaRecord(0, 8738, 56, "Генератор-10 отдача (Q)");
+
+		public static PiramidaRecord P_SN_9T_Priem = new PiramidaRecord(0, 8740, 57, "СН 9Т прием (P)");
+
+		public static PiramidaRecord Water_NB = new PiramidaRecord(2, 1, 275, "НБ");
+		public static PiramidaRecord Water_VB = new PiramidaRecord(2, 1, 274, "ВБ");
+		public static PiramidaRecord Water_Napor = new PiramidaRecord(2, 1, 276, "Напор");
+		public static PiramidaRecord Water_Temp = new PiramidaRecord(2, 1, 373, "Температура");
+		public static PiramidaRecord Water_QGES = new PiramidaRecord(2, 1, 354, "Расход ГЭС");
+		public static PiramidaRecord Water_QOptGES = new PiramidaRecord(2, 10, 1, "Опт. расход ГЭС");
+		public static PiramidaRecord Water_QOptGTP1 = new PiramidaRecord(2, 10, 2, "Опт. расход ГТП-1");
+		public static PiramidaRecord Water_QOptGTP2 = new PiramidaRecord(2, 10, 3, "Опт. расход ГТП-2");
+
+		public static PiramidaRecord Water_Q_GA1 = new PiramidaRecord(2, 1, 104, "Расход ГА-1");
+		public static PiramidaRecord Water_Q_GA2 = new PiramidaRecord(2, 1, 129, "Расход ГА-2");
+		public static PiramidaRecord Water_Q_GA3 = new PiramidaRecord(2, 1, 154, "Расход ГА-3");
+		public static PiramidaRecord Water_Q_GA4 = new PiramidaRecord(2, 1, 179, "Расход ГА-4");
+		public static PiramidaRecord Water_Q_GA5 = new PiramidaRecord(2, 1, 204, "Расход ГА-5");
+		public static PiramidaRecord Water_Q_GA6 = new PiramidaRecord(2, 1, 229, "Расход ГА-6");
+		public static PiramidaRecord Water_Q_GA7 = new PiramidaRecord(2, 1, 254, "Расход ГА-7");
+		public static PiramidaRecord Water_Q_GA8 = new PiramidaRecord(2, 1, 279, "Расход ГА-8");
+		public static PiramidaRecord Water_Q_GA9 = new PiramidaRecord(2, 1, 304, "Расход ГА-9");
+		public static PiramidaRecord Water_Q_GA10 = new PiramidaRecord(2, 1, 329, "Расход ГА-10");
+
+		public static PiramidaRecord GSV2 = new PiramidaRecord(2, 7, 2, "Верхний бьеф на 8 утра");
+		public static PiramidaRecord GSV3 = new PiramidaRecord(2, 7, 3, "Нижний бьеф на 8 утра");
+		public static PiramidaRecord GSV4 = new PiramidaRecord(2, 7, 4, "Нижний бьеф (средний за сутки)");
+		public static PiramidaRecord GSV5 = new PiramidaRecord(2, 7, 5, "Нижний бьеф (макс. за сутки)");
+		public static PiramidaRecord GSV6 = new PiramidaRecord(2, 7, 6, "Нижний бьеф (мин за сутки)");
+		public static PiramidaRecord GSV7 = new PiramidaRecord(2, 7, 7, "Среднесуточный напор (брутто)");
+		public static PiramidaRecord GSV8 = new PiramidaRecord(2, 7, 8, "Среднесуточный напор (нетто)");
+		public static PiramidaRecord GSV9 = new PiramidaRecord(2, 7, 9, "Среднесуточный напор (нетто с учетом потери на сут.рег.)");
+		public static PiramidaRecord GSV10 = new PiramidaRecord(2, 7, 10, "Перепад на решетках");
+		public static PiramidaRecord GSV11 = new PiramidaRecord(2, 7, 11, "Суточная выработка эл.энергии");
+		public static PiramidaRecord GSV12 = new PiramidaRecord(2, 7, 12, "Выработка эл.энергии с начала месяца");
+		public static PiramidaRecord GSV13 = new PiramidaRecord(2, 7, 13, "Нагрузка ГЭС (средняя)");
+		public static PiramidaRecord GSV14 = new PiramidaRecord(2, 7, 14, "Нагрузка ГЭС (макс)");
+		public static PiramidaRecord GSV15 = new PiramidaRecord(2, 7, 15, "Нагрузка ГЭС (мин)");
+		public static PiramidaRecord GSV16 = new PiramidaRecord(2, 7, 16, "Средний расход воды (турбины)");
+		public static PiramidaRecord GSV17 = new PiramidaRecord(2, 7, 17, "Средний расход воды (водослив)");
+		public static PiramidaRecord GSV18 = new PiramidaRecord(2, 7, 18, "Средний расход воды (фильтр)");
+		public static PiramidaRecord GSV19 = new PiramidaRecord(2, 7, 19, "Средний расход воды (шлюзов.)");
+		public static PiramidaRecord GSV20 = new PiramidaRecord(2, 7, 20, "Средний расход воды (общий)");
+		public static PiramidaRecord GSV21 = new PiramidaRecord(2, 7, 21, "Удельный расход");
+		public static PiramidaRecord GSV22 = new PiramidaRecord(2, 7, 22, "Расход в НБ КамГЭС");
+		public static PiramidaRecord GSV23 = new PiramidaRecord(2, 7, 23, "Боковой приток");
+		public static PiramidaRecord GSV24 = new PiramidaRecord(2, 7, 24, "Наш приток");
+		public static PiramidaRecord GSV25 = new PiramidaRecord(2, 7, 25, "Верхний бьеф КамГЭС");
+		public static PiramidaRecord GSV26 = new PiramidaRecord(2, 7, 26, "Нижний бьеф КамГЭС");
+		public static PiramidaRecord GSV27 = new PiramidaRecord(2, 7, 27, "Приток КамГЭС");
+		public static PiramidaRecord GSV28 = new PiramidaRecord(2, 1, 373, "Температура", "sut");
+
+		public static PiramidaRecord MBW_GES_Rash = new PiramidaRecord(2, 3, 1, "ГЭС Расход");
+		public static PiramidaRecord MBW_VB = new PiramidaRecord(2, 3, 2, "ВБ");
+		public static PiramidaRecord MBW_NB = new PiramidaRecord(2, 3, 3, "НБ");
+		public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напро");
+		public static PiramidaRecord MBW_Temp = new PiramidaRecord(2, 3, 5, "Температура");
+		public static PiramidaRecord MBW_TempShit = new PiramidaRecord(2, 3, 6, "Температура щитовых сооружений");
+
+
+		public static PiramidaRecord MBW_GA1_Rash = new PiramidaRecord(2, 3, 101, "ГА-1 Расход");
+		public static PiramidaRecord MBW_GA2_Rash = new PiramidaRecord(2, 3, 102, "ГА-2 Расход");
+		public static PiramidaRecord MBW_GA3_Rash = new PiramidaRecord(2, 3, 103, "ГА-3 Расход");
+		public static PiramidaRecord MBW_GA4_Rash = new PiramidaRecord(2, 3, 104, "ГА-4 Расход");
+		public static PiramidaRecord MBW_GA5_Rash = new PiramidaRecord(2, 3, 105, "ГА-5 Расход");
+		public static PiramidaRecord MBW_GA6_Rash = new PiramidaRecord(2, 3, 106, "ГА-6 Расход");
+		public static PiramidaRecord MBW_GA7_Rash = new PiramidaRecord(2, 3, 107, "ГА-7 Расход");
+		public static PiramidaRecord MBW_GA8_Rash = new PiramidaRecord(2, 3, 108, "ГА-8 Расход");
+		public static PiramidaRecord MBW_GA9_Rash = new PiramidaRecord(2, 3, 109, "ГА-9 Расход");
+		public static PiramidaRecord MBW_GA10_Rash = new PiramidaRecord(2, 3, 110, "ГА-10 Расход");
+
+		public static PiramidaRecord MBW_GA1_P = new PiramidaRecord(2, 3, 201, "ГА-1 P");
+		public static PiramidaRecord MBW_GA2_P = new PiramidaRecord(2, 3, 202, "ГА-2 P");
+		public static PiramidaRecord MBW_GA3_P = new PiramidaRecord(2, 3, 203, "ГА-3 P");
+		public static PiramidaRecord MBW_GA4_P = new PiramidaRecord(2, 3, 204, "ГА-4 P");
+		public static PiramidaRecord MBW_GA5_P = new PiramidaRecord(2, 3, 205, "ГА-5 P");
+		public static PiramidaRecord MBW_GA6_P = new PiramidaRecord(2, 3, 206, "ГА-6 P");
+		public static PiramidaRecord MBW_GA7_P = new PiramidaRecord(2, 3, 207, "ГА-7 P");
+		public static PiramidaRecord MBW_GA8_P = new PiramidaRecord(2, 3, 208, "ГА-8 P");
+		public static PiramidaRecord MBW_GA9_P = new PiramidaRecord(2, 3, 209, "ГА-9 P");
+		public static PiramidaRecord MBW_GA10_P = new PiramidaRecord(2, 3, 210, "ГА-10 P");
+
+		public static PiramidaRecord MBW_GA1_Q = new PiramidaRecord(2, 3, 301, "ГА-1 Q");
+		public static PiramidaRecord MBW_GA2_Q = new PiramidaRecord(2, 3, 302, "ГА-2 Q");
+		public static PiramidaRecord MBW_GA3_Q = new PiramidaRecord(2, 3, 303, "ГА-3 Q");
+		public static PiramidaRecord MBW_GA4_Q = new PiramidaRecord(2, 3, 304, "ГА-4 Q");
+		public static PiramidaRecord MBW_GA5_Q = new PiramidaRecord(2, 3, 305, "ГА-5 Q");
+		public static PiramidaRecord MBW_GA6_Q = new PiramidaRecord(2, 3, 306, "ГА-6 Q");
+		public static PiramidaRecord MBW_GA7_Q = new PiramidaRecord(2, 3, 307, "ГА-7 Q");
+		public static PiramidaRecord MBW_GA8_Q = new PiramidaRecord(2, 3, 308, "ГА-8 Q");
+		public static PiramidaRecord MBW_GA9_Q = new PiramidaRecord(2, 3, 309, "ГА-9 Q");
+		public static PiramidaRecord MBW_GA10_Q = new PiramidaRecord(2, 3, 310, "ГА-10 Q");
+
+		public static PiramidaRecord MBW_GA1_OtkrNA = new PiramidaRecord(2, 3, 401, "ГА-1 Открытие НА");
+		public static PiramidaRecord MBW_GA2_OtkrNA = new PiramidaRecord(2, 3, 402, "ГА-2 Открытие НА");
+		public static PiramidaRecord MBW_GA3_OtkrNA = new PiramidaRecord(2, 3, 403, "ГА-3 Открытие НА");
+		public static PiramidaRecord MBW_GA4_OtkrNA = new PiramidaRecord(2, 3, 404, "ГА-4 Открытие НА");
+		public static PiramidaRecord MBW_GA5_OtkrNA = new PiramidaRecord(2, 3, 405, "ГА-5 Открытие НА");
+		public static PiramidaRecord MBW_GA6_OtkrNA = new PiramidaRecord(2, 3, 406, "ГА-6 Открытие НА");
+		public static PiramidaRecord MBW_GA7_OtkrNA = new PiramidaRecord(2, 3, 407, "ГА-7 Открытие НА");
+		public static PiramidaRecord MBW_GA8_OtkrNA = new PiramidaRecord(2, 3, 408, "ГА-8 Открытие НА");
+		public static PiramidaRecord MBW_GA9_OtkrNA = new PiramidaRecord(2, 3, 409, "ГА-9 Открытие НА");
+		public static PiramidaRecord MBW_GA10_OtkrNA = new PiramidaRecord(2, 3, 410, "ГА-10 Открытие НА");
+
+		public static PiramidaRecord MBW_GA1_UgolRK = new PiramidaRecord(2, 3, 501, "ГА-1 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA2_UgolRK = new PiramidaRecord(2, 3, 502, "ГА-2 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA3_UgolRK = new PiramidaRecord(2, 3, 503, "ГА-3 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA4_UgolRK = new PiramidaRecord(2, 3, 504, "ГА-4 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA5_UgolRK = new PiramidaRecord(2, 3, 505, "ГА-5 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA6_UgolRK = new PiramidaRecord(2, 3, 506, "ГА-6 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA7_UgolRK = new PiramidaRecord(2, 3, 507, "ГА-7 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA8_UgolRK = new PiramidaRecord(2, 3, 508, "ГА-8 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA9_UgolRK = new PiramidaRecord(2, 3, 509, "ГА-9 Угол открытия  РК");
+		public static PiramidaRecord MBW_GA10_UgolRK = new PiramidaRecord(2, 3, 510, "ГА-10 Угол открытия  РК");
+
+		public static PiramidaRecord MBW_GA1_Napor = new PiramidaRecord(2, 3, 601, "ГА-1 Напор");
+		public static PiramidaRecord MBW_GA2_Napor = new PiramidaRecord(2, 3, 602, "ГА-2 Напор");
+		public static PiramidaRecord MBW_GA3_Napor = new PiramidaRecord(2, 3, 603, "ГА-3 Напор");
+		public static PiramidaRecord MBW_GA4_Napor = new PiramidaRecord(2, 3, 604, "ГА-4 Напор");
+		public static PiramidaRecord MBW_GA5_Napor = new PiramidaRecord(2, 3, 605, "ГА-5 Напор");
+		public static PiramidaRecord MBW_GA6_Napor = new PiramidaRecord(2, 3, 606, "ГА-6 Напор");
+		public static PiramidaRecord MBW_GA7_Napor = new PiramidaRecord(2, 3, 607, "ГА-7 Напор");
+		public static PiramidaRecord MBW_GA8_Napor = new PiramidaRecord(2, 3, 608, "ГА-8 Напор");
+		public static PiramidaRecord MBW_GA9_Napor = new PiramidaRecord(2, 3, 609, "ГА-9 Напор");
+		public static PiramidaRecord MBW_GA10_Napor = new PiramidaRecord(2, 3, 610, "ГА-10 Напор");
+
+
+
+		public static PiramidaRecord MB_I_SHSV_220 = new PiramidaRecord(2, 3, 0, "Ток ШСВ 220");
+		public static PiramidaRecord MB_I_SHSV_110 = new PiramidaRecord(2, 3, 2, "Ток ШСВ 110");
+		public static PiramidaRecord MB_U_1SH_220 = new PiramidaRecord(2, 3, 6, "U 1 с.ш. 220");
+		public static PiramidaRecord MB_F_1SH_220 = new PiramidaRecord(2, 3, 8, "F 1 с.ш. 220");
+		public static PiramidaRecord MB_U_1SH_110 = new PiramidaRecord(2, 3, 10, "U 1 с.ш. 110");
+		public static PiramidaRecord MB_F_1SH_110 = new PiramidaRecord(2, 3, 12, "F 1 с.ш. 110");
+		public static PiramidaRecord MB_U_2SH_220 = new PiramidaRecord(2, 3, 18, "U 2 с.ш. 220");
+		public static PiramidaRecord MB_F_2SH_220 = new PiramidaRecord(2, 3, 20, "F 2 с.ш. 220");
+		public static PiramidaRecord MB_U_2SH_110 = new PiramidaRecord(2, 3, 22, "U 2 с.ш. 110");
+		public static PiramidaRecord MB_F_2SH_110 = new PiramidaRecord(2, 3, 24, "F 2 с.ш. 110");
+		public static PiramidaRecord MB_I_Izhevsk1_220 = new PiramidaRecord(2, 3, 30, "I Иж-1 220");
+		public static PiramidaRecord MB_P_Izhevsk1_220 = new PiramidaRecord(2, 3, 32, "P Иж-1 220");
+		public static PiramidaRecord MB_Q_Izhevsk1_220 = new PiramidaRecord(2, 3, 34, "Q Иж-1 220");
+		public static PiramidaRecord MB_I_Izhevsk2_220 = new PiramidaRecord(2, 3, 48, "I Иж-2 220");
+		public static PiramidaRecord MB_P_Izhevsk2_220 = new PiramidaRecord(2, 3, 50, "P Иж-2 220");
+		public static PiramidaRecord MB_Q_Izhevsk2_220 = new PiramidaRecord(2, 3, 52, "Q Иж-2 220");
+		public static PiramidaRecord MB_I_Kauchuk1_220 = new PiramidaRecord(2, 3, 66, "I Кау-1 220");
+		public static PiramidaRecord MB_P_Kauchuk1_220 = new PiramidaRecord(2, 3, 68, "P Кау-1 220");
+		public static PiramidaRecord MB_Q_Kauchuk1_220 = new PiramidaRecord(2, 3, 70, "Q Кау-1 220");
+		public static PiramidaRecord MB_I_Kauchuk2_220 = new PiramidaRecord(2, 3, 84, "I Кау-2 220");
+		public static PiramidaRecord MB_P_Kauchuk2_220 = new PiramidaRecord(2, 3, 86, "P Кау-2 220");
+		public static PiramidaRecord MB_Q_Kauchuk2_220 = new PiramidaRecord(2, 3, 88, "Q Кау-2 220");
+		public static PiramidaRecord MB_P_GES_Zad = new PiramidaRecord(2, 3, 91, "Задание P");
+
+		public static PiramidaRecord MB_I_Svetlaya_220 = new PiramidaRecord(2, 3, 102, "I Светлая 220");
+		public static PiramidaRecord MB_P_Svetlaya_220 = new PiramidaRecord(2, 3, 104, "P Светлая 220");
+		public static PiramidaRecord MB_Q_Svetlaya_220 = new PiramidaRecord(2, 3, 106, "Q Светлая 220");
+		public static PiramidaRecord MB_I_OVV_220 = new PiramidaRecord(2, 3, 120, "I OBB 220");
+		public static PiramidaRecord MB_P_OVV_220 = new PiramidaRecord(2, 3, 122, "P OBB 220");
+		public static PiramidaRecord MB_Q_OVV_220 = new PiramidaRecord(2, 3, 124, "Q OBB 220");
+		public static PiramidaRecord MB_I_2AT_220 = new PiramidaRecord(2, 3, 138, "I 2AT 220");
+		public static PiramidaRecord MB_P_2AT_220 = new PiramidaRecord(2, 3, 140, "P 2AT 220");
+		public static PiramidaRecord MB_Q_2AT_220 = new PiramidaRecord(2, 3, 142, "Q 2AT 220");
+		public static PiramidaRecord MB_I_3AT_220 = new PiramidaRecord(2, 3, 156, "I 3AT 220");
+		public static PiramidaRecord MB_P_3AT_220 = new PiramidaRecord(2, 3, 158, "P 3AT 220");
+		public static PiramidaRecord MB_Q_3AT_220 = new PiramidaRecord(2, 3, 160, "Q 3AT 220");
+		public static PiramidaRecord MB_I_4T_220 = new PiramidaRecord(2, 3, 174, "I 4T 220");
+		public static PiramidaRecord MB_P_4T_220 = new PiramidaRecord(2, 3, 176, "P 4T 220");
+		public static PiramidaRecord MB_Q_4T_220 = new PiramidaRecord(2, 3, 178, "Q 4T 220");
+		public static PiramidaRecord MB_I_56AT_220 = new PiramidaRecord(2, 3, 192, "I 5,6 AT 220");
+		public static PiramidaRecord MB_P_56AT_220 = new PiramidaRecord(2, 3, 194, "P 5,6 AT 220");
+		public static PiramidaRecord MB_Q_56AT_220 = new PiramidaRecord(2, 3, 196, "Q 5,6 AT 220");
+		public static PiramidaRecord MB_GA1_Rashod = new PiramidaRecord(2, 3, 238, "Г1 Расход");
+		public static PiramidaRecord MB_GA1_Napor = new PiramidaRecord(2, 3, 230, "Г1 Напор");
+		public static PiramidaRecord MB_GA1_Irotor = new PiramidaRecord(2, 3, 210, "Г1 Ток ротора");
+		public static PiramidaRecord MB_GA1_P = new PiramidaRecord(2, 3, 216, "Г1 Активная мощность");
+		public static PiramidaRecord MB_GA1_Q = new PiramidaRecord(2, 3, 218, "Г1 Реактивная мощность");
+		public static PiramidaRecord MB_GA1_IstatorA = new PiramidaRecord(2, 3, 220, "Г1 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA1_IstatorB = new PiramidaRecord(2, 3, 222, "Г1 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA1_IstatorC = new PiramidaRecord(2, 3, 224, "Г1 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA2_Rashod = new PiramidaRecord(2, 3, 288, "Г2 Расход");
+		public static PiramidaRecord MB_GA2_Napor = new PiramidaRecord(2, 3, 280, "Г2 Напор");
+		public static PiramidaRecord MB_GA2_Irotor = new PiramidaRecord(2, 3, 260, "Г2 Ток ротора");
+		public static PiramidaRecord MB_GA2_P = new PiramidaRecord(2, 3, 266, "Г2 Активная мощность");
+		public static PiramidaRecord MB_GA2_Q = new PiramidaRecord(2, 3, 268, "Г2 Реактивная мощность");
+		public static PiramidaRecord MB_GA2_IstatorA = new PiramidaRecord(2, 3, 270, "Г2 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA2_IstatorB = new PiramidaRecord(2, 3, 272, "Г2 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA2_IstatorC = new PiramidaRecord(2, 3, 274, "Г2 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA3_Rashod = new PiramidaRecord(2, 3, 338, "Г3 Расход");
+		public static PiramidaRecord MB_GA3_Napor = new PiramidaRecord(2, 3, 330, "Г3 Напор");
+		public static PiramidaRecord MB_GA3_Irotor = new PiramidaRecord(2, 3, 310, "Г3 Ток ротора");
+		public static PiramidaRecord MB_GA3_P = new PiramidaRecord(2, 3, 316, "Г3 Активная мощность");
+		public static PiramidaRecord MB_GA3_Q = new PiramidaRecord(2, 3, 318, "Г3 Реактивная мощность");
+		public static PiramidaRecord MB_GA3_IstatorA = new PiramidaRecord(2, 3, 320, "Г3 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA3_IstatorB = new PiramidaRecord(2, 3, 322, "Г3 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA3_IstatorC = new PiramidaRecord(2, 3, 324, "Г3 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA4_Rashod = new PiramidaRecord(2, 3, 388, "Г4 Расход");
+		public static PiramidaRecord MB_GA4_Napor = new PiramidaRecord(2, 3, 380, "Г4 Напор");
+		public static PiramidaRecord MB_GA4_Irotor = new PiramidaRecord(2, 3, 360, "Г4 Ток ротора");
+		public static PiramidaRecord MB_GA4_P = new PiramidaRecord(2, 3, 366, "Г4 Активная мощность");
+		public static PiramidaRecord MB_GA4_Q = new PiramidaRecord(2, 3, 368, "Г4 Реактивная мощность");
+		public static PiramidaRecord MB_GA4_IstatorA = new PiramidaRecord(2, 3, 370, "Г4 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA4_IstatorB = new PiramidaRecord(2, 3, 372, "Г4 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA4_IstatorC = new PiramidaRecord(2, 3, 374, "Г4 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA5_Rashod = new PiramidaRecord(2, 3, 438, "Г5 Расход");
+		public static PiramidaRecord MB_GA5_Napor = new PiramidaRecord(2, 3, 430, "Г5 Напор");
+		public static PiramidaRecord MB_GA5_Irotor = new PiramidaRecord(2, 3, 410, "Г5 Ток ротора");
+		public static PiramidaRecord MB_GA5_P = new PiramidaRecord(2, 3, 416, "Г5 Активная мощность");
+		public static PiramidaRecord MB_GA5_Q = new PiramidaRecord(2, 3, 418, "Г5 Реактивная мощность");
+		public static PiramidaRecord MB_GA5_IstatorA = new PiramidaRecord(2, 3, 420, "Г5 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA5_IstatorB = new PiramidaRecord(2, 3, 422, "Г5 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA5_IstatorC = new PiramidaRecord(2, 3, 424, "Г5 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA6_Rashod = new PiramidaRecord(2, 3, 488, "Г6 Расход");
+		public static PiramidaRecord MB_GA6_Napor = new PiramidaRecord(2, 3, 480, "Г6 Напор");
+		public static PiramidaRecord MB_GA6_Irotor = new PiramidaRecord(2, 3, 460, "Г6 Ток ротора");
+		public static PiramidaRecord MB_GA6_P = new PiramidaRecord(2, 3, 466, "Г6 Активная мощность");
+		public static PiramidaRecord MB_GA6_Q = new PiramidaRecord(2, 3, 468, "Г1 Реактивная мощность");
+		public static PiramidaRecord MB_GA6_IstatorA = new PiramidaRecord(2, 3, 470, "Г6 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA6_IstatorB = new PiramidaRecord(2, 3, 472, "Г6 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA6_IstatorC = new PiramidaRecord(2, 3, 474, "Г6 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA7_Rashod = new PiramidaRecord(2, 3, 538, "Г7 Расход");
+		public static PiramidaRecord MB_GA7_Napor = new PiramidaRecord(2, 3, 530, "Г7 Напор");
+		public static PiramidaRecord MB_GA7_Irotor = new PiramidaRecord(2, 3, 510, "Г7 Ток ротора");
+		public static PiramidaRecord MB_GA7_P = new PiramidaRecord(2, 3, 516, "Г7 Активная мощность");
+		public static PiramidaRecord MB_GA7_Q = new PiramidaRecord(2, 3, 518, "Г7 Реактивная мощность");
+		public static PiramidaRecord MB_GA7_IstatorA = new PiramidaRecord(2, 3, 520, "Г7 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA7_IstatorB = new PiramidaRecord(2, 3, 522, "Г7 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA7_IstatorC = new PiramidaRecord(2, 3, 524, "Г7 Ток статора, фаза С");
+
+		public static PiramidaRecord MB_VB_Sgl = new PiramidaRecord(2, 3, 548, "Верхний бьеф сгл.");
+		public static PiramidaRecord MB_NB_Sgl = new PiramidaRecord(2, 3, 550, "Нижний бьеф сгл.");
+		public static PiramidaRecord MB_Napor_Sgl = new PiramidaRecord(2, 3, 552, "Напор сгл.");
+
+		public static PiramidaRecord MB_GA8_Rashod = new PiramidaRecord(2, 3, 588, "Г8 Расход");
+		public static PiramidaRecord MB_GA8_Napor = new PiramidaRecord(2, 3, 580, "Г8 Напор");
+		public static PiramidaRecord MB_GA8_Irotor = new PiramidaRecord(2, 3, 560, "Г8 Ток ротора");
+		public static PiramidaRecord MB_GA8_P = new PiramidaRecord(2, 3, 566, "Г8 Активная мощность");
+		public static PiramidaRecord MB_GA8_Q = new PiramidaRecord(2, 3, 568, "Г8 Реактивная мощность");
+		public static PiramidaRecord MB_GA8_IstatorA = new PiramidaRecord(2, 3, 570, "Г8 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA8_IstatorB = new PiramidaRecord(2, 3, 572, "Г8 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA8_IstatorC = new PiramidaRecord(2, 3, 574, "Г8 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA8_NaporZad = new PiramidaRecord(2, 3, 580, "Г8 Контроль напора");
+		public static PiramidaRecord MB_GA9_Rashod = new PiramidaRecord(2, 3, 638, "Г9 Расход");
+		public static PiramidaRecord MB_GA9_Napor = new PiramidaRecord(2, 3, 630, "Г9 Напор");
+		public static PiramidaRecord MB_GA9_Irotor = new PiramidaRecord(2, 3, 610, "Г9 Ток ротора");
+		public static PiramidaRecord MB_GA9_P = new PiramidaRecord(2, 3, 616, "Г9 Активная мощность");
+		public static PiramidaRecord MB_GA9_Q = new PiramidaRecord(2, 3, 618, "Г9 Реактивная мощность");
+		public static PiramidaRecord MB_GA9_IstatorA = new PiramidaRecord(2, 3, 620, "Г9 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA9_IstatorB = new PiramidaRecord(2, 3, 622, "Г9 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA9_IstatorC = new PiramidaRecord(2, 3, 624, "Г9 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA9_NaporZad = new PiramidaRecord(2, 3, 630, "Г9 Контроль напора");
+		public static PiramidaRecord MB_GA10_Rashod = new PiramidaRecord(2, 3, 688, "Г10 Расход");
+		public static PiramidaRecord MB_GA10_Napor = new PiramidaRecord(2, 3, 680, "Г10 Напор");
+		public static PiramidaRecord MB_GA10_Irotor = new PiramidaRecord(2, 3, 660, "Г10 Ток ротора");
+		public static PiramidaRecord MB_GA10_P = new PiramidaRecord(2, 3, 666, "Г10 Активная мощность");
+		public static PiramidaRecord MB_GA10_Q = new PiramidaRecord(2, 3, 668, "Г10 Реактивная мощность");
+		public static PiramidaRecord MB_GA10_IstatorA = new PiramidaRecord(2, 3, 670, "Г10 Ток статора, фаза А");
+		public static PiramidaRecord MB_GA10_IstatorB = new PiramidaRecord(2, 3, 672, "Г10 Ток статора, фаза В");
+		public static PiramidaRecord MB_GA10_IstatorC = new PiramidaRecord(2, 3, 674, "Г10 Ток статора, фаза С");
+		public static PiramidaRecord MB_GA10_NaporZad = new PiramidaRecord(2, 3, 680, "Г10 Контроль напора");
+
+		public static PiramidaRecord MB_Rashod = new PiramidaRecord(2, 3, 708, "Расход воды (Q) ГЭС");
+		public static PiramidaRecord MB_RashodCalc = new PiramidaRecord(2, 30, 4, "Расход воды (Q) ГЭС расч");
+		public static PiramidaRecord MB_T = new PiramidaRecord(2, 3, 746, "Температура наружного воздуха");
+		public static PiramidaRecord MB_P_GES = new PiramidaRecord(2, 3, 750, "Суммарная Р ГЭС");
+		public static PiramidaRecord MB_Q_GES = new PiramidaRecord(2, 3, 764, "Суммарная Q ГЭС");
+
+		public static PiramidaRecord MB_I_KSHT1_110 = new PiramidaRecord(2, 3, 810, "I КШТ-1 110КВ");
+		public static PiramidaRecord MB_P_KSHT1_110 = new PiramidaRecord(2, 3, 812, "P КШТ-1 110КВ");
+		public static PiramidaRecord MB_Q_KSHT1_110 = new PiramidaRecord(2, 3, 814, "Q КШТ-1 110КВ");
+		public static PiramidaRecord MB_I_KSHT2_110 = new PiramidaRecord(2, 3, 820, "I КШТ-2 110КВ");
+		public static PiramidaRecord MB_P_KSHT2_110 = new PiramidaRecord(2, 3, 822, "P КШТ-2 110КВ");
+		public static PiramidaRecord MB_Q_KSHT2_110 = new PiramidaRecord(2, 3, 824, "Q КШТ-2 110КВ");
+		public static PiramidaRecord MB_I_Kauchuk_110 = new PiramidaRecord(2, 3, 830, "I Каучук 110КВ");
+		public static PiramidaRecord MB_P_Kauchuk_110 = new PiramidaRecord(2, 3, 832, "P Каучук 110КВ");
+		public static PiramidaRecord MB_Q_Kauchuk_110 = new PiramidaRecord(2, 3, 834, "Q Каучук 110КВ");
+		public static PiramidaRecord MB_I_TEC_110 = new PiramidaRecord(2, 3, 840, "I ЧаТЭЦ 110 кВ");
+		public static PiramidaRecord MB_P_TEC_110 = new PiramidaRecord(2, 3, 842, "P ЧаТЭЦ 110 кВ");
+		public static PiramidaRecord MB_Q_TEC_110 = new PiramidaRecord(2, 3, 844, "Q ЧаТЭЦ 110 кВ");
+		public static PiramidaRecord MB_I_Berezovka_110 = new PiramidaRecord(2, 3, 850, "I Березовка 110 кВ");
+		public static PiramidaRecord MB_P_Berezovka_110 = new PiramidaRecord(2, 3, 852, "P Березовка 110 кВ");
+		public static PiramidaRecord MB_Q_Berezovka_110 = new PiramidaRecord(2, 3, 854, "Q Березовка 110 кВ");
+		public static PiramidaRecord MB_I_Dubovaya_110 = new PiramidaRecord(2, 3, 860, "I Дубовая 110 кВ");
+		public static PiramidaRecord MB_P_Dubovaya_110 = new PiramidaRecord(2, 3, 862, "P Дубовая 110 кВ");
+		public static PiramidaRecord MB_Q_Dubovaya_110 = new PiramidaRecord(2, 3, 864, "Q Дубовая 110 кВ");
+		public static PiramidaRecord MB_I_Vodozabor1_110 = new PiramidaRecord(2, 3, 870, "I Водозабор 1 - 110 кВ");
+		public static PiramidaRecord MB_P_Vodozabor1_110 = new PiramidaRecord(2, 3, 872, "P Водозабор 1 - 110 кВ");
+		public static PiramidaRecord MB_Q_Vodozabor1_110 = new PiramidaRecord(2, 3, 874, "Q Водозабор 1 - 110 кВ");
+		public static PiramidaRecord MB_I_Vodozabor2_110 = new PiramidaRecord(2, 3, 880, "I Водозабор 2 - 110 кВ");
+		public static PiramidaRecord MB_P_Vodozabor2_110 = new PiramidaRecord(2, 3, 882, "P Водозабор 2 - 110 кВ");
+		public static PiramidaRecord MB_Q_Vodozabor2_110 = new PiramidaRecord(2, 3, 884, "Q Водозабор 2 - 110 кВ");
+		public static PiramidaRecord MB_I_Svetlaya_110 = new PiramidaRecord(2, 3, 890, "I Светлая 110 кВ");
+		public static PiramidaRecord MB_P_Svetlaya_110 = new PiramidaRecord(2, 3, 892, "P Светлая 110 кВ");
+		public static PiramidaRecord MB_Q_Svetlaya_110 = new PiramidaRecord(2, 3, 894, "Q Светлая 110 кВ");
+		public static PiramidaRecord MB_I_Ivanovka_110 = new PiramidaRecord(2, 3, 900, "I Ивановка 110 кВ");
+		public static PiramidaRecord MB_P_Ivanovka_110 = new PiramidaRecord(2, 3, 902, "P Ивановка 110 кВ");
+		public static PiramidaRecord MB_Q_Ivanovka_110 = new PiramidaRecord(2, 3, 904, "Q Ивановка 110 кВ");
+		public static PiramidaRecord MB_I_OVV_110 = new PiramidaRecord(2, 3, 910, "I ОВВ 110 кВ");
+		public static PiramidaRecord MB_P_OVV_110 = new PiramidaRecord(2, 3, 912, "P ОВВ 110 кВ");
+		public static PiramidaRecord MB_Q_OVV_110 = new PiramidaRecord(2, 3, 914, "Q ОВВ 110 кВ");
+		public static PiramidaRecord MB_I_Emelino_500 = new PiramidaRecord(2, 3, 930, "I Емелино 500 кВ");
+		public static PiramidaRecord MB_P_Emelino_500 = new PiramidaRecord(2, 3, 932, "P Емелино 500 кВ");
+		public static PiramidaRecord MB_Q_Emelino_500 = new PiramidaRecord(2, 3, 934, "Q Емелино 500 кВ");
+		public static PiramidaRecord MB_U_Emelino_500 = new PiramidaRecord(2, 3, 936, "U Емелино 500 кВ");
+		public static PiramidaRecord MB_F_Emelino_500 = new PiramidaRecord(2, 3, 938, "F Емелино 500 кВ");
+		public static PiramidaRecord MB_I_Karmanovo_500 = new PiramidaRecord(2, 3, 940, "I Карманово 500 кВ");
+		public static PiramidaRecord MB_P_Karmanovo_500 = new PiramidaRecord(2, 3, 942, "P Карманово 500 кВ");
+		public static PiramidaRecord MB_Q_Karmanovo_500 = new PiramidaRecord(2, 3, 944, "Q Карманово 500 кВ");
+		public static PiramidaRecord MB_U_Karmanovo_500 = new PiramidaRecord(2, 3, 946, "U Карманово 500 кВ");
+		public static PiramidaRecord MB_F_Karmanovo_500 = new PiramidaRecord(2, 3, 948, "F Карманово 500 кВ");
+		public static PiramidaRecord MB_I_Vyatka_500 = new PiramidaRecord(2, 3, 950, "I Вятка 500 кВ");
+		public static PiramidaRecord MB_P_Vyatka_500 = new PiramidaRecord(2, 3, 952, "P Вятка 500 кВ");
+		public static PiramidaRecord MB_Q_Vyatka_500 = new PiramidaRecord(2, 3, 954, "Q Вятка 500 кВ");
+		public static PiramidaRecord MB_U_Vyatka_500 = new PiramidaRecord(2, 3, 956, "U Вятка 500 кВ");
+		public static PiramidaRecord MB_F_Vyatka_500 = new PiramidaRecord(2, 3, 958, "F Вятка 500 кВ");
+		public static PiramidaRecord MB_I_1T_110 = new PiramidaRecord(2, 3, 970, "I ВВ 1Т 110 кВ");
+		public static PiramidaRecord MB_P_1T_110 = new PiramidaRecord(2, 3, 972, "P ВВ 1Т 110 кВ");
+		public static PiramidaRecord MB_Q_1T_110 = new PiramidaRecord(2, 3, 974, "Q ВВ 1Т 110 кВ");
+		public static PiramidaRecord MB_I_56AT_110 = new PiramidaRecord(2, 3, 980, "I ВВ 5,6АТ 110 кВ");
+		public static PiramidaRecord MB_P_56AT_110 = new PiramidaRecord(2, 3, 982, "P ВВ 5,6АТ 110 кВ");
+		public static PiramidaRecord MB_Q_56AT_110 = new PiramidaRecord(2, 3, 984, "Q ВВ 5,6АТ 110 кВ");
+		public static PiramidaRecord MB_I_2AT_500 = new PiramidaRecord(2, 3, 990, "I ВВ 2АТ 500 кВ");
+		public static PiramidaRecord MB_P_2AT_500 = new PiramidaRecord(2, 3, 992, "P ВВ 2АТ 500 кВ");
+		public static PiramidaRecord MB_Q_2AT_500 = new PiramidaRecord(2, 3, 994, "Q ВВ 2АТ 500 кВ");
+		public static PiramidaRecord MB_I_3AT_500 = new PiramidaRecord(2, 3, 1000, "I ВВ 3АТ 500 кВ");
+		public static PiramidaRecord MB_P_3AT_500 = new PiramidaRecord(2, 3, 1002, "P ВВ 3АТ 500 кВ");
+		public static PiramidaRecord MB_Q_3AT_500 = new PiramidaRecord(2, 3, 1004, "Q ВВ 3АТ 500 кВ");
 
 		/*
 		=СЦЕПИТЬ("public static PiramidaRecord MB";[@Addr];"=new PiramidaRecord(2, 3,"; [@Addr];", """;[@Name];""");")
 		 * */
 
 
-		static void PiramidaRecord(){
+		static void PiramidaRecord() {
 
 		}
 

@@ -4,17 +4,14 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace VotGES.Piramida.Report
-{
-	public class FullReportRoot
-	{
+namespace VotGES.Piramida.Report {
+	public class FullReportRoot {
 		public FullReportRecord RootMain { get; set; }
 		public FullReportRecord RootLines { get; set; }
 		public FullReportRecord RootSN { get; set; }
 	}
 
-	public class FullReportRecord : INotifyPropertyChanged
-	{
+	public class FullReportRecord : INotifyPropertyChanged {
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void NotifyChanged(string propName) {
 			if (PropertyChanged != null)
@@ -39,8 +36,7 @@ namespace VotGES.Piramida.Report
 	}
 
 
-	public class FullReportInitData
-	{
+	public class FullReportInitData {
 		public FullReportRecord RootMain { get; set; }
 		public FullReportRecord RootLines { get; set; }
 		public FullReportRecord RootSN { get; set; }
@@ -52,7 +48,7 @@ namespace VotGES.Piramida.Report
 
 
 		protected void CreateMain() {
-			FullReportRecord record,childRecord;
+			FullReportRecord record, childRecord;
 			RootMain = GetFullReportRecord("Воткинская ГЭС", "votGES");
 			record = RootMain.addChild(GetFullReportRecord("Основные параметры", "mainParams"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GES));
@@ -77,7 +73,7 @@ namespace VotGES.Piramida.Report
 			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_OVER_GTP1));
 			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_OVER_GTP2));
 
-			childRecord = record.addChild(GetFullReportRecord("Генераторы","qga"));
+			childRecord = record.addChild(GetFullReportRecord("Генераторы", "qga"));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Water_Q_GA1));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Water_Q_GA2));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Water_Q_GA3));
@@ -125,14 +121,14 @@ namespace VotGES.Piramida.Report
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.Q_GA1));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA1_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA1_Otd));
-			
+
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.P_GA2));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA2_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA2_Otd));
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.Q_GA2));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA2_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA2_Otd));
-			
+
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.P_GA3));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA3_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA3_Otd));
@@ -191,10 +187,10 @@ namespace VotGES.Piramida.Report
 		}
 
 		protected void CreateLines() {
-			FullReportRecord record,childRecord, child2,rec0;
+			FullReportRecord record, childRecord, child2, rec0;
 			RootLines = GetFullReportRecord("ВЛ", "VL");
 
-			rec0 = RootLines.addChild(GetFullReportRecord("P ВЛ","pvl"));
+			rec0 = RootLines.addChild(GetFullReportRecord("P ВЛ", "pvl"));
 
 			record = rec0.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_Saldo));
 			childRecord = record.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_Priem));
@@ -468,7 +464,7 @@ namespace VotGES.Piramida.Report
 		}
 
 		protected void CreateSN() {
-			FullReportRecord record,childRecord, child2;
+			FullReportRecord record, childRecord, child2;
 			RootSN = GetFullReportRecord("СН", "SN");
 
 
@@ -485,7 +481,7 @@ namespace VotGES.Piramida.Report
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_Vozb_GA9_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_Vozb_GA10_Priem));
 
-			childRecord=record.addChild(GetFullReportRecord(ReportGARecords.P_SN_GA));
+			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.P_SN_GA));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_11T_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_12T_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_13T_Priem));
@@ -515,7 +511,7 @@ namespace VotGES.Piramida.Report
 
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_7T_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_8T_Priem));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_9T_Priem));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_9T_Priem));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_1N));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_21T));
@@ -529,9 +525,9 @@ namespace VotGES.Piramida.Report
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_27T));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_28T));
 
-            child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_5N));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_25T));    
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_26T));            
+			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_5N));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_25T));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_26T));
 
 			child2 = childRecord.addChild(GetFullReportRecord(ReportSNRecords.P_SN_7N));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_KRU1_31T));
@@ -557,98 +553,98 @@ namespace VotGES.Piramida.Report
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_1VS_N1));
 			child2.addChild(GetFullReportRecord(PiramidaRecords.P_2VS_N1));
 
-            child2 = childRecord.addChild(GetFullReportRecord("Р Емелино","rEmelino"));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_priem));
+			child2 = childRecord.addChild(GetFullReportRecord("Р Емелино", "rEmelino"));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Emelino_priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Emelino_priem));
 
-            child2 = childRecord.addChild(GetFullReportRecord("Р Вятка", "rVyatka"));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_priem));
-            child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_priem));
-            
+			child2 = childRecord.addChild(GetFullReportRecord("Р Вятка", "rVyatka"));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.P_R500_Vyatka_priem));
+			child2.addChild(GetFullReportRecord(PiramidaRecords.Q_R500_Vyatka_priem));
+
 
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TVI));
-            child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_TP1));
-            child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TP2));
+			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_TP1));
+			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TP2));
 
-            record = RootSN.addChild(GetFullReportRecord("МБ Вода", "mbw"));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_GES_Rash));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_VB));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_NB));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_Napor));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_Temp));
-            record.addChild(GetFullReportRecord(PiramidaRecords.MBW_TempShit));
+			record = RootSN.addChild(GetFullReportRecord("МБ Вода", "mbw"));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_GES_Rash));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_VB));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_NB));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_Napor));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_Temp));
+			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_TempShit));
 
-            childRecord = record.addChild(GetFullReportRecord("Расходы ГА","gaRash"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Rash));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Rash));
+			childRecord = record.addChild(GetFullReportRecord("Расходы ГА", "gaRash"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Rash));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Rash));
 
-            childRecord = record.addChild(GetFullReportRecord("P ГА", "gaP"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_P));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_P));
+			childRecord = record.addChild(GetFullReportRecord("P ГА", "gaP"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_P));
 
-            childRecord = record.addChild(GetFullReportRecord("Q ГА", "gaQ"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Q));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Q));
+			childRecord = record.addChild(GetFullReportRecord("Q ГА", "gaQ"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Q));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Q));
 
-            childRecord = record.addChild(GetFullReportRecord("Открытие НА", "gaOtkrNA"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_OtkrNA));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_OtkrNA));
+			childRecord = record.addChild(GetFullReportRecord("Открытие НА", "gaOtkrNA"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_OtkrNA));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_OtkrNA));
 
-            childRecord = record.addChild(GetFullReportRecord("Угол РК", "gaUgolRK"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_UgolRK));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_UgolRK));
+			childRecord = record.addChild(GetFullReportRecord("Угол РК", "gaUgolRK"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_UgolRK));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_UgolRK));
 
-            childRecord = record.addChild(GetFullReportRecord("Напор", "gaNapor"));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Napor));
-            childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Napor));
+			childRecord = record.addChild(GetFullReportRecord("Напор", "gaNapor"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Napor));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Napor));
 
 			record = RootSN.addChild(GetFullReportRecord("МБ", "mb"));
 			record.addChild(GetFullReportRecord(ReportMBRecords.MB_GA1_Istator));
@@ -859,7 +855,7 @@ namespace VotGES.Piramida.Report
 
 
 		public static FullReportRecord GetFullReportRecord(string title, string id) {
-			FullReportRecord record=new FullReportRecord();
+			FullReportRecord record = new FullReportRecord();
 			record.Title = title;
 			record.Key = id;
 			record.Selectable = false;
@@ -868,7 +864,7 @@ namespace VotGES.Piramida.Report
 		}
 
 		public static FullReportRecord GetFullReportRecord(RecordTypeCalc record, string title = null) {
-			FullReportRecord rec=new FullReportRecord();
+			FullReportRecord rec = new FullReportRecord();
 			rec.Title = String.IsNullOrEmpty(title) ? record.Title : title;
 			rec.Key = record.ID;
 			rec.Selectable = true;
@@ -877,7 +873,7 @@ namespace VotGES.Piramida.Report
 		}
 
 		public static FullReportRecord GetFullReportRecord(PiramidaRecord record, string title = null) {
-			FullReportRecord rec=new FullReportRecord();
+			FullReportRecord rec = new FullReportRecord();
 			rec.Title = String.IsNullOrEmpty(title) ? record.Title : title;
 			rec.Key = record.Key;
 			rec.Selectable = true;
