@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<VotGES.Piramida.Report.PuskStopReport>" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<VotGES.Piramida.OgranGA.OgranGAReport>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -97,108 +97,70 @@
 			<th>Пусков</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
 				<td>
-					<%=Model.Data[ga].CountPusk.ToString("0") %>
+					<%=Model.sumData[ga].cntPusk.ToString("0") %>
 				</td>
 			<%} %>
 			<td>
-				<%=Model.SumRecord.CountPusk.ToString("0") %> 
+				<%=Model.sumRecord.cntPusk.ToString("0") %> 
 			</td>
 		</tr>
 		<tr>
 			<th>Остановов</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
 				<td>
-					<%=Model.Data[ga].CountStop.ToString("0") %>
+					<%=Model.sumData[ga].cntStop.ToString("0") %>
 				</td>
 			<%} %>
 			<td>
-				<%=Model.SumRecord.CountStop.ToString("0") %>
+				<%=Model.sumRecord.cntStop.ToString("0") %>
 			</td>
 		</tr>
-		<tr>
-			<th>Пусков-переводов в ГР </th>
-			<%for (int ga=1; ga <= 10; ga++) {
-				if (ga <= 2 || ga >= 9) {%>
-					<td>
-						<%=Model.Data[ga].CountPuskGen.ToString("0")%> 
-					</td>
-				<%} else {%>
-					<td>&nbsp;</td>
-				<%}
-			} %>
-			<td>
-				<%=Model.SumRecord.CountPuskGen.ToString("0") %> 
-			</td>
-		</tr>
-		<tr>
-			<th>Пусков-переводов в  СК</th>
-			<%for (int ga=1; ga <= 10; ga++) {
-				if (ga <= 2 || ga >= 9) {%>
-					<td>						
-						<%=Model.Data[ga].CountPuskSK.ToString("0")%>
-					</td>
-				<%} else {%>
-					<td>&nbsp;</td>
-				<%}
-			} %>
-			<td>
-				<%=Model.SumRecord.CountPuskSK.ToString("0") %>
-			</td>
-		</tr>		
 			
-		<tr>
-			<th>Время работы в ГР</th>
-			<%for (int ga=1; ga <= 10; ga++) {
-				if (ga <= 2 || ga >= 9) {%>
-					<td>						
-						<%=Model.Data[ga].HoursGenStr%>
-					</td>
-				<%} else {%>
-					<td>&nbsp;</td>
-				<%}
-			} %>
-			<td>
-				&nbsp;
-			</td>
-		</tr>			
-
-		<tr>
-			<th>Время работы в СК</th>
-			<%for (int ga=1; ga <= 10; ga++) {
-				if (ga <= 2 || ga >= 9) {%>
-					<td>						
-						<%=Model.Data[ga].HoursSKStr%>
-					</td>
-				<%} else {%>
-					<td>&nbsp;</td>
-				<%}
-			} %>
-			<td>
-				&nbsp;
-			</td>
-		</tr>			
-
 		<tr>
 			<th>Время работы</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
 				<td>
-					<%=Model.Data[ga].HoursWorkStr %>
+					<%=Model.sumData[ga].TimeRunStr %>
 				</td>
 			<%} %>
 			<td>
-				&nbsp;
+				<%=Model.sumRecord.TimeRunStr %>
+			</td>
+		</tr>	
+        
+        <tr>
+			<th>Время СК</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeSKStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeSKStr %>
 			</td>
 		</tr>
 
-		<tr>
-			<th>Время простоя</th>
+        <tr>
+			<th>Время ХХТ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
 				<td>
-					<%=Model.Data[ga].HoursStayStr %>
+					<%=Model.sumData[ga].TimeHHTStr %>
 				</td>
 			<%} %>
 			<td>
-				&nbsp;
+				<%=Model.sumRecord.TimeHHTStr %>
+			</td>
+		</tr>	
+
+        <tr>
+			<th>Время ХХГ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeHHGStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeHHGStr %>
 			</td>
 		</tr>
 

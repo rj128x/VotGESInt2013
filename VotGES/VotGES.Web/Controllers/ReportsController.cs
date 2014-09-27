@@ -13,6 +13,7 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System.Text;
 using System.Threading;
+using VotGES.OgranGA;
 
 namespace VotGES.Web.Controllers
 {
@@ -74,6 +75,19 @@ namespace VotGES.Web.Controllers
 				}
 			}
 			return View("FullReport", report);
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult PuskStop(int year1, int month1, int day1, int year2, int month2, int day2) {
+			DateTime dateStart = new DateTime(year1, month1, day1);
+			DateTime dateEnd = new DateTime(year2, month2, day2);
+			dateEnd = dateEnd > DateTime.Now.AddHours(-2) ? DateTime.Now.AddHours(-2) : dateEnd;
+			Logger.Info(String.Format("Пуски-остановы с {0} по {1}", dateStart, dateEnd));
+			OgranGAReport report = new OgranGAReport(dateStart, dateEnd);
+			report.readSumData();
+
+
+			return View("PuskStop", report);
 		}
 
 	}
