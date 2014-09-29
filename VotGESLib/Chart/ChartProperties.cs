@@ -23,6 +23,7 @@ namespace VotGES.Chart
 		public bool Marker { get; set; }
 		public int YAxisIndex { get; set; }
 		public bool AllowHigh { get; set; }
+		public bool HideInLegend { get; set; }
 
 
 		public ChartSerieProperties() {

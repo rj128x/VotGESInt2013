@@ -12,6 +12,7 @@ namespace VotGES.Web.Services {
 	using VotGES.Piramida.Report;
 	using VotGES.Chart;
 	using VotGES.Rashod;
+	using VotGES.OgranGA;
 
 
 
@@ -50,6 +51,15 @@ namespace VotGES.Web.Services {
 			//answer.ChartAnswer.Data.addSerie(answer.CurrentData);
 			
 			return answer;
+		}
+
+		public ChartAnswer getPuskStopFull(DateTime dateStart, DateTime dateEnd) {
+			PuskStopFullReport report = new PuskStopFullReport();
+			report.DateStart = dateStart;
+			report.DateEnd = dateEnd;
+			report.ReadData();
+			return report.createChart();
+
 		}
 	}
 }

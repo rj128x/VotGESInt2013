@@ -67,6 +67,15 @@ namespace MainSL.Views
 			FloatWindow.OpenWindow(uri);
 		}
 
+		private void btnGetPuskStopFull_Click(object sender, RoutedEventArgs e) {
+			ReportSettings.DateTimeStartEnd des = ReportSettings.DateTimeStartEnd.getBySettings(SettingsControl.Settings);
+			PuskStopGAFull window = new PuskStopGAFull();
+			window.DateStart = des.DateStart;
+			window.DateEnd = des.DateEnd;
+			window.Show();
+			window.refresh();
+		}
+
 
 
 

@@ -230,6 +230,16 @@ namespace MainSL.Views
 			}catch{}
 		}
 
+		private void LegendGrid_LoadingRow(object sender, DataGridRowEventArgs e) {
+			if (e.Row != null) {
+				var row = e.Row.DataContext;
+				var serie = row as VisibloxChartSerie;
+				if (serie.Props.HideInLegend) {
+					(e.Row as DataGridRow).Visibility = Visibility.Collapsed;
+				}
+			}
+		}
+
 
 	}
 }

@@ -20,7 +20,7 @@ namespace VotGES.OgranGA {
 
 		public Dictionary<int,List<PuskStopFullRecord>> FullData { get; set; }
 
-
+		
 
 		protected void processData(int ga, List<PiramidaEnrty> prevData, List<PiramidaEnrty> data) {
 			Dictionary<OgranGARecord.ITEM_ENUM, PuskStopFullRecord> tempData=new Dictionary<OgranGARecord.ITEM_ENUM,PuskStopFullRecord>();
@@ -75,11 +75,41 @@ namespace VotGES.OgranGA {
 			}
 		}
 
-		public ChartAnswer createChart() {
+		public ChartAnswer createChart() {			
 			ChartAnswer answer = new ChartAnswer();
+			answer.Data = new ChartData();
+
+			ChartProperties props = new ChartProperties();
+			props.XAxisType = XAxisTypeEnum.datetime;
+			props.XValueFormatString = "dd.MM HH";
+			ChartAxisProperties yAx = new ChartAxisProperties();
+			yAx.Auto = false;
+			yAx.Index = 0;
+			yAx.Min = 0;
+			yAx.Max = 11;
+			props.addAxis(yAx);			
+
 			for (int ga = 1; ga <= 10; ga++) {
-				
+				ChartSerieProperties serie = new ChartSerieProperties();
+				serie.Color = ChartColor.GetColorStr(System.Drawing.Color.Green);
+				serie.SerieType = ChartSerieType.stepLine;
+				serie.TagName = "ga" + ga;
+				serie.Title = "ГА-" + ga;
+				props.Series.Add(serie);
+
+
+				ChartDataSerie data = new ChartDataSerie();
+				data.Name = "ga" + ga;
+				foreach (PuskStopFullRecord rec in FullData[ga]) {
+					if (rec.ItemType == OgranGARecord.ITEM_ENUM.rezRun) {
+						data.Points.Add(new ChartDataPoint(rec.DateStart, 0.5));
+						data.Points.Add(new ChartDataPoint(rec.DateEnd, 0));
+					}
+				}
+				answer.Data.addSerie(data);
 			}
+
+			answer.Properties = props;
 			return answer;
 		}
 	}

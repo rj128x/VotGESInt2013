@@ -34,6 +34,7 @@ namespace MainSL {
 		public string TagName { get; protected set; }
 		public ChartSeriesBase Serie { get; protected set; }
 		public object SeriesData;
+		public ChartSerieProperties Props { get; protected set; }
 
 
 		public int SerieIndex { get; protected set; }
@@ -193,6 +194,7 @@ namespace MainSL {
 			Name = serieProp.Title;
 			SerieType = serieProp.SerieType;
 			Brush tr = new SolidColorBrush(Colors.Transparent);
+			Props = serieProp;
 
 			Serie = null;
 			Brush br = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
