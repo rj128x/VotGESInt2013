@@ -100,58 +100,71 @@ namespace MainSL.Views {
 			double wid = imgHar.ActualWidth;
 			double hei = imgHar.ActualHeight;
 			
-			double left = wid * 0.055;
-			double top = hei * 0.025;
-			double bot = hei * 0.89;
-			double right = wid * 0.975;
+			double left = 0;
+			double top = 0;
+			double bot = hei;
+			double right = wid;
 
 			switch (ga) {
 				case 1:
+					left = wid * 0.065;
+					top = hei * 0.044;
+					bot = hei * 0.887;
+					right = wid * 0.957;
 					break;
 				case 2:
-					top = hei * 0.05;
+					left = wid * 0.058;
+					top = hei * 0.035;
+					bot = hei * 0.894;
+					right = wid * 0.9632;
 					break;
 				case 3:
-					top = hei * 0.05;
-					bot = hei * 0.89;
+					left = wid * 0.0598;
+					top = hei * 0.056;
+					bot = hei * 0.888;
+					right = wid * 0.969;
 					break;
 				case 4:
-					left = wid * 0.06;
-					top = hei * 0.05;
-					bot = hei * 0.89;
+					left = wid * 0.059;
+					top = hei * 0.056;
+					bot = hei * 0.876;
+					right = wid * 0.967;
 					break;
 				case 5:
-					left = wid * 0.055;
-					top = hei * 0.05;
-					bot = hei * 0.88;
-					right = wid * 0.97;
+					left = wid * 0.062;
+					top = hei * 0.051;
+					bot = hei * 0.875;
+					right = wid * 0.970;
 					break;
 				case 6:
-					left = wid * 0.06;
-					top = hei * 0.05;
-					bot = hei * 0.89;
-					right = wid * 0.97;
+					left = wid * 0.060;
+					top = hei * 0.045;
+					bot = hei * 0.888;
+					right = wid * 0.962;
 					break;
 				case 7:
-					left = wid * 0.06;
-					top = hei * 0.05;
-					bot = hei * 0.90;
-					right = wid * 0.97;
+					left = wid * 0.063;
+					top = hei * 0.062;
+					bot = hei * 0.899;
+					right = wid * 0.966;
 					break;
 				case 8:
-					top = hei * 0.06;
-					bot = hei * 0.88;
+					left = wid * 0.060;
+					top = hei * 0.057;
+					bot = hei * 0.841;
+					right = wid * 0.969;
 					break;
 				case 9:
-					left = wid * 0.06;
-					top = hei * 0.035;
-					bot = hei * 0.90;
+					left = wid * 0.066;
+					top = hei * 0.031;
+					bot = hei * 0.892;
+					right = wid * 0.963;
 					break;
 				case 10:
-					left = wid * 0.06;
-					top = hei * 0.03;
-					bot = hei * 0.90;
-					right = wid * 0.98;
+					left = wid * 0.070;
+					top = hei * 0.036;
+					bot = hei * 0.893;
+					right = wid * 0.953;
 					break;
 			}			
 

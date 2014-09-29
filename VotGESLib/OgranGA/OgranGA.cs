@@ -37,7 +37,7 @@ namespace VotGES.OgranGA {
 		protected string getTimeSTR(double time) {
 			int hours = (int)(time / 60.0);
 			int min = (int)(time - hours * 60);
-			return String.Format("{0}ч{1}мин", hours, min);
+			return String.Format("{0}:{1}", hours, min);
 		}
 
 		public void processStr() {
@@ -77,6 +77,8 @@ namespace VotGES.OgranGA {
 		protected static OgranGARecord calcOgran(DateTime dateStart, DateTime dateEnd, int gaNumber, List<PiramidaEnrty> data) {
 			OgranGARecord result = new OgranGARecord();
 			result.GA = gaNumber;
+			result.dateStart = dateStart;
+			result.dateEnd = dateEnd;
 
 			double timeSKToEnd = 0;
 			double timeGenToEnd = 0;
@@ -86,19 +88,30 @@ namespace VotGES.OgranGA {
 			double timeAfterMaxToEnd = 0;
 			double timeLessMinToEnd = 0;
 
+			bool processedPuskStop = false;
+			bool processedSK = false;
+			bool processedHHT = false;
+			bool processedHHG = false;
+			bool processedAfterMax = false;
+			bool processedLessMin = false;
+			bool processedGen = false;
+
 			foreach (PiramidaEnrty record in data) {
 				double diffFromStart = OgranGARecord.dateDiff(dateStart, record.Date);
 				double addTime = 0;
 				int addCnt = 0;
 				double timeToEnd = 0;
+
 				if (record.Value0 == 0) {
 					if (record.Value1 > diffFromStart)
 						addTime += diffFromStart;
 					else
 						addTime += record.Value1;
-				} else {
+				}
+				else {
 					addCnt++;
 					timeToEnd = OgranGARecord.dateDiff(record.Date, dateEnd);
+					addTime = 0;
 				}
 
 				OgranGARecord.ITEM_ENUM itemType = OgranGARecord.getItemType(record.Item);
@@ -107,31 +120,139 @@ namespace VotGES.OgranGA {
 						result.timeAfterMax += addTime;
 						result.cntAfterMax += addCnt;
 						timeAfterMaxToEnd = timeToEnd;
+						processedAfterMax = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.pLessMin):
 						result.timeLessMin += addTime;
 						result.cntLessMin += addCnt;
 						timeLessMinToEnd = timeToEnd;
+						processedLessMin = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezGen):
 						result.timeGen += addTime;
 						timeGenToEnd += timeToEnd;
+						processedGen = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezHHG):
 						result.timeHHG += addTime;
 						timeHHGToEnd = timeToEnd;
+						processedHHG = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezHHT):
 						result.timeHHT += addTime;
 						timeHHTToEnd = timeToEnd;
+						processedHHT = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezRun):
-						result.cntStop += addCnt;
-						result.cntPusk += (1 - addCnt);
+						result.cntStop += (1 - addCnt);
+						result.cntPusk += addCnt;
 						timeRunToEnd = timeToEnd;
+						processedPuskStop = true;
 						break;
 				}
 			}
+
+
+
+			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
+			List<int> items = new List<int>();
+			for (int h = 1; h <= 7; h++) {
+				items.Add(h * 100 + gaNumber);
+			}
+
+			SqlConnection connection = PiramidaAccess.getConnection("PSV");
+			SqlCommand command = connection.CreateCommand();
+			command.Parameters.AddWithValue("@date", dateStart);
+			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=30 and parnumber=13 and data_date<@date and item={0} order by data_date desc ";
+			List<string> cmdParts = new List<string>();
+			try {
+				connection.Open();
+				
+				foreach (int item in items) {
+					command.CommandText = String.Format(cmdFormat, item);
+					SqlDataReader reader = command.ExecuteReader();
+
+					while (reader.Read()) {
+						PiramidaEnrty rec = new PiramidaEnrty();
+						rec.Date = reader.GetDateTime(0);
+						rec.Item = reader.GetInt32(1);						
+						rec.Value0 = reader.GetDouble(2);
+						prevData.Add(rec);
+					}
+					reader.Close();
+				}
+
+			}
+			finally {
+				try { command.Dispose(); }
+				catch { }
+				try { connection.Close(); }
+				catch { }
+			}
+
+			//Logger.Info(cmdText);
+
+
+
+			double timefull = OgranGARecord.dateDiff(dateStart, dateEnd);
+			foreach (PiramidaEnrty rec in prevData) {
+				if (rec.Item % 100 == gaNumber) {
+					OgranGARecord.ITEM_ENUM itemType = OgranGARecord.getItemType(rec.Item);
+					switch (itemType) {
+						case OgranGARecord.ITEM_ENUM.pAfterMax:
+							if (!processedAfterMax) {
+								if (rec.Value0 > 0) {
+									result.timeAfterMax = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.pLessMin:
+							if (!processedLessMin) {
+								if (rec.Value0 > 0) {
+									result.timeLessMin = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.rezGen:
+							if (!processedGen) {
+								if (rec.Value0 > 0) {
+									result.timeGen = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.rezHHG:
+							if (!processedHHG) {
+								if (rec.Value0 > 0) {
+									result.timeHHG = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.rezHHT:
+							if (!processedHHT) {
+								if (rec.Value0 > 0) {
+									result.timeHHT = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.rezRun:
+							if (!processedPuskStop) {
+								if (rec.Value0 > 0) {
+									result.timeRun = timefull;
+								}
+							}
+							break;
+						case OgranGARecord.ITEM_ENUM.rezSK:
+							if (!processedSK) {
+								if (rec.Value0 > 0) {
+									result.timeSK = timefull;
+								}
+							}
+							break;
+					}
+				}
+			}
+
+
 
 			result.timeAfterMax += timeAfterMaxToEnd;
 			result.timeLessMin += timeLessMinToEnd;
@@ -156,6 +277,9 @@ namespace VotGES.OgranGA {
 
 			DateTime date = dateStart.AddHours(0);
 			List<PiramidaEnrty> smallData = new List<PiramidaEnrty>();
+
+
+
 			while (date < dateEnd) {
 				DateTime de = date.AddMinutes(minutes);
 				foreach (PiramidaEnrty rec in data) {
@@ -163,6 +287,7 @@ namespace VotGES.OgranGA {
 						smallData.Add(rec);
 				}
 				OgranGARecord resultRecord = calcOgran(date, de, gaNumber, smallData);
+
 				smallData.Clear();
 				result.Add(resultRecord);
 
@@ -214,8 +339,8 @@ namespace VotGES.OgranGA {
 				index = 0;
 				foreach (OgranGARecord record in data) {
 					string insert = string.Format(dataFormat, record.dateStart.ToString(DBInfo.DateFormat), record.dateEnd.ToString(DBInfo.DateFormat),
-						  record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
-						  record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG);
+							record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
+							record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG);
 					insertList.Add(insert);
 					if (index == 20 || record == data.Last()) {
 						command.CommandText = insertStr + " \n " + String.Join(" \nUNION ALL\n ", insertList);
@@ -225,9 +350,12 @@ namespace VotGES.OgranGA {
 						index = 0;
 					}
 				}
-			} finally {
-				try { command.Dispose(); } catch { }
-				try { connection.Close(); } catch { }
+			}
+			finally {
+				try { command.Dispose(); }
+				catch { }
+				try { connection.Close(); }
+				catch { }
 			}
 		}
 

@@ -9,20 +9,18 @@ using VotGES.Rashod;
 using VotGES.OgranGA;
 using VotGES.XMLSer;
 
-namespace ClearDB
-{
+namespace ClearDB {
 
 
-	class Program
-	{
+	class Program {
 
 		protected static DateTime getDate(string ds, bool minutes = false) {
 			DateTime date;
-			bool ok=DateTime.TryParse(ds, out date);
+			bool ok = DateTime.TryParse(ds, out date);
 			if (!ok) {
-				int hh=0;
+				int hh = 0;
 				ok = Int32.TryParse(ds, out hh);
-				DateTime now=DateTime.Now;
+				DateTime now = DateTime.Now;
 				date = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0);
 				date = !minutes ? date.AddHours(-hh) : date.AddMinutes(-hh).AddMinutes(DateTime.Now.Minute);
 			}
@@ -36,28 +34,28 @@ namespace ClearDB
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;
 
-			string ds=args[0];
-			string de=args[1];
-			string task=args[2];
-			string nameLog=task;
+			string ds = args[0];
+			string de = args[1];
+			string task = args[2];
+			string nameLog = task;
 
 			Logger.InitFileLogger(Settings.single.LogPath, nameLog);
 
-			DateTime dateStart=getDate(ds, task == "copy4");
-			DateTime dateEnd=getDate(de, task == "copy4");
+			DateTime dateStart = getDate(ds, task == "copy4");
+			DateTime dateEnd = getDate(de, task == "copy4");
 
 			Logger.Info("======================================================================================");
 			Logger.Info(task);
-			if ((new string[] { "copy4", "copy12", "copy212","copy204" }).Contains(task)) {
+			if ((new string[] { "copy4", "copy12", "copy212", "copy204" }).Contains(task)) {
 				Logger.Info("Find lastDate");
-				List<int> pn4=(new int[] { 4 }).ToList();
-				List<int> pn12=(new int[] { 12 }).ToList();
-				List<int> pn212=(new int[] { 212 }).ToList();
-				List<int> pn204=(new int[] { 204 }).ToList();
-				List<int> pn=pn12;
-				DateTime dts=dateStart;
-				int minutes=30;
-				string db="P3000";
+				List<int> pn4 = (new int[] { 4 }).ToList();
+				List<int> pn12 = (new int[] { 12 }).ToList();
+				List<int> pn212 = (new int[] { 212 }).ToList();
+				List<int> pn204 = (new int[] { 204 }).ToList();
+				List<int> pn = pn12;
+				DateTime dts = dateStart;
+				int minutes = 30;
+				string db = "P3000";
 				switch (task) {
 					case "copy4":
 						pn = pn4;
@@ -84,24 +82,25 @@ namespace ClearDB
 						minutes = 30;
 						break;
 				}
-				DateTime dt=CopyData.getLastDate(dts, dateStart, pn, db, minutes);
+				DateTime dt = CopyData.getLastDate(dts, dateStart, pn, db, minutes);
 				if (dt < dateStart) {
 					dateStart = dt;
 				}
 			}
 
-			DateTime date=dateStart.AddMinutes(0);						
+			DateTime date = dateStart.AddMinutes(0);
 
 			if (task == "sutVed") {
 				SutVed.ProcessFolder(Settings.single.SutVedPath, Settings.single.SutVedPathTo);
-			} else {
-				double hh=24;
+			}
+			else {
+				double hh = 24;
 				while (date <= dateEnd) {
 					switch (task) {
 						case "clear3000":
 							hh = 24;
 							ClearDB.Clear(date, date.AddHours(hh), "P3000");
-							break;						
+							break;
 						case "clearMin":
 							hh = 24;
 							ClearDB.Clear(date, date.AddHours(hh), "PMin");
@@ -138,10 +137,10 @@ namespace ClearDB
 							hh = 4;
 							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 204 }).ToList(), "PMin");
 							break;
-                        case "processOgran":
-                            hh = 4;
-                            OgranGA.processData(date, date.AddHours(hh), 30);
-                            break;
+						case "processOgran":
+							hh = 4;
+							OgranGA.processData(date, date.AddHours(hh), 30);
+							break;
 					}
 					date = date.AddHours(hh);
 				}

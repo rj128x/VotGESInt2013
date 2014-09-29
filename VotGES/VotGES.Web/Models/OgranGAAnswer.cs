@@ -60,21 +60,41 @@ namespace VotGES.Web.Models {
 				int itemP = 200 + ga;
 				List<int> items = new List<int>() { 200 + ga, 100 + ga, 400 + ga, 500 + ga, 600 + ga };
 				ChartDataSerie data = new ChartDataSerie();
-				List<PiramidaEnrty> currentData = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-2), DateTime.Now.AddHours(-2).AddMinutes(-50), 3, 2, 4, items, false, true, "PMin");
+				List<PiramidaEnrty> currentData = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-2).AddMinutes(-180), DateTime.Now.AddHours(-2), 3, 2, 4, items, false, true, "PMin");
+
+				List<DateTime> dates = new List<DateTime>();
+				Dictionary<DateTime, double> currentDBPs = new Dictionary<DateTime, double>();
+				Dictionary<DateTime, double> currentDBNs = new Dictionary<DateTime, double>();
 				foreach (PiramidaEnrty rec in currentData) {
-					if (rec.Item == 200 + ga)
+					if (rec.Item == 200 + ga) {
 						CurrentP = rec.Value0;
+						currentDBPs.Add(rec.Date,CurrentP);
+					}
 					if (rec.Item == 100 + ga)
 						CurrentRashod = rec.Value0;
 					if (rec.Item == 400 + ga)
 						CurrentOtkrNA = rec.Value0;
 					if (rec.Item == 500 + ga)
 						CurrentUgolRK = rec.Value0;
-					if (rec.Item == 600 + ga)
+					if (rec.Item == 600 + ga) {
 						CurrentNapor = rec.Value0;
-					data.Points.Add(new ChartDataPoint(CurrentP, CurrentNapor));
+						currentDBNs.Add(rec.Date, CurrentNapor);
+					}									
+					
 				}
-				CurrentKPD = RashodTable.KPD(CurrentP, CurrentNapor, CurrentRashod);
+
+				double p = double.NaN;
+				double n = double.NaN;
+				foreach (KeyValuePair<DateTime, double> de in currentDBPs) {					
+					if (currentDBNs.ContainsKey(de.Key)) {
+						if (double.IsNaN(p) || double.IsNaN(n) || (Math.Abs(p - de.Value) > 0.5) || (Math.Abs(currentDBNs[de.Key] - n) > 0.1)) {
+							data.Points.Add(new ChartDataPoint(de.Value, currentDBNs[de.Key]));
+						}
+						p = de.Value;
+						n = currentDBNs[de.Key];
+					}
+				}
+				CurrentKPD = RashodTable.KPD(CurrentP, CurrentNapor, CurrentRashod)*100;
 				data.Name = "dataWork";
 				CurrentData = data;
 
