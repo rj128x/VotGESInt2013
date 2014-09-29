@@ -21,7 +21,7 @@ namespace VotGES.Piramida.Report
 			ReportMBRecords.AddCalcRecords(this, true, false, ResultTypeEnum.avg);
 
 
-			RecordTypeDB vbAvg=new RecordTypeDB(PiramidaRecords.MB_VB_Sgl, parNumber: pn, visible: true, toChart: false, divParam: 1, multParam: 1, resultType: ResultTypeEnum.avg, dbOper: DBOperEnum.avg);
+			/*RecordTypeDB vbAvg=new RecordTypeDB(PiramidaRecords.MB_VB_Sgl, parNumber: pn, visible: true, toChart: false, divParam: 1, multParam: 1, resultType: ResultTypeEnum.avg, dbOper: DBOperEnum.avg);
 			vbAvg.ID = "VB_AVG";			
 			RecordTypeDB nbAvg=new RecordTypeDB(PiramidaRecords.MB_NB_Sgl, parNumber: pn, visible: true, toChart: false, divParam: 1, multParam: 1, resultType: ResultTypeEnum.avg, dbOper: DBOperEnum.avg);
 			nbAvg.ID = "NB_AVG";
@@ -82,7 +82,7 @@ namespace VotGES.Piramida.Report
 			this.AddRecordType(rashodMax);
 			this.AddRecordType(tMax);
 			this.AddRecordType(naporMax);
-			this.AddRecordType(pMax);
+			this.AddRecordType(pMax);*/
 	
 		}
 

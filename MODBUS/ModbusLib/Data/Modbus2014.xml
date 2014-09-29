@@ -25,17 +25,17 @@
 	<ParNumberDiff>13</ParNumberDiff>
 	
 	<Data>
-    <ModbusInitData ID='GES_Rash' Addr='708' Name='Расход воды ГЭС' Scale='1'    Item='1'/>
+    <ModbusInitData ID='GES_Rash' Addr='708' Name='Расход воды ГЭС' Scale='1'    Item='1'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='GES_Rash_FLAG' Addr='709' Scale='1'/>
-    <ModbusInitData ID='VB' Addr='548' Name='Верхний бьеф сгл.' Scale='0.01'   Item='2'/>
+    <ModbusInitData ID='VB' Addr='548' Name='Верхний бьеф сгл.' Scale='0.01'   Item='2'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='VB_FLAG' Addr='549' Scale='1'/>
-    <ModbusInitData ID='NB' Addr='550' Name='Нижний бьеф сгл.' Scale='0.01'   Item='3'/>
+    <ModbusInitData ID='NB' Addr='550' Name='Нижний бьеф сгл.' Scale='0.01'   Item='3'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='NB_FLAG' Addr='551' Scale='1'/>
-    <ModbusInitData ID='Napor' Addr='552' Name='Напор сглаженный' Scale='0.01'  Item='4'/>
+    <ModbusInitData ID='Napor' Addr='552' Name='Напор сглаженный' Scale='0.01'  Item='4'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='Napor_FLAG' Addr='553' Scale='1'/>
-    <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'   Item='5'/>
+    <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'   Item='5'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='Temp_FLAG' Addr='747' Scale='1'/>
-    <ModbusInitData ID='TempShit' Addr='746' Name='Температура щитовых сооружений' Scale='1'   Item='6'/>
+    <ModbusInitData ID='TempShit' Addr='746' Name='Температура щитовых сооружений' Scale='1'   Item='6'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='TempShit_FLAG' Addr='747' Scale='1'/>
     
 		<ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='101' WriteToDBHH='1' WriteToDBMin='1'/>
@@ -101,25 +101,25 @@
     <ModbusInitData ID='GA10_Q' Addr='902' Name='Г10 Q' Scale='1'   Item='310' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA10_Q_FLAG' Addr='900' Scale='1' FlagBit='2'/>
 
-    <ModbusInitData ID='GA1_OtrkNA' Addr='6' Name='Г1 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='401' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA1_OtrkNA' Addr='6' Name='Г1 Открытие направляющего аппарата' Scale='0.1'   Item='401' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA1_OtrkNA_FLAG' Addr='0' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA2_OtrkNA' Addr='106' Name='Г2 Открытие направляющего аппарата' Scale='0.001' Add='-10' Item='402' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA2_OtrkNA' Addr='106' Name='Г2 Открытие направляющего аппарата' Scale='0.1'  Item='402' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA2_OtrkNA_FLAG' Addr='100' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA3_OtrkNA' Addr='206' Name='Г3 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='403' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA3_OtrkNA' Addr='206' Name='Г3 Открытие направляющего аппарата' Scale='0.1'   Item='403' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA3_OtrkNA_FLAG' Addr='200' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA4_OtrkNA' Addr='306' Name='Г4 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='404' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA4_OtrkNA' Addr='306' Name='Г4 Открытие направляющего аппарата' Scale='0.1'   Item='404' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA4_OtrkNA_FLAG' Addr='300' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA5_OtrkNA' Addr='406' Name='Г5 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='405' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA5_OtrkNA' Addr='406' Name='Г5 Открытие направляющего аппарата' Scale='0.1'   Item='405' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA5_OtrkNA_FLAG' Addr='400' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA6_OtrkNA' Addr='506' Name='Г6 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='406' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA6_OtrkNA' Addr='506' Name='Г6 Открытие направляющего аппарата' Scale='0.1'   Item='406' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA6_OtrkNA_FLAG' Addr='500' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA7_OtrkNA' Addr='606' Name='Г7 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='407' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA7_OtrkNA' Addr='606' Name='Г7 Открытие направляющего аппарата' Scale='0.1'   Item='407' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA7_OtrkNA_FLAG' Addr='600' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA8_OtrkNA' Addr='706' Name='Г8 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='408' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA8_OtrkNA' Addr='706' Name='Г8 Открытие направляющего аппарата' Scale='0.1'   Item='408' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA8_OtrkNA_FLAG' Addr='700' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA9_OtrkNA' Addr='806' Name='Г9 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='409' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA9_OtrkNA' Addr='806' Name='Г9 Открытие направляющего аппарата' Scale='0.1'   Item='409' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA9_OtrkNA_FLAG' Addr='800' Scale='1' FlagBit='6'/>
-    <ModbusInitData ID='GA10_OtrkNA' Addr='906' Name='Г10 Открытие направляющего аппарата' Scale='0.001' Add='-10'  Item='410' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA10_OtrkNA' Addr='906' Name='Г10 Открытие направляющего аппарата' Scale='0.1'   Item='410' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA10_OtrkNA_FLAG' Addr='900' Scale='1' FlagBit='6'/>
 
     <ModbusInitData ID='GA1_UgolRK' Addr='7' Name='Г1 Угол открытия  РК' Scale='0.001' Add='-10'  Item='501' WriteToDBHH='1' WriteToDBMin='1'/>

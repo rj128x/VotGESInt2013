@@ -18,7 +18,7 @@
 						SelectedDate="{Binding Date, Mode=TwoWay}"/>
 				<Button Content="Получить суточную ведомость" Name="btnGetReport"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
-							  Click="btnGetReport_Click"/>
+							  Click="btnGetReport_Click" Visibility="Collapsed"/>
 					<Button Content="Получить ПБР" Name="btnGetPBR"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnGetPBR_Click"/>

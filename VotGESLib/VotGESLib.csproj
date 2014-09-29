@@ -71,6 +71,7 @@
     <Compile Include="OgranGA\KapRemontsData.cs" />
     <Compile Include="OgranGA\OgranGA.cs" />
     <Compile Include="OgranGA\OgranGAReport.cs" />
+    <Compile Include="OgranGA\PuskStopFullReport.cs" />
     <Compile Include="PBR\GraphVyrab.cs" />
     <Compile Include="PBR\PBRData.cs" />
     <Compile Include="PBR\PBRDataHH.cs" />

@@ -74,6 +74,46 @@ namespace VotGES.OgranGA {
 	}
 
 	public class OgranGA {
+		public static List<PiramidaEnrty> GetPrevData(DateTime dateStart, int gaNumber) {
+			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
+			List<int> items = new List<int>();
+			for (int h = 1; h <= 7; h++) {
+				items.Add(h * 100 + gaNumber);
+			}
+
+			SqlConnection connection = PiramidaAccess.getConnection("PSV");
+			SqlCommand command = connection.CreateCommand();
+			command.Parameters.AddWithValue("@date", dateStart);
+			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=30 and parnumber=13 and data_date<@date and item={0} order by data_date desc ";
+			List<string> cmdParts = new List<string>();
+			try {
+				connection.Open();
+
+				foreach (int item in items) {
+					command.CommandText = String.Format(cmdFormat, item);
+					SqlDataReader reader = command.ExecuteReader();
+
+					while (reader.Read()) {
+						PiramidaEnrty rec = new PiramidaEnrty();
+						rec.Date = reader.GetDateTime(0);
+						rec.Item = reader.GetInt32(1);
+						rec.Value0 = reader.GetDouble(2);
+						prevData.Add(rec);
+					}
+					reader.Close();
+				}
+
+			}
+			finally {
+				try { command.Dispose(); }
+				catch { }
+				try { connection.Close(); }
+				catch { }
+			}
+
+			return prevData;
+		}
+
 		protected static OgranGARecord calcOgran(DateTime dateStart, DateTime dateEnd, int gaNumber, List<PiramidaEnrty> data) {
 			OgranGARecord result = new OgranGARecord();
 			result.GA = gaNumber;
@@ -153,42 +193,8 @@ namespace VotGES.OgranGA {
 			}
 
 
-
-			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
-			List<int> items = new List<int>();
-			for (int h = 1; h <= 7; h++) {
-				items.Add(h * 100 + gaNumber);
-			}
-
-			SqlConnection connection = PiramidaAccess.getConnection("PSV");
-			SqlCommand command = connection.CreateCommand();
-			command.Parameters.AddWithValue("@date", dateStart);
-			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=30 and parnumber=13 and data_date<@date and item={0} order by data_date desc ";
-			List<string> cmdParts = new List<string>();
-			try {
-				connection.Open();
-				
-				foreach (int item in items) {
-					command.CommandText = String.Format(cmdFormat, item);
-					SqlDataReader reader = command.ExecuteReader();
-
-					while (reader.Read()) {
-						PiramidaEnrty rec = new PiramidaEnrty();
-						rec.Date = reader.GetDateTime(0);
-						rec.Item = reader.GetInt32(1);						
-						rec.Value0 = reader.GetDouble(2);
-						prevData.Add(rec);
-					}
-					reader.Close();
-				}
-
-			}
-			finally {
-				try { command.Dispose(); }
-				catch { }
-				try { connection.Close(); }
-				catch { }
-			}
+			List<PiramidaEnrty> prevData = GetPrevData(dateStart, gaNumber);
+			
 
 			//Logger.Info(cmdText);
 

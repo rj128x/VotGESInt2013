@@ -140,6 +140,9 @@
     <Compile Include="Views\OgranPage.xaml.cs">
       <DependentUpon>OgranPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PuskStopGAFull.xaml.cs">
+      <DependentUpon>PuskStopGAFull.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportBaseControl.xaml.cs">
       <DependentUpon>ReportBaseControl.xaml</DependentUpon>
     </Compile>
@@ -383,6 +386,12 @@
     <Resource Include="Images\gaHar\ga7.jpg" />
     <Resource Include="Images\gaHar\ga8.jpg" />
     <Resource Include="Images\gaHar\ga9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\PuskStopGAFull.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
