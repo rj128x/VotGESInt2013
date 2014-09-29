@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VotGES.Chart;
 using VotGES.Piramida;
 
 namespace VotGES.OgranGA {
@@ -23,7 +24,6 @@ namespace VotGES.OgranGA {
 
 		protected void processData(int ga, List<PiramidaEnrty> prevData, List<PiramidaEnrty> data) {
 			Dictionary<OgranGARecord.ITEM_ENUM, PuskStopFullRecord> tempData=new Dictionary<OgranGARecord.ITEM_ENUM,PuskStopFullRecord>();
-			FullData[ga] = new List<PuskStopFullRecord>();
 
 			List<PiramidaEnrty> allData=new List<PiramidaEnrty>();
 
@@ -47,6 +47,7 @@ namespace VotGES.OgranGA {
 					newRecord.DateEnd = DateEnd;
 					newRecord.ItemType = item;
 					tempData[item] = newRecord;
+					FullData[ga].Add(newRecord);
 				}
 				else {
 					if (tempData[item] != null) {
@@ -55,8 +56,6 @@ namespace VotGES.OgranGA {
 					tempData[item] = null; 
 				}				
 			}
-
-
 		}
 
 		public void ReadData() {
@@ -74,11 +73,14 @@ namespace VotGES.OgranGA {
 				FullData.Add(ga, new List<PuskStopFullRecord>());
 				processData(ga, PrevData[ga], Data[ga]);
 			}
+		}
 
-
-
-
-
+		public ChartAnswer createChart() {
+			ChartAnswer answer = new ChartAnswer();
+			for (int ga = 1; ga <= 10; ga++) {
+				
+			}
+			return answer;
 		}
 	}
 }
