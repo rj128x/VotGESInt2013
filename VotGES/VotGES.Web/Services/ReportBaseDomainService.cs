@@ -31,7 +31,7 @@ namespace VotGES.Web.Services
 			}
 		}
 
-		public ReportAnswer GetFullReport(List<string> selectedData, string Title, DateTime dateStart, DateTime dateEnd, 
+		public ReportAnswer GetFullReport(List<string> selectedData, List<string>secondCharts, string Title, DateTime dateStart, DateTime dateEnd, 
 			ReportTypeEnum ReportType, FullReportMembersType mbType, bool isChart, bool isTable,bool isExcel,Guid reportID,
 			List<string> TitleList, List<DateTime>DateStartList, List<DateTime>DateEndList, List<FullReportMembersType>MBTypeList) {
 			try {
@@ -62,7 +62,7 @@ namespace VotGES.Web.Services
 					report.CreateAnswerData(reportAddList: reportAddList);
 				}
 				if (isChart) {
-					report.CreateChart(reportAddList);
+					report.CreateChart(reportAddList,secondCharts);					
 				}
 				Logger.Info("Отчет сформирован: ");
 				if (isExcel) {

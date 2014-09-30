@@ -4033,6 +4033,8 @@ namespace VotGES.Piramida.Report
         
         private string _key;
         
+        private bool _secondAxis;
+        
         private bool _selectable;
         
         private bool _selected;
@@ -4052,6 +4054,8 @@ namespace VotGES.Piramida.Report
         partial void OnIsGroupChanged();
         partial void OnKeyChanging(string value);
         partial void OnKeyChanged();
+        partial void OnSecondAxisChanging(bool value);
+        partial void OnSecondAxisChanged();
         partial void OnSelectableChanging(bool value);
         partial void OnSelectableChanged();
         partial void OnSelectedChanging(bool value);
@@ -4139,6 +4143,30 @@ namespace VotGES.Piramida.Report
                     this._key = value;
                     this.RaiseDataMemberChanged("Key");
                     this.OnKeyChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "SecondAxis".
+        /// </summary>
+        [DataMember()]
+        public bool SecondAxis
+        {
+            get
+            {
+                return this._secondAxis;
+            }
+            set
+            {
+                if ((this._secondAxis != value))
+                {
+                    this.OnSecondAxisChanging(value);
+                    this.RaiseDataMemberChanging("SecondAxis");
+                    this.ValidateProperty("SecondAxis", value);
+                    this._secondAxis = value;
+                    this.RaiseDataMemberChanged("SecondAxis");
+                    this.OnSecondAxisChanged();
                 }
             }
         }
@@ -8623,6 +8651,7 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "GetFullReport" службы DomainService.
         /// </summary>
         /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
+        /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
         /// <param name="Title">Значение параметра "Title" для данного действия.</param>
         /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
         /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8641,6 +8670,7 @@ namespace VotGES.Web.Services
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
         public InvokeOperation<ReportAnswer> GetFullReport(
                     IEnumerable<string> selectedData, 
+                    IEnumerable<string> secondCharts, 
                     string Title, 
                     DateTime dateStart, 
                     DateTime dateEnd, 
@@ -8659,6 +8689,7 @@ namespace VotGES.Web.Services
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("selectedData", selectedData);
+            parameters.Add("secondCharts", secondCharts);
             parameters.Add("Title", Title);
             parameters.Add("dateStart", dateStart);
             parameters.Add("dateEnd", dateEnd);
@@ -8680,6 +8711,7 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "GetFullReport" службы DomainService.
         /// </summary>
         /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
+        /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
         /// <param name="Title">Значение параметра "Title" для данного действия.</param>
         /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
         /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8694,10 +8726,11 @@ namespace VotGES.Web.Services
         /// <param name="DateEndList">Значение параметра "DateEndList" для данного действия.</param>
         /// <param name="MBTypeList">Значение параметра "MBTypeList" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ReportAnswer> GetFullReport(IEnumerable<string> selectedData, string Title, DateTime dateStart, DateTime dateEnd, ReportTypeEnum ReportType, FullReportMembersType mbType, bool isChart, bool isTable, bool isExcel, Guid reportID, IEnumerable<string> TitleList, IEnumerable<DateTime> DateStartList, IEnumerable<DateTime> DateEndList, IEnumerable<FullReportMembersType> MBTypeList)
+        public InvokeOperation<ReportAnswer> GetFullReport(IEnumerable<string> selectedData, IEnumerable<string> secondCharts, string Title, DateTime dateStart, DateTime dateEnd, ReportTypeEnum ReportType, FullReportMembersType mbType, bool isChart, bool isTable, bool isExcel, Guid reportID, IEnumerable<string> TitleList, IEnumerable<DateTime> DateStartList, IEnumerable<DateTime> DateEndList, IEnumerable<FullReportMembersType> MBTypeList)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("selectedData", selectedData);
+            parameters.Add("secondCharts", secondCharts);
             parameters.Add("Title", Title);
             parameters.Add("dateStart", dateStart);
             parameters.Add("dateEnd", dateEnd);
@@ -8785,6 +8818,7 @@ namespace VotGES.Web.Services
             /// Асинхронно вызывает операцию "GetFullReport".
             /// </summary>
             /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
+            /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
             /// <param name="Title">Значение параметра "Title" для данного действия.</param>
             /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
             /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8805,6 +8839,7 @@ namespace VotGES.Web.Services
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ReportBaseDomainService/GetFullReport", ReplyAction="http://tempuri.org/ReportBaseDomainService/GetFullReportResponse")]
             IAsyncResult BeginGetFullReport(
                         IEnumerable<string> selectedData, 
+                        IEnumerable<string> secondCharts, 
                         string Title, 
                         DateTime dateStart, 
                         DateTime dateEnd, 

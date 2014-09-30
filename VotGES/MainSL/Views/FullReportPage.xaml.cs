@@ -26,11 +26,13 @@ namespace MainSL.Views
 		FullReportRoot Root { get; set; }
 		ReportBaseDomainContext Context { get; set; }
 		List<String> SelectedValues { get; set; }
+		List<String> SecondAxisValues { get; set; }
 
 		public FullReportPage() {
 			InitializeComponent();
 			Context = new ReportBaseDomainContext();
 			SelectedValues = new List<string>();
+			SecondAxisValues = new List<string>();
 			SettingsControl.Settings.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Settings_PropertyChanged);
 		}
 
@@ -92,6 +94,7 @@ namespace MainSL.Views
 
 		protected void RefreshSelectedValues() {
 			SelectedValues.Clear();
+			SecondAxisValues.Clear();
 			createSelectedList(Root.RootMain);
 			createSelectedList(Root.RootLines);
 			createSelectedList(Root.RootSN);
@@ -101,6 +104,9 @@ namespace MainSL.Views
 			foreach (FullReportRecord child in record.Children) {
 				if (child.Selected) {
 					SelectedValues.Add(child.Key);
+				}
+				if (child.SecondAxis) {
+					SecondAxisValues.Add(child.Key);
 				}
 				if (child.IsGroup) {
 					createSelectedList(child);
@@ -140,7 +146,7 @@ namespace MainSL.Views
 			}
 
 
-			InvokeOperation currentOper=Context.GetFullReport(SelectedValues, des.Title, des.DateStart, des.DateEnd,
+			InvokeOperation currentOper=Context.GetFullReport(SelectedValues,SecondAxisValues, des.Title, des.DateStart, des.DateEnd,
 				SettingsControl.Settings.ReportType, SettingsControl.Settings.MBType,
 				SettingsControl.Settings.IsChart, SettingsControl.Settings.IsTable, SettingsControl.Settings.IsExcel, reportGUID,
 				TitleList, dateStartList, dateEndList, mbTypeList,

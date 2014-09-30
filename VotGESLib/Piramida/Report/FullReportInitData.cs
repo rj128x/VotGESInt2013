@@ -25,6 +25,7 @@ namespace VotGES.Piramida.Report {
 		public bool Selectable { get; set; }
 		protected bool selected;
 		public bool Selected { get { return selected; } set { selected = value; NotifyChanged("Selected"); } }
+		public bool SecondAxis { get; set; }
 
 		public FullReportRecord() { }
 

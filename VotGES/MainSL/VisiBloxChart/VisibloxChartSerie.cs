@@ -37,6 +37,7 @@ namespace MainSL {
 		public ChartSerieProperties Props { get; protected set; }
 
 
+
 		public int SerieIndex { get; protected set; }
 
 		protected int yAxisIndex;

@@ -747,7 +747,10 @@ namespace VotGES.Piramida.Report
 		}
 
 
-		public virtual void CreateChart(List<Report> reportAddList = null) {
+		public virtual void CreateChart(List<Report> reportAddList = null, List<string>secondCharts=null) {
+			if (secondCharts == null) {
+				secondCharts = new List<string>();
+			}
 			Answer.Chart = new ChartAnswer();
 			Answer.Chart.Properties = new ChartProperties();
 			Answer.Chart.Data = new ChartData();
@@ -783,7 +786,7 @@ namespace VotGES.Piramida.Report
 					props.LineWidth = 2;
 					props.Color = ChartColor.GetColorStr(indexColor++);
 					props.SerieType = type;
-					props.YAxisIndex = 0;
+					props.YAxisIndex = secondCharts.Contains(recordType.ID)?1:0;
 					Answer.Chart.Properties.addSerie(props);
 
 					ChartDataSerie data=new ChartDataSerie();
@@ -805,7 +808,7 @@ namespace VotGES.Piramida.Report
 							props.LineWidth = 1;
 							props.Color = ChartColor.GetColorStr(indexColor++);
 							props.SerieType = type;
-							props.YAxisIndex = 0;
+							props.YAxisIndex = secondCharts.Contains(recordType.ID) ? 1 : 0;
 							Answer.Chart.Properties.addSerie(props);
 
 							data = new ChartDataSerie();
