@@ -90,5 +90,45 @@ namespace VotGES.Web.Controllers
 			return View("PuskStop", report);
 		}
 
+		protected VERReport getVERReport(int year, int month, int day) {
+			DateTime dateStart = new DateTime(year, month, day);
+			DateTime dateEnd = dateStart.AddDays(1);
+			Logger.Info(String.Format("ВЭР с {0} по {1}", dateStart, dateEnd));
+			VERReport report = new VERReport(dateStart, dateEnd, IntervalReportEnum.minute);
+			report.ReadData();
+			return report;
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult VERReport(int year, int month, int day) {
+			
+
+			ViewResult view = View("VERReport", getVERReport(year,month,day));			
+			return view;
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]		
+		public ActionResult VERReportToFile(int year, int month, int day) {
+
+			ViewResult view = View("VERReport", getVERReport(year, month, day));
+			Logger.Info(view.ToString());
+			
+			StringBuilder sb = new StringBuilder();
+			StringWriter textwriter = new StringWriter(sb);
+			HtmlTextWriter htmlwriter = new HtmlTextWriter(textwriter);
+
+			Logger.Info("1");
+			ControllerContext cnt = new System.Web.Mvc.ControllerContext();
+			ViewContext cont = new ViewContext(cnt, view.View, view.ViewData, view.TempData, textwriter);
+			Logger.Info("2");
+			view.View.Render(cont, textwriter);
+			Logger.Info("3");
+			string ss = sb.ToString();
+			Logger.Info(ss);
+
+			return view;
+
+		}
+
 	}
 }

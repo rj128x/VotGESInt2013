@@ -25,7 +25,10 @@
 					<Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnPrikaz20_Click"/>
-				</StackPanel>
+                    <Button Content="ВЭР" Name="btnVER"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnVER_Click"/>
+                </StackPanel>
 		</Grid>
 			<Grid Name="pnlReport" Width="300">
 				

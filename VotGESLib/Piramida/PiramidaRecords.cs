@@ -13,6 +13,27 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord P_IKM_Nebalans_GES = new PiramidaRecord(2, 0, 24, "Небаланс по ГЭС");
 		public static PiramidaRecord P_IKM_SP = new PiramidaRecord(2, 0, 52, "Собственное потребление");
 
+
+		public static PiramidaRecord P_IKM_SK = new PiramidaRecord(2, 0, 5, "Режим СК [A+]");
+		public static PiramidaRecord P_IKM_Saldo500Emelino = new PiramidaRecord(2, 0, 15, "Сальдо ВЛ 500кВ Емелино");
+		public static PiramidaRecord P_IKM_Saldo500Karmanovo = new PiramidaRecord(2, 0, 16, "Сальдо ВЛ 500кВ Карманово");
+		public static PiramidaRecord P_IKM_Saldo500Vyatka = new PiramidaRecord(2, 0, 17, "Сальдо ВЛ 500кВ Вятка");
+		public static PiramidaRecord P_IKM_Nebalans_T = new PiramidaRecord(2, 0, 25, "Потери в сетях и трансформаторах");
+		public static PiramidaRecord P_IKM_Nebalans500 = new PiramidaRecord(2, 0, 26, "Баланс СШ 500кВ");
+		public static PiramidaRecord P_IKM_Nebalans220 = new PiramidaRecord(2, 0, 27, "Баланс СШ 220кВ");
+		public static PiramidaRecord P_IKM_Nebalans110 = new PiramidaRecord(2, 0, 28, "Баланс СШ 110кВ");
+		public static PiramidaRecord P_IKM_Nebalans1T = new PiramidaRecord(2, 0, 29, "Баланс 1Т");
+		public static PiramidaRecord P_IKM_Nebalans2AT = new PiramidaRecord(2, 0, 30, "Баланс 2АТ");
+		public static PiramidaRecord P_IKM_Nebalans3AT = new PiramidaRecord(2, 0, 31, "Баланс 3АТ");
+		public static PiramidaRecord P_IKM_Nebalans4T = new PiramidaRecord(2, 0, 32, "Баланс 4Т");
+		public static PiramidaRecord P_IKM_Nebalans56AT = new PiramidaRecord(2, 0, 33, "Баланс 5,6 АТ");
+		public static PiramidaRecord P_IKM_NebalansT = new PiramidaRecord(2, 0, 34, "Баланс в трансформаторах");
+		public static PiramidaRecord P_IKM_NebalansKRU1 = new PiramidaRecord(2, 0, 83, "Небаланс КРУ-1");
+		public static PiramidaRecord P_IKM_NebalansKRU3 = new PiramidaRecord(2, 0, 99, "Небаланс КРУ-3");
+		public static PiramidaRecord P_IKM_NebalansKRU2 = new PiramidaRecord(2, 0, 1705, "Небаланс КРУ-2");
+
+
+
 		public static PiramidaRecord P_3AT_500_Priem = new PiramidaRecord(0, 8739, 1, "3АТ 500 кВ Прием (P)");
 		public static PiramidaRecord P_3AT_500_Otd = new PiramidaRecord(0, 8739, 2, "3АТ 500 кВ Отдача (P)");
 		public static PiramidaRecord Q_3AT_500_Priem = new PiramidaRecord(0, 8739, 3, "3АТ 500 кВ Прием (Q)");

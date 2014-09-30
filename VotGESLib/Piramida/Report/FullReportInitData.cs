@@ -58,6 +58,24 @@ namespace VotGES.Piramida.Report {
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans_GES));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SP));
 
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SK));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Saldo500Emelino));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Saldo500Karmanovo));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Saldo500Vyatka));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans_T));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans500));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans220));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans110));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans1T));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans2AT));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans3AT));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans4T));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans56AT));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansT));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU1));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU2));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU3));
+
 			record = RootMain.addChild(GetFullReportRecord("Вода", "water"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_Napor));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_NB));

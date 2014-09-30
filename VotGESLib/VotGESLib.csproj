@@ -94,6 +94,7 @@
     <Compile Include="Piramida\Report\ReportAdd\ReportGARecords.cs" />
     <Compile Include="Piramida\DBSettings.cs" />
     <Compile Include="Piramida\Report\SutVedReport.cs" />
+    <Compile Include="Piramida\Report\VERReport.cs" />
     <Compile Include="PrognozNB\CheckPrognozNB.cs" />
     <Compile Include="PrognozNB\PrognozNB.cs" />
     <Compile Include="PrognozNB\PrognozNBByPBR.cs" />
