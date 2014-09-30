@@ -25,7 +25,11 @@ namespace VotGES.Piramida.Report {
 		public bool Selectable { get; set; }
 		protected bool selected;
 		public bool Selected { get { return selected; } set { selected = value; NotifyChanged("Selected"); } }
-		public bool SecondAxis { get; set; }
+		public bool Axis1 { get; set; }
+		public bool Axis2 { get; set; }
+		public bool Axis3 { get; set; }
+		public bool Axis4 { get; set; }
+		public bool Axis5 { get; set; }
 
 		public FullReportRecord() { }
 
@@ -683,6 +687,7 @@ namespace VotGES.Piramida.Report {
 			rec.Title = String.IsNullOrEmpty(title) ? record.Title : title;
 			rec.Key = record.ID;
 			rec.Selectable = true;
+			rec.Axis1 = true;
 			rec.Children = new List<FullReportRecord>();
 			return rec;
 		}

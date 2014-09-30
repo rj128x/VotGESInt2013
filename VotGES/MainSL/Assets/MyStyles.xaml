@@ -61,7 +61,15 @@
 			<CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Content="" 
 						 Visibility="{Binding Selectable, Converter={StaticResource visibilityConverter}}"/>
 			<TextBlock Text="{Binding Title}"/>
-            <CheckBox IsChecked="{Binding SecondAxis, Mode=TwoWay}" Content="Y2" Margin="10,0,0,0"
+            <RadioButton IsChecked="{Binding Axis1, Mode=TwoWay}" Content="Y1" Margin="10,0,0,0"
+						 Visibility="{Binding Selected, Converter={StaticResource visibilityConverter}}"/>
+            <RadioButton IsChecked="{Binding Axis2, Mode=TwoWay}"  Content="Y2" 
+						 Visibility="{Binding Selected, Converter={StaticResource visibilityConverter}}"/>
+            <RadioButton IsChecked="{Binding Axis3, Mode=TwoWay}"  Content="Y3" 
+						 Visibility="{Binding Selected, Converter={StaticResource visibilityConverter}}"/>
+            <RadioButton IsChecked="{Binding Axis4, Mode=TwoWay}"  Content="Y4" 
+						 Visibility="{Binding Selected, Converter={StaticResource visibilityConverter}}"/>
+            <RadioButton IsChecked="{Binding Axis5, Mode=TwoWay}"  Content="Y5" 
 						 Visibility="{Binding Selected, Converter={StaticResource visibilityConverter}}"/>
 		</StackPanel>
 	</sdk:HierarchicalDataTemplate>

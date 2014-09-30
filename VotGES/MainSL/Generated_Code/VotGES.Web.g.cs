@@ -4027,13 +4027,21 @@ namespace VotGES.Piramida.Report
     public sealed partial class FullReportRecord : ComplexObject
     {
         
+        private bool _axis1;
+        
+        private bool _axis2;
+        
+        private bool _axis3;
+        
+        private bool _axis4;
+        
+        private bool _axis5;
+        
         private List<FullReportRecord> _children;
         
         private bool _isGroup;
         
         private string _key;
-        
-        private bool _secondAxis;
         
         private bool _selectable;
         
@@ -4048,14 +4056,22 @@ namespace VotGES.Piramida.Report
         /// не может быть использован для последующей настройки объекта.
         /// </summary>
         partial void OnCreated();
+        partial void OnAxis1Changing(bool value);
+        partial void OnAxis1Changed();
+        partial void OnAxis2Changing(bool value);
+        partial void OnAxis2Changed();
+        partial void OnAxis3Changing(bool value);
+        partial void OnAxis3Changed();
+        partial void OnAxis4Changing(bool value);
+        partial void OnAxis4Changed();
+        partial void OnAxis5Changing(bool value);
+        partial void OnAxis5Changed();
         partial void OnChildrenChanging(List<FullReportRecord> value);
         partial void OnChildrenChanged();
         partial void OnIsGroupChanging(bool value);
         partial void OnIsGroupChanged();
         partial void OnKeyChanging(string value);
         partial void OnKeyChanged();
-        partial void OnSecondAxisChanging(bool value);
-        partial void OnSecondAxisChanged();
         partial void OnSelectableChanging(bool value);
         partial void OnSelectableChanged();
         partial void OnSelectedChanging(bool value);
@@ -4072,6 +4088,126 @@ namespace VotGES.Piramida.Report
         public FullReportRecord()
         {
             this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Axis1".
+        /// </summary>
+        [DataMember()]
+        public bool Axis1
+        {
+            get
+            {
+                return this._axis1;
+            }
+            set
+            {
+                if ((this._axis1 != value))
+                {
+                    this.OnAxis1Changing(value);
+                    this.RaiseDataMemberChanging("Axis1");
+                    this.ValidateProperty("Axis1", value);
+                    this._axis1 = value;
+                    this.RaiseDataMemberChanged("Axis1");
+                    this.OnAxis1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Axis2".
+        /// </summary>
+        [DataMember()]
+        public bool Axis2
+        {
+            get
+            {
+                return this._axis2;
+            }
+            set
+            {
+                if ((this._axis2 != value))
+                {
+                    this.OnAxis2Changing(value);
+                    this.RaiseDataMemberChanging("Axis2");
+                    this.ValidateProperty("Axis2", value);
+                    this._axis2 = value;
+                    this.RaiseDataMemberChanged("Axis2");
+                    this.OnAxis2Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Axis3".
+        /// </summary>
+        [DataMember()]
+        public bool Axis3
+        {
+            get
+            {
+                return this._axis3;
+            }
+            set
+            {
+                if ((this._axis3 != value))
+                {
+                    this.OnAxis3Changing(value);
+                    this.RaiseDataMemberChanging("Axis3");
+                    this.ValidateProperty("Axis3", value);
+                    this._axis3 = value;
+                    this.RaiseDataMemberChanged("Axis3");
+                    this.OnAxis3Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Axis4".
+        /// </summary>
+        [DataMember()]
+        public bool Axis4
+        {
+            get
+            {
+                return this._axis4;
+            }
+            set
+            {
+                if ((this._axis4 != value))
+                {
+                    this.OnAxis4Changing(value);
+                    this.RaiseDataMemberChanging("Axis4");
+                    this.ValidateProperty("Axis4", value);
+                    this._axis4 = value;
+                    this.RaiseDataMemberChanged("Axis4");
+                    this.OnAxis4Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Axis5".
+        /// </summary>
+        [DataMember()]
+        public bool Axis5
+        {
+            get
+            {
+                return this._axis5;
+            }
+            set
+            {
+                if ((this._axis5 != value))
+                {
+                    this.OnAxis5Changing(value);
+                    this.RaiseDataMemberChanging("Axis5");
+                    this.ValidateProperty("Axis5", value);
+                    this._axis5 = value;
+                    this.RaiseDataMemberChanged("Axis5");
+                    this.OnAxis5Changed();
+                }
+            }
         }
         
         /// <summary>
@@ -4143,30 +4279,6 @@ namespace VotGES.Piramida.Report
                     this._key = value;
                     this.RaiseDataMemberChanged("Key");
                     this.OnKeyChanged();
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Возвращает или задает значение параметра "SecondAxis".
-        /// </summary>
-        [DataMember()]
-        public bool SecondAxis
-        {
-            get
-            {
-                return this._secondAxis;
-            }
-            set
-            {
-                if ((this._secondAxis != value))
-                {
-                    this.OnSecondAxisChanging(value);
-                    this.RaiseDataMemberChanging("SecondAxis");
-                    this.ValidateProperty("SecondAxis", value);
-                    this._secondAxis = value;
-                    this.RaiseDataMemberChanged("SecondAxis");
-                    this.OnSecondAxisChanged();
                 }
             }
         }
@@ -8651,7 +8763,11 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "GetFullReport" службы DomainService.
         /// </summary>
         /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
-        /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
+        /// <param name="ax1">Значение параметра "ax1" для данного действия.</param>
+        /// <param name="ax2">Значение параметра "ax2" для данного действия.</param>
+        /// <param name="ax3">Значение параметра "ax3" для данного действия.</param>
+        /// <param name="ax4">Значение параметра "ax4" для данного действия.</param>
+        /// <param name="ax5">Значение параметра "ax5" для данного действия.</param>
         /// <param name="Title">Значение параметра "Title" для данного действия.</param>
         /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
         /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8670,7 +8786,11 @@ namespace VotGES.Web.Services
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
         public InvokeOperation<ReportAnswer> GetFullReport(
                     IEnumerable<string> selectedData, 
-                    IEnumerable<string> secondCharts, 
+                    IEnumerable<string> ax1, 
+                    IEnumerable<string> ax2, 
+                    IEnumerable<string> ax3, 
+                    IEnumerable<string> ax4, 
+                    IEnumerable<string> ax5, 
                     string Title, 
                     DateTime dateStart, 
                     DateTime dateEnd, 
@@ -8689,7 +8809,11 @@ namespace VotGES.Web.Services
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("selectedData", selectedData);
-            parameters.Add("secondCharts", secondCharts);
+            parameters.Add("ax1", ax1);
+            parameters.Add("ax2", ax2);
+            parameters.Add("ax3", ax3);
+            parameters.Add("ax4", ax4);
+            parameters.Add("ax5", ax5);
             parameters.Add("Title", Title);
             parameters.Add("dateStart", dateStart);
             parameters.Add("dateEnd", dateEnd);
@@ -8711,7 +8835,11 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "GetFullReport" службы DomainService.
         /// </summary>
         /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
-        /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
+        /// <param name="ax1">Значение параметра "ax1" для данного действия.</param>
+        /// <param name="ax2">Значение параметра "ax2" для данного действия.</param>
+        /// <param name="ax3">Значение параметра "ax3" для данного действия.</param>
+        /// <param name="ax4">Значение параметра "ax4" для данного действия.</param>
+        /// <param name="ax5">Значение параметра "ax5" для данного действия.</param>
         /// <param name="Title">Значение параметра "Title" для данного действия.</param>
         /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
         /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8726,11 +8854,34 @@ namespace VotGES.Web.Services
         /// <param name="DateEndList">Значение параметра "DateEndList" для данного действия.</param>
         /// <param name="MBTypeList">Значение параметра "MBTypeList" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ReportAnswer> GetFullReport(IEnumerable<string> selectedData, IEnumerable<string> secondCharts, string Title, DateTime dateStart, DateTime dateEnd, ReportTypeEnum ReportType, FullReportMembersType mbType, bool isChart, bool isTable, bool isExcel, Guid reportID, IEnumerable<string> TitleList, IEnumerable<DateTime> DateStartList, IEnumerable<DateTime> DateEndList, IEnumerable<FullReportMembersType> MBTypeList)
+        public InvokeOperation<ReportAnswer> GetFullReport(
+                    IEnumerable<string> selectedData, 
+                    IEnumerable<string> ax1, 
+                    IEnumerable<string> ax2, 
+                    IEnumerable<string> ax3, 
+                    IEnumerable<string> ax4, 
+                    IEnumerable<string> ax5, 
+                    string Title, 
+                    DateTime dateStart, 
+                    DateTime dateEnd, 
+                    ReportTypeEnum ReportType, 
+                    FullReportMembersType mbType, 
+                    bool isChart, 
+                    bool isTable, 
+                    bool isExcel, 
+                    Guid reportID, 
+                    IEnumerable<string> TitleList, 
+                    IEnumerable<DateTime> DateStartList, 
+                    IEnumerable<DateTime> DateEndList, 
+                    IEnumerable<FullReportMembersType> MBTypeList)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("selectedData", selectedData);
-            parameters.Add("secondCharts", secondCharts);
+            parameters.Add("ax1", ax1);
+            parameters.Add("ax2", ax2);
+            parameters.Add("ax3", ax3);
+            parameters.Add("ax4", ax4);
+            parameters.Add("ax5", ax5);
             parameters.Add("Title", Title);
             parameters.Add("dateStart", dateStart);
             parameters.Add("dateEnd", dateEnd);
@@ -8818,7 +8969,11 @@ namespace VotGES.Web.Services
             /// Асинхронно вызывает операцию "GetFullReport".
             /// </summary>
             /// <param name="selectedData">Значение параметра "selectedData" для данного действия.</param>
-            /// <param name="secondCharts">Значение параметра "secondCharts" для данного действия.</param>
+            /// <param name="ax1">Значение параметра "ax1" для данного действия.</param>
+            /// <param name="ax2">Значение параметра "ax2" для данного действия.</param>
+            /// <param name="ax3">Значение параметра "ax3" для данного действия.</param>
+            /// <param name="ax4">Значение параметра "ax4" для данного действия.</param>
+            /// <param name="ax5">Значение параметра "ax5" для данного действия.</param>
             /// <param name="Title">Значение параметра "Title" для данного действия.</param>
             /// <param name="dateStart">Значение параметра "dateStart" для данного действия.</param>
             /// <param name="dateEnd">Значение параметра "dateEnd" для данного действия.</param>
@@ -8839,7 +8994,11 @@ namespace VotGES.Web.Services
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ReportBaseDomainService/GetFullReport", ReplyAction="http://tempuri.org/ReportBaseDomainService/GetFullReportResponse")]
             IAsyncResult BeginGetFullReport(
                         IEnumerable<string> selectedData, 
-                        IEnumerable<string> secondCharts, 
+                        IEnumerable<string> ax1, 
+                        IEnumerable<string> ax2, 
+                        IEnumerable<string> ax3, 
+                        IEnumerable<string> ax4, 
+                        IEnumerable<string> ax5, 
                         string Title, 
                         DateTime dateStart, 
                         DateTime dateEnd, 

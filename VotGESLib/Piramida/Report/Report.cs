@@ -747,24 +747,28 @@ namespace VotGES.Piramida.Report
 		}
 
 
-		public virtual void CreateChart(List<Report> reportAddList = null, List<string>secondCharts=null) {
+		public virtual void CreateChart(List<Report> reportAddList = null, List<List<string>> secondCharts = null) {
 			if (secondCharts == null) {
-				secondCharts = new List<string>();
+				secondCharts = new List<List<string>>();
+				for (int i = 0; i <= 5; i++) {
+					secondCharts.Add(new List<string>());
+				}
 			}
 			Answer.Chart = new ChartAnswer();
 			Answer.Chart.Properties = new ChartProperties();
 			Answer.Chart.Data = new ChartData();
 
-			ChartAxisProperties ax=new ChartAxisProperties();
-			ax.Auto = true;
-			ax.Index = 0;
 
-			ChartAxisProperties ax1=new ChartAxisProperties();
-			ax1.Auto = true;
-			ax1.Index = 1;
 
-			Answer.Chart.Properties.addAxis(ax);
-			Answer.Chart.Properties.addAxis(ax1);
+			for (int i = 0; i < 5; i++) {
+				ChartAxisProperties ax1 = new ChartAxisProperties();
+				ax1.Auto = true;
+				ax1.Index = i;
+				Answer.Chart.Properties.addAxis(ax1);
+			}
+
+			
+			
 
 			ChartSerieType type=ChartSerieType.stepLine;
 			if (Interval == IntervalReportEnum.quarter || Interval == IntervalReportEnum.month || Interval == IntervalReportEnum.year) {
@@ -786,7 +790,13 @@ namespace VotGES.Piramida.Report
 					props.LineWidth = 2;
 					props.Color = ChartColor.GetColorStr(indexColor++);
 					props.SerieType = type;
-					props.YAxisIndex = secondCharts.Contains(recordType.ID)?1:0;
+
+					props.YAxisIndex = 0;
+					for (int i = 0; i < 5; i++) {
+						if (secondCharts[i].Contains(recordType.ID))
+							props.YAxisIndex = i;
+					}
+
 					Answer.Chart.Properties.addSerie(props);
 
 					ChartDataSerie data=new ChartDataSerie();
@@ -808,7 +818,11 @@ namespace VotGES.Piramida.Report
 							props.LineWidth = 1;
 							props.Color = ChartColor.GetColorStr(indexColor++);
 							props.SerieType = type;
-							props.YAxisIndex = secondCharts.Contains(recordType.ID) ? 1 : 0;
+							props.YAxisIndex = 0;
+							for (int i = 0; i < 5; i++) {
+								if (secondCharts[i].Contains(recordType.ID))
+									props.YAxisIndex = i;
+							}
 							Answer.Chart.Properties.addSerie(props);
 
 							data = new ChartDataSerie();

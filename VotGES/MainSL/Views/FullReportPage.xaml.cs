@@ -26,13 +26,13 @@ namespace MainSL.Views
 		FullReportRoot Root { get; set; }
 		ReportBaseDomainContext Context { get; set; }
 		List<String> SelectedValues { get; set; }
-		List<String> SecondAxisValues { get; set; }
+		List<List<String>> SecondAxisValues { get; set; }
 
 		public FullReportPage() {
 			InitializeComponent();
 			Context = new ReportBaseDomainContext();
 			SelectedValues = new List<string>();
-			SecondAxisValues = new List<string>();
+			SecondAxisValues = new List<List<string>>();
 			SettingsControl.Settings.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Settings_PropertyChanged);
 		}
 
@@ -95,6 +95,9 @@ namespace MainSL.Views
 		protected void RefreshSelectedValues() {
 			SelectedValues.Clear();
 			SecondAxisValues.Clear();
+			for (int i = 0; i < 5; i++) {
+				SecondAxisValues.Add(new List<string>());
+			}
 			createSelectedList(Root.RootMain);
 			createSelectedList(Root.RootLines);
 			createSelectedList(Root.RootSN);
@@ -105,8 +108,20 @@ namespace MainSL.Views
 				if (child.Selected) {
 					SelectedValues.Add(child.Key);
 				}
-				if (child.SecondAxis) {
-					SecondAxisValues.Add(child.Key);
+				if (child.Axis1) {
+					SecondAxisValues[0].Add(child.Key);
+				}
+				if (child.Axis2) {
+					SecondAxisValues[1].Add(child.Key);
+				}
+				if (child.Axis3) {
+					SecondAxisValues[2].Add(child.Key);
+				}
+				if (child.Axis4) {
+					SecondAxisValues[3].Add(child.Key);
+				}
+				if (child.Axis5) {
+					SecondAxisValues[4].Add(child.Key);
 				}
 				if (child.IsGroup) {
 					createSelectedList(child);
@@ -146,7 +161,8 @@ namespace MainSL.Views
 			}
 
 
-			InvokeOperation currentOper=Context.GetFullReport(SelectedValues,SecondAxisValues, des.Title, des.DateStart, des.DateEnd,
+			InvokeOperation currentOper = Context.GetFullReport(SelectedValues, SecondAxisValues[0], SecondAxisValues[1], SecondAxisValues[2], SecondAxisValues[3], SecondAxisValues[4], 
+				des.Title, des.DateStart, des.DateEnd,
 				SettingsControl.Settings.ReportType, SettingsControl.Settings.MBType,
 				SettingsControl.Settings.IsChart, SettingsControl.Settings.IsTable, SettingsControl.Settings.IsExcel, reportGUID,
 				TitleList, dateStartList, dateEndList, mbTypeList,
