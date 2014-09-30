@@ -30,7 +30,7 @@ namespace VotGES.Chart
 			Enabled = true;
 			LineWidth = 2;
 			Color = null;
-			Marker = true;
+			Marker = false;
 			YAxisIndex = 0;
 			AllowHigh = true;
 		}

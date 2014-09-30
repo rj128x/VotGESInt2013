@@ -15,6 +15,7 @@ using VotGES.Web.Services;
 using System.ServiceModel.DomainServices.Client;
 using System.Windows.Threading;
 using VotGES.Chart;
+using VotGES.Piramida.Report;
 
 namespace MainSL.Views {
 	public partial class OgranPage : Page {
@@ -41,7 +42,10 @@ namespace MainSL.Views {
 			pnlRefresh.DataContext = settings;
 			timer = new DispatcherTimer();
 			timer.Tick += new EventHandler(timer_Tick);
-			timer.Interval = new TimeSpan(0, 0, 1);			
+			timer.Interval = new TimeSpan(0, 0, 1);
+
+			SettingsControl.InitOnlyDates();
+			SettingsControl.Settings.ReportType = ReportTypeEnum.day;
 		}
 
 		void timer_Tick(object sender, EventArgs e) {
@@ -298,6 +302,24 @@ namespace MainSL.Views {
 
 		private void ga10Btn_Click(object sender, RoutedEventArgs e) {
 			loadGAInfo(10);
+		}
+
+		private void btnGetPuskStop_Click(object sender, RoutedEventArgs e) {
+			ReportSettings.DateTimeStartEnd des = ReportSettings.DateTimeStartEnd.getBySettings(SettingsControl.Settings);
+			string uri = String.Format("Reports/PuskStop?year1={0}&month1={1}&day1={2}&year2={3}&month2={4}&day2={5}",
+				des.DateStart.Year, des.DateStart.Month, des.DateStart.Day,
+				des.DateEnd.Year, des.DateEnd.Month, des.DateEnd.Day);
+
+			FloatWindow.OpenWindow(uri);
+		}
+
+		private void btnGetPuskStopFull_Click(object sender, RoutedEventArgs e) {
+			ReportSettings.DateTimeStartEnd des = ReportSettings.DateTimeStartEnd.getBySettings(SettingsControl.Settings);
+			PuskStopGAFull window = new PuskStopGAFull();
+			window.DateStart = des.DateStart;
+			window.DateEnd = des.DateEnd;
+			window.Show();
+			window.refresh();
 		}
 
 	}

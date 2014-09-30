@@ -56,7 +56,7 @@ namespace VotGES.Web.Services {
 		public ChartAnswer getPuskStopFull(DateTime dateStart, DateTime dateEnd) {
 			PuskStopFullReport report = new PuskStopFullReport();
 			report.DateStart = dateStart;
-			report.DateEnd = dateEnd;
+			report.DateEnd = dateEnd>DateTime.Now.AddHours(-2)?DateTime.Now.AddHours(-2):dateEnd;
 			report.ReadData();
 			return report.createChart();
 

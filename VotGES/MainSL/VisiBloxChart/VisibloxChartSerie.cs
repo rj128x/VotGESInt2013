@@ -217,10 +217,18 @@ namespace MainSL {
 					lineSerie.LineStroke = br;
 					LineStroke = lineSerie.LineStroke;
 					lineSerie.HighlightingEnabled = serieProp.AllowHigh;
-					lineSerie.PointSize = 10;
-					lineSerie.PointFill = br;
-					lineSerie.PointStroke = br;
-					lineSerie.ShowPoints = serieProp.Marker;
+					if (serieProp.Marker) {
+						lineSerie.PointSize = 10;
+						lineSerie.PointFill = br;
+						lineSerie.PointStroke = br;
+						lineSerie.ShowPoints = serieProp.Marker;
+					}
+					else {
+						lineSerie.PointSize = 0;
+						lineSerie.PointFill = tr;
+						lineSerie.PointStroke = tr;
+						lineSerie.ShowPoints = false; 
+					}
 					Serie = lineSerie;
 					break;
 				case ChartSerieType.kpdLine:
@@ -243,12 +251,23 @@ namespace MainSL {
 					StaircaseSeries stairSerie = new StaircaseSeries();
 					stairSerie.LineStrokeThickness = serieProp.LineWidth + 1;
 					stairSerie.LineStroke = br;
-					stairSerie.HighlightingEnabled = true;
+					stairSerie.HighlightingEnabled = serieProp.AllowHigh;
 					LineStroke = stairSerie.LineStroke;
 					Serie = stairSerie;
-					stairSerie.PointSize = 10;
-					stairSerie.PointFill = tr;
-					stairSerie.PointStroke = tr;
+
+					if (serieProp.Marker) {
+						stairSerie.PointSize = 10;
+						stairSerie.PointFill = br;
+						stairSerie.PointStroke = br;
+						stairSerie.ShowPoints = serieProp.Marker;
+					}
+					else {
+						stairSerie.PointSize = 0;
+						stairSerie.PointFill = tr;
+						stairSerie.PointStroke = tr;
+						stairSerie.ShowPoints = false;
+					}
+
 					silverChartControl.TrackBehaviour.HideTrackballsOnMouseLeave = true;
 					break;
 				case ChartSerieType.column:
