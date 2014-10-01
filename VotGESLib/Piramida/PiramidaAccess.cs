@@ -98,7 +98,7 @@ namespace VotGES.Piramida
 					entry.Item = reader.GetInt32(3);
 					entry.ParNumber = reader.GetInt32(4);
 					entry.Value0 = reader.GetDouble(5);
-                    entry.Value1 = reader.GetDouble(5);
+          entry.Value1 = reader.GetDouble(6);
 
 					result.Add(entry);
 				}
