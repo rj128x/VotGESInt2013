@@ -112,7 +112,7 @@ namespace VotGES.OgranGA {
 					sumRecord.timeHHT += rec.timeHHT;
 					sumRecord.timeLessMin += rec.timeLessMin;
 					sumRecord.timeRun += rec.timeRun;
-					rec.timeSK += rec.timeSK;
+					sumRecord.timeSK += rec.timeSK;
 					rec.processStr();
 					sumData[rec.GA] = rec;
 					

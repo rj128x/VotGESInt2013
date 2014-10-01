@@ -39,7 +39,6 @@ namespace VotGES.OgranGA {
 			int min = (int)(time - hours * 60);
 			if (hours > 100000)
 				return ((int)(hours/1000)).ToString()+"т";
-
 			if (hours > 1000) 
 				return hours.ToString();
 			return String.Format("{0}:{1}", hours, min);
