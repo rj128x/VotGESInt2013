@@ -267,9 +267,14 @@ namespace VotGES.OgranGA {
 						dataLessMin.Points.Add(new ChartDataPoint(rec.DateEnd, ga + 0.9));
 						prevDateLessMin = rec.DateEnd;
 					}
-
-
 				}
+				processChartDataStops(data,ga);
+				processChartDataStops(dataGen,ga);
+				processChartDataStops(dataHHG, ga);
+				processChartDataStops(dataHHT, ga);
+				processChartDataStops(dataAfterMax, ga);
+				processChartDataStops(dataLessMin, ga);
+	
 				answer.Data.addSerie(data);
 				answer.Data.addSerie(dataTemp);
 				answer.Data.addSerie(dataGen);
@@ -278,12 +283,25 @@ namespace VotGES.OgranGA {
 				answer.Data.addSerie(dataAfterMax);
 				answer.Data.addSerie(dataLessMin);
 				if (ga <= 2 || ga >= 9) {
+					processChartDataStops(dataSK, ga);
 					answer.Data.addSerie(dataSK);
 				}
 			}
 
 			answer.Properties = props;
 			return answer;
+		}
+
+		protected void processChartDataStops(ChartDataSerie serie,int ga) {
+			if (serie.Points.Count > 0) {
+				if (serie.Points.First().XVal > DateStart) {
+					serie.Points.Add(new ChartDataPoint(DateStart, ga));
+				}
+				if (serie.Points.Last().XVal <DateEnd) {
+					serie.Points.Add(new ChartDataPoint(serie.Points.Last().XVal, ga));
+					serie.Points.Add(new ChartDataPoint(DateEnd, ga));
+				}
+			}
 		}
 	}
 }

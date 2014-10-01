@@ -12,9 +12,10 @@ namespace VotGES.Piramida.Report
 	public enum ReportTypeEnum
 	{
 		dayByMinutes, dayByHalfHours, dayByHours, monthByDays, monthByHalfHours,
-		monthByHours, quarterByDays,yearByHalfHours, yearByHours, yearByDays, yearByMonths, yearByQarters,years, day, month, quarter, year
+		monthByHours, quarterByDays,yearByHalfHours, yearByHours, yearByDays, yearByMonths, yearByQarters,years, day, month, quarter, year,
+		monthByWeeks,quarterByWeeks,yearByWeeks
 	}
-	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year }
+	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year,week }
 	public enum ResultTypeEnum { min, max, avg, sum }
 	public enum DBOperEnum { min, max, avg, sum, eq }
 
@@ -182,6 +183,12 @@ namespace VotGES.Piramida.Report
 					return IntervalReportEnum.quarter;
 				case ReportTypeEnum.years:
 					return IntervalReportEnum.year;
+				case ReportTypeEnum.monthByWeeks:
+					return IntervalReportEnum.week;
+				case ReportTypeEnum.quarterByWeeks:
+					return IntervalReportEnum.week;
+				case ReportTypeEnum.yearByWeeks:
+					return IntervalReportEnum.week;
 			}
 			return IntervalReportEnum.halfHour;
 		}
@@ -203,6 +210,8 @@ namespace VotGES.Piramida.Report
 					return Date.AddMonths(3);
 				case IntervalReportEnum.year:
 					return Date.AddYears(1);
+				case IntervalReportEnum.week:
+					return Date.AddDays(7);
 			}
 			return Date;
 		}
@@ -559,6 +568,19 @@ namespace VotGES.Piramida.Report
 							dateParam, valueOper, valueParams);
 						}
 						break;
+					case IntervalReportEnum.week:
+						dateParam =
+							String.Format(
+							"ITEM, datepart(year,{0}), datepart(week,{0})",
+							dt30);
+						commandText = String.Format("SELECT {0}, {1} from DATA d WHERE {2} GROUP BY {0}",
+							dateParam, valueOper, valueParams, valueParams);
+
+						if (dbOper == DBOperEnum.eq) {
+							commandText = String.Format("SELECT  {0}, {1} from DATA  WHERE {2} and datepart(hour,DATA_DATE)=0 and datepart(minute,DATA_DATE)=0 and datepart(second,DATA_DATE)=0",
+							dateParam, valueOper, valueParams);
+						}
+						break;
 					case IntervalReportEnum.year:
 						dateParam =
 							String.Format(
@@ -643,6 +665,15 @@ namespace VotGES.Piramida.Report
 							date = new DateTime(year, month, 1, 0, 0, 0);
 							if (dbOper != DBOperEnum.eq)
 								date = date.AddMonths(1);
+							ok = true;
+							break;
+						case IntervalReportEnum.week:
+							year = (int)reader[1];
+							int week = (int)reader[2];
+							val = (double)reader[3];
+							date = new DateTime(year, 1, 1, 0, 0, 0).AddDays(week*7);
+							if (dbOper != DBOperEnum.eq)
+								date = date.AddDays(7);
 							ok = true;
 							break;
 						case IntervalReportEnum.quarter:
@@ -850,6 +881,7 @@ namespace VotGES.Piramida.Report
 					case IntervalReportEnum.hour:
 						return "dd.MM HH:mm";
 					case IntervalReportEnum.day:
+					case IntervalReportEnum.week:
 						return "dd.MM";
 					case IntervalReportEnum.month:
 					case IntervalReportEnum.quarter:
@@ -865,6 +897,7 @@ namespace VotGES.Piramida.Report
 					case IntervalReportEnum.hour:
 						return (DateStart.Day == 1 && DateEnd.Day == 1) ? "dd HH:mm" : "HH:mm";
 					case IntervalReportEnum.day:
+					case IntervalReportEnum.week:
 						return (DateStart.Month == 1 && DateEnd.Month == 1) ? "dd.MM" : "dd";
 					case IntervalReportEnum.month:
 					case IntervalReportEnum.quarter:
@@ -890,6 +923,9 @@ namespace VotGES.Piramida.Report
 					break;
 				case IntervalReportEnum.day:
 					dt = date.AddDays(-1);
+					break;
+				case IntervalReportEnum.week:
+					dt = date.AddDays(-7);
 					break;
 				case IntervalReportEnum.month:
 					dt = date.AddMonths(-1);
@@ -918,6 +954,9 @@ namespace VotGES.Piramida.Report
 					break;
 				case IntervalReportEnum.day:
 					dt = date.AddDays(-1);
+					break;
+				case IntervalReportEnum.week:
+					dt = date.AddDays(-7);
 					break;
 				case IntervalReportEnum.month:
 					dt = date.AddMonths(-1);
