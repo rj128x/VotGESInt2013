@@ -28,7 +28,7 @@ namespace VotGES.Web.Models {
 		public void createAnswer(int ga, bool createNarab,bool createCurrent) {
 			if (createNarab) {
 				DateTime now = DateTime.Now;
-				DateTime expStart = new DateTime(2000, 1, 1);
+				DateTime expStart = new DateTime(1960, 1, 1);
 				DateTime yearStart = new DateTime(now.Year, 1, 1);
 				DateTime monthStart = new DateTime(now.Year, now.Month, 1);
 				DateTime dayStart = new DateTime(now.Year, now.Month, now.Day);

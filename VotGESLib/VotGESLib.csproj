@@ -148,6 +148,8 @@
     <Content Include="Data\KapRemontsData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\monthsGA.sql" />
+    <Content Include="Data\narGA.sql" />
     <Content Include="Data\nnet\vges_nb.txt" />
     <Content Include="Data\DBSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
