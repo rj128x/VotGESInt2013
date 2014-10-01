@@ -14,6 +14,7 @@ using iTextSharp.text.pdf;
 using System.Text;
 using System.Threading;
 using VotGES.OgranGA;
+using VotGES.Rashod;
 
 namespace VotGES.Web.Controllers
 {
@@ -109,26 +110,26 @@ namespace VotGES.Web.Controllers
 
 		[AcceptVerbs(HttpVerbs.Get)]		
 		public ActionResult VERReportToFile(int year, int month, int day) {
+			VERReport report = getVERReport(year, month, day);
+			StringWriter sw = new StringWriter();
+			ViewData.Model = report;
+			ViewEngineResult result = ViewEngines.Engines.FindView(ControllerContext, "VERReport","");
+			ViewContext context = new ViewContext(ControllerContext, result.View, ViewData, TempData, sw);
+			result.View.Render(context, sw);
+			result.ViewEngine.ReleaseView(ControllerContext, result.View);
 
-			ViewResult view = View("VERReport", getVERReport(year, month, day));
-			Logger.Info(view.ToString());
-			
-			StringBuilder sb = new StringBuilder();
-			StringWriter textwriter = new StringWriter(sb);
-			HtmlTextWriter htmlwriter = new HtmlTextWriter(textwriter);
+			string viewString = sw.ToString();
 
-			Logger.Info("1");
-			ControllerContext cnt = new System.Web.Mvc.ControllerContext();
-			ViewContext cont = new ViewContext(cnt, view.View, view.ViewData, view.TempData, textwriter);
-			Logger.Info("2");
-			view.View.Render(cont, textwriter);
-			Logger.Info("3");
-			string ss = sb.ToString();
-			Logger.Info(ss);
-
-			return view;
-
+			VERFolderWriter.writeData(year, month, day, viewString);
+			return Content("finish");
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult VERReportToFilePrevDate() {
+			DateTime date=DateTime.Now.Date.AddDays(-1);
+			return VERReportToFile(date.Year, date.Month, date.Day);
+		}
+				
 
 	}
 }

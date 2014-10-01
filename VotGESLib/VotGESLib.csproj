@@ -113,6 +113,7 @@
     <Compile Include="Rashod\RUSA.cs" />
     <Compile Include="Rashod\RUSADiffPower.cs" />
     <Compile Include="Rashod\RusaUtils.cs" />
+    <Compile Include="Rashod\VERFolderWriter.cs" />
     <Compile Include="XMLSer\XMLSer.cs" />
   </ItemGroup>
   <ItemGroup>

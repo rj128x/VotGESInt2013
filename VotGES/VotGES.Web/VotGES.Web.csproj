@@ -138,6 +138,12 @@
     <Compile Include="Services\RUSADomainService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bat\CmdHttpRequest.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bat\CommandLine.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Global.asax" />
     <Content Include="MainSLTestPage.aspx" />
@@ -216,6 +222,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bat\VERData.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
   </ItemGroup>
