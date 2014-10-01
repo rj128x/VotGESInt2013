@@ -525,6 +525,13 @@ namespace VotGES.Piramida.Report {
 			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_4T_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_56AT_Nebalans));
 
+			child2 = childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_T_FullP));
+			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_1T_FullP));
+			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_2AT_FullP));
+			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_3AT_FullP));
+			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_4T_FullP));
+			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_56AT_FullP));
+
 			child2 = childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_Nebalans));
@@ -697,6 +704,7 @@ namespace VotGES.Piramida.Report {
 			rec.Title = String.IsNullOrEmpty(title) ? record.Title : title;
 			rec.Key = record.Key;
 			rec.Selectable = true;
+			rec.Axis1 = true;
 			rec.Children = new List<FullReportRecord>();
 			return rec;
 		}

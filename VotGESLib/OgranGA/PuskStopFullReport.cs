@@ -71,7 +71,7 @@ namespace VotGES.OgranGA {
 				}
 				Data[ga] = PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 30, 2, 13, items, true, true, "PSV");
 				FullData.Add(ga, new List<PuskStopFullRecord>());
-				processData(ga, PrevData[ga], Data[ga]);
+				processData(ga, PrevData[ga], Data[ga]);				
 			}
 		}
 
