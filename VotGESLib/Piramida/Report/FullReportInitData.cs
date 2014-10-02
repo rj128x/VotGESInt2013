@@ -537,6 +537,11 @@ namespace VotGES.Piramida.Report {
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL500_Nebalans));
 
+			child2 = childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL_FullP));
+			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_FullP));
+			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_FullP));
+			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL500_FullP));
+
 			childRecord = record.addChild(GetFullReportRecord(ReportSNRecords.P_SN));
 
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_SN_7T_Priem));

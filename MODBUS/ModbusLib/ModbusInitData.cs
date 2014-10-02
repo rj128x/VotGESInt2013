@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using VotGES;
 
-namespace ModbusLib
-{
+namespace ModbusLib {
 	public enum RWModeEnum { hh, min }
 
-	public class ServerInfo
-	{
+	public class ServerInfo {
 		public string IP { get; set; }
 		public ushort Port { get; set; }
 	}
 
-	public class ModbusInitData
-	{
+	public class ModbusInitData {
 		[System.Xml.Serialization.XmlAttribute]
 		public string ID { get; set; }
 
@@ -76,6 +73,9 @@ namespace ModbusLib
 		[System.Xml.Serialization.XmlAttribute]
 		public int FlagBit { get; set; }
 
+		[System.Xml.Serialization.XmlAttribute]
+		public int ValBit { get; set; }
+
 		public ModbusInitData() {
 			WriteToDBMin = false;
 			WriteToDBHH = false;
@@ -85,7 +85,7 @@ namespace ModbusLib
 			ParNumberDiff = -1;
 			Obj = -1;
 			ObjType = -1;
-			DBNameMin=null;
+			DBNameMin = null;
 			DBNameHH = null;
 			DBNameDiff = null;
 			Item = -1;
@@ -94,11 +94,11 @@ namespace ModbusLib
 			Diff = 0;
 			Scale = 1;
 			FlagBit = -1;
+			ValBit = -1;
 		}
 	}
 
-	public class ModbusInitDataArray
-	{
+	public class ModbusInitDataArray {
 		public string ID { get; set; }
 		public List<ServerInfo> ServerInfoArray { get; set; }
 		public List<ModbusInitData> Data { get; set; }
@@ -122,7 +122,7 @@ namespace ModbusLib
 		public string DBNameHH { get; set; }
 		public string DBNameDiff { get; set; }
 
-		
+
 		public void processData() {
 			FullData = new SortedList<string, ModbusInitData>();
 			MaxAddr = 0;
@@ -138,28 +138,36 @@ namespace ModbusLib
 					init.DBNameMin = init.DBNameMin == null ? DBNameMin : init.DBNameMin;
 					init.DBNameDiff = init.DBNameDiff == null ? DBNameDiff : init.DBNameDiff;
 
-					if (init.Name.Contains("_FLAG") && !init.ID.Contains("_FLAG")) {						
-						init.ID = (init.Addr-1) + "_FLAG";
+					if (init.Name.Contains("_FLAG") && !init.ID.Contains("_FLAG")) {
+						init.ID = (init.Addr - 1) + "_FLAG";
 					}
 
 					FullData.Add(init.ID, init);
 					if (MaxAddr < init.Addr) {
 						MaxAddr = init.Addr;
 					}
-				} catch {
+				}
+				catch {
 					Logger.Error(String.Format("Ошибка при добавлении записи Addr={0} Name={1}", init.Addr, init.Name));
 				}
 			}
-			
+
 		}
 
-		public void WriteVal(int addr, double val, SortedList<string,double>DataArray) {			
+		public void WriteVal(int addr, double val, SortedList<string, double> DataArray) {			
 			foreach (ModbusInitData data in Data) {
 				if (data.Addr == addr) {
+					if (data.ValBit == -1) {
+						val = val * data.Scale + data.Add;
+					}
+					else {
+						val=GlobalVotGES.getBIT((short)val,data.ValBit);
+					}
+
 					if (DataArray.ContainsKey(data.ID)) {
-						DataArray[data.ID] = val*data.Scale+data.Add;
+						DataArray[data.ID] = val;
 					} else {
-						DataArray.Add(data.ID, val * data.Scale+data.Add);
+						DataArray.Add(data.ID, val);
 					}
 				}
 			}

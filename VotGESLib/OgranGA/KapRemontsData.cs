@@ -7,7 +7,8 @@ using VotGES.XMLSer;
 namespace VotGES.OgranGA {
 	public class KapRemontsRecord {
 		public int GA { get; set; }
-		public DateTime Date { get; set; }
+		public String Date { get; set; }
+		public DateTime RezDate { get; set; }
 	}
 	public class KapRemontsData {
 		public List<KapRemontsRecord> Data { get; set; }
@@ -19,6 +20,9 @@ namespace VotGES.OgranGA {
 			}			
 			KapRemontsData settings = XMLSer<KapRemontsData>.fromXML(filename);
 			KapRemontsData.Single= settings;
+			foreach (KapRemontsRecord rec in Single.Data) {
+				rec.RezDate = DateTime.Parse(rec.Date);
+			}
 			
 		}
 		public KapRemontsData() {
@@ -29,7 +33,7 @@ namespace VotGES.OgranGA {
 			for (int ga = 1; ga <= 10; ga++) {
 				KapRemontsRecord rec = new KapRemontsRecord();
 				rec.GA = ga;
-				rec.Date = DateTime.Now;
+				rec.Date = DateTime.Now.ToString("dd.MM.yyyy");
 			}
 			XMLSer<KapRemontsData>.toXML(this,"Data\\KapRemontsData.xml");
 		}

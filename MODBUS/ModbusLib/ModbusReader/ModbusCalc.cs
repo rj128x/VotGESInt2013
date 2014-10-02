@@ -115,81 +115,110 @@ namespace ModbusLib {
 
 		#region Ogran
 
-		public double GA1_AFTER_MAX() { return this["MB_GA1_P"] > this["MB_GA1_MAXP_TEC"] ? 1 : 0; }
-		public double GA2_AFTER_MAX() { return this["MB_GA2_P"] > this["MB_GA2_MAXP_TEC"] ? 1 : 0; }
-		public double GA3_AFTER_MAX() { return this["MB_GA3_P"] > this["MB_GA3_MAXP_TEC"] ? 1 : 0; }
-		public double GA4_AFTER_MAX() { return this["MB_GA4_P"] > this["MB_GA4_MAXP_TEC"] ? 1 : 0; }
-		public double GA5_AFTER_MAX() { return this["MB_GA5_P"] > this["MB_GA5_MAXP_TEC"] ? 1 : 0; }
-		public double GA6_AFTER_MAX() { return this["MB_GA6_P"] > this["MB_GA6_MAXP_TEC"] ? 1 : 0; }
-		public double GA7_AFTER_MAX() { return this["MB_GA7_P"] > this["MB_GA7_MAXP_TEC"] ? 1 : 0; }
-		public double GA8_AFTER_MAX() { return this["MB_GA8_P"] > this["MB_GA8_MAXP_TEC"] ? 1 : 0; }
-		public double GA9_AFTER_MAX() { return this["MB_GA9_P"] > this["MB_GA9_MAXP_TEC"] ? 1 : 0; }
-		public double GA10_AFTER_MAX() { return this["MB_GA10_P"] > this["MB_GA10_MAXP_TEC"] ? 1 : 0; }
+		public double GA1_AFTER_MAX() { return isGAAfterMax(this["MB_GA1_STATE"], this["MB_GA1_P"], this["MB_GA1_MAXP_TEC"]); }
+		public double GA2_AFTER_MAX() { return isGAAfterMax(this["MB_GA2_STATE"], this["MB_GA2_P"], this["MB_GA2_MAXP_TEC"]); }
+		public double GA3_AFTER_MAX() { return isGAAfterMax(this["MB_GA3_STATE"], this["MB_GA3_P"], this["MB_GA3_MAXP_TEC"]); }
+		public double GA4_AFTER_MAX() { return isGAAfterMax(this["MB_GA4_STATE"], this["MB_GA4_P"], this["MB_GA4_MAXP_TEC"]); }
+		public double GA5_AFTER_MAX() { return isGAAfterMax(this["MB_GA5_STATE"], this["MB_GA5_P"], this["MB_GA5_MAXP_TEC"]); }
+		public double GA6_AFTER_MAX() { return isGAAfterMax(this["MB_GA6_STATE"], this["MB_GA6_P"], this["MB_GA6_MAXP_TEC"]); }
+		public double GA7_AFTER_MAX() { return isGAAfterMax(this["MB_GA7_STATE"], this["MB_GA7_P"], this["MB_GA7_MAXP_TEC"]); }
+		public double GA8_AFTER_MAX() { return isGAAfterMax(this["MB_GA8_STATE"], this["MB_GA8_P"], this["MB_GA8_MAXP_TEC"]); }
+		public double GA9_AFTER_MAX() { return isGAAfterMax(this["MB_GA9_STATE"], this["MB_GA9_P"], this["MB_GA9_MAXP_TEC"]); }
+		public double GA10_AFTER_MAX() { return isGAAfterMax(this["MB_GA10_STATE"], this["MB_GA10_P"], this["MB_GA10_MAXP_TEC"]); }
 
-		public double GA1_LESS_MIN() { return this["MB_GA1_P"] < this["MB_GA1_MINP_TEC"] ? 1 : 0; }
-		public double GA2_LESS_MIN() { return this["MB_GA2_P"] < this["MB_GA2_MINP_TEC"] ? 1 : 0; }
-		public double GA3_LESS_MIN() { return this["MB_GA3_P"] < this["MB_GA3_MINP_TEC"] ? 1 : 0; }
-		public double GA4_LESS_MIN() { return this["MB_GA4_P"] < this["MB_GA4_MINP_TEC"] ? 1 : 0; }
-		public double GA5_LESS_MIN() { return this["MB_GA5_P"] < this["MB_GA5_MINP_TEC"] ? 1 : 0; }
-		public double GA6_LESS_MIN() { return this["MB_GA6_P"] < this["MB_GA6_MINP_TEC"] ? 1 : 0; }
-		public double GA7_LESS_MIN() { return this["MB_GA7_P"] < this["MB_GA7_MINP_TEC"] ? 1 : 0; }
-		public double GA8_LESS_MIN() { return this["MB_GA8_P"] < this["MB_GA8_MINP_TEC"] ? 1 : 0; }
-		public double GA9_LESS_MIN() { return this["MB_GA9_P"] < this["MB_GA9_MINP_TEC"] ? 1 : 0; }
-		public double GA10_LESS_MIN() { return this["MB_GA10_P"] < this["MB_GA10_MINP_TEC"] ? 1 : 0; }
+		public double GA1_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA1_P"], 35); }
+		public double GA2_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA2_P"], 35); }
+		public double GA3_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA3_P"], 35); }
+		public double GA4_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA4_P"], 35); }
+		public double GA5_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA5_P"], 35); }
+		public double GA6_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA6_P"], 35); }
+		public double GA7_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA7_P"], 35); }
+		public double GA8_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA8_P"], 35); }
+		public double GA9_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA9_P"], 35); }
+		public double GA10_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA10_P"], 35); }
 
-		public double GA1_SK() { return this["MB_GA1_P"] < 0 ? 1 : 0; }
-		public double GA2_SK() { return this["MB_GA2_P"] < 0 ? 1 : 0; }
-		public double GA9_SK() { return this["MB_GA9_P"] < 0 ? 1 : 0; }
-		public double GA10_SK() { return this["MB_GA10_P"] < 0 ? 1 : 0; }
+		public double GA1_SK() { return isGASK(this["MB_GA1_STATE"]); }
+		public double GA2_SK() { return isGASK(this["MB_GA2_STATE"]); }
+		public double GA9_SK() { return isGASK(this["MB_GA9_STATE"]); }
+		public double GA10_SK() { return isGASK(this["MB_GA10_STATE"]); }
 
-		public double GA1_GEN() { return this["MB_GA1_P"] > 0 ? 1 : 0; }
-		public double GA2_GEN() { return this["MB_GA2_P"] > 0 ? 1 : 0; }
-		public double GA3_GEN() { return this["MB_GA3_P"] > 0 ? 1 : 0; }
-		public double GA4_GEN() { return this["MB_GA4_P"] > 0 ? 1 : 0; }
-		public double GA5_GEN() { return this["MB_GA5_P"] > 0 ? 1 : 0; }
-		public double GA6_GEN() { return this["MB_GA6_P"] > 0 ? 1 : 0; }
-		public double GA7_GEN() { return this["MB_GA7_P"] > 0 ? 1 : 0; }
-		public double GA8_GEN() { return this["MB_GA8_P"] > 0 ? 1 : 0; }
-		public double GA9_GEN() { return this["MB_GA9_P"] > 0 ? 1 : 0; }
-		public double GA10_GEN() { return this["MB_GA10_P"] > 0 ? 1 : 0; }
+		public double GA1_GEN() { return isGAGen(this["MB_GA1_STATE"]); }
+		public double GA2_GEN() { return isGAGen(this["MB_GA2_STATE"]); }
+		public double GA3_GEN() { return isGAGen(this["MB_GA3_STATE"]); }
+		public double GA4_GEN() { return isGAGen(this["MB_GA4_STATE"]); }
+		public double GA5_GEN() { return isGAGen(this["MB_GA5_STATE"]); }
+		public double GA6_GEN() { return isGAGen(this["MB_GA6_STATE"]); }
+		public double GA7_GEN() { return isGAGen(this["MB_GA7_STATE"]); }
+		public double GA8_GEN() { return isGAGen(this["MB_GA8_STATE"]); }
+		public double GA9_GEN() { return isGAGen(this["MB_GA9_STATE"]); }
+		public double GA10_GEN() { return isGAGen(this["MB_GA10_STATE"]); }
 
-		public double GA1_HHG() { return 0; }
-		public double GA2_HHG() { return 0; }
-		public double GA3_HHG() { return 0; }
-		public double GA4_HHG() { return 0; }
-		public double GA5_HHG() { return 0; }
-		public double GA6_HHG() { return 0; }
-		public double GA7_HHG() { return 0; }
-		public double GA8_HHG() { return 0; }
-		public double GA9_HHG() { return 0; }
-		public double GA10_HHG() { return 0; }
+		public double GA1_HHG() { return isGAHHG(this["MB_GA1_STATE"]); }
+		public double GA2_HHG() { return isGAHHG(this["MB_GA2_STATE"]); }
+		public double GA3_HHG() { return isGAHHG(this["MB_GA3_STATE"]); }
+		public double GA4_HHG() { return isGAHHG(this["MB_GA4_STATE"]); }
+		public double GA5_HHG() { return isGAHHG(this["MB_GA5_STATE"]); }
+		public double GA6_HHG() { return isGAHHG(this["MB_GA6_STATE"]); }
+		public double GA7_HHG() { return isGAHHG(this["MB_GA7_STATE"]); }
+		public double GA8_HHG() { return isGAHHG(this["MB_GA8_STATE"]); }
+		public double GA9_HHG() { return isGAHHG(this["MB_GA9_STATE"]); }
+		public double GA10_HHG() { return isGAHHG(this["MB_GA10_STATE"]); }
 
-		public double GA1_HHT() { return 0; }
-		public double GA2_HHT() { return 0; }
-		public double GA3_HHT() { return 0; }
-		public double GA4_HHT() { return 0; }
-		public double GA5_HHT() { return 0; }
-		public double GA6_HHT() { return 0; }
-		public double GA7_HHT() { return 0; }
-		public double GA8_HHT() { return 0; }
-		public double GA9_HHT() { return 0; }
-		public double GA10_HHT() { return 0; }
+		public double GA1_HHT() { return isGAHHT(this["MB_GA1_STATE"]); }
+		public double GA2_HHT() { return isGAHHT(this["MB_GA2_STATE"]); }
+		public double GA3_HHT() { return isGAHHT(this["MB_GA3_STATE"]); }
+		public double GA4_HHT() { return isGAHHT(this["MB_GA4_STATE"]); }
+		public double GA5_HHT() { return isGAHHT(this["MB_GA5_STATE"]); }
+		public double GA6_HHT() { return isGAHHT(this["MB_GA6_STATE"]); }
+		public double GA7_HHT() { return isGAHHT(this["MB_GA7_STATE"]); }
+		public double GA8_HHT() { return isGAHHT(this["MB_GA8_STATE"]); }
+		public double GA9_HHT() { return isGAHHT(this["MB_GA9_STATE"]); }
+		public double GA10_HHT() { return isGAHHT(this["MB_GA10_STATE"]); }
 
-		public double GA1_RUN() { return this["MB_GA1_RUN"]; }
-		public double GA2_RUN() { return this["MB_GA2_RUN"]; ; }
-		public double GA3_RUN() { return this["MB_GA3_RUN"]; ; }
-		public double GA4_RUN() { return this["MB_GA4_RUN"]; ; }
-		public double GA5_RUN() { return this["MB_GA5_RUN"]; ; }
-		public double GA6_RUN() { return this["MB_GA6_RUN"]; ; }
-		public double GA7_RUN() { return this["MB_GA7_RUN"]; ; }
-		public double GA8_RUN() { return this["MB_GA8_RUN"]; ; }
-		public double GA9_RUN() { return this["MB_GA9_RUN"]; ; }
-		public double GA10_RUN() { return this["MB_GA10_RUN"]; ; }
+		public double GA1_RUN() { return isGARun(this["MB_GA1_STATE"]); }
+		public double GA2_RUN() { return isGARun(this["MB_GA2_STATE"]); }
+		public double GA3_RUN() { return isGARun(this["MB_GA3_STATE"]); }
+		public double GA4_RUN() { return isGARun(this["MB_GA4_STATE"]); }
+		public double GA5_RUN() { return isGARun(this["MB_GA5_STATE"]); }
+		public double GA6_RUN() { return isGARun(this["MB_GA6_STATE"]); }
+		public double GA7_RUN() { return isGARun(this["MB_GA7_STATE"]); }
+		public double GA8_RUN() { return isGARun(this["MB_GA8_STATE"]); }
+		public double GA9_RUN() { return isGARun(this["MB_GA9_STATE"]); }
+		public double GA10_RUN() { return isGARun(this["MB_GA10_STATE"]); }
 
 		#endregion
 
 
+		protected int isGARun(double gaState) {
+			return GlobalVotGES.getBIT((short)gaState, 15);
+		}
 
+		protected int isGAGen(double gaState) {
+			return GlobalVotGES.getBIT((short)gaState, 4);
+		}
 
+		protected int isGASK(double gaState) {
+			return GlobalVotGES.getBIT((short)gaState, 5);
+		}
+
+		protected int isGAHHG(double gaState) {
+			return GlobalVotGES.getBIT((short)gaState, 7);
+		}
+
+		protected int isGAHHT(double gaState) {
+			return GlobalVotGES.getBIT((short)gaState, 6);
+		}
+
+		protected int isGALessMin(double gaState, double gaP, double Min) {
+			return isGAGen(gaState) == 1 && gaP < Min ? 1 : 0;
+		}
+
+		protected int isGAAfterMax(double gaState, double gaP, double Max) {
+			return isGAGen(gaState) == 1 && gaP > Max ? 1 : 0;
+		}
 	}
+
+
+
+
 }

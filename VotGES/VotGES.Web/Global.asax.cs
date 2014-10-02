@@ -29,7 +29,11 @@ namespace VotGES.Web
 
 		protected void Application_Start() {
 			DBSettings.init(Server.MapPath("/bin/Data/DBSettings.xml"));
-			KapRemontsData.init(Server.MapPath("/bin/Data/KapRemontsData.xml"));
+			try {
+				KapRemontsData.init(Server.MapPath("/bin/Data/KapRemontsData.xml"));
+				Logger.Info(KapRemontsData.Single.Data.Count.ToString());
+			}
+			catch { }
 			VotGES.GlobalVotGES.setCulture();
 
 			Logger logger=new WebLogger();

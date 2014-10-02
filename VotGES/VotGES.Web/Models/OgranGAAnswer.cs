@@ -32,7 +32,8 @@ namespace VotGES.Web.Models {
 				DateTime yearStart = new DateTime(now.Year, 1, 1);
 				DateTime monthStart = new DateTime(now.Year, now.Month, 1);
 				DateTime dayStart = new DateTime(now.Year, now.Month, now.Day);
-				DateTime krDate = KapRemontsData.Single.Data[ga - 1].Date;
+				
+				DateTime krDate = KapRemontsData.Single.Data[ga - 1].RezDate;
 
 				OgranGAReport reportEkspStart = new OgranGAReport(expStart, now);
 				reportEkspStart.readSumData();

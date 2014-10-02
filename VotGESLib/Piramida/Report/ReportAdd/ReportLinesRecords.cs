@@ -26,6 +26,11 @@ namespace VotGES.Piramida.Report
 		public static RecordTypeCalc P_VL500_Nebalans=new RecordTypeCalc("P_VL500_Nebalans", "ВЛ 500кВ небаланс P", null);
 		public static RecordTypeCalc P_VL_Nebalans=new RecordTypeCalc("P_VL_Nebalans", "ВЛ небаланс P", null);
 
+		public static RecordTypeCalc P_VL110_FullP = new RecordTypeCalc("P_VL110_FullP", "ВЛ 110кВ полная P", null);
+		public static RecordTypeCalc P_VL220_FullP = new RecordTypeCalc("P_VL220_FullP", "ВЛ 220кВ полная P", null);
+		public static RecordTypeCalc P_VL500_FullP = new RecordTypeCalc("P_VL500_FullP", "ВЛ 500кВ полная P", null);
+		public static RecordTypeCalc P_VL_FullP = new RecordTypeCalc("P_VL_FullP", "ВЛ полная P", null);
+
 		public static RecordTypeCalc P_VL110_Berezovka=new RecordTypeCalc("P_VL110_Berezovka", "ВЛ 110кВ Березовка P", null);
 		public static RecordTypeCalc P_VL110_Dubovaya=new RecordTypeCalc("P_VL110_Dubovaya", "ВЛ 110кВ Дубовая P", null);
 		public static RecordTypeCalc P_VL110_Ivanovka=new RecordTypeCalc("P_VL110_Ivanovka", "ВЛ 110кВ Ивановка P", null);
@@ -317,6 +322,49 @@ namespace VotGES.Piramida.Report
 						report[date, ReportLinesRecords.P_VL110_Nebalans.ID] +
 						report[date, ReportLinesRecords.P_VL220_Nebalans.ID] +
 						report[date, ReportLinesRecords.P_VL500_Nebalans.ID];
+				});
+
+
+			P_VL110_FullP.CalcFunction = new RecordCalcDelegate((report, date) => {
+				return
+					report[date, ReportLinesRecords.P_VL110_Priem.ID] +
+					report[date, ReportLinesRecords.P_VL110_Otd.ID] +
+					report[date, PiramidaRecords.P_56AT_110_Otd.Key] +
+					report[date, PiramidaRecords.P_56AT_110_Priem.Key] +
+					report[date, PiramidaRecords.P_1T_110_Otd.Key] +
+					report[date, PiramidaRecords.P_1T_110_Priem.Key];
+			});
+
+			P_VL220_FullP.CalcFunction = new RecordCalcDelegate((report, date) => {
+				return
+					report[date, ReportLinesRecords.P_VL220_Priem.ID] +
+					report[date, ReportLinesRecords.P_VL220_Otd.ID] +
+					report[date, PiramidaRecords.P_56AT_220_Otd.Key] +
+					report[date, PiramidaRecords.P_56AT_220_Priem.Key] +
+					report[date, PiramidaRecords.P_4T_220_Otd.Key] +
+					report[date, PiramidaRecords.P_4T_220_Priem.Key] + 
+					report[date, PiramidaRecords.P_2AT_220_Otd.Key] +
+					report[date, PiramidaRecords.P_2AT_220_Priem.Key] + 
+					report[date, PiramidaRecords.P_3AT_220_Otd.Key] +
+					report[date, PiramidaRecords.P_3AT_220_Priem.Key];
+			});
+
+			P_VL500_FullP.CalcFunction = new RecordCalcDelegate((report, date) => {
+				return
+					report[date, ReportLinesRecords.P_VL500_Priem.ID] +
+					report[date, ReportLinesRecords.P_VL500_Otd.ID] +
+					report[date, PiramidaRecords.P_2AT_500_Otd.Key] +
+					report[date, PiramidaRecords.P_2AT_500_Priem.Key]+
+					report[date, PiramidaRecords.P_3AT_500_Otd.Key] +
+					report[date, PiramidaRecords.P_3AT_500_Priem.Key];
+			});
+
+			P_VL_FullP.CalcFunction =
+				new RecordCalcDelegate((report, date) => {
+					return
+						report[date, ReportLinesRecords.P_VL110_FullP.ID] +
+						report[date, ReportLinesRecords.P_VL220_FullP.ID] +
+						report[date, ReportLinesRecords.P_VL500_FullP.ID];
 				});
 
 
@@ -628,6 +676,12 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeCalc(Q_KL6_Saldo, toChart, visible, oper));
 
 			report.AddRecordType(new RecordTypeCalc(Q_VL_Nebalans, toChart, visible, oper));
+
+
+			report.AddRecordType(new RecordTypeCalc(P_VL_FullP, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(P_VL220_FullP, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(P_VL500_FullP, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(P_VL110_FullP, toChart, visible, oper));
 		}
 
 		public static void AddLineRecordsP(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {

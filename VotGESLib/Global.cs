@@ -24,5 +24,15 @@ namespace VotGES
 			System.Threading.Thread.CurrentThread.CurrentCulture = ci;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = ci;			
 		}
+		public static int getBIT(int val, int bit) {
+			string binary = Convert.ToString(val, 2);
+			char[] rev = binary.Reverse<char>().ToArray();
+			int v = 0;
+			try {
+				v = rev[bit] == '1' ? 1 : 0;
+			}
+			catch { }
+			return v;
+		}
 	}
 }
