@@ -278,7 +278,7 @@ namespace ModbusLib
 			string[] keys = Data.Keys.ToArray();
 			foreach (string key in keys) {
 				if (key.Contains("_FLAG")) {
-					if (InitArr.FullData[key].FlagBit > 0) {						
+					if (InitArr.FullData[key].FlagBit >= 0) {						
 						int v = GlobalVotGES.getBIT((short)Data[key], InitArr.FullData[key].FlagBit);
 						Data[key] = v;
 					}

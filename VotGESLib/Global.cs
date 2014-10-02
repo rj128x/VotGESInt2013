@@ -27,6 +27,7 @@ namespace VotGES
 		public static int getBIT(int val, int bit) {
 			string binary = Convert.ToString(val, 2);
 			char[] rev = binary.Reverse<char>().ToArray();
+			//char[] rev = binary.ToArray();
 			int v = 0;
 			try {
 				v = rev[bit] == '1' ? 1 : 0;
