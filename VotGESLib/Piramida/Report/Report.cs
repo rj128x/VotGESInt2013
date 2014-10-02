@@ -7,20 +7,17 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using VotGES.Chart;
 
-namespace VotGES.Piramida.Report
-{
-	public enum ReportTypeEnum
-	{
+namespace VotGES.Piramida.Report {
+	public enum ReportTypeEnum {
 		dayByMinutes, dayByHalfHours, dayByHours, monthByDays, monthByHalfHours,
-		monthByHours, quarterByDays,yearByHalfHours, yearByHours, yearByDays, yearByMonths, yearByQarters,years, day, month, quarter, year,
-		monthByWeeks,quarterByWeeks,yearByWeeks
+		monthByHours, quarterByDays, yearByHalfHours, yearByHours, yearByDays, yearByMonths, yearByQarters, years, day, month, quarter, year,
+		monthByWeeks, quarterByWeeks, yearByWeeks
 	}
-	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year,week }
+	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year, week }
 	public enum ResultTypeEnum { min, max, avg, sum }
 	public enum DBOperEnum { min, max, avg, sum, eq }
 
-	public abstract class RecordTypeBase
-	{
+	public abstract class RecordTypeBase {
 		public string ID { get; set; }
 		public ResultTypeEnum ResultType { get; set; }
 		public Report Parent { get; set; }
@@ -31,8 +28,7 @@ namespace VotGES.Piramida.Report
 	}
 
 
-	public class RecordTypeDB : RecordTypeBase
-	{
+	public class RecordTypeDB : RecordTypeBase {
 		public double DefaultValue { get; set; }
 		public double MinValue { get; set; }
 		public double MaxValue { get; set; }
@@ -67,14 +63,13 @@ namespace VotGES.Piramida.Report
 	public delegate double RecordCalcDelegate(Report report, DateTime? date);
 
 
-	public class RecordTypeCalc : RecordTypeBase
-	{
+	public class RecordTypeCalc : RecordTypeBase {
 		public RecordCalcDelegate CalcFunction { get; set; }
 
 		public RecordTypeCalc(string id, string title, RecordCalcDelegate calcFunction,
 			bool toChart = false, bool visible = false, ResultTypeEnum resultType = ResultTypeEnum.sum, string formatDouble = "#,0.##") {
 			ID = id;
-			Title = title+"*";
+			Title = title + "*";
 			CalcFunction = calcFunction;
 			Visible = visible;
 			ToChart = toChart;
@@ -94,35 +89,31 @@ namespace VotGES.Piramida.Report
 
 	}
 
-	public class PiramidaReportResultRecord
-	{
+	public class PiramidaReportResultRecord {
 		public Dictionary<ResultTypeEnum, double> Results { get; set; }
 		public double ResultValue { get; set; }
 	}
 
 
-	public class ReportAnswerRecord
-	{
+	public class ReportAnswerRecord {
 		public String Header { get; set; }
 		public Dictionary<String, double> DataStr { get; set; }
 	}
 
-	public class ReportAnswer
-	{
+	public class ReportAnswer {
 		public ChartAnswer Chart { get; set; }
 		public List<ReportAnswerRecord> Data { get; set; }
 		public Dictionary<string, string> Columns { get; set; }
 		public Dictionary<string, string> Formats { get; set; }
 		public Guid ReportID { get; set; }
 		public ReportAnswer() {
-			Guid guid=Guid.NewGuid();
+			Guid guid = Guid.NewGuid();
 			ReportID = guid;
 		}
 	}
 
-	public class Reports
-	{
-		public static Dictionary<Guid,ReportAnswer> CreatedReports;
+	public class Reports {
+		public static Dictionary<Guid, ReportAnswer> CreatedReports;
 		static Reports() {
 			CreatedReports = new Dictionary<Guid, ReportAnswer>();
 		}
@@ -138,8 +129,7 @@ namespace VotGES.Piramida.Report
 
 
 
-	public class Report
-	{
+	public class Report {
 		public DateTime DateStart { get; set; }
 		public DateTime DateEnd { get; set; }
 		public DateTime RealDateEnd { get; set; }
@@ -221,12 +211,14 @@ namespace VotGES.Piramida.Report
 				if (date != null && date.HasValue) {
 					if (RecordTypes.Keys.Contains(key)) {
 						return Data[date.Value][key];
-					} else {
+					}
+					else {
 						Logger.Info("Ошибка в отчете. Ключ не найден " + key);
 						return 0;
 					}
 
-				} else {
+				}
+				else {
 					if (!CurrentNeedRecords.Contains(key)) {
 						CurrentNeedRecords.Add(key);
 					}
@@ -252,8 +244,15 @@ namespace VotGES.Piramida.Report
 			ResultDataFull.Add(ResultTypeEnum.sum, new Dictionary<string, double>());
 			Dates = new List<DateTime>();
 
+			DateTime date = NextDate(DateStart);
 
-			DateTime date=NextDate(DateStart);
+			if (interval == IntervalReportEnum.week) {
+				date = new DateTime(dateStart.Year, 1, 1);
+				while (date < DateStart)
+					date = date.AddDays(7);
+				date = date.AddDays(7);
+			}
+			
 			while (date <= DateEnd) {
 				Dates.Add(date);
 				Data.Add(date, new Dictionary<string, double>());
@@ -261,21 +260,20 @@ namespace VotGES.Piramida.Report
 			}
 
 
-
 			Answer = new ReportAnswer();
 		}
 
 		protected void processNeedData(RecordTypeCalc rCalc) {
 			CurrentNeedRecords = new List<string>();
-			double d=rCalc.CalcFunction(this, null);
-			List<string> current=CurrentNeedRecords.ToList();
+			double d = rCalc.CalcFunction(this, null);
+			List<string> current = CurrentNeedRecords.ToList();
 			foreach (String key in current) {
 				if (!NeedRecords.Contains(key)) {
 					NeedRecords.Add(key);
 				}
-				RecordTypeBase recordType=RecordTypes[key];
+				RecordTypeBase recordType = RecordTypes[key];
 				if (recordType is RecordTypeCalc) {
-					RecordTypeCalc child=recordType as RecordTypeCalc;
+					RecordTypeCalc child = recordType as RecordTypeCalc;
 					processNeedData(child);
 				}
 			}
@@ -292,12 +290,12 @@ namespace VotGES.Piramida.Report
 
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
 				if (recordType is RecordTypeCalc && NeedRecords.Contains(recordType.ID)) {
-					RecordTypeCalc rtc=recordType as RecordTypeCalc;
+					RecordTypeCalc rtc = recordType as RecordTypeCalc;
 					processNeedData(rtc);
 				}
 			}
 
-			List<String> keys=RecordTypes.Keys.ToList<string>();
+			List<String> keys = RecordTypes.Keys.ToList<string>();
 			foreach (string key in keys) {
 				if (!NeedRecords.Contains(key)) {
 					RecordTypes.Remove(key);
@@ -306,11 +304,11 @@ namespace VotGES.Piramida.Report
 		}
 
 		public Dictionary<string, Dictionary<string, RecordTypeDB>> processDBData() {
-			Dictionary<string, Dictionary<string,RecordTypeDB>> result=new Dictionary<string, Dictionary<string, RecordTypeDB>>();
+			Dictionary<string, Dictionary<string, RecordTypeDB>> result = new Dictionary<string, Dictionary<string, RecordTypeDB>>();
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
 				if (recordType is RecordTypeDB) {
-					RecordTypeDB rdb=recordType as RecordTypeDB;
-					string key=String.Format("{0}-{1}-{2}-{3}", rdb.DBOper.ToString(), rdb.ParNumber, rdb.DBRecord.ObjType, rdb.DBRecord.Obj);
+					RecordTypeDB rdb = recordType as RecordTypeDB;
+					string key = String.Format("{0}-{1}-{2}-{3}", rdb.DBOper.ToString(), rdb.ParNumber, rdb.DBRecord.ObjType, rdb.DBRecord.Obj);
 					if (!result.Keys.Contains(key)) {
 						result.Add(key, new Dictionary<string, RecordTypeDB>());
 					}
@@ -324,9 +322,9 @@ namespace VotGES.Piramida.Report
 		public virtual void ReadData() {
 			InitNeedData();
 
-			Dictionary<string, Dictionary<string,RecordTypeDB>> DBRecords=processDBData();
+			Dictionary<string, Dictionary<string, RecordTypeDB>> DBRecords = processDBData();
 
-			foreach (KeyValuePair<string,Dictionary<string,RecordTypeDB>> de in DBRecords) {
+			foreach (KeyValuePair<string, Dictionary<string, RecordTypeDB>> de in DBRecords) {
 				ReadDBData(de.Key, de.Value);
 			}
 			checkDBData();
@@ -336,14 +334,14 @@ namespace VotGES.Piramida.Report
 
 
 		protected void calculateData() {
-			Dictionary<string,List<string>> NeedDataForRecords=new Dictionary<string, List<string>>();
-			Dictionary<string,bool> calculatedData=new Dictionary<string, bool>();
+			Dictionary<string, List<string>> NeedDataForRecords = new Dictionary<string, List<string>>();
+			Dictionary<string, bool> calculatedData = new Dictionary<string, bool>();
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
 				calculatedData.Add(recordType.ID, false);
 				if (recordType is RecordTypeCalc) {
 					CurrentNeedRecords = new List<string>();
-					RecordTypeCalc rCalc=recordType as RecordTypeCalc;
-					double d=rCalc.CalcFunction(this, null);
+					RecordTypeCalc rCalc = recordType as RecordTypeCalc;
+					double d = rCalc.CalcFunction(this, null);
 					NeedDataForRecords.Add(rCalc.ID, CurrentNeedRecords);
 				}
 				if (recordType is RecordTypeDB) {
@@ -351,28 +349,29 @@ namespace VotGES.Piramida.Report
 				}
 			}
 
-			bool finish=true;
+			bool finish = true;
 			do {
 				finish = true;
 				foreach (RecordTypeBase recordType in RecordTypes.Values) {
 					if (calculatedData[recordType.ID])
 						continue;
 					if (recordType is RecordTypeCalc) {
-						RecordTypeCalc rCalc=recordType as RecordTypeCalc;
-						bool allReady=true;
+						RecordTypeCalc rCalc = recordType as RecordTypeCalc;
+						bool allReady = true;
 						foreach (string key in NeedDataForRecords[rCalc.ID]) {
 							allReady = allReady && calculatedData[key];
 						}
 						if (allReady) {
 							foreach (DateTime date in Dates) {
-								double val=rCalc.CalcFunction(this, date);
+								double val = rCalc.CalcFunction(this, date);
 								if (!Data[date].Keys.Contains(rCalc.ID)) {
 									Data[date].Add(rCalc.ID, -1);
 								}
 								Data[date][rCalc.ID] = val;
 							}
 							calculatedData[rCalc.ID] = true;
-						} else {
+						}
+						else {
 							finish = false;
 						}
 					}
@@ -384,18 +383,18 @@ namespace VotGES.Piramida.Report
 
 		protected virtual void calcResult() {
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
-				double min=10e100;
-				double max=-10e100;
-				double sum=0;
-				double count=0;
+				double min = 10e100;
+				double max = -10e100;
+				double sum = 0;
+				double count = 0;
 				foreach (DateTime date in Dates) {
-					double val=Data[date][recordType.ID];
+					double val = Data[date][recordType.ID];
 					min = min < val ? min : val;
 					max = max > val ? max : val;
 					sum += val;
 					count++;
 				}
-				double avg=count > 0 ? sum / count : 0;
+				double avg = count > 0 ? sum / count : 0;
 				ResultDataFull[ResultTypeEnum.avg].Add(recordType.ID, avg);
 				ResultDataFull[ResultTypeEnum.max].Add(recordType.ID, max);
 				ResultDataFull[ResultTypeEnum.min].Add(recordType.ID, min);
@@ -406,14 +405,15 @@ namespace VotGES.Piramida.Report
 
 
 		protected void checkDBData() {
-			List<DateTime> forRemove=new List<DateTime>();
+			List<DateTime> forRemove = new List<DateTime>();
 			foreach (DateTime date in Dates) {
 				if (date > RealDateEnd) {
 					forRemove.Add(date);
-				} else {
+				}
+				else {
 					foreach (RecordTypeBase recordType in RecordTypes.Values) {
 						if (recordType is RecordTypeDB) {
-							RecordTypeDB rdb=recordType as RecordTypeDB;
+							RecordTypeDB rdb = recordType as RecordTypeDB;
 							if (!Data[date].Keys.Contains(rdb.ID)) {
 								Data[date].Add(rdb.ID, rdb.DefaultValue);
 							}
@@ -428,11 +428,11 @@ namespace VotGES.Piramida.Report
 		}
 
 		protected void ReadDBData(string paramsKey, Dictionary<string, RecordTypeDB> records) {
-			string[]paramsArr=paramsKey.Split('-');
-			DBOperEnum dbOper=(DBOperEnum)Enum.Parse(typeof(DBOperEnum), paramsArr[0]);
-			string parNumber=paramsArr[1];
-			string objType=paramsArr[2];
-			string obj=paramsArr[3];
+			string[] paramsArr = paramsKey.Split('-');
+			DBOperEnum dbOper = (DBOperEnum)Enum.Parse(typeof(DBOperEnum), paramsArr[0]);
+			string parNumber = paramsArr[1];
+			string objType = paramsArr[2];
+			string obj = paramsArr[3];
 
 
 
@@ -442,28 +442,28 @@ namespace VotGES.Piramida.Report
 					connection = PiramidaAccess.getConnection("PSV");
 				}
 			}
-						
+
 			connection.Open();
-			SqlDataReader reader=null; SqlCommand command=null;
+			SqlDataReader reader = null; SqlCommand command = null;
 			try {
-				List<int> items=new List<int>();
-				Dictionary<int,RecordTypeDB> recordsDict=new Dictionary<int, RecordTypeDB>();
+				List<int> items = new List<int>();
+				Dictionary<int, RecordTypeDB> recordsDict = new Dictionary<int, RecordTypeDB>();
 				foreach (RecordTypeDB rdb in records.Values) {
 					items.Add(rdb.DBRecord.Item);
 					recordsDict.Add(rdb.DBRecord.Item, rdb);
 				}
-				string itemsStr=String.Join(",", items);
+				string itemsStr = String.Join(",", items);
 
 				command = connection.CreateCommand();
 				command.CommandTimeout = 360;
 				command.Parameters.AddWithValue("@dateStart", DateStart);
 				command.Parameters.AddWithValue("@dateEnd", DateEnd);
 
-				string valueParams=String.Format(" (DATA_DATE{4}@dateStart and DATA_DATE<=@dateEnd and PARNUMBER={3} and OBJTYPE={1} and OBJECT={2} and ITEM in ({0})) ",
+				string valueParams = String.Format(" (DATA_DATE{4}@dateStart and DATA_DATE<=@dateEnd and PARNUMBER={3} and OBJTYPE={1} and OBJECT={2} and ITEM in ({0})) ",
 					itemsStr, objType, obj, parNumber, dbOper == DBOperEnum.eq ? ">=" : ">");
 
-				string commandText="";
-				string valueOper=dbOper != DBOperEnum.eq ? String.Format("{0}(Value0)", dbOper) : "Value0";
+				string commandText = "";
+				string valueOper = dbOper != DBOperEnum.eq ? String.Format("{0}(Value0)", dbOper) : "Value0";
 
 				if (objType == "2" && (obj == "3" || obj == "30")) {
 					switch (dbOper) {
@@ -482,9 +482,9 @@ namespace VotGES.Piramida.Report
 					}
 				}
 
-				string dt30="dateadd(minute,-30,DATA_DATE)";
+				string dt30 = "dateadd(minute,-30,DATA_DATE)";
 				//string dt30="DATA_DATE";
-				string dateParam=
+				string dateParam =
 				String.Format(
 					"ITEM, datepart(year,{0}), datepart(month,{0}), datepart(day,{0}), datepart(hour,{0}), datepart(minute,{0})",
 					dt30);
@@ -601,20 +601,20 @@ namespace VotGES.Piramida.Report
 				//Logger.Info(commandText.Replace("@dateStart", String.Format("'{0}'", DateStart)).Replace("@dateEnd", String.Format("'{0}'", DateEnd)));
 
 				reader = command.ExecuteReader();
-				DateTime lastDate=DateEnd;
+				DateTime lastDate = DateEnd;
 
 				while (reader.Read()) {
-					int year=-1;
-					int month=-1;
-					int day=-1;
-					int hour=-1;
-					int min=-1;
-					int quarter=-1;
-					double val=-1;
-					DateTime date=DateTime.Now;
-					bool ok=false;
-					int item=(int)reader[0];
-					RecordTypeDB record=recordsDict[item];
+					int year = -1;
+					int month = -1;
+					int day = -1;
+					int hour = -1;
+					int min = -1;
+					int quarter = -1;
+					double val = -1;
+					DateTime date = DateTime.Now;
+					bool ok = false;
+					int item = (int)reader[0];
+					RecordTypeDB record = recordsDict[item];
 
 					switch (Interval) {
 						case IntervalReportEnum.minute:
@@ -671,7 +671,7 @@ namespace VotGES.Piramida.Report
 							year = (int)reader[1];
 							int week = (int)reader[2];
 							val = (double)reader[3];
-							date = new DateTime(year, 1, 1, 0, 0, 0).AddDays(week*7);
+							date = new DateTime(year, 1, 1, 0, 0, 0).AddDays((week - 1) * 7);
 							if (dbOper != DBOperEnum.eq)
 								date = date.AddDays(7);
 							ok = true;
@@ -707,10 +707,14 @@ namespace VotGES.Piramida.Report
 						RealDateEnd = lastDate > RealDateEnd ? lastDate : RealDateEnd;
 					}
 				}
-			} finally {
-				try { reader.Close(); } catch { }
-				try { command.Dispose(); } catch { }
-				try { connection.Close(); } catch { }
+			}
+			finally {
+				try { reader.Close(); }
+				catch { }
+				try { command.Dispose(); }
+				catch { }
+				try { connection.Close(); }
+				catch { }
 			}
 		}
 
@@ -721,7 +725,7 @@ namespace VotGES.Piramida.Report
 			Answer.Formats = new Dictionary<string, string>();
 
 			if (createResult) {
-				ReportAnswerRecord recordResult=new ReportAnswerRecord();
+				ReportAnswerRecord recordResult = new ReportAnswerRecord();
 				recordResult.Header = "Итог";
 				recordResult.DataStr = new Dictionary<string, double>();
 				foreach (RecordTypeBase recordType in RecordTypes.Values) {
@@ -740,7 +744,7 @@ namespace VotGES.Piramida.Report
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
 				if (recordType.Visible) {
 					if (!Answer.Columns.Keys.Contains(recordType.ID)) {
-						string title=reportAddList != null ? recordType.Title + " " + AddReportTitle : recordType.Title;
+						string title = reportAddList != null ? recordType.Title + " " + AddReportTitle : recordType.Title;
 						Answer.Columns.Add(recordType.ID, title);
 						Answer.Formats.Add(recordType.ID, recordType.FormatDouble);
 						if (reportAddList != null) {
@@ -754,7 +758,7 @@ namespace VotGES.Piramida.Report
 			}
 
 			foreach (DateTime date in Dates) {
-				ReportAnswerRecord record=new ReportAnswerRecord();
+				ReportAnswerRecord record = new ReportAnswerRecord();
 				record.Header = GetCorrectedDateForTable(date).ToString(getDateFormat(reportAddList != null));
 				record.DataStr = new Dictionary<string, double>();
 				foreach (RecordTypeBase recordType in RecordTypes.Values) {
@@ -766,9 +770,10 @@ namespace VotGES.Piramida.Report
 									int diffY = reportAdd.DateStart.Year - DateStart.Year;
 									int diffM = reportAdd.DateStart.Month - DateStart.Month;
 									int diffD = reportAdd.DateStart.Day - DateStart.Day;
-									DateTime newDate=date.AddYears(diffY).AddMonths(diffM).AddDays(diffD);
+									DateTime newDate = date.AddYears(diffY).AddMonths(diffM).AddDays(diffD);
 									record.DataStr.Add(recordType.ID + "_" + reportAdd.AddReportTitle, reportAdd.Data[newDate][recordType.ID]);
-								} catch { }
+								}
+								catch { }
 							}
 						}
 					}
@@ -798,10 +803,10 @@ namespace VotGES.Piramida.Report
 				Answer.Chart.Properties.addAxis(ax1);
 			}
 
-			
-			
 
-			ChartSerieType type=ChartSerieType.stepLine;
+
+
+			ChartSerieType type = ChartSerieType.stepLine;
 			if (Interval == IntervalReportEnum.quarter || Interval == IntervalReportEnum.month || Interval == IntervalReportEnum.year) {
 				type = ChartSerieType.column;
 			}
@@ -810,12 +815,12 @@ namespace VotGES.Piramida.Report
 
 			Answer.Chart.Properties.XValueFormatString = getDateFormat(reportAddList != null);
 
-			Random r=new Random();
-			int indexColor=0;
+			Random r = new Random();
+			int indexColor = 0;
 			foreach (RecordTypeBase recordType in RecordTypes.Values) {
 				if (recordType.ToChart) {
-					ChartSerieProperties props=new ChartSerieProperties();
-					string title=reportAddList != null ? recordType.Title + " " + AddReportTitle : recordType.Title;
+					ChartSerieProperties props = new ChartSerieProperties();
+					string title = reportAddList != null ? recordType.Title + " " + AddReportTitle : recordType.Title;
 					props.Title = title;
 					props.TagName = recordType.ID;
 					props.LineWidth = 2;
@@ -830,10 +835,10 @@ namespace VotGES.Piramida.Report
 
 					Answer.Chart.Properties.addSerie(props);
 
-					ChartDataSerie data=new ChartDataSerie();
+					ChartDataSerie data = new ChartDataSerie();
 					data.Name = recordType.ID;
 					foreach (DateTime date in Dates) {
-						DateTime dt=GetCorrectedDateForChart(date);
+						DateTime dt = GetCorrectedDateForChart(date);
 						data.Points.Add(new ChartDataPoint(dt, Data[date][recordType.ID]));
 					}
 					Answer.Chart.Data.addSerie(data);
@@ -859,11 +864,12 @@ namespace VotGES.Piramida.Report
 							data = new ChartDataSerie();
 							data.Name = recordType.ID + "_" + reportAdd.AddReportTitle;
 							foreach (DateTime date in Dates) {
-								DateTime dt=GetCorrectedDateForChart(date);
+								DateTime dt = GetCorrectedDateForChart(date);
 								try {
-									DateTime newDate=date.AddYears(diffY).AddMonths(diffM).AddDays(diffD);
+									DateTime newDate = date.AddYears(diffY).AddMonths(diffM).AddDays(diffD);
 									data.Points.Add(new ChartDataPoint(dt, reportAdd.Data[newDate][recordType.ID]));
-								} catch { }
+								}
+								catch { }
 							}
 							Answer.Chart.Data.addSerie(data);
 						}
@@ -889,7 +895,8 @@ namespace VotGES.Piramida.Report
 					case IntervalReportEnum.year:
 						return "yyyy";
 				}
-			} else {
+			}
+			else {
 				switch (Interval) {
 					case IntervalReportEnum.minute:
 						return "HH:mm";
@@ -910,7 +917,7 @@ namespace VotGES.Piramida.Report
 		}
 
 		protected DateTime GetCorrectedDateForTable(DateTime date) {
-			DateTime dt=date;
+			DateTime dt = date;
 			switch (Interval) {
 				case IntervalReportEnum.minute:
 					dt = date.AddMinutes(0);
@@ -941,7 +948,7 @@ namespace VotGES.Piramida.Report
 		}
 
 		protected DateTime GetCorrectedDateForChart(DateTime date) {
-			DateTime dt=date;
+			DateTime dt = date;
 			switch (Interval) {
 				case IntervalReportEnum.minute:
 					dt = date.AddMinutes(-1);

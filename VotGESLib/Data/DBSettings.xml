@@ -12,7 +12,7 @@
 		<DBInfo>
 			<ID>P2000</ID>
 			<Address>192.168.140.240</Address>
-			<DBName>Piramida2000</DBName>
+			<DBName>Piramida2001</DBName>
 			<User>sa</User>
 			<Password>pswd</Password>
 		</DBInfo>

@@ -73,15 +73,18 @@ namespace VotGES.Piramida.Report
 					case ReportTypeEnum.monthByHours:
 					case ReportTypeEnum.monthByHalfHours:
 					case ReportTypeEnum.month:
+					case ReportTypeEnum.monthByWeeks:
 						return getFullMonth(settings.Year, settings.Month);
 					case ReportTypeEnum.quarterByDays:
 					case ReportTypeEnum.quarter:
+					case ReportTypeEnum.quarterByWeeks:
 						return getFullQuarter(settings.Year, settings.Quarter);
 					case ReportTypeEnum.yearByHalfHours:
 					case ReportTypeEnum.yearByHours:
 					case ReportTypeEnum.yearByDays:
 					case ReportTypeEnum.yearByMonths:
 					case ReportTypeEnum.yearByQarters:
+					case ReportTypeEnum.yearByWeeks:
 					case ReportTypeEnum.year:
 						return getFullYear(settings.Year);
 					case ReportTypeEnum.years:

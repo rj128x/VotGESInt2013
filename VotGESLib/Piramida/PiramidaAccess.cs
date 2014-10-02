@@ -82,8 +82,7 @@ namespace VotGES.Piramida
 
 				string valueParams=String.Format(" ( d.[DATA_DATE]{0}@dateStart and d.[DATA_DATE]{1}@dateEnd and d.[PARNUMBER]={2} and d.[OBJTYPE]={3} and d.[OBJECT]={4} and d.[ITEM] in ({5}) ) ",
 					dateStartCond, dateEndCond, parNumber, objType, obj, itemsStr);
-
-
+								
 				command.CommandText = String.Format("SELECT d.[DATA_DATE], d.[OBJECT], d.[OBJTYPE], d.[ITEM], d.[PARNUMBER], d.[VALUE0], d.[VALUE1] from DATA as d  WHERE {0}", valueParams);
 
 
@@ -98,7 +97,10 @@ namespace VotGES.Piramida
 					entry.Item = reader.GetInt32(3);
 					entry.ParNumber = reader.GetInt32(4);
 					entry.Value0 = reader.GetDouble(5);
-          entry.Value1 = reader.GetDouble(6);
+					try {
+						entry.Value1 = reader.GetDouble(6);
+					}
+					catch { entry.Value1 = entry.Value0; }
 
 					result.Add(entry);
 				}
