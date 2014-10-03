@@ -43,6 +43,7 @@
     <Compile Include="DBWriter\DataDBWriter.cs" />
     <Compile Include="DBWriter\MasterDBWriter.cs" />
     <Compile Include="DBWriter\MasterDBWriterRunner.cs" />
+    <Compile Include="modbus.cs" />
     <Compile Include="ModbusReader\MasterModbusReader.cs" />
     <Compile Include="ModbusReader\ModbusCalc.cs" />
     <Compile Include="ModbusReader\ModbusDataWriter.cs" />
@@ -56,10 +57,6 @@
     <ProjectReference Include="..\..\VotGESLib\VotGESLib.csproj">
       <Project>{C4806689-AB9A-4F1F-998A-97B67D0DC9FE}</Project>
       <Name>VotGESLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModbusClassTCP\ModbusTCP.csproj">
-      <Project>{F2485353-AF87-48FA-8E92-8A6B7779443F}</Project>
-      <Name>ModbusTCP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -61,10 +61,6 @@
       <Project>{C4806689-AB9A-4F1F-998A-97B67D0DC9FE}</Project>
       <Name>VotGESLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModbusClassTCP\ModbusTCP.csproj">
-      <Project>{F2485353-AF87-48FA-8E92-8A6B7779443F}</Project>
-      <Name>ModbusTCP</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModbusLib\ModbusLib.csproj">
       <Project>{4C8CEEC9-12D6-4092-BC0D-64BC9B16229B}</Project>
       <Name>ModbusLib</Name>
