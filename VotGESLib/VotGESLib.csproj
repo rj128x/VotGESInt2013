@@ -155,6 +155,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Data\rem.sql" />
     <Content Include="Piramida\full.xml" />
     <Content Include="Piramida\sensors.xml" />
   </ItemGroup>
