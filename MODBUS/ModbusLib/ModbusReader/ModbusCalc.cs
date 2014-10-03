@@ -127,15 +127,15 @@ namespace ModbusLib {
 		public double GA10_AFTER_MAX() { return isGAAfterMax(this["MB_GA10_STATE"], this["MB_GA10_P"], this["MB_GA10_MAXP_TEC"]); }
 
 		public double GA1_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA1_P"], 35); }
-		public double GA2_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA2_P"], 35); }
-		public double GA3_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA3_P"], 35); }
-		public double GA4_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA4_P"], 35); }
-		public double GA5_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA5_P"], 35); }
-		public double GA6_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA6_P"], 35); }
-		public double GA7_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA7_P"], 35); }
-		public double GA8_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA8_P"], 35); }
-		public double GA9_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA9_P"], 35); }
-		public double GA10_LESS_MIN() { return isGALessMin(this["MB_GA1_STATE"], this["MB_GA10_P"], 35); }
+		public double GA2_LESS_MIN() { return isGALessMin(this["MB_GA2_STATE"], this["MB_GA2_P"], 35); }
+		public double GA3_LESS_MIN() { return isGALessMin(this["MB_GA3_STATE"], this["MB_GA3_P"], 35); }
+		public double GA4_LESS_MIN() { return isGALessMin(this["MB_GA4_STATE"], this["MB_GA4_P"], 35); }
+		public double GA5_LESS_MIN() { return isGALessMin(this["MB_GA5_STATE"], this["MB_GA5_P"], 35); }
+		public double GA6_LESS_MIN() { return isGALessMin(this["MB_GA6_STATE"], this["MB_GA6_P"], 35); }
+		public double GA7_LESS_MIN() { return isGALessMin(this["MB_GA7_STATE"], this["MB_GA7_P"], 35); }
+		public double GA8_LESS_MIN() { return isGALessMin(this["MB_GA8_STATE"], this["MB_GA8_P"], 35); }
+		public double GA9_LESS_MIN() { return isGALessMin(this["MB_GA9_STATE"], this["MB_GA9_P"], 35); }
+		public double GA10_LESS_MIN() { return isGALessMin(this["MB_GA10_STATE"], this["MB_GA10_P"], 35); }
 
 		public double GA1_SK() { return isGASK(this["MB_GA1_STATE"]); }
 		public double GA2_SK() { return isGASK(this["MB_GA2_STATE"]); }
@@ -190,23 +190,23 @@ namespace ModbusLib {
 
 
 		protected int isGARun(double gaState) {
-			return GlobalVotGES.getBIT((short)gaState, 15);
+			return 1-GlobalVotGES.getBIT((UInt16)gaState, 15);
 		}
 
 		protected int isGAGen(double gaState) {
-			return GlobalVotGES.getBIT((short)gaState, 4);
+			return GlobalVotGES.getBIT((UInt16)gaState, 4);
 		}
 
 		protected int isGASK(double gaState) {
-			return GlobalVotGES.getBIT((short)gaState, 5);
+			return GlobalVotGES.getBIT((UInt16)gaState, 5);
 		}
 
 		protected int isGAHHG(double gaState) {
-			return GlobalVotGES.getBIT((short)gaState, 7);
+			return GlobalVotGES.getBIT((UInt16)gaState, 7);
 		}
 
 		protected int isGAHHT(double gaState) {
-			return GlobalVotGES.getBIT((short)gaState, 6);
+			return GlobalVotGES.getBIT((UInt16)gaState, 6);
 		}
 
 		protected int isGALessMin(double gaState, double gaP, double Min) {

@@ -29,7 +29,6 @@ namespace ClearDB {
 
 
 		static void Main(string[] args) {
-
 			DBSettings.init();
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;

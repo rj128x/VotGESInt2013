@@ -25,8 +25,11 @@ namespace VotGES
 			System.Threading.Thread.CurrentThread.CurrentUICulture = ci;			
 		}
 		public static int getBIT(int val, int bit) {
-			string binary = Convert.ToString(val, 2);
+			val = (UInt16)val;
+			string binary = Convert.ToString((UInt16)val, 2);
+			//Logger.Info(val + "  " + binary);
 			char[] rev = binary.Reverse<char>().ToArray();
+			//Logger.Info("===" + (new String(rev)));
 			//char[] rev = binary.ToArray();
 			int v = 0;
 			try {

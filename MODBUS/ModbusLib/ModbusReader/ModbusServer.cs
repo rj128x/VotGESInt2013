@@ -235,7 +235,7 @@ namespace ModbusLib
 						byte w1=data[i];
 						byte w2=data[i + 1];
 						byte[] vals=new byte[] { w2, w1 };
-						int w=BitConverter.ToInt16(vals, 0);
+						int w=BitConverter.ToUInt16(vals, 0);
 						word[i / 2] = w;
 					}
 				} else {
@@ -279,7 +279,7 @@ namespace ModbusLib
 			foreach (string key in keys) {
 				if (key.Contains("_FLAG")) {
 					if (InitArr.FullData[key].FlagBit >= 0) {						
-						int v = GlobalVotGES.getBIT((short)Data[key], InitArr.FullData[key].FlagBit);
+						int v = GlobalVotGES.getBIT((UInt16)Data[key], InitArr.FullData[key].FlagBit);
 						Data[key] = v;
 					}
 				} 
