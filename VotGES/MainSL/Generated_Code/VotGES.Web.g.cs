@@ -1313,9 +1313,13 @@ namespace VotGES.OgranGA
         
         private int _cntLessMin;
         
+        private int _cntOgran;
+        
         private int _cntPusk;
         
         private int _cntStop;
+        
+        private int _cntZapr;
         
         private DateTime _dateEnd;
         
@@ -1370,10 +1374,14 @@ namespace VotGES.OgranGA
         partial void OncntAfterMaxChanged();
         partial void OncntLessMinChanging(int value);
         partial void OncntLessMinChanged();
+        partial void OncntOgranChanging(int value);
+        partial void OncntOgranChanged();
         partial void OncntPuskChanging(int value);
         partial void OncntPuskChanged();
         partial void OncntStopChanging(int value);
         partial void OncntStopChanged();
+        partial void OncntZaprChanging(int value);
+        partial void OncntZaprChanged();
         partial void OndateEndChanging(DateTime value);
         partial void OndateEndChanged();
         partial void OndateStartChanging(DateTime value);
@@ -1477,6 +1485,30 @@ namespace VotGES.OgranGA
         }
         
         /// <summary>
+        /// Возвращает или задает значение параметра "cntOgran".
+        /// </summary>
+        [DataMember()]
+        public int cntOgran
+        {
+            get
+            {
+                return this._cntOgran;
+            }
+            set
+            {
+                if ((this._cntOgran != value))
+                {
+                    this.OncntOgranChanging(value);
+                    this.RaiseDataMemberChanging("cntOgran");
+                    this.ValidateProperty("cntOgran", value);
+                    this._cntOgran = value;
+                    this.RaiseDataMemberChanged("cntOgran");
+                    this.OncntOgranChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Возвращает или задает значение параметра "cntPusk".
         /// </summary>
         [DataMember()]
@@ -1520,6 +1552,30 @@ namespace VotGES.OgranGA
                     this._cntStop = value;
                     this.RaiseDataMemberChanged("cntStop");
                     this.OncntStopChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntZapr".
+        /// </summary>
+        [DataMember()]
+        public int cntZapr
+        {
+            get
+            {
+                return this._cntZapr;
+            }
+            set
+            {
+                if ((this._cntZapr != value))
+                {
+                    this.OncntZaprChanging(value);
+                    this.RaiseDataMemberChanging("cntZapr");
+                    this.ValidateProperty("cntZapr", value);
+                    this._cntZapr = value;
+                    this.RaiseDataMemberChanged("cntZapr");
+                    this.OncntZaprChanged();
                 }
             }
         }

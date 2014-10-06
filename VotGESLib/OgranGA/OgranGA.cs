@@ -16,6 +16,8 @@ namespace VotGES.OgranGA {
 		public int cntStop { get; set; }
 		public int cntAfterMax { get; set; }
 		public int cntLessMin { get; set; }
+		public int cntOgran { get; set; }
+		public int cntZapr { get; set; }
 		public double timeSK { get; set; }
 		public double timeGen { get; set; }
 		public double timeRun { get; set; }
@@ -51,6 +53,8 @@ namespace VotGES.OgranGA {
 		public void processStr() {
 			timeZapr = 0;
 			timeOgran = timeLessMin + timeAfterMax;
+			cntZapr = 0;
+			cntOgran = cntLessMin + cntAfterMax;
 			TimeSKStr = getTimeSTR(timeSK);
 			TimeRunStr = getTimeSTR(timeRun);
 			TimeGenStr = getTimeSTR(timeGen);

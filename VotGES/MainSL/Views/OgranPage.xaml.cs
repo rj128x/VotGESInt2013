@@ -198,7 +198,13 @@ namespace MainSL.Views {
 				Ellipse el = new Ellipse();
 				el.Width = 10;
 				el.Height = 10;
+
 				el.Fill = new SolidColorBrush(Colors.Blue);
+				if (point == CurrentChartData.Points.Last()) {
+					el.Stroke = new SolidColorBrush(Colors.Red);
+					el.StrokeThickness = 2;
+				}
+				
 
 
 				double pointLeft = (point.XValDouble - 20) * stepPower;
@@ -212,6 +218,9 @@ namespace MainSL.Views {
 
 				double x=left+pointLeft;
 				double y=top+pointTop;
+				if (x < left)
+					x =  10;
+
 				el.Margin = new Thickness(x-5,y-5,x+5,y+5);
 
 				if (prevX != -1) {
