@@ -76,6 +76,13 @@ namespace ModbusLib {
 		[System.Xml.Serialization.XmlAttribute]
 		public int ValBit { get; set; }
 
+		[System.Xml.Serialization.XmlAttribute]
+		public double MinValue { get; set; }
+
+		[System.Xml.Serialization.XmlAttribute]
+		public double MaxValue { get; set; }
+		
+
 		public ModbusInitData() {
 			WriteToDBMin = false;
 			WriteToDBHH = false;
@@ -95,6 +102,8 @@ namespace ModbusLib {
 			Scale = 1;
 			FlagBit = -1;
 			ValBit = -1;
+			MinValue = Double.MinValue;
+			MaxValue = Double.MaxValue;
 		}
 	}
 
@@ -162,6 +171,11 @@ namespace ModbusLib {
 					}
 					else {
 						val=GlobalVotGES.getBIT((short)val,data.ValBit);
+					}
+
+					if (val > data.MaxValue || val < data.MinValue) {
+						Logger.Info(String.Format("Выход за границы диапазона {0} val={1}", data.ID, val));
+						val = double.NaN;
 					}
 
 					if (DataArray.ContainsKey(data.ID)) {

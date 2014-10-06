@@ -25,59 +25,59 @@
 	<ParNumberDiff>13</ParNumberDiff>
 	
 	<Data>
-    <ModbusInitData ID='GES_Rash' Addr='1026' Name='Расход воды ГЭС' Scale='1'    Item='1'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='GES_Rash' Addr='1026' Name='Расход воды ГЭС' Scale='1'    Item='1'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='0' MaxValue='10000'/>
     <ModbusInitData ID='GES_Rash_FLAG' Addr='1027' Scale='1'/>
-    <ModbusInitData ID='VB' Addr='1020' Name='Верхний бьеф сгл.' Scale='0.01'   Item='2'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='VB' Addr='1020' Name='Верхний бьеф сгл.' Scale='0.01'   Item='2'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='84' MaxValue='92'/>
     <ModbusInitData ID='VB_FLAG' Addr='1021' Scale='1'/>
-    <ModbusInitData ID='NB' Addr='1022' Name='Нижний бьеф сгл.' Scale='0.01'   Item='3'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='NB' Addr='1022' Name='Нижний бьеф сгл.' Scale='0.01'   Item='3'  WriteToDBHH='1'  WriteToDBMin='1'  MinValue='65' MaxValue='75'/>
     <ModbusInitData ID='NB_FLAG' Addr='1023' Scale='1'/>
-    <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01'  Item='4'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01'  Item='4'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='12' MaxValue='25'/>
     <ModbusInitData ID='Napor_FLAG' Addr='1025' Scale='1'/>
     <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'   Item='5'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='Temp_FLAG' Addr='747' Scale='1'/>
     <ModbusInitData ID='TempShit' Addr='746' Name='Температура щитовых сооружений' Scale='1'   Item='6'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='TempShit_FLAG' Addr='747' Scale='1'/>
     
-		<ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='101' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='101' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA1_Rash_FLAG' Addr='0' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA2_Rash' Addr='110' Name='Г2 Расход' Scale='1'   Item='102' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA2_Rash' Addr='110' Name='Г2 Расход' Scale='1'   Item='102' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA2_Rash_FLAG' Addr='100' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA3_Rash' Addr='210' Name='Г3 Расход' Scale='1'   Item='103' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA3_Rash' Addr='210' Name='Г3 Расход' Scale='1'   Item='103' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA3_Rash_FLAG' Addr='200' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA4_Rash' Addr='310' Name='Г4 Расход' Scale='1'   Item='104' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA4_Rash' Addr='310' Name='Г4 Расход' Scale='1'   Item='104' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA4_Rash_FLAG' Addr='300' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA5_Rash' Addr='410' Name='Г5 Расход' Scale='1'   Item='105' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA5_Rash' Addr='410' Name='Г5 Расход' Scale='1'   Item='105' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA5_Rash_FLAG' Addr='400' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA6_Rash' Addr='510' Name='Г6 Расход' Scale='1'   Item='106' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA6_Rash' Addr='510' Name='Г6 Расход' Scale='1'   Item='106' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA6_Rash_FLAG' Addr='500' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA7_Rash' Addr='610' Name='Г7 Расход' Scale='1'   Item='107' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA7_Rash' Addr='610' Name='Г7 Расход' Scale='1'   Item='107' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA7_Rash_FLAG' Addr='600' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA8_Rash' Addr='710' Name='Г8 Расход' Scale='1'   Item='108' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA8_Rash' Addr='710' Name='Г8 Расход' Scale='1'   Item='108' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA8_Rash_FLAG' Addr='700' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA9_Rash' Addr='810' Name='Г9 Расход' Scale='1'   Item='109' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA9_Rash' Addr='810' Name='Г9 Расход' Scale='1'   Item='109' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA9_Rash_FLAG' Addr='800' Scale='1' FlagBit='9'/>
-		<ModbusInitData ID='GA10_Rash' Addr='910' Name='Г10 Расход' Scale='1'   Item='110' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA10_Rash' Addr='910' Name='Г10 Расход' Scale='1'   Item='110' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA10_Rash_FLAG' Addr='900' Scale='1' FlagBit='9'/>
 
-    <ModbusInitData ID='GA1_P' Addr='3' Name='Г1 З' Scale='0.1'   Item='201' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA1_P' Addr='3' Name='Г1 З' Scale='0.1'   Item='201' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA1_P_FLAG' Addr='0' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA2_P' Addr='103' Name='Г2 З' Scale='0.1'   Item='202' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA2_P' Addr='103' Name='Г2 З' Scale='0.1'   Item='202' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA2_P_FLAG' Addr='100' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA3_P' Addr='203' Name='Г3 З' Scale='0.1'   Item='203' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA3_P' Addr='203' Name='Г3 З' Scale='0.1'   Item='203' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA3_P_FLAG' Addr='200' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA4_P' Addr='303' Name='Г4 З' Scale='0.1'   Item='204' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA4_P' Addr='303' Name='Г4 З' Scale='0.1'   Item='204' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA4_P_FLAG' Addr='300' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA5_P' Addr='403' Name='Г5 З' Scale='0.1'   Item='205' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA5_P' Addr='403' Name='Г5 З' Scale='0.1'   Item='205' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA5_P_FLAG' Addr='400' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA6_P' Addr='503' Name='Г6 З' Scale='0.1'   Item='206' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA6_P' Addr='503' Name='Г6 З' Scale='0.1'   Item='206' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA6_P_FLAG' Addr='500' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA7_P' Addr='603' Name='Г7 З' Scale='0.1'   Item='207' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA7_P' Addr='603' Name='Г7 З' Scale='0.1'   Item='207' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA7_P_FLAG' Addr='600' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA8_P' Addr='703' Name='Г8 З' Scale='0.1'   Item='208' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA8_P' Addr='703' Name='Г8 З' Scale='0.1'   Item='208' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA8_P_FLAG' Addr='700' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA9_P' Addr='803' Name='Г9 З' Scale='0.1'   Item='209' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA9_P' Addr='803' Name='Г9 З' Scale='0.1'   Item='209' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA9_P_FLAG' Addr='800' Scale='1' FlagBit='2'/>
-    <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA10_P_FLAG' Addr='900' Scale='1' FlagBit='2'/>
 
     <ModbusInitData ID='GA1_Q' Addr='15' Name='Г1 Q' Scale='1'   Item='301' WriteToDBHH='1' WriteToDBMin='1'/>
@@ -143,46 +143,46 @@
     <ModbusInitData ID='GA10_UgolRK' Addr='907' Name='Г10 Угол открытия  РК' Scale='0.001' Add='-10'  Item='510' WriteToDBHH='1' WriteToDBMin='1'/>
     <ModbusInitData ID='GA10_UgolRK_FLAG' Addr='900' Scale='1' FlagBit='6'/>
     
-    <ModbusInitData ID='GA1_Napor' Addr='4' Name='Г1 Напор' Scale='0.01'   Item='601' WriteToDBHH='1' WriteToDBMin='1'/>
+    <ModbusInitData ID='GA1_Napor' Addr='4' Name='Г1 Напор' Scale='0.01'   Item='601' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA1_Napor_FLAG' Addr='0' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA2_Napor' Addr='104' Name='Г2 Напор' Scale='0.01'   Item='602' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA2_Napor' Addr='104' Name='Г2 Напор' Scale='0.01'   Item='602' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA2_Napor_FLAG' Addr='100' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA3_Napor' Addr='204' Name='Г3 Напор' Scale='0.01'   Item='603' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA3_Napor' Addr='204' Name='Г3 Напор' Scale='0.01'   Item='603' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA3_Napor_FLAG' Addr='200' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA4_Napor' Addr='304' Name='Г4 Напор' Scale='0.01'   Item='604' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA4_Napor' Addr='304' Name='Г4 Напор' Scale='0.01'   Item='604' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA4_Napor_FLAG' Addr='300' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA5_Napor' Addr='404' Name='Г5 Напор' Scale='0.01'   Item='605' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA5_Napor' Addr='404' Name='Г5 Напор' Scale='0.01'   Item='605' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA5_Napor_FLAG' Addr='400' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA6_Napor' Addr='504' Name='Г6 Напор' Scale='0.01'   Item='606' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA6_Napor' Addr='504' Name='Г6 Напор' Scale='0.01'   Item='606' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA6_Napor_FLAG' Addr='500' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA7_Napor' Addr='604' Name='Г7 Напор' Scale='0.01'   Item='607' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA7_Napor' Addr='604' Name='Г7 Напор' Scale='0.01'   Item='607' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA7_Napor_FLAG' Addr='600' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA8_Napor' Addr='704' Name='Г8 Напор' Scale='0.01'   Item='608' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA8_Napor' Addr='704' Name='Г8 Напор' Scale='0.01'   Item='608' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA8_Napor_FLAG' Addr='700' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA9_Napor' Addr='804' Name='Г9 Напор' Scale='0.01'   Item='609' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA9_Napor' Addr='804' Name='Г9 Напор' Scale='0.01'   Item='609' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA9_Napor_FLAG' Addr='800' Scale='1' FlagBit='3'/>
-		<ModbusInitData ID='GA10_Napor' Addr='904' Name='Г10 Напор' Scale='0.01'   Item='610' WriteToDBHH='1' WriteToDBMin='1'/>
+		<ModbusInitData ID='GA10_Napor' Addr='904' Name='Г10 Напор' Scale='0.01'   Item='610' WriteToDBHH='1' WriteToDBMin='1' MinValue='12' MaxValue='25'/>
 		<ModbusInitData ID='GA10_Napor_FLAG' Addr='900' Scale='1' FlagBit='3'/>
 
-    <ModbusInitData ID='GA1_MAXP_TEC' Addr='16' Name='Г1 Макс мощность' Scale='1'   Item='701' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA1_MAXP_TEC' Addr='16' Name='Г1 Макс мощность' Scale='1'   Item='701' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA1_MAXP_TEC_FLAG' Addr='0' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA2_MAXP_TEC' Addr='116' Name='Г2 Макс мощность' Scale='1'   Item='702' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA2_MAXP_TEC' Addr='116' Name='Г2 Макс мощность' Scale='1'   Item='702' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA2_MAXP_TEC_FLAG' Addr='100' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA3_MAXP_TEC' Addr='216' Name='Г3 Макс мощность' Scale='1'   Item='703' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA3_MAXP_TEC' Addr='216' Name='Г3 Макс мощность' Scale='1'   Item='703' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA3_MAXP_TEC_FLAG' Addr='200' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA4_MAXP_TEC' Addr='316' Name='Г4 Макс мощность' Scale='1'   Item='704' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA4_MAXP_TEC' Addr='316' Name='Г4 Макс мощность' Scale='1'   Item='704' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA4_MAXP_TEC_FLAG' Addr='300' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA5_MAXP_TEC' Addr='416' Name='Г5 Макс мощность' Scale='1'   Item='705' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA5_MAXP_TEC' Addr='416' Name='Г5 Макс мощность' Scale='1'   Item='705' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA5_MAXP_TEC_FLAG' Addr='400' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA6_MAXP_TEC' Addr='516' Name='Г6 Макс мощность' Scale='1'   Item='706' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA6_MAXP_TEC' Addr='516' Name='Г6 Макс мощность' Scale='1'   Item='706' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA6_MAXP_TEC_FLAG' Addr='500' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA7_MAXP_TEC' Addr='616' Name='Г7 Макс мощность' Scale='1'   Item='707' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA7_MAXP_TEC' Addr='616' Name='Г7 Макс мощность' Scale='1'   Item='707' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA7_MAXP_TEC_FLAG' Addr='600' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA8_MAXP_TEC' Addr='716' Name='Г8 Макс мощность' Scale='1'   Item='708' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA8_MAXP_TEC' Addr='716' Name='Г8 Макс мощность' Scale='1'   Item='708' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA8_MAXP_TEC_FLAG' Addr='700' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA9_MAXP_TEC' Addr='816' Name='Г9 Макс мощность' Scale='1'   Item='709' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA9_MAXP_TEC' Addr='816' Name='Г9 Макс мощность' Scale='1'   Item='709' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA9_MAXP_TEC_FLAG' Addr='800' Scale='1' FlagBit='15'/>
-    <ModbusInitData ID='GA10_MAXP_TEC' Addr='916' Name='Г10 Макс мощность' Scale='1'   Item='710' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0'/>
+    <ModbusInitData ID='GA10_MAXP_TEC' Addr='916' Name='Г10 Макс мощность' Scale='1'   Item='710' WriteToDBHH='0' WriteToDBMin='0' WriteToDBDiff='0' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA10_MAXP_TEC_FLAG' Addr='900' Scale='1' FlagBit='15'/>
 
     <ModbusInitData ID='GA1_STATE' Addr='1' Name='Г1 Зап' Scale='1' Item='801' WriteToDBHH='0' WriteToDBDiff='1' WriteToDBMin='0' />

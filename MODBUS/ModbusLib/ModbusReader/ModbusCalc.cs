@@ -23,6 +23,10 @@ namespace ModbusLib {
 			try {
 				MethodInfo mi = typeof(ModbusCalc).GetMethod(name, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 				val = (double)mi.Invoke(this, new object[] { });
+				if (val < data.MinValue || val > data.MaxValue) {
+					Logger.Info(String.Format("Выход за границы диапазона {0} val={1}", data.ID, val));
+					val = double.NaN;					
+				}
 			}
 			catch (Exception e) {
 				if (!e.ToString().Contains("FlagError")) {

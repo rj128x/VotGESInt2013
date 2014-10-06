@@ -25,13 +25,13 @@
 	<ParNumberDiff>13</ParNumberDiff>
 	
 	<Data>
-    <ModbusInitData ID='GES_Rash' Addr='1026' Name='Расход воды ГЭС' Scale='1'  WriteToDBHH='1'  Obj='1' ObjType='2' Item='354'/>
+    <ModbusInitData ID='GES_Rash' Addr='1026' Name='Расход воды ГЭС' Scale='1'  WriteToDBHH='1'  Obj='1' ObjType='2' Item='354' MinValue='0' MaxValue='10000'/>
     <ModbusInitData ID='GES_Rash_FLAG' Addr='1027' Scale='1'/>
-    <ModbusInitData ID='VB' Addr='1020' Name='Верхний бьеф сгл.' Scale='0.01'  WriteToDBHH='1' Obj='1' ObjType='2' Item='274'/>
+    <ModbusInitData ID='VB' Addr='1020' Name='Верхний бьеф сгл.' Scale='0.01'  WriteToDBHH='1' Obj='1' ObjType='2' Item='274' MinValue='84' MaxValue='92'/>
     <ModbusInitData ID='VB_FLAG' Addr='1021' Scale='1'/>
-    <ModbusInitData ID='NB' Addr='1022' Name='Нижний бьеф сгл.' Scale='0.01'  WriteToDBHH='1'  Obj='1' ObjType='2' Item='275'/>
+    <ModbusInitData ID='NB' Addr='1022' Name='Нижний бьеф сгл.' Scale='0.01'  WriteToDBHH='1'  Obj='1' ObjType='2' Item='275' MinValue='65' MaxValue='75'/>
     <ModbusInitData ID='NB_FLAG' Addr='1023' Scale='1'/>
-    <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01' WriteToDBHH='1'  Obj='1' ObjType='2' Item='276'/>
+    <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01' WriteToDBHH='1'  Obj='1' ObjType='2' Item='276' MinValue='12' MaxValue='25'/>
     <ModbusInitData ID='Napor_FLAG' Addr='1025' Scale='1'/>
     <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'  WriteToDBHH='1' Obj='1' ObjType='2' Item='373'/>
     <ModbusInitData ID='Temp_FLAG' Addr='747' Scale='1'/>
