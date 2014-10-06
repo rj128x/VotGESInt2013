@@ -1343,6 +1343,10 @@ namespace VotGES.OgranGA
         
         private string _timeLessMinStr;
         
+        private double _timeOgran;
+        
+        private string _timeOgranStr;
+        
         private double _timeRun;
         
         private string _timeRunStr;
@@ -1350,6 +1354,10 @@ namespace VotGES.OgranGA
         private double _timeSK;
         
         private string _timeSKStr;
+        
+        private double _timeZapr;
+        
+        private string _timeZaprStr;
         
         #region Определение методов расширяемости
 
@@ -1392,6 +1400,10 @@ namespace VotGES.OgranGA
         partial void OntimeLessMinChanged();
         partial void OnTimeLessMinStrChanging(string value);
         partial void OnTimeLessMinStrChanged();
+        partial void OntimeOgranChanging(double value);
+        partial void OntimeOgranChanged();
+        partial void OnTimeOgranStrChanging(string value);
+        partial void OnTimeOgranStrChanged();
         partial void OntimeRunChanging(double value);
         partial void OntimeRunChanged();
         partial void OnTimeRunStrChanging(string value);
@@ -1400,6 +1412,10 @@ namespace VotGES.OgranGA
         partial void OntimeSKChanged();
         partial void OnTimeSKStrChanging(string value);
         partial void OnTimeSKStrChanged();
+        partial void OntimeZaprChanging(double value);
+        partial void OntimeZaprChanged();
+        partial void OnTimeZaprStrChanging(string value);
+        partial void OnTimeZaprStrChanged();
 
         #endregion
         
@@ -1826,6 +1842,55 @@ namespace VotGES.OgranGA
         }
         
         /// <summary>
+        /// Возвращает или задает значение параметра "timeOgran".
+        /// </summary>
+        [DataMember()]
+        public double timeOgran
+        {
+            get
+            {
+                return this._timeOgran;
+            }
+            set
+            {
+                if ((this._timeOgran != value))
+                {
+                    this.OntimeOgranChanging(value);
+                    this.RaiseDataMemberChanging("timeOgran");
+                    this.ValidateProperty("timeOgran", value);
+                    this._timeOgran = value;
+                    this.RaiseDataMemberChanged("timeOgran");
+                    this.OntimeOgranChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeOgranStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeOgranStr
+        {
+            get
+            {
+                return this._timeOgranStr;
+            }
+            set
+            {
+                if ((this._timeOgranStr != value))
+                {
+                    this.OnTimeOgranStrChanging(value);
+                    this.ValidateProperty("TimeOgranStr", value);
+                    this._timeOgranStr = value;
+                    this.RaisePropertyChanged("TimeOgranStr");
+                    this.OnTimeOgranStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Возвращает или задает значение параметра "timeRun".
         /// </summary>
         [DataMember()]
@@ -1919,6 +1984,55 @@ namespace VotGES.OgranGA
                     this._timeSKStr = value;
                     this.RaisePropertyChanged("TimeSKStr");
                     this.OnTimeSKStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeZapr".
+        /// </summary>
+        [DataMember()]
+        public double timeZapr
+        {
+            get
+            {
+                return this._timeZapr;
+            }
+            set
+            {
+                if ((this._timeZapr != value))
+                {
+                    this.OntimeZaprChanging(value);
+                    this.RaiseDataMemberChanging("timeZapr");
+                    this.ValidateProperty("timeZapr", value);
+                    this._timeZapr = value;
+                    this.RaiseDataMemberChanged("timeZapr");
+                    this.OntimeZaprChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeZaprStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeZaprStr
+        {
+            get
+            {
+                return this._timeZaprStr;
+            }
+            set
+            {
+                if ((this._timeZaprStr != value))
+                {
+                    this.OnTimeZaprStrChanging(value);
+                    this.ValidateProperty("TimeZaprStr", value);
+                    this._timeZaprStr = value;
+                    this.RaisePropertyChanged("TimeZaprStr");
+                    this.OnTimeZaprStrChanged();
                 }
             }
         }

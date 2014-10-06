@@ -109,8 +109,8 @@
                         <TextBlock Text="СК" Grid.Row="7" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="ХХТ" Grid.Row="8" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="ХХГ" Grid.Row="9" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Макс" Grid.Row="10" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Мин" Grid.Row="11" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="Огр. режим" Grid.Row="10" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="Запр. режим" Grid.Row="11" Grid.Column="0"  Style="{StaticResource Caption}"/>
 
 
                         <TextBlock Text="{Binding ExpStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="1"  Style="{StaticResource Value}"/>
@@ -167,17 +167,17 @@
                         <TextBlock Text="{Binding MonthStartRecord.TimeHHGStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="4" Style="{StaticResource Value}" />
                         <TextBlock Text="{Binding DayStartRecord.TimeHHGStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="9" Grid.Column="5" Style="{StaticResource Value}" />
 
-                        <TextBlock Text="{Binding ExpStartRecord.TimeAfterMaxStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="1" Style="{StaticResource Value}" />
-                        <TextBlock Text="{Binding KRRecord.TimeAfterMaxStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="2"  Style="{StaticResource Value}"/>
-                        <TextBlock Text="{Binding YearStartRecord.TimeAfterMaxStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="3"  Style="{StaticResource Value}"/>
-                        <TextBlock Text="{Binding MonthStartRecord.TimeAfterMaxStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="4" Style="{StaticResource Value}" />
-                        <TextBlock Text="{Binding DayStartRecord.TimeAfterMaxStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="5" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding ExpStartRecord.TimeOgranStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="1" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding KRRecord.TimeOgranStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="2"  Style="{StaticResource Value}"/>
+                        <TextBlock Text="{Binding YearStartRecord.TimeOgranStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="3"  Style="{StaticResource Value}"/>
+                        <TextBlock Text="{Binding MonthStartRecord.TimeOgranStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="4" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding DayStartRecord.TimeOgranStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="10" Grid.Column="5" Style="{StaticResource Value}" />
 
-                        <TextBlock Text="{Binding ExpStartRecord.TimeLessMinStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="1" Style="{StaticResource Value}" />
-                        <TextBlock Text="{Binding KRRecord.TimeLessMinStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="2" Style="{StaticResource Value}" />
-                        <TextBlock Text="{Binding YearStartRecord.TimeLessMinStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="3"  Style="{StaticResource Value}"/>
-                        <TextBlock Text="{Binding MonthStartRecord.TimeLessMinStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="4" Style="{StaticResource Value}" />
-                        <TextBlock Text="{Binding DayStartRecord.TimeLessMinStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="5" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding ExpStartRecord.TimeZaprStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="1" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding KRRecord.TimeZaprStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="2" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding YearStartRecord.TimeZaprStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="3"  Style="{StaticResource Value}"/>
+                        <TextBlock Text="{Binding MonthStartRecord.TimeZaprStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="4" Style="{StaticResource Value}" />
+                        <TextBlock Text="{Binding DayStartRecord.TimeZaprStr, Mode=OneWay, StringFormat='0.0'}" Grid.Row="11" Grid.Column="5" Style="{StaticResource Value}" />
 
                     </Grid>
 

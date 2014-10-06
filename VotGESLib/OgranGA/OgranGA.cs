@@ -23,6 +23,8 @@ namespace VotGES.OgranGA {
 		public double timeHHG { get; set; }
 		public double timeLessMin { get; set; }
 		public double timeAfterMax { get; set; }
+		public double timeOgran { get; set; }
+		public double timeZapr { get; set; }
 
 		public string TimeSKStr { get; protected set; }
 		public string TimeRunStr { get; protected set; }
@@ -32,6 +34,8 @@ namespace VotGES.OgranGA {
 		public string TimeLessMinStr { get; protected set; }
 		public string TimeAfterMaxStr { get; protected set; }
 
+		public string TimeOgranStr { get; protected set; }
+		public string TimeZaprStr { get; protected set; }
 
 
 		protected string getTimeSTR(double time) {
@@ -45,6 +49,8 @@ namespace VotGES.OgranGA {
 		}
 
 		public void processStr() {
+			timeZapr = 0;
+			timeOgran = timeLessMin + timeAfterMax;
 			TimeSKStr = getTimeSTR(timeSK);
 			TimeRunStr = getTimeSTR(timeRun);
 			TimeGenStr = getTimeSTR(timeGen);
@@ -52,7 +58,11 @@ namespace VotGES.OgranGA {
 			TimeHHGStr = getTimeSTR(timeHHG);
 			TimeLessMinStr = getTimeSTR(timeLessMin);
 			TimeAfterMaxStr = getTimeSTR(timeAfterMax);
+			TimeOgranStr = getTimeSTR(timeOgran);
+			TimeZaprStr = getTimeSTR(timeZapr);
 		}
+
+
 		public static double dateDiff(DateTime dateStart, DateTime dateEnd) {
 			return (dateEnd.Ticks - dateStart.Ticks) / (10000000.0 * 60.0);
 		}
