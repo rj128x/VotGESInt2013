@@ -234,7 +234,7 @@ namespace ModbusLib
 					for (int i=0; i < data.Length; i = i + 2) {
 						byte w1=data[i];
 						byte w2=data[i + 1];
-						byte[] vals=new byte[] { w2, w1 };
+						byte[] vals=new byte[] { w2, w1 };						
 						int w=BitConverter.ToUInt16(vals, 0);
 						word[i / 2] = w;
 					}
@@ -277,7 +277,7 @@ namespace ModbusLib
 			string nm;
 			string[] keys = Data.Keys.ToArray();
 			foreach (string key in keys) {
-				if (key.Contains("_FLAG")) {
+				if (key.Contains("_FLAG")) {					
 					if (InitArr.FullData[key].FlagBit >= 0) {						
 						int v = GlobalVotGES.getBIT((UInt16)Data[key], InitArr.FullData[key].FlagBit);
 						Data[key] = v;
@@ -287,6 +287,9 @@ namespace ModbusLib
 
 			foreach (string key in keys) {
 				val = Data[key];
+				if (InitArr.FullData[key].SignVal) {
+					Data[key] = Convert.ToInt16(Data[key]);
+				}
 				nm = key + "_FLAG";
 				if (Data.ContainsKey(nm)) {					
 					if (InitArr.FullData[nm].FlagBit > 0) {

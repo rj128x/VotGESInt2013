@@ -81,7 +81,9 @@ namespace ModbusLib {
 
 		[System.Xml.Serialization.XmlAttribute]
 		public double MaxValue { get; set; }
-		
+
+		[System.Xml.Serialization.XmlAttribute]
+		public bool SignVal { get; set; }
 
 		public ModbusInitData() {
 			WriteToDBMin = false;
@@ -104,6 +106,7 @@ namespace ModbusLib {
 			ValBit = -1;
 			MinValue = Double.MinValue;
 			MaxValue = Double.MaxValue;
+			SignVal = false;
 		}
 	}
 

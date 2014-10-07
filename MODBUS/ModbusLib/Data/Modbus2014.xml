@@ -33,9 +33,9 @@
     <ModbusInitData ID='NB_FLAG' Addr='1023' Scale='1'/>
     <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01'  Item='4'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='12' MaxValue='25'/>
     <ModbusInitData ID='Napor_FLAG' Addr='1025' Scale='1'/>
-    <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'   Item='5'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='Temp' Addr='746' Name='Температура наружного воздуха' Scale='1'   Item='5'  WriteToDBHH='1'  WriteToDBMin='1' SignVal='1'/>
     <ModbusInitData ID='Temp_FLAG' Addr='747' Scale='1'/>
-    <ModbusInitData ID='TempShit' Addr='746' Name='Температура щитовых сооружений' Scale='1'   Item='6'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='TempShit' Addr='746' Name='Температура щитовых сооружений' Scale='1'   Item='6'  WriteToDBHH='1'  WriteToDBMin='1' SignVal='1'/>
     <ModbusInitData ID='TempShit_FLAG' Addr='747' Scale='1'/>
     
 		<ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='101' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
@@ -80,25 +80,25 @@
     <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA10_P_FLAG' Addr='900' Scale='1' FlagBit='2'/>
 
-    <ModbusInitData ID='GA1_Q' Addr='15' Name='Г1 Q' Scale='1'   Item='301' WriteToDBHH='1' WriteToDBMin='1'  MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA1_Q' Addr='15' Name='Г1 Q' Scale='1'   Item='301' WriteToDBHH='1' WriteToDBMin='1'  MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA1_Q_FLAG' Addr='0' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA2_Q' Addr='115' Name='Г2 Q' Scale='1'   Item='302' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA2_Q' Addr='115' Name='Г2 Q' Scale='1'   Item='302' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA2_Q_FLAG' Addr='100' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA3_Q' Addr='215' Name='Г3 Q' Scale='1'   Item='303' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA3_Q' Addr='215' Name='Г3 Q' Scale='1'   Item='303' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA3_Q_FLAG' Addr='200' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA4_Q' Addr='315' Name='Г4 Q' Scale='1'   Item='304' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA4_Q' Addr='315' Name='Г4 Q' Scale='1'   Item='304' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA4_Q_FLAG' Addr='300' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA5_Q' Addr='415' Name='Г5 Q' Scale='1'   Item='305' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA5_Q' Addr='415' Name='Г5 Q' Scale='1'   Item='305' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA5_Q_FLAG' Addr='400' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA6_Q' Addr='515' Name='Г6 Q' Scale='1'   Item='306' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA6_Q' Addr='515' Name='Г6 Q' Scale='1'   Item='306' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA6_Q_FLAG' Addr='500' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA7_Q' Addr='615' Name='Г7 Q' Scale='1'   Item='307' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA7_Q' Addr='615' Name='Г7 Q' Scale='1'   Item='307' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA7_Q_FLAG' Addr='600' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA8_Q' Addr='715' Name='Г8 Q' Scale='1'   Item='308' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA8_Q' Addr='715' Name='Г8 Q' Scale='1'   Item='308' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA8_Q_FLAG' Addr='700' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA9_Q' Addr='815' Name='Г9 Q' Scale='1'   Item='309' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA9_Q' Addr='815' Name='Г9 Q' Scale='1'   Item='309' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA9_Q_FLAG' Addr='800' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA10_Q' Addr='915' Name='Г10 Q' Scale='1'   Item='310' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110'/>
+    <ModbusInitData ID='GA10_Q' Addr='915' Name='Г10 Q' Scale='1'   Item='310' WriteToDBHH='1' WriteToDBMin='1' MinValue='-50' MaxValue='110' SignVal='1'/>
     <ModbusInitData ID='GA10_Q_FLAG' Addr='900' Scale='1' FlagBit='14'/>
 
     <ModbusInitData ID='GA1_OtrkNA' Addr='6' Name='Г1 Открытие направляющего аппарата' Scale='0.1'   Item='401' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='750'/>
