@@ -37,6 +37,21 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord P_IKM_NebalansKRU3 = new PiramidaRecord(2, 0, 99, "Небаланс КРУ-3");
 		public static PiramidaRecord P_IKM_NebalansKRU2 = new PiramidaRecord(2, 0, 1705, "Небаланс КРУ-2");
 
+		public static PiramidaRecord P_IKM_1N = new PiramidaRecord(2, 0, 71, "СН 1Н");
+		public static PiramidaRecord P_IKM_2N = new PiramidaRecord(2, 0, 72, "СН 2Н");
+		public static PiramidaRecord P_IKM_7N = new PiramidaRecord(2, 0, 73, "СН 7Н");
+		public static PiramidaRecord P_IKM_8N = new PiramidaRecord(2, 0, 74, "СН 8Н");
+		public static PiramidaRecord P_IKM_10N = new PiramidaRecord(2, 0, 76, "СН 10Н");
+		public static PiramidaRecord P_IKM_3N = new PiramidaRecord(2, 0, 77, "СН 3Н");
+		public static PiramidaRecord P_IKM_9N = new PiramidaRecord(2, 0, 78, "СН 9Н");
+		public static PiramidaRecord P_IKM_3536N = new PiramidaRecord(2, 0, 79, "СН 35-36Н");
+		public static PiramidaRecord P_IKM_SN_GA = new PiramidaRecord(2, 0, 35, "СН ГА");
+		public static PiramidaRecord P_IKM_Vozb = new PiramidaRecord(2, 0, 42, "СН Возбуждение");
+
+
+
+
+
 
 
 		public static PiramidaRecord P_3AT_500_Priem = new PiramidaRecord(0, 8739, 1, "3АТ 500 кВ Прием (P)");

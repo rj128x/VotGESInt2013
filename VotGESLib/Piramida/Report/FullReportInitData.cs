@@ -84,6 +84,17 @@ namespace VotGES.Piramida.Report {
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU1));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU2));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_NebalansKRU3));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Vozb));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SN_GA));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_1N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_2N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_3N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_7N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_8N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_9N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_10N));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_3536N));
+
 
 			record = RootMain.addChild(GetFullReportRecord("Вода", "water"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_Napor));

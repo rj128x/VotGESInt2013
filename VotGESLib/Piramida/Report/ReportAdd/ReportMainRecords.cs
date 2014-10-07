@@ -70,7 +70,20 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_NebalansT, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_NebalansKRU1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_NebalansKRU2, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
-			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_NebalansKRU3, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_NebalansKRU3, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_1N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_2N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_7N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_8N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_9N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_3N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_10N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_3536N, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_SN_GA, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_Vozb, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));			
+
 		}
 
 	}
