@@ -140,6 +140,10 @@ namespace ClearDB {
 							hh = 4;
 							OgranGA.processData(date, date.AddHours(hh), 30);
 							break;
+						case "processPuskStop":
+							hh = 4;
+							RecalcPuskStop.RecalcData(date, date.AddHours(hh));
+							break;
 					}
 					date = date.AddHours(hh);
 				}

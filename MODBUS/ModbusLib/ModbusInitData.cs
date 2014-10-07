@@ -100,7 +100,7 @@ namespace ModbusLib {
 			Item = -1;
 			FuncName = null;
 			Name = "";
-			Diff = 0;
+			Diff = 0.1;
 			Scale = 1;
 			FlagBit = -1;
 			ValBit = -1;

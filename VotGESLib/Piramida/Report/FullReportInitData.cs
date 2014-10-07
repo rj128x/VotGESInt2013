@@ -59,6 +59,10 @@ namespace VotGES.Piramida.Report {
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GES));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP1));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP2));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE1));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE2));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE3));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE4));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SN));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans_GES));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SP));
