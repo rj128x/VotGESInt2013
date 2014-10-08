@@ -62,6 +62,11 @@ namespace MainSL.Views
 			FloatWindow.OpenWindow(uri);
 		}
 
+		private void btnVERMonth_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/VERReportMonth?year={0}&month={1}", settings.Date.Year, settings.Date.Month);
+			FloatWindow.OpenWindow(uri);
+		}
+
 		
 
 

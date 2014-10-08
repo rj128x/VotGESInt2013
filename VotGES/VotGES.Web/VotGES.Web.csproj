@@ -151,6 +151,7 @@
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainSL.aspx" />
     <Content Include="Views\Home\Test.aspx" />
+    <Content Include="Views\Reports\VERReportMonth.aspx" />
     <Content Include="Views\Reports\VERReport.aspx" />
     <Content Include="Views\Reports\PBR.aspx" />
     <Content Include="Views\Reports\Prikaz20.aspx" />
@@ -223,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bat\VERData.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bat\VERDataMonth.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Release.pubxml" />

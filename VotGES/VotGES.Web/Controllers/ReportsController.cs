@@ -100,11 +100,24 @@ namespace VotGES.Web.Controllers
 			return report;
 		}
 
+		protected VERReportMonth getVERReportMonth(int year, int month) {
+			DateTime dateStart = new DateTime(year, month, 1);
+			DateTime dateEnd = dateStart.AddMonths(1);
+			Logger.Info(String.Format("ВЭР с {0} по {1}", dateStart, dateEnd));
+			VERReportMonth report = new VERReportMonth(dateStart, dateEnd, IntervalReportEnum.hour);
+			report.ReadData();
+			return report;
+		}
+
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult VERReport(int year, int month, int day) {
-			
-
 			ViewResult view = View("VERReport", getVERReport(year,month,day));			
+			return view;
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult VERReportMonth(int year, int month) {
+			ViewResult view = View("VERReportMonth", getVERReportMonth(year, month));
 			return view;
 		}
 
@@ -129,7 +142,28 @@ namespace VotGES.Web.Controllers
 			DateTime date=DateTime.Now.Date.AddDays(-1);
 			return VERReportToFile(date.Year, date.Month, date.Day);
 		}
-				
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult VERReportMonthToFile(int year, int month) {
+			VERReportMonth report = getVERReportMonth(year, month);
+			StringWriter sw = new StringWriter();
+			ViewData.Model = report;
+			ViewEngineResult result = ViewEngines.Engines.FindView(ControllerContext, "VERReportMonth", "");
+			ViewContext context = new ViewContext(ControllerContext, result.View, ViewData, TempData, sw);
+			result.View.Render(context, sw);
+			result.ViewEngine.ReleaseView(ControllerContext, result.View);
+
+			string viewString = sw.ToString();
+
+			VERFolderWriter.writeDataMonth(year, month, viewString);
+			return Content("finish");
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult VERReportMonthToFilePrevDate() {
+			DateTime date = DateTime.Now.Date.AddDays(-1);
+			return VERReportMonthToFile(date.Year, date.Month);
+		}
 
 	}
 }

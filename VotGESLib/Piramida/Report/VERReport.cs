@@ -9,6 +9,7 @@ namespace VotGES.Piramida.Report {
 			base(dateStart, dateEnd, interval) {
 			int pn=4;			
 			ReportMBRecords.AddRecordsMBW(this, pn, 1, 1, true, false, DBOperEnum.avg, ResultTypeEnum.sum);
+			
 		}
 
 
@@ -17,4 +18,19 @@ namespace VotGES.Piramida.Report {
 		}
 
 	}
+
+	public class VERReportMonth : Report {
+		public VERReportMonth(DateTime dateStart, DateTime dateEnd, IntervalReportEnum interval) :
+			base(dateStart, dateEnd, interval) {
+			int pn = 12;
+			ReportMBRecords.AddRecordsMBW(this, pn, 1, 1, true, false, DBOperEnum.eq, ResultTypeEnum.sum);
+		}
+
+
+		public override void ReadData() {
+			base.ReadData();
+		}
+
+	}
+
 }
