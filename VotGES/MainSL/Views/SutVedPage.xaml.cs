@@ -67,6 +67,11 @@ namespace MainSL.Views
 			FloatWindow.OpenWindow(uri);
 		}
 
+		private void btnVERDir_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("http://sr-votges-int:8074");
+			FloatWindow.OpenWindowFull(uri);
+		}
+
 		
 
 

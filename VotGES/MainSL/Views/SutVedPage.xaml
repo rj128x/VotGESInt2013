@@ -31,6 +31,9 @@
                     <Button Content="ВЭР с начала месяца (табл1)" Name="btnVERMonth"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnVERMonth_Click"/>
+                    <Button Content="Сгенерированные отчеты ВЭР" Name="btnVERDir"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnVERDir_Click"/>
                 </StackPanel>
 		</Grid>
 			<Grid Name="pnlReport" Width="300">

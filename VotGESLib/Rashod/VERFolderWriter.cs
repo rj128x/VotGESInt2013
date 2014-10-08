@@ -10,7 +10,7 @@ using System.Text;
 
 namespace VotGES.Rashod {
 	public static class VERFolderWriter {
-		public static string Folder = "\\\\sr-votges-013.corp.gidroogk.com/Рабочие_документы$/Предприятие/Оперативная служба/Группа режимов/ВЭР/AutoArchive";
+		public static string Folder = @"\\sr-votges-013.corp.gidroogk.com\Рабочие_документы$\Предприятие\Оперативная служба\Группа режимов\ВЭР\AutoArchive";
 		//public static string Folder = "Z:";
 
 		public static void writeData(int year, int month, int day, string Data) {
