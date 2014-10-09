@@ -284,6 +284,7 @@ namespace VotGES.OgranGA {
 			result.timeHHT += timeHHTToEnd;
 			result.timeRun += timeRunToEnd;
 			result.timeSK += timeSKToEnd;
+			result.timeGen += timeGenToEnd;
 
 			result.processStr();
 			return result;
