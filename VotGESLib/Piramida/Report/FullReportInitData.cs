@@ -616,7 +616,7 @@ namespace VotGES.Piramida.Report {
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_TP1));
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TP2));
 
-			record = RootSN.addChild(GetFullReportRecord("МБ Вода", "mbw"));
+			record = RootSN.addChild(GetFullReportRecord("Из Овации", "mbw"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_GES_Rash));
 			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_VB));
 			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_NB));
