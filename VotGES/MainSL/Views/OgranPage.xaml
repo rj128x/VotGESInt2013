@@ -59,7 +59,7 @@
                                 </Grid>
 
                             </sdk:TabItem>
-                            <sdk:TabItem Name="tabTable" Header="***" >
+                            <sdk:TabItem Name="tabTable" Header="***"  >
                                 <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
                             </sdk:TabItem>
                         </sdk:TabControl>

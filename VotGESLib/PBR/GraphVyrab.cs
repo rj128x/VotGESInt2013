@@ -103,10 +103,18 @@ namespace VotGES.PBR
 			gtp2.InitData();
 			ges.InitData();
 
-			answer.ActualDate = gtp1.Date < gtp2.Date ? gtp1.Date : gtp2.Date;
-			answer.ActualDate = ges.Date < answer.ActualDate ? ges.Date : answer.ActualDate;
+			DateTime[] dates = new DateTime[] {gtp1.Date, gtp2.Date,ges.Date};
+			answer.ActualDate = dates.ToList().Min();
+			DateTime lastDate = answer.ActualDate;
 
-			DateTime lastDate=answer.ActualDate;
+			try {
+				if (Math.Abs(gtp1.RealP[lastDate] + gtp2.RealP[lastDate] - ges.RealP[lastDate]) > 5) {
+					answer.ActualDate = lastDate.AddMinutes(-1);
+					lastDate = answer.ActualDate;
+				}
+			}
+			catch { }
+
 			answer.VyrabPlan = ges.IntegratedPBR[lastDate];
 			answer.VyrabFakt = ges.IntegratedP[lastDate];
 			answer.VyrabDiff = ges.IntegratedP[lastDate] - ges.IntegratedPBR[lastDate];

@@ -44,8 +44,8 @@ namespace VotGES.OgranGA {
 			int hours = (int)(time / 60.0);
 			int min = (int)(time - hours * 60);
 			if (hours > 50000)
-				return ((int)(hours/1000)).ToString()+"т";
-			if (hours > 1000) 
+				return ((int)(hours / 1000)).ToString() + "т";
+			if (hours > 1000)
 				return hours.ToString();
 			return String.Format("{0}:{1}", hours, min);
 		}
@@ -92,7 +92,8 @@ namespace VotGES.OgranGA {
 	}
 
 	public class OgranGA {
-		public static List<PiramidaEnrty> GetPrevData(DateTime dateStart, int gaNumber) {
+
+		public static List<PiramidaEnrty> GetPrevData(DateTime dateStart, int gaNumber, bool onlyRun = false) {
 			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
 			List<int> items = new List<int>();
 			for (int h = 1; h <= 7; h++) {
@@ -130,6 +131,59 @@ namespace VotGES.OgranGA {
 			}
 
 			return prevData;
+		}
+
+		public static Dictionary<int, string> GetTimeStopGA(DateTime date) {
+			Dictionary<int, string> timeStopGA = new Dictionary<int, string>();
+			List<int> items = new List<int>();
+			for (int ga = 1; ga <= 10; ga++) {
+				items.Add(700 + ga);
+			}
+
+			SqlConnection connection = PiramidaAccess.getConnection("PSV");
+			SqlCommand command = connection.CreateCommand();
+			command.Parameters.AddWithValue("@date", date);
+			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=30 and parnumber=13 and data_date<@date and item={0} order by data_date desc ";
+			List<string> cmdParts = new List<string>();
+			try {
+				connection.Open();
+
+				foreach (int item in items) {
+					command.CommandText = String.Format(cmdFormat, item);
+					SqlDataReader reader = command.ExecuteReader();
+
+					while (reader.Read()) {
+						PiramidaEnrty rec = new PiramidaEnrty();
+						int ga = reader.GetInt32(1) % 100;
+						DateTime lastDate = reader.GetDateTime(0);
+						int val = (int)reader.GetDouble(2);
+
+						if (val == 1) {
+							timeStopGA.Add(ga, "0");
+						}
+						else {
+							double diff = OgranGARecord.dateDiff(lastDate, date);
+							int days = (int)(diff / 60 / 24);
+							int hours = (int)(diff % (60 * 24)) / 60;
+							int minutes = (int)(diff - days * 60 * 24 - hours * 60);
+							string res = String.Format(" {0}:{1:00}:{2:00} ", days, hours, minutes);
+							timeStopGA.Add(ga, res);
+						}
+
+					}
+					reader.Close();
+				}
+
+			}
+			finally {
+				try { command.Dispose(); }
+				catch { }
+				try { connection.Close(); }
+				catch { }
+			}
+
+			return timeStopGA;
+
 		}
 
 		protected static OgranGARecord calcOgran(DateTime dateStart, DateTime dateEnd, int gaNumber, List<PiramidaEnrty> data) {
@@ -212,7 +266,7 @@ namespace VotGES.OgranGA {
 
 
 			List<PiramidaEnrty> prevData = GetPrevData(dateStart, gaNumber);
-			
+
 
 			//Logger.Info(cmdText);
 

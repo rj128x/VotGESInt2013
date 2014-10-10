@@ -99,7 +99,7 @@ namespace VotGES.Web.Services
             answer.TimeStopGA = new Dictionary<int, string>();
             for (int ga = 1; ga <= 10; ga++)
             {
-                answer.TimeStopGA.Add(ga, "0");
+							answer.TimeStopGA = OgranGA.OgranGA.GetTimeStopGA(DateTime.Now.AddHours(-2));
             }
 
             try

@@ -31,7 +31,7 @@ namespace ClearDB {
 					DateTime date = DateTime.Parse(reader["data_date"].ToString());
 					Logger.Info("====" + date.ToString(DBClass.DateFormat));
 					
-					sel = String.Format("SELECT top 1 data_date FROM DATA where parnumber=13 and data_date<'{0}' and item={1} and object={2} and objtype={3}",
+					sel = String.Format("SELECT top 1 data_date FROM DATA where parnumber=13 and data_date<'{0}' and item={1} and object={2} and objtype={3} order by data_date desc",
 						date.ToString(DBClass.DateFormat), reader["item"], reader["object"], reader["objtype"]);
 
 					SqlCommand cmd = con2.CreateCommand();

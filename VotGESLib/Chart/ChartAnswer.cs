@@ -42,5 +42,18 @@ namespace VotGES.Chart
 				}
 			}
 		}
+
+		public static ChartAnswer getEmptyAnswer() {
+			ChartAnswer answer = new ChartAnswer();
+			answer.Data = new ChartData();
+			ChartProperties props = new ChartProperties();
+			props.XAxisType = XAxisTypeEnum.numeric;
+			props.XValueFormatString = "0.##";
+			ChartAxisProperties yAx = new ChartAxisProperties();
+			yAx.Auto = true;
+			answer.Properties = props;
+			props.addAxis(yAx);
+			return answer;
+		}
 	}
 }

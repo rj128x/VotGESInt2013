@@ -254,7 +254,7 @@
 							</StackPanel>
 						</Border>
 						<Border Style="{StaticResource borderGray}" Margin="0,10,0,0" Name="pnlStopTime">
-							<StackPanel Visibility="Collapsed">
+							<StackPanel >
 								<TextBlock Text="Простой генераторов (ДД:ЧЧ:ММ)" Style="{StaticResource Label}"/>
 								<Grid>
 									<Grid.ColumnDefinitions>
