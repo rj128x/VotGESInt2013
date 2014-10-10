@@ -10,58 +10,58 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="bat/CmdHttpRequest.exe">
-      <publishTime>10/01/2014 11:51:13</publishTime>
+      <publishTime>01/10/2014 11:51:13</publishTime>
     </File>
     <File Include="bat/CommandLine.dll">
-      <publishTime>10/01/2014 11:51:13</publishTime>
+      <publishTime>01/10/2014 11:51:13</publishTime>
     </File>
     <File Include="bat/VERData.bat">
-      <publishTime>01/10/2014 11:48:54</publishTime>
+      <publishTime>10/01/2014 11:48:54</publishTime>
     </File>
     <File Include="bat/VERDataMonth.bat">
-      <publishTime>08/10/2014 11:33:58</publishTime>
+      <publishTime>10/08/2014 11:33:58</publishTime>
     </File>
     <File Include="bin/bat/CmdHttpRequest.exe">
-      <publishTime>10/01/2014 11:51:13</publishTime>
+      <publishTime>01/10/2014 11:51:13</publishTime>
     </File>
     <File Include="bin/bat/CommandLine.dll">
-      <publishTime>10/01/2014 11:51:13</publishTime>
+      <publishTime>01/10/2014 11:51:13</publishTime>
     </File>
     <File Include="bin/bat/VERData.bat">
-      <publishTime>01/10/2014 11:48:54</publishTime>
+      <publishTime>10/01/2014 11:48:54</publishTime>
     </File>
     <File Include="bin/bat/VERDataMonth.bat">
-      <publishTime>08/10/2014 11:33:58</publishTime>
+      <publishTime>10/08/2014 11:33:58</publishTime>
     </File>
     <File Include="bin/Data/DBSettings.xml">
-      <publishTime>02/10/2014 09:07:52</publishTime>
+      <publishTime>10/02/2014 09:07:52</publishTime>
     </File>
     <File Include="bin/Data/KapRemontsData.xml">
-      <publishTime>02/10/2014 11:42:57</publishTime>
+      <publishTime>10/02/2014 11:42:57</publishTime>
     </File>
     <File Include="bin/de/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/de/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/es/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/es/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/fr/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/fr/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/it/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/it/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>09/16/2014 08:17:15</publishTime>
@@ -73,16 +73,16 @@
       <publishTime>09/16/2014 08:17:15</publishTime>
     </File>
     <File Include="bin/ja/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/ja/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/ko/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/ko/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>09/16/2014 08:17:15</publishTime>
@@ -97,16 +97,16 @@
       <publishTime>09/16/2014 08:17:17</publishTime>
     </File>
     <File Include="bin/ru/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:18</publishTime>
+      <publishTime>04/12/2013 02:58:18</publishTime>
     </File>
     <File Include="bin/ru/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:18</publishTime>
+      <publishTime>04/12/2013 02:58:18</publishTime>
     </File>
     <File Include="bin/System.ServiceModel.DomainServices.Hosting.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/System.ServiceModel.DomainServices.Server.dll">
-      <publishTime>12/04/2013 02:58:10</publishTime>
+      <publishTime>04/12/2013 02:58:10</publishTime>
     </File>
     <File Include="bin/System.Web.dll">
       <publishTime>03/18/2010 18:31:26</publishTime>
@@ -118,19 +118,19 @@
       <publishTime>10/10/2014 14:50:36</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:20</publishTime>
+      <publishTime>04/12/2013 02:58:20</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:20</publishTime>
+      <publishTime>04/12/2013 02:58:20</publishTime>
     </File>
     <File Include="bin/zh-Hant/System.ServiceModel.DomainServices.Hosting.resources.dll">
-      <publishTime>12/04/2013 02:58:20</publishTime>
+      <publishTime>04/12/2013 02:58:20</publishTime>
     </File>
     <File Include="bin/zh-Hant/System.ServiceModel.DomainServices.Server.resources.dll">
-      <publishTime>12/04/2013 02:58:20</publishTime>
+      <publishTime>04/12/2013 02:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>10/10/2014 14:50:40</publishTime>
+      <publishTime>10/10/2014 15:29:01</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
@@ -301,7 +301,7 @@
       <publishTime>09/30/2014 11:39:47</publishTime>
     </File>
     <File Include="Views/Reports/VERReportMonth.aspx">
-      <publishTime>08/10/2014 10:57:09</publishTime>
+      <publishTime>10/08/2014 10:57:09</publishTime>
     </File>
     <File Include="Views/Shared/Error.aspx">
       <publishTime>09/16/2014 08:17:16</publishTime>
@@ -316,7 +316,7 @@
       <publishTime>09/16/2014 08:32:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/10/2014 11:40:03</publishTime>
+      <publishTime>10/02/2014 11:40:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

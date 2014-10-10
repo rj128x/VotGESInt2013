@@ -102,15 +102,15 @@
 
                         <TextBlock Text="Пусков" Grid.Row="1" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="Остановов" Grid.Row="2" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Пер. огр. реж." Grid.Row="3" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Пер. запр. реж." Grid.Row="4" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="Пер. НОВЗР" Grid.Row="3" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="Пер. ЗРР" Grid.Row="4" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="В работе" Grid.Row="5" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="Генерация" Grid.Row="6" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="СК" Grid.Row="7" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="ХХТ" Grid.Row="8" Grid.Column="0"  Style="{StaticResource Caption}"/>
                         <TextBlock Text="ХХГ" Grid.Row="9" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Огр. режим" Grid.Row="10" Grid.Column="0"  Style="{StaticResource Caption}"/>
-                        <TextBlock Text="Запр. режим" Grid.Row="11" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="НОВЗР" Grid.Row="10" Grid.Column="0"  Style="{StaticResource Caption}"/>
+                        <TextBlock Text="ЗРР" Grid.Row="11" Grid.Column="0"  Style="{StaticResource Caption}"/>
 
 
                         <TextBlock Text="{Binding ExpStartRecord.cntPusk, Mode=OneWay, StringFormat='0'}" Grid.Row="1" Grid.Column="1"  Style="{StaticResource Value}"/>
