@@ -43,10 +43,15 @@ namespace VotGES.OgranGA {
 		protected string getTimeSTR(double time) {
 			int hours = (int)(time / 60.0);
 			int min = (int)(time - hours * 60);
+			int sec = (int)(time*60 - hours * 60*60 - min*60);
 			if (hours > 50000)
 				return ((int)(hours / 1000)).ToString() + "т";
 			if (hours > 1000)
 				return hours.ToString();
+
+			if (hours == 0 && min<10) {
+				return String.Format("{0},{1}",  min,sec);
+			}
 			return String.Format("{0}:{1}", hours, min);
 		}
 

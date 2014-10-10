@@ -115,6 +115,30 @@
 				<%=Model.sumRecord.cntStop.ToString("0") %>
 			</td>
 		</tr>
+
+        <tr>
+			<th>Переходов НОВЗР</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].cntOgran.ToString("0") %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.cntOgran.ToString("0") %>
+			</td>
+		</tr>
+
+         <tr>
+			<th>Переходов ЗРР</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].cntZapr.ToString("0") %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.cntZapr.ToString("0") %>
+			</td>
+		</tr>
 			
 		<tr>
 			<th>Время работы</th>
@@ -161,6 +185,30 @@
 			<%} %>
 			<td>
 				<%=Model.sumRecord.TimeHHGStr %>
+			</td>
+		</tr>
+
+        <tr>
+			<th>Время НОВЗР</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeOgranStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeOgranStr %>
+			</td>
+		</tr>
+
+        <tr>
+			<th>Время ЗРР</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeZaprStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeZaprStr %>
 			</td>
 		</tr>
 

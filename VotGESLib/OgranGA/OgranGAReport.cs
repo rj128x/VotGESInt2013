@@ -63,6 +63,7 @@ namespace VotGES.OgranGA {
 					rec.timeRun = reader.GetDouble(12);
 					rec.timeHHT = reader.GetDouble(13);
 					rec.timeHHG = reader.GetDouble(14);
+					
 
 					data[rec.GA].Add(rec);
 				}
