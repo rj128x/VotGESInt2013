@@ -16,13 +16,28 @@ namespace VotGES.Piramida.Report
 
 		public static void Create() {
 			P_SP.CalcFunction= new RecordCalcDelegate((report, date) => {
-				return
+				/*return
 					report[date, ReportSNRecords.P_SN.ID] +
 					report[date, ReportGARecords.P_Vozb.ID] +
 					report[date, ReportGlTransformRecords.P_T_Nebalans.ID] +
 					report[date, ReportLinesRecords.P_VL_Nebalans.ID]+
 					//report[date, ReportGARecords.P_SN_GA.ID] +
-					report[date, ReportGARecords.P_SK_FULL.ID];
+					report[date, ReportGARecords.P_SK_FULL.ID];*/
+					return 
+						report[date,ReportGARecords.P_GA1.ID]+
+						report[date,ReportGARecords.P_GA2.ID]+
+						report[date,ReportGARecords.P_GA3.ID]+
+						report[date,ReportGARecords.P_GA4.ID]+
+						report[date,ReportGARecords.P_GA5.ID]+
+						report[date,ReportGARecords.P_GA6.ID]+
+						report[date,ReportGARecords.P_GA7.ID]+
+						report[date,ReportGARecords.P_GA8.ID]+
+						report[date,ReportGARecords.P_GA9.ID]+
+						report[date,ReportGARecords.P_GA10.ID]+
+						(report[date,ReportLinesRecords.P_VL110_Saldo.ID]+
+						report[date,ReportLinesRecords.P_VL220_Saldo.ID]+
+						report[date,ReportLinesRecords.P_VL500_Saldo.ID]+
+						report[date,ReportLinesRecords.P_KL6_Saldo.ID]);						
 			});
 
 			P_Nebalans.CalcFunction=new RecordCalcDelegate((report, date) => {
