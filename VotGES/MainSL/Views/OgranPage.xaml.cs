@@ -193,13 +193,22 @@ namespace MainSL.Views {
 
 			double prevX = -1;
 			double prevY = -1;
-			foreach (ChartDataPoint point in CurrentChartData.Points) {
-				
-				Ellipse el = new Ellipse();
-				el.Width = 10;
-				el.Height = 10;
 
-				el.Fill = new SolidColorBrush(Colors.Blue);
+			int index=0;
+			int count=CurrentChartData.Points.Count;
+			foreach (ChartDataPoint point in CurrentChartData.Points) {
+				index++;
+				byte ccc=(byte)(100+(byte.MaxValue-100)*index/count);
+				Color color = Color.FromArgb(ccc, 0, 0, byte.MaxValue);
+				int sz = 10;
+
+				Ellipse el = new Ellipse();
+				el.Width = sz;
+				el.Height = sz;
+
+				el.Fill = new SolidColorBrush(color);
+				el.Stroke = new SolidColorBrush(Colors.Blue);
+				el.StrokeThickness = 1;
 				if (point == CurrentChartData.Points.Last()) {
 					el.Stroke = new SolidColorBrush(Colors.Red);
 					el.StrokeThickness = 2;
@@ -224,8 +233,8 @@ namespace MainSL.Views {
 				el.Margin = new Thickness(x-5,y-5,x+5,y+5);
 
 				if (prevX != -1) {
-					Line line = new Line();
-					line.Stroke = new SolidColorBrush(Colors.Blue);
+					Line line = new Line();										
+					line.Stroke = new SolidColorBrush(color);
 					line.StrokeThickness = 2;
 					line.X1 = prevX;
 					line.X2 = x;
