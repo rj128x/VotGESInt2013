@@ -115,7 +115,7 @@
       <publishTime>10/13/2014 14:16:47</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>10/13/2014 16:04:55</publishTime>
+      <publishTime>10/13/2014 20:11:35</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
       <publishTime>12/04/2013 02:58:20</publishTime>
@@ -130,7 +130,7 @@
       <publishTime>12/04/2013 02:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>10/13/2014 16:52:37</publishTime>
+      <publishTime>10/13/2014 20:08:47</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
