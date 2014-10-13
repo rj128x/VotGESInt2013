@@ -29,6 +29,17 @@ namespace MainSL {
 					</StackPanel>
 				</Border>
             </ControlTemplate>";
+
+		protected static string TemplateStrGAPuskStop = @"<ControlTemplate  
+				xmlns=""http://schemas.microsoft.com/client/2007"">         
+				<Border Style=""{StaticResource borderGray}"" Background=""LightGray"" Opacity=""0.7"">
+					<StackPanel Orientation=""Horizontal"">
+						<TextBlock Text=""~serieName~: ["" FontWeight=""Bold"" /> 
+						<TextBlock Text=""{Binding X, StringFormat='~xFormat~'}"" FontWeight=""Bold"" /> 			
+						<TextBlock Text=""]"" FontWeight=""Bold"" /> 			
+					</StackPanel>
+				</Border>
+            </ControlTemplate>";
 		public ChartControl silverChartControl { get; protected set; }
 		public event PropertyChangedEventHandler PropertyChanged;
 		public string TagName { get; protected set; }
@@ -268,7 +279,14 @@ namespace MainSL {
 						stairSerie.PointStroke = tr;
 						stairSerie.ShowPoints = false;
 					}
+					if (serieProp.isGAPuskStop) {
+						stairSerie.PointSize = 5;
+						stairSerie.PointFill = tr;
+						stairSerie.PointStroke = tr;
+						stairSerie.ShowPoints = true;
+					}
 
+					
 					silverChartControl.TrackBehaviour.HideTrackballsOnMouseLeave = true;
 					break;
 				case ChartSerieType.column:
@@ -280,11 +298,18 @@ namespace MainSL {
 					Serie = columnSerie;
 					columnSerie.ToolTipEnabled = true;
 					break;
-			}
+			}			
 			Serie.ToolTipTemplate = XamlReader.Load
 				(TemplateStr.Replace("~serieName~", this.Name).
 					Replace("~xFormat~", silverChartControl.XAxesForamtString).
 					Replace("~yFormat~", "#,0.##")) as ControlTemplate;
+
+			if (serieProp.isGAPuskStop) {
+				Serie.ToolTipEnabled = true;
+				Serie.ToolTipTemplate = XamlReader.Load
+				(TemplateStrGAPuskStop.Replace("~serieName~", this.Name).
+					Replace("~xFormat~", silverChartControl.XAxesForamtString)) as ControlTemplate;
+			}
 
 			Serie.PropertyChanged += new PropertyChangedEventHandler(Serie_PropertyChanged);
 			silverChartControl.CurrentChart.Series.Add(Serie);

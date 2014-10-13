@@ -264,6 +264,7 @@ namespace VotGES.OgranGA {
 						result.cntStop += (1 - addCnt);
 						result.cntPusk += addCnt;
 						timeRunToEnd = timeToEnd;
+						result.timeRun += addTime;
 						processedPuskStop = true;
 						break;
 				}

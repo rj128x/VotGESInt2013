@@ -100,6 +100,7 @@ namespace VotGES.OgranGA {
 				serie.LineWidth = 1;
 				serie.HideInLegend = true;
 				serie.AllowHigh = false;
+				serie.isGAPuskStop = true;
 				
 
 				ChartSerieProperties serieThin = new ChartSerieProperties();

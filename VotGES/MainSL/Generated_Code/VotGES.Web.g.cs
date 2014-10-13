@@ -973,6 +973,8 @@ namespace VotGES.Chart
         
         private bool _hideInLegend;
         
+        private bool _isGAPuskStop;
+        
         private int _lineWidth;
         
         private bool _marker;
@@ -1000,6 +1002,8 @@ namespace VotGES.Chart
         partial void OnEnabledChanged();
         partial void OnHideInLegendChanging(bool value);
         partial void OnHideInLegendChanged();
+        partial void OnisGAPuskStopChanging(bool value);
+        partial void OnisGAPuskStopChanged();
         partial void OnLineWidthChanging(int value);
         partial void OnLineWidthChanged();
         partial void OnMarkerChanging(bool value);
@@ -1116,6 +1120,30 @@ namespace VotGES.Chart
                     this._hideInLegend = value;
                     this.RaiseDataMemberChanged("HideInLegend");
                     this.OnHideInLegendChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "isGAPuskStop".
+        /// </summary>
+        [DataMember()]
+        public bool isGAPuskStop
+        {
+            get
+            {
+                return this._isGAPuskStop;
+            }
+            set
+            {
+                if ((this._isGAPuskStop != value))
+                {
+                    this.OnisGAPuskStopChanging(value);
+                    this.RaiseDataMemberChanging("isGAPuskStop");
+                    this.ValidateProperty("isGAPuskStop", value);
+                    this._isGAPuskStop = value;
+                    this.RaiseDataMemberChanged("isGAPuskStop");
+                    this.OnisGAPuskStopChanged();
                 }
             }
         }

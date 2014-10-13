@@ -24,6 +24,7 @@ namespace VotGES.Chart
 		public int YAxisIndex { get; set; }
 		public bool AllowHigh { get; set; }
 		public bool HideInLegend { get; set; }
+		public bool isGAPuskStop { get; set; }
 
 
 		public ChartSerieProperties() {
@@ -33,6 +34,7 @@ namespace VotGES.Chart
 			Marker = false;
 			YAxisIndex = 0;
 			AllowHigh = true;
+			isGAPuskStop = false;
 		}
 	}
 	
