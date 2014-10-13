@@ -28,10 +28,15 @@ namespace ClearDB {
 		}
 
 
-		static void Main(string[] args) {
+		static void Main(string[] args) {		
 			DBSettings.init();
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;
+
+
+			/*Logger.InitFileLogger(Settings.single.LogPath, "init");
+			OgranGA.processPiramidaPuskStop(new DateTime(2014, 10, 1), new DateTime(2014, 10, 9, 10, 30, 0));
+			return;*/
 
 			string ds = args[0];
 			string de = args[1];
@@ -39,6 +44,7 @@ namespace ClearDB {
 			string nameLog = task;
 
 			Logger.InitFileLogger(Settings.single.LogPath, nameLog);
+					
 
 			DateTime dateStart = getDate(ds, task == "copy4");
 			DateTime dateEnd = getDate(de, task == "copy4");

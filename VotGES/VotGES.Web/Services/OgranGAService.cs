@@ -55,6 +55,7 @@ namespace VotGES.Web.Services {
 		}
 
 		public ChartAnswer getPuskStopFull(DateTime dateStart, DateTime dateEnd) {
+			WebLogger.Info(String.Format("Получение пусков-остановов график {0} - {1}",dateStart,dateEnd), VotGES.Logger.LoggerSource.service);
 			PuskStopFullReport report = new PuskStopFullReport();
 			report.DateStart = dateStart;
 			report.DateEnd = dateEnd>DateTime.Now.AddHours(-2)?DateTime.Now.AddHours(-2):dateEnd;

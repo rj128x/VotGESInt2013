@@ -151,6 +151,18 @@
 				<%=Model.sumRecord.TimeRunStr %>
 			</td>
 		</tr>	
+
+        <tr>
+			<th>Время генерации</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeGenStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeGenStr %>
+			</td>
+		</tr>	
         
         <tr>
 			<th>Время СК</th>

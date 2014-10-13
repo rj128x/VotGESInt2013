@@ -389,6 +389,40 @@ namespace VotGES.OgranGA {
 			}
 		}
 
+		public static void processPiramidaPuskStop(DateTime dateStart, DateTime dateEnd) {
+			string insertIntoHeader = "INSERT INTO Data (parnumber,object,item,value0,value1,valueMin,valueMax,valueEq,objtype,data_date,rcvstamp,season)";
+			string frmt = "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, '{9}', '{10}', {11}";
+			List<string> allData = new List<string>();
+			int[] items={2,6,18,22,26,30,42,46,50,54};
+			Dictionary<int, int> prevVal = new Dictionary<int, int>();
+			Dictionary<int, DateTime> prevDate = new Dictionary<int, DateTime>();
+			for (int ga = 1; ga <= 10; ga++) {
+				prevVal[ga] = -1;
+				prevDate[ga] = DateTime.MinValue;
+			}
+			List<PiramidaEnrty> data = PiramidaAccess.GetDataFromDB(dateStart, dateEnd, 8738, 0, 4, items.ToList(), true, true, "PMin");
+			foreach (PiramidaEnrty rec in data) {
+				int ga = 0;
+				foreach (int item in items){
+					ga++;
+					if (rec.Item == item)
+						break;
+				}
+				int val=rec.Value0>0?1:0;
+				if (prevVal[ga] != val && OgranGARecord.dateDiff(prevDate[ga],rec.Date)>5) {
+					String insertStr = String.Format(frmt, 13, 30, ga + 700, val, 0, 0, 0, 0, 2, rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), DBSettings.getSeason(rec.Date));
+					allData.Add(insertStr);
+					insertStr = String.Format(frmt, 13, 30, ga + 400, val, 0, 0, 0, 0, 2, rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), DBSettings.getSeason(rec.Date));
+					allData.Add(insertStr);
+					prevVal[ga] = val;
+					prevDate[ga] = rec.Date;
+				}
+				
+			}			
+			Logger.Info(insertIntoHeader+" \n "+String.Join("\n UNION ALL \n", allData));
+
+		}
+
 
 
 		protected static void writeToDB(List<OgranGARecord> data) {
