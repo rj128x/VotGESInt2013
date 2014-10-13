@@ -35,8 +35,8 @@ namespace VotGES.Web.Services {
 			serie.Enabled = true;
 			serie.YAxisIndex = 0;
 
-			//answer.ChartAnswer = KPDLine.createKPDTable(ga);
-			answer.ChartAnswer = ChartAnswer.getEmptyAnswer();		
+			answer.ChartAnswer = KPDLine.createKPDTable(ga);
+			//answer.ChartAnswer = ChartAnswer.getEmptyAnswer();		
 			answer.ChartAnswer.AllowZoom = false;
 			answer.ChartAnswer.AllowTrack = false;
 			answer.ChartAnswer.Properties.Series.Add(serie);

@@ -376,9 +376,9 @@
     <Resource Include="Image1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\gaHar\ga1.jpg" />
-    <Resource Include="Images\gaHar\ga10.jpg" />
     <Resource Include="Images\gaHar\ga2.jpg" />
+    <Resource Include="Images\gaHar\ga10.jpg" />
+    <Resource Include="Images\gaHar\ga1.jpg" />
     <Resource Include="Images\gaHar\ga3.jpg" />
     <Resource Include="Images\gaHar\ga4.jpg" />
     <Resource Include="Images\gaHar\ga5.jpg" />

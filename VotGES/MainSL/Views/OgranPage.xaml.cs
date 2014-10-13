@@ -111,17 +111,17 @@ namespace MainSL.Views {
 
 			switch (ga) {
 				case 1:
-					left = wid * 0.065;
-					top = hei * 0.044;
-					bot = hei * 0.887;
-					right = wid * 0.957;
-					break;
-				case 2:
 					left = wid * 0.058;
 					top = hei * 0.035;
 					bot = hei * 0.894;
 					right = wid * 0.9632;
 					break;
+				case 2:
+					left = wid * 0.065;
+					top = hei * 0.044;
+					bot = hei * 0.887;
+					right = wid * 0.957;
+					break;				
 				case 3:
 					left = wid * 0.0598;
 					top = hei * 0.056;
