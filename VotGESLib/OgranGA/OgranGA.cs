@@ -50,9 +50,9 @@ namespace VotGES.OgranGA {
 				return hours.ToString();
 
 			if (hours == 0 && min<10) {
-				return String.Format("{0},{1}",  min,sec);
+				return String.Format("{0}'{1:00}",  min,sec);
 			}
-			return String.Format("{0}:{1}", hours, min);
+			return String.Format("{0}:{1:00}", hours, min);
 		}
 
 		public void processStr() {
@@ -247,7 +247,7 @@ namespace VotGES.OgranGA {
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezGen):
 						result.timeGen += addTime;
-						timeGenToEnd += timeToEnd;
+						timeGenToEnd = timeToEnd;
 						processedGen = true;
 						break;
 					case (OgranGARecord.ITEM_ENUM.rezHHG):

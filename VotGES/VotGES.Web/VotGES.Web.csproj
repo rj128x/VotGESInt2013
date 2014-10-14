@@ -151,6 +151,7 @@
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainSL.aspx" />
     <Content Include="Views\Home\Test.aspx" />
+    <Content Include="Views\Reports\PuskStopByDays.aspx" />
     <Content Include="Views\Reports\VERReportMonth.aspx" />
     <Content Include="Views\Reports\VERReport.aspx" />
     <Content Include="Views\Reports\PBR.aspx" />

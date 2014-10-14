@@ -9,6 +9,7 @@ namespace VotGES.OgranGA {
 	public class OgranGAReport {
 		public Dictionary<int, List<OgranGARecord>> data { get; protected set; }
 		public Dictionary<int, OgranGARecord> sumData { get; protected set; }
+		public Dictionary<DateTime, OgranGAReport> sumDataByDays;
 
 		public OgranGARecord sumRecord { get; protected set; }
 
@@ -124,6 +125,19 @@ namespace VotGES.OgranGA {
 				try { command.Dispose(); } catch { }
 				try { connection.Close(); } catch { }
 			}
+		}
+
+		public void readSumDataByDays() {
+			DateTime date = DateStart.AddDays(0);
+			Dictionary<DateTime, OgranGAReport> Data = new Dictionary<DateTime, OgranGAReport>();
+			while (date < DateEnd) {
+				OgranGAReport report = new OgranGAReport(date, date.AddDays(1));
+				report.readSumData();
+				Data.Add(date, report);
+				date = date.AddDays(1);
+			}
+			sumDataByDays = Data;
+
 		}
 
 	}

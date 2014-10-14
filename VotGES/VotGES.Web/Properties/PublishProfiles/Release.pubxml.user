@@ -112,10 +112,10 @@
       <publishTime>03/18/2010 18:31:26</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>10/13/2014 14:16:47</publishTime>
+      <publishTime>10/14/2014 13:13:39</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>10/13/2014 20:11:35</publishTime>
+      <publishTime>10/14/2014 13:13:39</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
       <publishTime>12/04/2013 02:58:20</publishTime>
@@ -130,7 +130,7 @@
       <publishTime>12/04/2013 02:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>10/13/2014 20:08:47</publishTime>
+      <publishTime>10/14/2014 13:21:18</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
@@ -287,6 +287,9 @@
     </File>
     <File Include="Views/Reports/PuskStop.aspx">
       <publishTime>10/13/2014 13:23:35</publishTime>
+    </File>
+    <File Include="Views/Reports/PuskStopByDays.aspx">
+      <publishTime>10/14/2014 13:21:08</publishTime>
     </File>
     <File Include="Views/Reports/PuskStopFull.aspx">
       <publishTime>09/16/2014 08:17:16</publishTime>

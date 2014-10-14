@@ -87,9 +87,21 @@ namespace VotGES.Web.Controllers
 			OgranGAReport report = new OgranGAReport(dateStart, dateEnd);
 			report.readSumData();
 
-
 			return View("PuskStop", report);
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult PuskStopByDays(int year1, int month1, int day1, int year2, int month2, int day2) {
+			DateTime dateStart = new DateTime(year1, month1, day1);
+			DateTime dateEnd = new DateTime(year2, month2, day2);
+			dateEnd = dateEnd > DateTime.Now.AddHours(-2) ? DateTime.Now.AddHours(-2) : dateEnd;
+			Logger.Info(String.Format("Пуски-остановы по дням с {0} по {1}", dateStart, dateEnd));
+			OgranGAReport report = new OgranGAReport(dateStart, dateEnd);
+			report.readSumDataByDays();
+			
+			return View("PuskStopByDays", report);
+		}
+
 
 		protected VERReport getVERReport(int year, int month, int day) {
 			DateTime dateStart = new DateTime(year, month, day);

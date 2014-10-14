@@ -42,7 +42,7 @@ namespace MainSL.Views
 					CurrentChart.XAxis = new LinearAxis();
 					break;
 				case XAxisTypeEnum.datetime:
-					CurrentChart.XAxis = new DateTimeAxis();
+					CurrentChart.XAxis = new DateTimeAxis();					
 					break;
 			}
 			CurrentChart.XAxis.LabelFormatString = XAxesForamtString;
