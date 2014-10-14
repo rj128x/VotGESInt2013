@@ -216,12 +216,13 @@ namespace MainSL.Views {
 				
 
 
-				double pointLeft = (point.XValDouble - 20) * stepPower;
+				double pointLeft = (point.XValDouble - 20.0) * stepPower;
 				if (ga == 8 || ga == 9 ||ga==5)
-					pointLeft = (point.XValDouble - 10) * stepPower;
-				double pointTop = rect.Height-(point.YVal-16) * stepNapor;
+					pointLeft = (point.XValDouble - 10.0) * stepPower;
+
+				double pointTop = rect.Height-(point.YVal-16.0) * stepNapor;
 				if (ga == 2 ||ga==9) {
-					pointTop = rect.Height - (point.YVal - 15) * stepNapor;
+					pointTop = rect.Height - (point.YVal - 15.0) * stepNapor;
 				}
 
 

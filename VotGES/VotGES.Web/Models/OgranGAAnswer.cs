@@ -88,7 +88,7 @@ namespace VotGES.Web.Models {
 				double n = double.NaN;
 				foreach (KeyValuePair<DateTime, double> de in currentDBPs) {					
 					if (currentDBNs.ContainsKey(de.Key)) {
-						if (double.IsNaN(p) || double.IsNaN(n) || (Math.Abs(p - de.Value) > 0.5) || (Math.Abs(currentDBNs[de.Key] - n) > 0.1)) {
+						if (double.IsNaN(p) || double.IsNaN(n) || (Math.Abs(p - de.Value) > 0.5) || (Math.Abs(currentDBNs[de.Key] - n) > 0.03) || de.Key==currentDBPs.Last().Key) {
 							data.Points.Add(new ChartDataPoint(de.Value, currentDBNs[de.Key]));
 						}
 						p = de.Value;
@@ -102,13 +102,22 @@ namespace VotGES.Web.Models {
 
 				/*ChartDataSerie data1 = new ChartDataSerie();
 				Random rand = new Random();
+				data1.Points.Add(new ChartDataPoint(20, 15));
+				data1.Points.Add(new ChartDataPoint(25, 15.5));
 				data1.Points.Add(new ChartDataPoint(30,16));
+				data1.Points.Add(new ChartDataPoint(35, 16.5));
 				data1.Points.Add(new ChartDataPoint(40, 17));
+				data1.Points.Add(new ChartDataPoint(45, 17.5));
 				data1.Points.Add(new ChartDataPoint(50, 18));
+				data1.Points.Add(new ChartDataPoint(55, 18.5));
 				data1.Points.Add(new ChartDataPoint(60, 19));
+				data1.Points.Add(new ChartDataPoint(65, 19.5));
 				data1.Points.Add(new ChartDataPoint(70, 20));
+				data1.Points.Add(new ChartDataPoint(75, 20.3));
 				data1.Points.Add(new ChartDataPoint(80, 21));
+				data1.Points.Add(new ChartDataPoint(85, 21.5));
 				data1.Points.Add(new ChartDataPoint(90, 22));
+				data1.Points.Add(new ChartDataPoint(95, 22.5));
 				data1.Name = "dataWork";
 				CurrentData = data1;*/
 			}
