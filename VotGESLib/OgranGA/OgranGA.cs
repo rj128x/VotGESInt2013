@@ -55,6 +55,14 @@ namespace VotGES.OgranGA {
 			return String.Format("{0}:{1:00}", hours, min);
 		}
 
+		public static string getFullTimeStr(double time) {
+			int hours = (int)(time / 60.0);
+			int min = (int)(time - hours * 60);
+			int sec = (int)(time * 60 - hours * 60 * 60 - min * 60);
+
+			return String.Format("{0:00}:{1:00}:{2:00}", hours, min, sec);
+		}
+
 		public void processStr() {
 			timeZapr = 0;
 			timeOgran = timeLessMin + timeAfterMax;

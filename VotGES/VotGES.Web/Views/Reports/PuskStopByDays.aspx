@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<VotGES.OgranGA.OgranGAReport>" %>
+<%@ Import Namespace="VotGES.OgranGA" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -127,19 +128,19 @@
                 </td>
                 <td>
                     <%= String.Format("{0}",
-                        Model.sumDataByDays[date].sumData[ga].TimeRunStr)
+                        OgranGARecord.getFullTimeStr(Model.sumDataByDays[date].sumData[ga].timeRun))
                     %>
                 </td>
                 <td>
                     <%= String.Format("{0}",
-                        Model.sumDataByDays[date].sumData[ga].TimeGenStr)
+                         OgranGARecord.getFullTimeStr(Model.sumDataByDays[date].sumData[ga].timeGen))
                     %>
                 </td>
 
                  <%if (ga==1||ga==2||ga==9||ga==10){ %>
                 <td>
                     <%= String.Format("{0}",
-                        Model.sumDataByDays[date].sumData[ga].TimeSKStr)
+                         OgranGARecord.getFullTimeStr(Model.sumDataByDays[date].sumData[ga].timeSK))
                     %>
                 </td>
                 <%} %>
