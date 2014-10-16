@@ -19,12 +19,14 @@ namespace MainSL
 {
 	public partial class MainPage : UserControl
 	{
+		public static MainPage Current;
 		public MainPage() {
 			this.Language = XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
 			
 			Logger.info("Старт главной страницы");
 			InitializeComponent();
 			LoginName.DataContext = WebContext.Current.User;
+			Current = this;
 		}
 
 		// После перехода в фрейме убедиться, что выбрана кнопка HyperlinkButton, представляющая текущую страницу

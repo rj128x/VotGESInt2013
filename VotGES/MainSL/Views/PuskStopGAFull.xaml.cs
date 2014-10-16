@@ -21,7 +21,7 @@ namespace MainSL.Views {
 
 		public PuskStopGAFull() {
 			InitializeComponent();
-			context = new OgranGAContext();
+			context = new OgranGAContext();			
 		}
 
 		public void refresh() {
@@ -41,6 +41,9 @@ namespace MainSL.Views {
 				}
 			}, null);
 			GlobalStatus.Current.StartLoad(currentOper);
+			this.Width = MainPage.Current.ActualWidth;
+			this.Height = MainPage.Current.ActualHeight;
+			this.Margin = new Thickness(0, 0, 0, 0);
 		}
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
