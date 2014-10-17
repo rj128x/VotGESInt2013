@@ -43,6 +43,7 @@
     <Compile Include="DBWriter\DataDBWriter.cs" />
     <Compile Include="DBWriter\MasterDBWriter.cs" />
     <Compile Include="DBWriter\MasterDBWriterRunner.cs" />
+    <Compile Include="MBLostData\MBLostFileReader.cs" />
     <Compile Include="modbus.cs" />
     <Compile Include="ModbusReader\MasterModbusReader.cs" />
     <Compile Include="ModbusReader\ModbusCalc.cs" />
@@ -60,7 +61,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Modbus2014 - Копировать.xml">
+    <Content Include="Data\Modbus2014LD.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -89,6 +90,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

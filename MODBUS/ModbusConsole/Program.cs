@@ -10,6 +10,7 @@ using VotGES;
 using VotGES.Piramida;
 using ModbusLib.DBWriter;
 using ModbusLib.ModbusReader;
+using ModbusLib.MBLostData;
 
 namespace ModbusConsole
 {
@@ -17,8 +18,19 @@ namespace ModbusConsole
 	{
 
 		static void Main(string[] args) {
-			
-			(new ModbusReaderRunner()).Run();
+
+			if (args.Length > 0) {
+				string fileName = args[0];
+				Settings.init();
+				DBSettings.init();
+				Logger.InitFileLogger(Settings.single.LogPath, "logL");
+				MBLostFileReader reader = new MBLostFileReader();
+				reader.FileName = fileName;
+				reader.init();
+				reader.readData();
+			} else {
+				(new ModbusReaderRunner()).Run();
+			}
 
 			Console.ReadLine();
 		}

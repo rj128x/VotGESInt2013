@@ -42,7 +42,7 @@ namespace ModbusLib
 		}
 				
 		protected void getWriter(DateTime date) {
-			DateTime dt=GetFileDate(DateTime.Now, RWMode);
+			DateTime dt=GetFileDate(date, RWMode);
 			if (dt != CurrentDate) {
 				try {					
 					CurrentWriter.Close();
@@ -91,9 +91,12 @@ namespace ModbusLib
 			FirstRun = true;
 		}
 
+		public bool IsDateNow = true;
+		public DateTime DateForWrite = DateTime.MinValue;
 		public void writeData( SortedList<string, double> ResultData) {
 			try {
-				getWriter(DateTime.Now);
+				DateTime date = IsDateNow ? DateTime.Now : DateForWrite;
+				getWriter(date);
 				double val;
 				List<double> values=new List<double>();
 
@@ -107,7 +110,7 @@ namespace ModbusLib
 
 				}
 
-				string valueStr=String.Format("{0};{1}", DateTime.Now.AddHours(-Settings.single.HoursDiff).ToString("dd.MM.yyyy HH:mm:ss"), String.Join(";", values));
+				string valueStr=String.Format("{0};{1}", date.AddHours(-Settings.single.HoursDiff).ToString("dd.MM.yyyy HH:mm:ss"), String.Join(";", values));
 				CurrentWriter.WriteLine(valueStr);
 				CurrentWriter.Flush();
 			} catch (Exception e) {
