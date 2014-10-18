@@ -109,10 +109,13 @@ namespace ModbusLib.MBLostData {
 						Logger.Info("Не удалось прочитать строку даты " + valsArr[0]);
 						continue;
 					}
-					Logger.Info("read "+date.ToString());
+					Logger.Info("read " + date.ToString());
 					foreach (ModbusInitDataArray arr in InitArrays.Values) {
 						SortedList<string, double> ResultData = new SortedList<string, double>();
 						foreach (ModbusInitData data in arr.FullData.Values) {
+							FullResultData[arr.ID + "_" + data.ID] = Double.NaN;
+							ResultData[data.ID] = Double.NaN;
+
 							if (data.ID.Contains("_FLAG")) {
 								ResultData[data.ID] = 0;
 							} else {
@@ -130,19 +133,19 @@ namespace ModbusLib.MBLostData {
 									}
 								}
 							}
+							if (arr.WriteMin && ResultData.Count > 0) {
+								WritersMin[arr.ID].IsDateNow = false;
+								WritersMin[arr.ID].DateForWrite = date;
+								WritersMin[arr.ID].writeData(ResultData);
+							}
+							if (arr.WriteHH) {
+								WritersHH[arr.ID].IsDateNow = false;
+								WritersHH[arr.ID].DateForWrite = date;
+								WritersHH[arr.ID].writeData(ResultData);
+							}
 						}
-						if (arr.WriteMin && ResultData.Count > 0) {
-							WritersMin[arr.ID].IsDateNow = false;
-							WritersMin[arr.ID].DateForWrite = date;
-							WritersMin[arr.ID].writeData(ResultData);
-						}
-						if (arr.WriteHH) {
-							WritersHH[arr.ID].IsDateNow = false;
-							WritersHH[arr.ID].DateForWrite = date;
-							WritersHH[arr.ID].writeData(ResultData);
-						}
+						ProcessFinish(date);
 					}
-					ProcessFinish(date);
 				} catch (Exception e) {
 					Logger.Error("Ошибка при чтенни строки файла");
 				}
