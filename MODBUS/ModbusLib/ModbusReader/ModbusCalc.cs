@@ -201,7 +201,7 @@ namespace ModbusLib {
 
 		protected double isGAGen(int gaNumber) {
 			try {
-				return 1 - GlobalVotGES.getBIT((UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)], 4);
+				return GlobalVotGES.getBIT((UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)], 4);
 			} catch {
 				return this[String.Format("MB_GA{0}_P", gaNumber)] > 10 ? 1 : 0;
 			}
@@ -209,7 +209,7 @@ namespace ModbusLib {
 
 		protected double isGASK(int gaNumber) {
 			try {
-				return 1 - GlobalVotGES.getBIT((UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)], 5);
+				return GlobalVotGES.getBIT((UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)], 5);
 			} catch {
 				return this[String.Format("MB_GA{0}_P", gaNumber)] < 0 ? 1 : 0;
 			}
