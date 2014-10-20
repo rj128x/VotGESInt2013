@@ -170,6 +170,14 @@ namespace ModbusLib {
 			foreach (ModbusInitData data in Data) {
 				if (data.Addr == addr) {
 					if (data.ValBit == -1) {
+						if (data.SignVal) {
+							try {
+								Logger.Info(data.ID + "  " + val);
+								val = Convert.ToInt16(val);
+								Logger.Info("===" + val);
+							}
+							catch { }
+						}
 						val = val * data.Scale + data.Add;
 					}
 					else {

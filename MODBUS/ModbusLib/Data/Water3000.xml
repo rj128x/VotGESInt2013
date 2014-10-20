@@ -33,7 +33,7 @@
     <ModbusInitData ID='NB_FLAG' Addr='1023' Scale='1'/>
     <ModbusInitData ID='Napor' Addr='1024' Name='Напор сглаженный' Scale='0.01' WriteToDBHH='1'  Item='276' MinValue='12' MaxValue='25'/>
     <ModbusInitData ID='Napor_FLAG' Addr='1025' Scale='1'/>
-    <ModbusInitData ID='Temp' Addr='1030' Name='Температура наружного воздуха' Scale='0.1'  WriteToDBHH='1'  Item='373' SignVal='1'/>
+    <ModbusInitData ID='Temp' Addr='1030' Name='Температура наружного воздуха' Scale='0.1' Add='-100' WriteToDBHH='1'  Item='373' />
     <ModbusInitData ID='Temp_FLAG' Addr='1031' Scale='1'/>
 
     <ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='104' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>

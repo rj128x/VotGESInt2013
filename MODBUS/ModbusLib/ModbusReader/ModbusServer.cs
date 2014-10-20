@@ -287,12 +287,7 @@ namespace ModbusLib
 
 			foreach (string key in keys) {
 				val = Data[key];
-				if (InitArr.FullData[key].SignVal) {
-					try {
-						Data[key] = Convert.ToInt16(Data[key]);
-					}
-					catch { }
-				}
+				
 				nm = key + "_FLAG";
 				if (Data.ContainsKey(nm)) {					
 					if (InitArr.FullData[nm].FlagBit > 0) {
