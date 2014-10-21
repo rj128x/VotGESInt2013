@@ -26,10 +26,10 @@ namespace VotGES.Piramida.Report
 		public static RecordTypeCalc P_VL500_Nebalans=new RecordTypeCalc("P_VL500_Nebalans", "ВЛ 500кВ небаланс P", null);
 		public static RecordTypeCalc P_VL_Nebalans=new RecordTypeCalc("P_VL_Nebalans", "ВЛ небаланс P", null);
 
-		public static RecordTypeCalc P_VL110_FullP = new RecordTypeCalc("P_VL110_FullP", "ВЛ 110кВ полная P", null);
-		public static RecordTypeCalc P_VL220_FullP = new RecordTypeCalc("P_VL220_FullP", "ВЛ 220кВ полная P", null);
-		public static RecordTypeCalc P_VL500_FullP = new RecordTypeCalc("P_VL500_FullP", "ВЛ 500кВ полная P", null);
-		public static RecordTypeCalc P_VL_FullP = new RecordTypeCalc("P_VL_FullP", "ВЛ полная P", null);
+		public static RecordTypeCalc P_VL110_FullP = new RecordTypeCalc("P_VL110_FullP", "ВЛ 110кВ полный переток", null);
+		public static RecordTypeCalc P_VL220_FullP = new RecordTypeCalc("P_VL220_FullP", "ВЛ 220кВ полный переток", null);
+		public static RecordTypeCalc P_VL500_FullP = new RecordTypeCalc("P_VL500_FullP", "ВЛ 500кВ полный переток", null);
+		public static RecordTypeCalc P_VL_FullP = new RecordTypeCalc("P_VL_FullP", "ВЛ полный переток", null);
 
 		public static RecordTypeCalc P_VL110_Berezovka=new RecordTypeCalc("P_VL110_Berezovka", "ВЛ 110кВ Березовка P", null);
 		public static RecordTypeCalc P_VL110_Dubovaya=new RecordTypeCalc("P_VL110_Dubovaya", "ВЛ 110кВ Дубовая P", null);

@@ -540,22 +540,11 @@ namespace VotGES.Piramida.Report {
 			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_4T_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_56AT_Nebalans));
 
-			child2 = childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_T_FullP));
-			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_1T_FullP));
-			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_2AT_FullP));
-			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_3AT_FullP));
-			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_4T_FullP));
-			child2.addChild(GetFullReportRecord(ReportGlTransformRecords.P_56AT_FullP));
-
 			child2 = childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_Nebalans));
 			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL500_Nebalans));
 
-			child2 = childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL_FullP));
-			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_FullP));
-			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_FullP));
-			child2.addChild(GetFullReportRecord(ReportLinesRecords.P_VL500_FullP));
 
 			childRecord = record.addChild(GetFullReportRecord(ReportSNRecords.P_SN));
 
@@ -615,6 +604,21 @@ namespace VotGES.Piramida.Report {
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TVI));
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU3_TP1));
 			child2 = childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_KRU2_TP2));
+
+			
+			record = RootSN.addChild(GetFullReportRecord(ReportMainRecords.P_FullP));
+			childRecord = record.addChild(GetFullReportRecord(ReportGlTransformRecords.P_T_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_1T_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_2AT_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_3AT_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_4T_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportGlTransformRecords.P_56AT_FullP));
+
+			childRecord = record.addChild(GetFullReportRecord(ReportLinesRecords.P_VL_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL110_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL220_FullP));
+			childRecord.addChild(GetFullReportRecord(ReportLinesRecords.P_VL500_FullP));
+
 
 			record = RootSN.addChild(GetFullReportRecord("Из Овации", "mbw"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.MBW_GES_Rash));

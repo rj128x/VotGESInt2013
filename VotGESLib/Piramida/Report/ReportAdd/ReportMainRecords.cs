@@ -9,6 +9,7 @@ namespace VotGES.Piramida.Report
 	{
 		public static RecordTypeCalc P_Nebalans=new RecordTypeCalc("P_Nebalans", "Небаланс P", null);
 		public static RecordTypeCalc P_SP=new RecordTypeCalc("P_SP", "Собственное потребление", null);
+		public static RecordTypeCalc P_FullP = new RecordTypeCalc("P_FullP", "Полный переток", null);
 
 		static ReportMainRecords() {
 			Create();
@@ -46,6 +47,13 @@ namespace VotGES.Piramida.Report
 					report[date, ReportLinesRecords.P_VL_Nebalans.ID];
 			});
 
+			P_FullP.CalcFunction = new RecordCalcDelegate((report, date) => {
+				return
+					report[date, ReportGlTransformRecords.P_T_FullP.ID] +
+					report[date, ReportLinesRecords.P_VL_FullP.ID] +
+					report[date, PiramidaRecords.P_GES.Key];
+			});
+
 		}
 
 		
@@ -53,6 +61,7 @@ namespace VotGES.Piramida.Report
 		public static void AddCalcRecords(Report report, bool visible, bool toChart, ResultTypeEnum oper) {
 			report.AddRecordType(new RecordTypeCalc(P_SP, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(P_Nebalans, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(P_FullP, toChart, visible, oper));
 		}
 
 		public static void AddPRecords(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {

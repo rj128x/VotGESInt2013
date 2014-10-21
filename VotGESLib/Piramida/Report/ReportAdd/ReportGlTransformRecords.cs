@@ -31,12 +31,12 @@ namespace VotGES.Piramida.Report {
 		public static RecordTypeCalc P_4T_Nebalans = new RecordTypeCalc("P_4T_Nebalans", "4Т Небаланс P", null);
 		public static RecordTypeCalc P_T_Nebalans = new RecordTypeCalc("P_T_Nebalans", "Трансформаторы Небаланс P", null);
 
-		public static RecordTypeCalc P_56AT_FullP = new RecordTypeCalc("P_56AT_FullP", "5-6АТ полная P", null);
-		public static RecordTypeCalc P_2AT_FullP = new RecordTypeCalc("P_2AT_FullP", "2АТ полная P", null);
-		public static RecordTypeCalc P_3AT_FullP = new RecordTypeCalc("P_3AT_FullP", "3АТ полная P", null);
-		public static RecordTypeCalc P_1T_FullP = new RecordTypeCalc("P_1T_FullP", "1Т полная P", null);
-		public static RecordTypeCalc P_4T_FullP = new RecordTypeCalc("P_4T_FullP", "4Т полная P", null);
-		public static RecordTypeCalc P_T_FullP = new RecordTypeCalc("P_T_FullP", "Т полная P", null);
+		public static RecordTypeCalc P_56AT_FullP = new RecordTypeCalc("P_56AT_FullP", "5-6АТ полный переток", null);
+		public static RecordTypeCalc P_2AT_FullP = new RecordTypeCalc("P_2AT_FullP", "2АТ полный переток", null);
+		public static RecordTypeCalc P_3AT_FullP = new RecordTypeCalc("P_3AT_FullP", "3АТ полный переток", null);
+		public static RecordTypeCalc P_1T_FullP = new RecordTypeCalc("P_1T_FullP", "1Т полный переток", null);
+		public static RecordTypeCalc P_4T_FullP = new RecordTypeCalc("P_4T_FullP", "4Т полный переток", null);
+		public static RecordTypeCalc P_T_FullP = new RecordTypeCalc("P_T_FullP", "Т полный переток", null);
 
 		static ReportGlTransformRecords() {
 			CreateGlTransformP();
