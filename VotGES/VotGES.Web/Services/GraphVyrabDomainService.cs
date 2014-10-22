@@ -1,6 +1,5 @@
 ﻿
-namespace VotGES.Web.Services
-{
+namespace VotGES.Web.Services {
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -11,38 +10,40 @@ namespace VotGES.Web.Services
 	using VotGES.PBR;
 	using VotGES.Piramida.Report;
 	using VotGES.Piramida;
+	using VotGES.Chart;
 
-	public class FullGraphVyrab
-	{
+	public class FullGraphVyrab {
 		public GraphVyrabAnswer GTP { get; set; }
 		public GraphVyrabRGEAnswer RGE { get; set; }
 		public Dictionary<int, string> TimeStopGA { get; set; }
 		public double Napor { get; set; }
-		public FullGraphVyrab(){
+		public FullGraphVyrab() {
 			Napor = 21;
 		}
 	}
 
 	// TODO: создайте методы, содержащие собственную логику приложения.
 	[EnableClientAccess()]
-	public class GraphVyrabDomainService : DomainService
-	{
+	public class GraphVyrabDomainService : DomainService {
 		public GraphVyrabAnswer getGraphVyrab(bool steppedPBR = true) {
 			try {
-				DateTime date=DateTime.Now.AddHours(-2);
-				return GraphVyrab.getAnswer(date, true,steppedPBR);
-			} catch (Exception e) {
+				DateTime date = DateTime.Now.AddHours(-2);
+				date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+				return GraphVyrab.getAnswer(date, true, steppedPBR);
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении графика нагрузки " + e);
 				return null;
 			}
 		}
 
-		public GraphVyrabAnswer getGraphVyrabMin(DateTime date,bool steppedPBR=true) {
+		public GraphVyrabAnswer getGraphVyrabMin(DateTime date, bool steppedPBR = true) {
 			try {
-				Logger.Info("Получение факта нагрузки по минутам "+date.ToString());
+				Logger.Info("Получение факта нагрузки по минутам " + date.ToString());
 				date = date.Date;
-				return GraphVyrab.getAnswer(date, false,steppedPBR);
-			} catch (Exception e) {
+				return GraphVyrab.getAnswer(date, false, steppedPBR);
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении факта нагрузки " + e);
 				return null;
 			}
@@ -53,7 +54,8 @@ namespace VotGES.Web.Services
 				Logger.Info("Получение факта нагрузки по получасовкам " + date.ToString());
 				date = date.Date;
 				return GraphVyrab.getAnswerHH(date);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении факта нагрузки " + e);
 				return null;
 			}
@@ -61,20 +63,23 @@ namespace VotGES.Web.Services
 
 		public GraphVyrabRGEAnswer getGraphVyrabRGE(bool steppedPBR = true) {
 			try {
-				DateTime date=DateTime.Now.AddHours(-2);
-				return GraphVyrabRGE.getAnswer(date, true,steppedPBR);
-			} catch (Exception e) {
+				DateTime date = DateTime.Now.AddHours(-2);
+				date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+				return GraphVyrabRGE.getAnswer(date, true, steppedPBR);
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении графика нагрузки РГЕ" + e);
 				return null;
 			}
 		}
 
-		public GraphVyrabRGEAnswer getGraphVyrabRGEMin(DateTime date,bool steppedPBR=true) {
+		public GraphVyrabRGEAnswer getGraphVyrabRGEMin(DateTime date, bool steppedPBR = true) {
 			try {
 				Logger.Info("Получение факта нагрузки по минутам РГЕ " + date.ToString());
 				date = date.Date;
-				return GraphVyrabRGE.getAnswer(date, false,steppedPBR);
-			} catch (Exception e) {
+				return GraphVyrabRGE.getAnswer(date, false, steppedPBR);
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении факта нагрузки РГЕ" + e);
 				return null;
 			}
@@ -85,33 +90,32 @@ namespace VotGES.Web.Services
 				Logger.Info("Получение факта нагрузки по получасовкам РГЕ " + date.ToString());
 				date = date.Date;
 				return GraphVyrabRGE.getAnswerHH(date);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Logger.Error("Ошибка при получении факта нагрузки РГЕ" + e);
 				return null;
 			}
 		}
 
-		public FullGraphVyrab getFullGraphVyrab(bool steppedPBR=true) {
+		public FullGraphVyrab getFullGraphVyrab(bool steppedPBR = true) {
 			Logger.Info("Получение графика нагрузки stairs:" + steppedPBR);
-			FullGraphVyrab answer=new FullGraphVyrab();
+			FullGraphVyrab answer = new FullGraphVyrab();
 			answer.GTP = getGraphVyrab(steppedPBR);
 			answer.RGE = getGraphVyrabRGE(steppedPBR);
-            answer.TimeStopGA = new Dictionary<int, string>();
-            for (int ga = 1; ga <= 10; ga++)
-            {
-							answer.TimeStopGA = OgranGA.OgranGA.GetTimeStopGA(DateTime.Now.AddHours(-2));
-            }
 
-            try
-            {
-                List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-4), DateTime.Now.AddHours(-2), 1, 2, 12, (new int[] { 276 }).ToList(), true, true, "P3000");
-                answer.Napor = list.Last().Value0;
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Ошибка при получении напора" + e);
-            }
-			
+			answer.TimeStopGA = new Dictionary<int, string>();
+			for (int ga = 1; ga <= 10; ga++) {
+				answer.TimeStopGA = OgranGA.OgranGA.GetTimeStopGA(DateTime.Now.AddHours(-2));
+			}
+
+			try {
+				List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-4), DateTime.Now.AddHours(-2), 1, 2, 12, (new int[] { 276 }).ToList(), true, true, "P3000");
+				answer.Napor = list.Last().Value0;
+			}
+			catch (Exception e) {
+				Logger.Error("Ошибка при получении напора" + e);
+			}
+
 			return answer;
 		}
 	}

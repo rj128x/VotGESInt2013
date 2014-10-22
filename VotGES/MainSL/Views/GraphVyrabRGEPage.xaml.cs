@@ -130,7 +130,7 @@ namespace MainSL.Views
 						} catch { }
 						pnlSettings.DataContext = oper.Value;
 						CurrentAnswer = oper.Value;
-						
+
 						processGTP();
 						processRGE();
 
