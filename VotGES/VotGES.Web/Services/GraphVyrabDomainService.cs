@@ -27,8 +27,7 @@ namespace VotGES.Web.Services {
 	public class GraphVyrabDomainService : DomainService {
 		public GraphVyrabAnswer getGraphVyrab(bool steppedPBR = true) {
 			try {
-				DateTime date = DateTime.Now.AddHours(-2);
-				date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+				DateTime date = GlobalVotGES.getMoscowTime(DateTime.Now); 
 				return GraphVyrab.getAnswer(date, true, steppedPBR);
 			}
 			catch (Exception e) {
@@ -63,8 +62,7 @@ namespace VotGES.Web.Services {
 
 		public GraphVyrabRGEAnswer getGraphVyrabRGE(bool steppedPBR = true) {
 			try {
-				DateTime date = DateTime.Now.AddHours(-2);
-				date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+				DateTime date = GlobalVotGES.getMoscowTime(DateTime.Now);
 				return GraphVyrabRGE.getAnswer(date, true, steppedPBR);
 			}
 			catch (Exception e) {

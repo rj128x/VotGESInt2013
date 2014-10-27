@@ -58,7 +58,7 @@ namespace VotGES.Web.Services {
 			WebLogger.Info(String.Format("Получение пусков-остановов график {0} - {1}",dateStart,dateEnd), VotGES.Logger.LoggerSource.service);
 			PuskStopFullReport report = new PuskStopFullReport();
 			report.DateStart = dateStart;
-			report.DateEnd = dateEnd>DateTime.Now.AddHours(-2)?DateTime.Now.AddHours(-2):dateEnd;
+			report.DateEnd = dateEnd>DateTime.Now.AddHours(-2)?GlobalVotGES.getMoscowTime(DateTime.Now):dateEnd;
 			report.ReadData();
 			return report.createChart();
 

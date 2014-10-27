@@ -38,5 +38,10 @@ namespace VotGES
 			catch { }
 			return v;
 		}
+		public static DateTime getMoscowTime(DateTime date) {
+			DateTime md = date.AddHours(-2);
+			md = new DateTime(md.Year, md.Month, md.Day, md.Hour, md.Minute, md.Second);
+			return md;
+		}
 	}
 }

@@ -46,8 +46,7 @@ namespace VotGES.Web.Services
 		public PrognozNBByPBRAnswer getPrognoz( int countDays,bool correctByPrev, SortedList<DateTime,double> pbr) {
 			WebLogger.Info(String.Format("Получение прогноза (прогноз) {0} [{1}]", countDays, pbr == null ? "" : String.Join(" ", pbr)));
 			try {
-				DateTime date= DateTime.Now.AddHours(-2);
-				date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+				DateTime date= GlobalVotGES.getMoscowTime(DateTime.Now);
 				//DateTime date=new DateTime(2010, 03, 15);
 				//date = date.AddHours(13).AddMinutes(35);
 				PrognozNBByPBR prognoz=new PrognozNBByPBR(date.Date,countDays,date,pbr);
