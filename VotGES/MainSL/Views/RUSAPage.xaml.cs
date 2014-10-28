@@ -73,7 +73,7 @@ namespace MainSL.Views
 			CurrentMaket8.RashodFavr = 1200;
 			CurrentMaket8.PRaspGTP1 = 220;
 			CurrentMaket8.PRaspGTP2 = 800;
-			CurrentMaket8.PGTP1 = 80;
+			CurrentMaket8.PGTP1 = -1;
 			CurrentMaket8.NeedTime = 8;
 			CurrentMaket8.Rashod0 = 0;
 			CurrentMaket8.Maket = new Maket8HoursData();

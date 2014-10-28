@@ -138,6 +138,9 @@ namespace VotGES.Web.Models
 		public void ProcessMaket() {			
 			double rashod8=(RashodFavr * 24 - Rashod0 * (24 - NeedTime)) / NeedTime;
 			double power=RashodTable.getPower(maket8Optim?12:11, rashod8, Napor);
+			PGTP1=(power/10.0)*2;
+			if (power - PGTP1 > 800)
+				PGTP1 = 220;
 			Maket.P8HoursGTP1 = PGTP1;
 			Maket.P8HoursGTP2 = power - PGTP1;
 			Maket.P8HoursGES = power;

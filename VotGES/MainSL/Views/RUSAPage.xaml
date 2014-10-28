@@ -116,20 +116,18 @@
 							<TextBlock Text="Напор, м" Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}"/>
 							<TextBlock Text="P расп ГТП-1" Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}"/>
 							<TextBlock Text="P расп ГТП-2" Grid.Row="2" Grid.Column="0" Style="{StaticResource Caption}"/>
-							<TextBlock Text="Расход ФАВР" Grid.Row="3" Grid.Column="0" Style="{StaticResource Caption}"/>
-							<TextBlock Text="P ГТП-1" Grid.Row="4" Grid.Column="0" Style="{StaticResource Caption}"/>
-							<TextBlock Text="Время работы (необх)" Grid.Row="5" Grid.Column="0" Style="{StaticResource Caption}"/>
-							<TextBlock Text="Расход(0)" Grid.Row="6" Grid.Column="0" Style="{StaticResource Caption}"/>
-							<TextBlock Text="По опт. расходу" Grid.Row="7" Grid.Column="0" Style="{StaticResource Caption}"/>
+							<TextBlock Text="Расход ФАВР" Grid.Row="3" Grid.Column="0" Style="{StaticResource Caption}"/>							
+							<TextBlock Text="Время работы (необх)" Grid.Row="4" Grid.Column="0" Style="{StaticResource Caption}"/>
+							<TextBlock Text="Расход(0)" Grid.Row="5" Grid.Column="0" Style="{StaticResource Caption}"/>
+							<TextBlock Text="По опт. расходу" Grid.Row="6" Grid.Column="0" Style="{StaticResource Caption}"/>
 							
 							<TextBox Text="{Binding Napor, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
 							<TextBox Text="{Binding PRaspGTP1, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
 							<TextBox Text="{Binding PRaspGTP2, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-							<TextBox Text="{Binding RashodFavr, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-							<TextBox Text="{Binding PGTP1, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="4" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-							<TextBox Text="{Binding NeedTime, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="5" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-							<TextBox Text="{Binding Rashod0, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="6" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-							<CheckBox IsChecked="{Binding Maket8Optim, Mode=TwoWay}" Grid.Row="7" Grid.Column="1"/>
+							<TextBox Text="{Binding RashodFavr, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>							
+							<TextBox Text="{Binding NeedTime, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="4" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+							<TextBox Text="{Binding Rashod0, Mode=TwoWay, StringFormat='0.00'}" Grid.Row="5" Grid.Column="1" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+							<CheckBox IsChecked="{Binding Maket8Optim, Mode=TwoWay}" Grid.Row="6" Grid.Column="1"/>
 						</Grid>
 						<Button Name="btnCalcMaket" Click="btnCalcMaket_Click" Content="Расчет макета" Margin="0,20,0,0" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
 						<Grid Margin="0,20,0,0"  Width="550">
