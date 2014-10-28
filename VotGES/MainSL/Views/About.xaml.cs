@@ -22,5 +22,10 @@ namespace MainSL
 		// Выполняется, когда пользователь переходит на эту страницу.
 		protected override void OnNavigatedTo(NavigationEventArgs e) {
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("docs/Instruction8075.doc");
+			FloatWindow.OpenWindow(uri);
+		}
 	}
 }
