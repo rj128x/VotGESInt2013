@@ -21,10 +21,6 @@ namespace MainSL
 	{
 		public static MainPage Current;
 		public MainPage() {
-			System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-GB");
-			System.Threading.Thread.CurrentThread.CurrentCulture = ci;
-			System.Threading.Thread.CurrentThread.CurrentUICulture = ci;			
-			//this.Language = XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
 			
 			Logger.info("Старт главной страницы");
 			InitializeComponent();

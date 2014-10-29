@@ -18,9 +18,12 @@ namespace MainSL
 	public partial class App : Application
 	{
 		public App() {			
-			System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ru-RU");	
+			System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ru-RU");
+			ci.NumberFormat.NumberDecimalSeparator = ".";
+			ci.NumberFormat.NumberGroupSeparator = " ";
 			System.Threading.Thread.CurrentThread.CurrentCulture = ci;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+			
 
 			
 
