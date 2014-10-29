@@ -21,6 +21,7 @@ namespace MainSL
 	{
 		public static MainPage Current;
 		public MainPage() {
+			//this.Language = XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
 			
 			Logger.info("Старт главной страницы");
 			InitializeComponent();

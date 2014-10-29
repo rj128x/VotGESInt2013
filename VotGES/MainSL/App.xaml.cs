@@ -12,13 +12,17 @@ using System.Windows.Shapes;
 using VotGES.Web.Services;
 using MainSL.Logging;
 using System.ServiceModel.DomainServices.Client.ApplicationServices;
+using System.Globalization;
+using System.Threading;
 
 namespace MainSL
 {
 	public partial class App : Application
 	{
-		public App() {			
-			System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ru-RU");
+		public App() {
+
+			System.Globalization.CultureInfo ci = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+			
 			ci.NumberFormat.NumberDecimalSeparator = ".";
 			ci.NumberFormat.NumberGroupSeparator = " ";
 			System.Threading.Thread.CurrentThread.CurrentCulture = ci;
