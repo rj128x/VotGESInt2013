@@ -172,9 +172,9 @@ namespace ModbusLib {
 					if (data.ValBit == -1) {
 						if (data.SignVal) {
 							try {
-								Logger.Info(data.ID + "  " + val);
+								//Logger.Info(data.ID + "  " + val);
 								val = Convert.ToInt16(val);
-								Logger.Info("===" + val);
+								//Logger.Info("===" + val);
 							}
 							catch { }
 						}

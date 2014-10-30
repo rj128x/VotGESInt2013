@@ -201,7 +201,8 @@ namespace ModbusLib {
 
 		protected double isGAGen(int gaNumber) {
 			try {
-				return GlobalVotGES.getBIT((UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)], 4);
+				UInt16 state=(UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)];
+				return  (GlobalVotGES.getBIT(state, 0) == 1 && GlobalVotGES.getBIT(state, 1) == 1 &&  GlobalVotGES.getBIT(state, 5) == 0) ? 1 : 0;
 			} catch {
 				return this[String.Format("MB_GA{0}_P", gaNumber)] > 10 ? 1 : 0;
 			}
