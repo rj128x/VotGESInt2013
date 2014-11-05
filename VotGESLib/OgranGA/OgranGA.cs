@@ -416,6 +416,8 @@ namespace VotGES.OgranGA {
 					if (rec.Item == item)
 						break;
 				}
+				/*if (ga != 3)
+					continue;*/
 				int val=rec.Value0>0?1:0;
 				if (prevVal[ga] != val && OgranGARecord.dateDiff(prevDate[ga],rec.Date)>5) {
 					String insertStr = String.Format(frmt, 13, 30, ga + 700, val, 0, 0, 0, 0, 2, rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), DBSettings.getSeason(rec.Date));

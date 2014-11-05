@@ -35,7 +35,7 @@ namespace ClearDB {
 
 
 			/*Logger.InitFileLogger(Settings.single.LogPath, "init");
-			OgranGA.processPiramidaPuskStop(new DateTime(2014, 10, 1), new DateTime(2014, 10, 9, 10, 30, 0));
+			OgranGA.processPiramidaPuskStop(new DateTime(2014, 11, 5,0,0,0), new DateTime(2014, 11, 6, 0, 0, 0));
 			return;*/
 
 			string ds = args[0];

@@ -31,8 +31,10 @@ namespace ClearDB {
 					DateTime date = DateTime.Parse(reader["data_date"].ToString());
 					Logger.Info("====" + date.ToString(DBClass.DateFormat));
 					
-					sel = String.Format("SELECT top 1 data_date FROM DATA where parnumber=13 and data_date<'{0}' and item={1} and object={2} and objtype={3} order by data_date desc",
-						date.ToString(DBClass.DateFormat), reader["item"], reader["object"], reader["objtype"]);
+					sel = String.Format("SELECT top 1 data_date FROM DATA where parnumber=13 and data_date<'{0}' and item={1} and object={2} and objtype={3} and value0<>{4} order by data_date desc",
+						date.ToString(DBClass.DateFormat), reader["item"], reader["object"], reader["objtype"], reader["value0"]);
+
+					
 
 					SqlCommand cmd = con2.CreateCommand();
 					cmd.CommandText = sel;					
@@ -41,6 +43,13 @@ namespace ClearDB {
 					DateTime lastDate = DateTime.Parse(ld.ToString());
 					
 					Logger.Info("====lastDate: " + lastDate.ToString(DBClass.DateFormat));
+
+					sel = String.Format("delete FROM DATA where parnumber=13 and data_date<'{0}' and data_date>'{5}' and item={1} and object={2} and objtype={3} and value0={4}",
+						date.ToString(DBClass.DateFormat), reader["item"], reader["object"], reader["objtype"], reader["value0"], lastDate.ToString(DBClass.DateFormat));
+					//Logger.Info(sel);
+					cmd = con2.CreateCommand();
+					cmd.CommandText = sel;
+					cmd.ExecuteNonQuery();
 
 					double timeChange = (date.Ticks- lastDate.Ticks) / (10000000.0 * 60.0);
 										
