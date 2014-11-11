@@ -82,13 +82,14 @@ namespace ClearDB
 
 		protected int getFileNameYear(string fileName) {
 			try {
-				fileName = fileName.Substring(fileName.IndexOf("Сут"));
-				Logger.Info(fileName);
+				/*fileName = fileName.Substring(fileName.IndexOf("Сут"));
+				Logger.Info(fileName);*/
 				int res=-1;
 				FileInfo info=new FileInfo(FileName);
 				for (int year=1961; year <= 2050; year++) {
 					if (info.Name.Contains(year.ToString())) {
 						res = year;
+						Logger.Info("file Year=" + year);
 					}
 				}
 				return res;
@@ -118,13 +119,11 @@ namespace ClearDB
 				string monthName=monthNames[month - 1];
 				sheetName = sheetName.Replace(monthName, "");
 				int year=-1;
-				bool ok=Int32.TryParse(sheetName, out year);				
-				if (ok){
-					year = year < 61 ? 2000 + year : 1900 + year;
-				}
-				Logger.Info("==Year=" + Year);
-				return ok ? year : -1;
-			} catch {
+				year = Int32.Parse(sheetName);
+				year = year < 61 ? 2000 + year : 1900 + year;
+				Logger.Info("==Year=" + year);
+				return year;
+			} catch {				
 				return -1;
 			}
 		}
