@@ -130,6 +130,10 @@ namespace ClearDB {
 							hh = 4;
 							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 12 }).ToList(), "P3000");
 							break;
+						case "copy12_0000":
+							hh = 4;
+							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 12 }).ToList(), "P3000", "P0000");
+							break;
 						case "copy212":
 							hh = 24;
 							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 212 }).ToList(), "P3000");

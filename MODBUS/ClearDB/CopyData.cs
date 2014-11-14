@@ -11,7 +11,7 @@ namespace ClearDB
 {
 	public class CopyData
 	{
-		public static void WriteCopy(DateTime dateStart, DateTime dateEnd, List<int> parnumbers, string DBName) {
+		public static void WriteCopy(DateTime dateStart, DateTime dateEnd, List<int> parnumbers, string DBName, string fromDBName="P2000") {
 			Logger.Info(String.Format("{0} - {1}", dateStart, dateEnd));
 
 			string sel=String.Format("SELECT * FROM DATA where parnumber in ({2}) and data_date>='{0}' and data_date<='{1}'",
@@ -21,7 +21,7 @@ namespace ClearDB
 			List<string> insertsStrings=new List<string>();
 			List<string> delCond=new List<string>();
 			try {
-				con = PiramidaAccess.getConnection("P2000");
+				con = PiramidaAccess.getConnection(fromDBName);
 				con.Open();
 				SqlCommand command=con.CreateCommand();
 				command.CommandText = sel;
