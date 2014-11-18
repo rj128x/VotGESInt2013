@@ -85,6 +85,9 @@ namespace ModbusLib {
 		[System.Xml.Serialization.XmlAttribute]
 		public bool SignVal { get; set; }
 
+		[System.Xml.Serialization.XmlAttribute]
+		public int MinTimeDiff { get; set; }
+
 		public ModbusInitData() {
 			WriteToDBMin = false;
 			WriteToDBHH = false;
@@ -107,6 +110,7 @@ namespace ModbusLib {
 			MinValue = Double.MinValue;
 			MaxValue = Double.MaxValue;
 			SignVal = false;
+			MinTimeDiff = 20;
 		}
 	}
 
