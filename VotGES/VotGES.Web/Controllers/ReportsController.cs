@@ -15,9 +15,11 @@ using System.Text;
 using System.Threading;
 using VotGES.OgranGA;
 using VotGES.Rashod;
+using VotGES.Web.Models;
 
 namespace VotGES.Web.Controllers
-{
+{	
+
 	public class ReportsController : Controller
 	{
 		//
@@ -90,6 +92,7 @@ namespace VotGES.Web.Controllers
 			return View("PuskStop", report);
 		}
 
+
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult PuskStopByDays(int year1, int month1, int day1, int year2, int month2, int day2) {
 			DateTime dateStart = new DateTime(year1, month1, day1);
@@ -100,6 +103,15 @@ namespace VotGES.Web.Controllers
 			report.readSumDataByDays();
 			
 			return View("PuskStopByDays", report);
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult TimeStopGA() {
+			Logger.Info("Получение информации о простое гидроагрегатов");
+			TimeStopGAAnswer answer = new TimeStopGAAnswer();
+			answer.readData();
+			
+			return View("TimeStopGA", answer);
 		}
 
 

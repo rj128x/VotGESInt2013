@@ -294,6 +294,8 @@
 									<TextBlock Name="txtSropGA10" Style="{StaticResource Caption}" Grid.Row="5" Grid.Column="3"/>
 
 								</Grid>
+                                <Button Name="btnTimeStopRep" Content="Подробно" Click="btnTimeStopRep_Click" 
+									  HorizontalAlignment="Right" VerticalAlignment="Top" IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter} }" />
 							</StackPanel>
 						</Border>
 

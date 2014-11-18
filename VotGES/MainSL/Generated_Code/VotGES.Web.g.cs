@@ -1387,6 +1387,10 @@ namespace VotGES.OgranGA
         
         private string _timeSKStr;
         
+        private double _timeStop;
+        
+        private string _timeStopStr;
+        
         private double _timeZapr;
         
         private string _timeZaprStr;
@@ -1448,6 +1452,10 @@ namespace VotGES.OgranGA
         partial void OntimeSKChanged();
         partial void OnTimeSKStrChanging(string value);
         partial void OnTimeSKStrChanged();
+        partial void OntimeStopChanging(double value);
+        partial void OntimeStopChanged();
+        partial void OnTimeStopStrChanging(string value);
+        partial void OnTimeStopStrChanged();
         partial void OntimeZaprChanging(double value);
         partial void OntimeZaprChanged();
         partial void OnTimeZaprStrChanging(string value);
@@ -2068,6 +2076,55 @@ namespace VotGES.OgranGA
                     this._timeSKStr = value;
                     this.RaisePropertyChanged("TimeSKStr");
                     this.OnTimeSKStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeStop".
+        /// </summary>
+        [DataMember()]
+        public double timeStop
+        {
+            get
+            {
+                return this._timeStop;
+            }
+            set
+            {
+                if ((this._timeStop != value))
+                {
+                    this.OntimeStopChanging(value);
+                    this.RaiseDataMemberChanging("timeStop");
+                    this.ValidateProperty("timeStop", value);
+                    this._timeStop = value;
+                    this.RaiseDataMemberChanged("timeStop");
+                    this.OntimeStopChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeStopStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeStopStr
+        {
+            get
+            {
+                return this._timeStopStr;
+            }
+            set
+            {
+                if ((this._timeStopStr != value))
+                {
+                    this.OnTimeStopStrChanging(value);
+                    this.ValidateProperty("TimeStopStr", value);
+                    this._timeStopStr = value;
+                    this.RaisePropertyChanged("TimeStopStr");
+                    this.OnTimeStopStrChanged();
                 }
             }
         }

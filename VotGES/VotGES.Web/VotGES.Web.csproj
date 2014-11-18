@@ -128,6 +128,7 @@
     <Compile Include="Models\ProcessRUSAData.cs" />
     <Compile Include="Models\RUSAData.cs" />
     <Compile Include="Models\RashodHarsData.cs" />
+    <Compile Include="Models\TimeStopGAAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationDomainService.cs" />
     <Compile Include="Services\GraphVyrabDomainService.cs" />
@@ -151,6 +152,7 @@
     <Content Include="Silverlight.js" />
     <Content Include="Views\Home\MainSL.aspx" />
     <Content Include="Views\Home\Test.aspx" />
+    <Content Include="Views\Reports\TimeStopGA.aspx" />
     <Content Include="Views\Reports\PuskStopByDays.aspx" />
     <Content Include="Views\Reports\VERReportMonth.aspx" />
     <Content Include="Views\Reports\VERReport.aspx" />

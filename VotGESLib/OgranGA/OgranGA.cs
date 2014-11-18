@@ -27,9 +27,11 @@ namespace VotGES.OgranGA {
 		public double timeAfterMax { get; set; }
 		public double timeOgran { get; set; }
 		public double timeZapr { get; set; }
+		public double timeStop { get; set; }
 
 		public string TimeSKStr { get; protected set; }
 		public string TimeRunStr { get; protected set; }
+		public string TimeStopStr { get; protected set; }
 		public string TimeGenStr { get; protected set; }
 		public string TimeHHTStr { get; protected set; }
 		public string TimeHHGStr { get; protected set; }
@@ -44,15 +46,15 @@ namespace VotGES.OgranGA {
 			int hours = (int)(time / 60.0);
 			int min = (int)(time - hours * 60);
 			int sec = (int)(time*60 - hours * 60*60 - min*60);
-			if (hours > 50000)
-				return ((int)(hours / 1000)).ToString() + "т";
-			if (hours > 1000)
-				return hours.ToString();
+			if (hours > 10000)
+				return ((int)(hours / 1000)).ToString() + "т.ч";
+			if (hours > 100)
+				return hours.ToString()+"ч";
 
 			if (hours == 0 && min<10) {
-				return String.Format("{0}'{1:00}",  min,sec);
+				return String.Format("{0}м{1:0}с",  min,sec);
 			}
-			return String.Format("{0}:{1:00}", hours, min);
+			return String.Format("{0}ч{1:0}м", hours, min);
 		}
 
 		public static string getFullTimeStr(double time) {
@@ -60,14 +62,22 @@ namespace VotGES.OgranGA {
 			int min = (int)(time - hours * 60);
 			int sec = (int)(time * 60 - hours * 60 * 60 - min * 60);
 
-			return String.Format("{0:00}:{1:00}:{2:00}", hours, min, sec);
+			return String.Format("{0:0}ч{1:0}м{2:0}с", hours, min, sec);
+		}
+
+		public static string getDaysStr(double time) {
+			int days = (int)(time / 60 / 24);
+			int hours = (int)(time) / 60;
+			int minutes = (int)(time - days * 60 * 24 - hours * 60);
+			string res = String.Format(" {1:0}", days, hours);
+			return res;
 		}
 
 		public void processStr() {
 			timeZapr = 0;
 			timeOgran = timeLessMin + timeAfterMax;
 			cntZapr = 0;
-			cntOgran = cntLessMin + cntAfterMax;
+			cntOgran = cntLessMin + cntAfterMax;			
 			TimeSKStr = getTimeSTR(timeSK);
 			TimeRunStr = getTimeSTR(timeRun);
 			TimeGenStr = getTimeSTR(timeGen);
@@ -77,6 +87,7 @@ namespace VotGES.OgranGA {
 			TimeAfterMaxStr = getTimeSTR(timeAfterMax);
 			TimeOgranStr = getTimeSTR(timeOgran);
 			TimeZaprStr = getTimeSTR(timeZapr);
+			TimeStopStr = getTimeSTR(timeStop);
 		}
 
 

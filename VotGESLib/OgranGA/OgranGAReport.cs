@@ -103,6 +103,7 @@ namespace VotGES.OgranGA {
 					rec.timeRun = reader.GetDouble(9);
 					rec.timeHHT = reader.GetDouble(10);
 					rec.timeHHG = reader.GetDouble(11);
+					rec.timeStop = OgranGARecord.dateDiff(DateStart, DateEnd) - rec.timeRun;
 
 					sumRecord.cntAfterMax += rec.cntAfterMax;
 					sumRecord.cntLessMin += rec.cntLessMin;

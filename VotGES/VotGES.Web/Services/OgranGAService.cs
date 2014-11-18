@@ -61,8 +61,8 @@ namespace VotGES.Web.Services {
 			report.DateEnd = dateEnd>DateTime.Now.AddHours(-2)?GlobalVotGES.getMoscowTime(DateTime.Now):dateEnd;
 			report.ReadData();
 			return report.createChart();
-
 		}
+
 	}
 }
 

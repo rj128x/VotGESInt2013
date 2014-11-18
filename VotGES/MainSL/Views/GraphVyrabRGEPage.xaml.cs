@@ -250,6 +250,11 @@ namespace MainSL.Views
 				brdHour.Visibility = System.Windows.Visibility.Collapsed;
 			}
 		}
+
+		private void btnTimeStopRep_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/TimeStopGA");
+			FloatWindow.OpenWindow(uri,1100,300);
+		}
 		
 	}
 
