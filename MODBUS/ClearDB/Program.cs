@@ -148,11 +148,8 @@ namespace ClearDB {
 							break;
 						case "processOgran":
 							hh = 4;
-							OgranGA.processData(date, date.AddHours(hh), 30);
-							break;
-						case "processPuskStop":
-							hh = 4;
 							RecalcPuskStop.RecalcData(date, date.AddHours(hh));
+							OgranGA.processData(date, date.AddHours(hh), 30);
 							break;
 					}
 					date = date.AddHours(hh);

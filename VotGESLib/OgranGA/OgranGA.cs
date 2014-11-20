@@ -401,7 +401,7 @@ namespace VotGES.OgranGA {
 		}
 
 		public static void processData(DateTime dateStart, DateTime dateEnd, int minutes) {
-			Logger.Info("Обработка пусков-остановов", Logger.LoggerSource.service);
+			Logger.Info(String.Format("Обработка пусков-остановов {0}-{1} ",dateStart,dateEnd), Logger.LoggerSource.service);
 			for (int ga = 1; ga <= 10; ga++) {
 				Logger.Info("===GA" + ga, Logger.LoggerSource.service);
 				procesPuskStopData(dateStart, dateEnd, minutes, ga);
