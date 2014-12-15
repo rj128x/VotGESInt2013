@@ -45,7 +45,7 @@ namespace VotGES.OgranGA {
 			command.Parameters.AddWithValue("@dateStart", DateStart);
 			command.Parameters.AddWithValue("@dateEnd", DateEnd);
 			connection.Open();
-			command.CommandText = "Select gaNumber,dateStart,dateEnd,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd";
+			command.CommandText = "Select gaNumber,dateStart,dateEnd,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG,timeNPRCH from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd";
 			try {
 				reader = command.ExecuteReader();
 				while (reader.Read()) {
@@ -64,6 +64,7 @@ namespace VotGES.OgranGA {
 					rec.timeRun = reader.GetDouble(12);
 					rec.timeHHT = reader.GetDouble(13);
 					rec.timeHHG = reader.GetDouble(14);
+					rec.timeNPRCH = reader.GetDouble(15);
 					
 
 					data[rec.GA].Add(rec);
@@ -83,7 +84,7 @@ namespace VotGES.OgranGA {
 			command.Parameters.AddWithValue("@dateStart", DateStart);
 			command.Parameters.AddWithValue("@dateEnd", DateEnd);
 			connection.Open();
-			command.CommandText = "Select gaNumber,sum(cntPusk),sum(cntStop),sum(cntAfterMax),sum(cntLessMin),sum(timeSK),sum(timeGen),sum(timeAfterMax),sum(timeLessMin),sum(timeRun),sum(timeHHT),sum(timeHHG) from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd group by gaNumber";
+			command.CommandText = "Select gaNumber,sum(cntPusk),sum(cntStop),sum(cntAfterMax),sum(cntLessMin),sum(timeSK),sum(timeGen),sum(timeAfterMax),sum(timeLessMin),sum(timeRun),sum(timeHHT),sum(timeHHG),sum(timeNPRCH) from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd group by gaNumber";
 			sumRecord = new OgranGARecord();
 			try {
 				reader = command.ExecuteReader();
@@ -103,6 +104,7 @@ namespace VotGES.OgranGA {
 					rec.timeRun = reader.GetDouble(9);
 					rec.timeHHT = reader.GetDouble(10);
 					rec.timeHHG = reader.GetDouble(11);
+					rec.timeNPRCH = reader.GetDouble(12);
 					rec.timeStop = OgranGARecord.dateDiff(DateStart, DateEnd) - rec.timeRun;
 
 					sumRecord.cntAfterMax += rec.cntAfterMax;
@@ -116,6 +118,7 @@ namespace VotGES.OgranGA {
 					sumRecord.timeLessMin += rec.timeLessMin;
 					sumRecord.timeRun += rec.timeRun;
 					sumRecord.timeSK += rec.timeSK;
+					sumRecord.timeNPRCH += rec.timeNPRCH;
 					rec.processStr();
 					sumData[rec.GA] = rec;
 					

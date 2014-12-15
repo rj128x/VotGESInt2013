@@ -189,6 +189,17 @@ namespace ModbusLib {
 		public double GA9_RUN() { return isGARun(9); }
 		public double GA10_RUN() { return isGARun(10); }
 
+		public double GA1_NPRCH() { return isGANPRCH(1); }
+		public double GA2_NPRCH() { return isGANPRCH(2); }
+		public double GA3_NPRCH() { return isGANPRCH(3); }
+		public double GA4_NPRCH() { return isGANPRCH(4); }
+		public double GA5_NPRCH() { return isGANPRCH(5); }
+		public double GA6_NPRCH() { return isGANPRCH(6); }
+		public double GA7_NPRCH() { return isGANPRCH(7); }
+		public double GA8_NPRCH() { return isGANPRCH(8); }
+		public double GA9_NPRCH() { return isGANPRCH(9); }
+		public double GA10_NPRCH() { return isGANPRCH(10); }
+
 		#endregion
 
 		protected double isGARun(int gaNumber) {
@@ -228,6 +239,16 @@ namespace ModbusLib {
 
 		protected double isGALessMin(int gaNumber) {
 			return isGAGen(gaNumber) > 0 && this[String.Format("MB_GA{0}_P", gaNumber)] < 34 ? 1 : 0;
+		}
+
+		protected double isGANPRCH(int gaNumber) {
+			try {
+				UInt16 state = (UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)];
+				return (GlobalVotGES.getBIT(state, 3) == 1 && isGAGen(gaNumber) > 0 )? 1 : 0;
+			}
+			catch {
+				return 0;
+			}
 		}
 
 

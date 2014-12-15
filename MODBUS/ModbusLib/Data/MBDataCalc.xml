@@ -98,6 +98,16 @@
     <ModbusInitData ID="GA9_RUN" Name="ГА-9 запущен" FuncName="GA9_RUN" WriteToDBHH="0" Item="709" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
     <ModbusInitData ID="GA10_RUN" Name="ГА-10 запущен" FuncName="GA10_RUN" WriteToDBHH="0" Item="710" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
 
+    <ModbusInitData ID="GA1_NPRCH" Name="ГА-1 нпрч" FuncName="GA1_NPRCH" WriteToDBHH="0" Item="801" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA2_NPRCH" Name="ГА-2 нпрч" FuncName="GA2_NPRCH" WriteToDBHH="0" Item="802" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA3_NPRCH" Name="ГА-3 нпрч" FuncName="GA3_NPRCH" WriteToDBHH="0" Item="803" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA4_NPRCH" Name="ГА-4 нпрч" FuncName="GA4_NPRCH" WriteToDBHH="0" Item="804" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA5_NPRCH" Name="ГА-5 нпрч" FuncName="GA5_NPRCH" WriteToDBHH="0" Item="805" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA6_NPRCH" Name="ГА-6 нпрч" FuncName="GA6_NPRCH" WriteToDBHH="0" Item="806" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA7_NPRCH" Name="ГА-7 нпрч" FuncName="GA7_NPRCH" WriteToDBHH="0" Item="807" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA8_NPRCH" Name="ГА-8 нпрч" FuncName="GA8_NPRCH" WriteToDBHH="0" Item="808" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA9_NPRCH" Name="ГА-9 нпрч" FuncName="GA9_NPRCH" WriteToDBHH="0" Item="809" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
+    <ModbusInitData ID="GA10_NPRCH" Name="ГА-10 нпрч" FuncName="GA10_NPRCH" WriteToDBHH="0" Item="810" WriteToDBDiff="1" Diff="1" MinTimeDiff="20"/>
 
   </Data>
 

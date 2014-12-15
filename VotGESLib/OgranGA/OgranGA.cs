@@ -8,7 +8,7 @@ using VotGES.Piramida;
 namespace VotGES.OgranGA {
 
 	public class OgranGARecord {
-		public enum ITEM_ENUM { rezNone, pAfterMax, pLessMin, rezSK, rezGen, rezHHT, rezHHG, rezRun }
+		public enum ITEM_ENUM { rezNone, pAfterMax, pLessMin, rezSK, rezGen, rezHHT, rezHHG, rezRun, rezNPRCH }
 		public int GA { get; set; }
 		public DateTime dateStart { get; set; }
 		public DateTime dateEnd { get; set; }
@@ -18,6 +18,7 @@ namespace VotGES.OgranGA {
 		public int cntLessMin { get; set; }
 		public int cntOgran { get; set; }
 		public int cntZapr { get; set; }
+		public int cntNPRCH { get; set; }
 		public double timeSK { get; set; }
 		public double timeGen { get; set; }
 		public double timeRun { get; set; }
@@ -28,6 +29,7 @@ namespace VotGES.OgranGA {
 		public double timeOgran { get; set; }
 		public double timeZapr { get; set; }
 		public double timeStop { get; set; }
+		public double timeNPRCH { get; set; }
 
 		public string TimeSKStr { get; protected set; }
 		public string TimeRunStr { get; protected set; }
@@ -37,6 +39,7 @@ namespace VotGES.OgranGA {
 		public string TimeHHGStr { get; protected set; }
 		public string TimeLessMinStr { get; protected set; }
 		public string TimeAfterMaxStr { get; protected set; }
+		public string TimeNPRCHStr { get; protected set; }
 
 		public string TimeOgranStr { get; protected set; }
 		public string TimeZaprStr { get; protected set; }
@@ -88,6 +91,7 @@ namespace VotGES.OgranGA {
 			TimeOgranStr = getTimeSTR(timeOgran);
 			TimeZaprStr = getTimeSTR(timeZapr);
 			TimeStopStr = getTimeSTR(timeStop);
+			TimeNPRCHStr = getTimeSTR(timeNPRCH);
 		}
 
 
@@ -110,6 +114,8 @@ namespace VotGES.OgranGA {
 				return ITEM_ENUM.rezHHT;
 			if (item >= 701 && item <= 710)
 				return ITEM_ENUM.rezRun;
+			if (item >= 801 && item <= 810)
+				return ITEM_ENUM.rezNPRCH;
 			return ITEM_ENUM.rezNone;
 		}
 
@@ -120,7 +126,7 @@ namespace VotGES.OgranGA {
 		public static List<PiramidaEnrty> GetPrevData(DateTime dateStart, int gaNumber, bool onlyRun = false) {
 			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
 			List<int> items = new List<int>();
-			for (int h = 1; h <= 7; h++) {
+			for (int h = 1; h <= 8; h++) {
 				items.Add(h * 100 + gaNumber);
 			}
 
@@ -223,6 +229,7 @@ namespace VotGES.OgranGA {
 			double timeHHGToEnd = 0;
 			double timeAfterMaxToEnd = 0;
 			double timeLessMinToEnd = 0;
+			double timeNPRCHToEnd = 0;
 
 			bool processedPuskStop = false;
 			bool processedSK = false;
@@ -231,6 +238,7 @@ namespace VotGES.OgranGA {
 			bool processedAfterMax = false;
 			bool processedLessMin = false;
 			bool processedGen = false;
+			bool processedNPRCH = false;
 
 			foreach (PiramidaEnrty record in data) {
 				double diffFromStart = OgranGARecord.dateDiff(dateStart, record.Date);
@@ -285,6 +293,12 @@ namespace VotGES.OgranGA {
 						timeRunToEnd = timeToEnd;
 						result.timeRun += addTime;
 						processedPuskStop = true;
+						break;
+					case (OgranGARecord.ITEM_ENUM.rezNPRCH):
+						result.cntNPRCH += addCnt;
+						result.timeNPRCH += addTime;
+						timeNPRCHToEnd += timeToEnd;
+						processedNPRCH = true;
 						break;
 				}
 			}
@@ -351,6 +365,13 @@ namespace VotGES.OgranGA {
 								}
 							}
 							break;
+						case OgranGARecord.ITEM_ENUM.rezNPRCH:
+							if (!processedSK) {
+								if (rec.Value0 > 0) {
+									result.timeNPRCH = timefull;
+								}
+							}
+							break;
 					}
 				}
 			}
@@ -364,6 +385,7 @@ namespace VotGES.OgranGA {
 			result.timeRun += timeRunToEnd;
 			result.timeSK += timeSKToEnd;
 			result.timeGen += timeGenToEnd;
+			result.timeNPRCH += timeNPRCHToEnd;
 
 			result.processStr();
 			return result;
@@ -371,7 +393,7 @@ namespace VotGES.OgranGA {
 
 		protected static void procesPuskStopData(DateTime dateStart, DateTime dateEnd, int minutes, int gaNumber) {
 			List<int> items = new List<int>();
-			for (int h = 1; h <= 7; h++) {
+			for (int h = 1; h <= 8; h++) {
 				items.Add(h * 100 + gaNumber);
 			}
 
@@ -473,14 +495,14 @@ namespace VotGES.OgranGA {
 				}
 
 
-				string insertStr = "INSERT INTO PuskStopTable (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG)";
-				string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}";
+				string insertStr = "INSERT INTO PuskStopTable (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG, timeNPRCH)";
+				string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}";
 				List<string> insertList = new List<string>();
 				index = 0;
 				foreach (OgranGARecord record in data) {
 					string insert = string.Format(dataFormat, record.dateStart.ToString(DBInfo.DateFormat), record.dateEnd.ToString(DBInfo.DateFormat),
 							record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
-							record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG);
+							record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG, record.timeNPRCH);
 					insertList.Add(insert);
 					if (index == 20 || record == data.Last()) {
 						command.CommandText = insertStr + " \n " + String.Join(" \nUNION ALL\n ", insertList);
