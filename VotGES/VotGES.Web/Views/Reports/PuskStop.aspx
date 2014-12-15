@@ -224,6 +224,18 @@
 			</td>
 		</tr>
 
+        <tr>
+			<th>Время НПРЧ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeNPRCHStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeNPRCHStr %>
+			</td>
+		</tr>
+
 	</table>
 </body>
 </html>
