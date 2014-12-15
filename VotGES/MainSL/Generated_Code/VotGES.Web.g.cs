@@ -1341,6 +1341,8 @@ namespace VotGES.OgranGA
         
         private int _cntLessMin;
         
+        private int _cntNPRCH;
+        
         private int _cntOgran;
         
         private int _cntPusk;
@@ -1375,6 +1377,10 @@ namespace VotGES.OgranGA
         
         private string _timeLessMinStr;
         
+        private double _timeNPRCH;
+        
+        private string _timeNPRCHStr;
+        
         private double _timeOgran;
         
         private string _timeOgranStr;
@@ -1406,6 +1412,8 @@ namespace VotGES.OgranGA
         partial void OncntAfterMaxChanged();
         partial void OncntLessMinChanging(int value);
         partial void OncntLessMinChanged();
+        partial void OncntNPRCHChanging(int value);
+        partial void OncntNPRCHChanged();
         partial void OncntOgranChanging(int value);
         partial void OncntOgranChanged();
         partial void OncntPuskChanging(int value);
@@ -1440,6 +1448,10 @@ namespace VotGES.OgranGA
         partial void OntimeLessMinChanged();
         partial void OnTimeLessMinStrChanging(string value);
         partial void OnTimeLessMinStrChanged();
+        partial void OntimeNPRCHChanging(double value);
+        partial void OntimeNPRCHChanged();
+        partial void OnTimeNPRCHStrChanging(string value);
+        partial void OnTimeNPRCHStrChanged();
         partial void OntimeOgranChanging(double value);
         partial void OntimeOgranChanged();
         partial void OnTimeOgranStrChanging(string value);
@@ -1516,6 +1528,30 @@ namespace VotGES.OgranGA
                     this._cntLessMin = value;
                     this.RaiseDataMemberChanged("cntLessMin");
                     this.OncntLessMinChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntNPRCH".
+        /// </summary>
+        [DataMember()]
+        public int cntNPRCH
+        {
+            get
+            {
+                return this._cntNPRCH;
+            }
+            set
+            {
+                if ((this._cntNPRCH != value))
+                {
+                    this.OncntNPRCHChanging(value);
+                    this.RaiseDataMemberChanging("cntNPRCH");
+                    this.ValidateProperty("cntNPRCH", value);
+                    this._cntNPRCH = value;
+                    this.RaiseDataMemberChanged("cntNPRCH");
+                    this.OncntNPRCHChanged();
                 }
             }
         }
@@ -1929,6 +1965,55 @@ namespace VotGES.OgranGA
                     this._timeLessMinStr = value;
                     this.RaisePropertyChanged("TimeLessMinStr");
                     this.OnTimeLessMinStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeNPRCH".
+        /// </summary>
+        [DataMember()]
+        public double timeNPRCH
+        {
+            get
+            {
+                return this._timeNPRCH;
+            }
+            set
+            {
+                if ((this._timeNPRCH != value))
+                {
+                    this.OntimeNPRCHChanging(value);
+                    this.RaiseDataMemberChanging("timeNPRCH");
+                    this.ValidateProperty("timeNPRCH", value);
+                    this._timeNPRCH = value;
+                    this.RaiseDataMemberChanged("timeNPRCH");
+                    this.OntimeNPRCHChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeNPRCHStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeNPRCHStr
+        {
+            get
+            {
+                return this._timeNPRCHStr;
+            }
+            set
+            {
+                if ((this._timeNPRCHStr != value))
+                {
+                    this.OnTimeNPRCHStrChanging(value);
+                    this.ValidateProperty("TimeNPRCHStr", value);
+                    this._timeNPRCHStr = value;
+                    this.RaisePropertyChanged("TimeNPRCHStr");
+                    this.OnTimeNPRCHStrChanged();
                 }
             }
         }
