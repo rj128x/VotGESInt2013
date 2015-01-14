@@ -48,7 +48,7 @@ namespace VotGES.Piramida.Report {
 		public FullReportInitData() {
 			CreateMain();
 			CreateLines();
-			CreateSN();
+			CreateSN();			
 		}
 
 
