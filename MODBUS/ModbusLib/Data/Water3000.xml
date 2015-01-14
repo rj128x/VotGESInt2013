@@ -40,7 +40,7 @@
     <ModbusInitData ID='GA1_Rash_FLAG' Addr='0' Scale='1' FlagBit='9'/>
     <ModbusInitData ID='GA2_Rash' Addr='110' Name='Г2 Расход' Scale='1'   Item='129' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA2_Rash_FLAG' Addr='100' Scale='1' FlagBit='9'/>
-    <ModbusInitData ID='GA3_Rash' Addr='210' Name='Г3 Расход' Scale='1'   Item='157' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
+    <ModbusInitData ID='GA3_Rash' Addr='210' Name='Г3 Расход' Scale='1'   Item='154' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA3_Rash_FLAG' Addr='200' Scale='1' FlagBit='9'/>
     <ModbusInitData ID='GA4_Rash' Addr='310' Name='Г4 Расход' Scale='1'   Item='179' WriteToDBHH='1' MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA4_Rash_FLAG' Addr='300' Scale='1' FlagBit='9'/>
@@ -48,7 +48,7 @@
     <ModbusInitData ID='GA5_Rash_FLAG' Addr='400' Scale='1' FlagBit='9'/>
     <ModbusInitData ID='GA6_Rash' Addr='510' Name='Г6 Расход' Scale='1'   Item='229' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA6_Rash_FLAG' Addr='500' Scale='1' FlagBit='9'/>
-    <ModbusInitData ID='GA7_Rash' Addr='610' Name='Г7 Расход' Scale='1'   Item='257' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
+    <ModbusInitData ID='GA7_Rash' Addr='610' Name='Г7 Расход' Scale='1'   Item='254' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA7_Rash_FLAG' Addr='600' Scale='1' FlagBit='9'/>
     <ModbusInitData ID='GA8_Rash' Addr='710' Name='Г8 Расход' Scale='1'   Item='279' WriteToDBHH='1'  MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA8_Rash_FLAG' Addr='700' Scale='1' FlagBit='9'/>
