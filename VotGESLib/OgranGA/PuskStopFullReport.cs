@@ -66,7 +66,7 @@ namespace VotGES.OgranGA {
 			for (int ga = 1; ga <= 10; ga++) {
 				PrevData[ga] = OgranGA.GetPrevData(DateStart, ga);
 				List<int> items = new List<int>();
-				for (int h = 1; h <= 8; h++) {
+				for (int h = 1; h <= 10; h++) {
 					items.Add(h * 100 + ga);
 				}
 				Data[ga] = PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 30, 2, 13, items, true, true, "PSV");
@@ -157,6 +157,22 @@ namespace VotGES.OgranGA {
 				serieNPRCH.HideInLegend = true;
 				serieNPRCH.AllowHigh = false;
 
+				ChartSerieProperties serieOPRCH = new ChartSerieProperties();
+				serieOPRCH.Color = ChartColor.GetColorStr(System.Drawing.Color.AliceBlue);
+				serieOPRCH.LineWidth = 0;
+				serieOPRCH.SerieType = ChartSerieType.stepLine;
+				serieOPRCH.TagName = "ga_oprch" + ga;
+				serieOPRCH.HideInLegend = true;
+				serieOPRCH.AllowHigh = false;
+
+				ChartSerieProperties serieAVRCHM = new ChartSerieProperties();
+				serieAVRCHM.Color = ChartColor.GetColorStr(System.Drawing.Color.AliceBlue);
+				serieAVRCHM.LineWidth = 0;
+				serieAVRCHM.SerieType = ChartSerieType.stepLine;
+				serieAVRCHM.TagName = "ga_avrchm" + ga;
+				serieAVRCHM.HideInLegend = true;
+				serieAVRCHM.AllowHigh = false;
+
 
 				ChartSerieProperties serieAfterMax = new ChartSerieProperties();
 				serieAfterMax.Color = ChartColor.GetColorStr(System.Drawing.Color.Red);
@@ -178,9 +194,11 @@ namespace VotGES.OgranGA {
 				props.Series.Add(serieLessMin);
 				props.Series.Add(serieAfterMax);
 				props.Series.Add(serieNPRCH);
+				props.Series.Add(serieOPRCH);
+				props.Series.Add(serieAVRCHM);
 				props.Series.Add(serieHHT);
 				props.Series.Add(serieHHG);
-				props.Series.Add(serieGen);
+				props.Series.Add(serieGen);				
 				props.Series.Add(serie);
 				props.Series.Add(serieThin);
 				
@@ -206,6 +224,12 @@ namespace VotGES.OgranGA {
 				ChartDataSerie dataNPRCH = new ChartDataSerie();
 				dataNPRCH.Name = "ga_nprch" + ga;
 
+				ChartDataSerie dataOPRCH = new ChartDataSerie();
+				dataOPRCH.Name = "ga_oprch" + ga;
+
+				ChartDataSerie dataAVRCHM = new ChartDataSerie();
+				dataAVRCHM.Name = "ga_avrchm" + ga;
+
 				ChartDataSerie dataAfterMax = new ChartDataSerie();
 				dataAfterMax.Name = "ga_afterMax" + ga;
 
@@ -221,6 +245,8 @@ namespace VotGES.OgranGA {
 				DateTime prevDateHHT = DateTime.MinValue;
 				DateTime prevDateHHG = DateTime.MinValue;
 				DateTime prevDateNPRCH = DateTime.MinValue;
+				DateTime prevDateOPRCH = DateTime.MinValue;
+				DateTime prevDateAVRCHM = DateTime.MinValue;
 				DateTime prevDateAfterMax = DateTime.MinValue;
 				DateTime prevDateLessMin = DateTime.MinValue;
 
@@ -287,7 +313,7 @@ namespace VotGES.OgranGA {
 
 					if (rec.ItemType == OgranGARecord.ITEM_ENUM.rezNPRCH) {
 						if (prevDateNPRCH > DateTime.MinValue) {
-							dataHHT.Points.Add(new ChartDataPoint(prevDateNPRCH, ga));
+							dataNPRCH.Points.Add(new ChartDataPoint(prevDateNPRCH, ga));
 						}
 						else {
 							dataNPRCH.Points.Add(new ChartDataPoint(DateStart, rec.DateStart > DateStart ? ga : ga + 0.3));
@@ -296,6 +322,32 @@ namespace VotGES.OgranGA {
 						dataNPRCH.Points.Add(new ChartDataPoint(rec.DateEnd, ga + 0.3));
 						prevDateNPRCH = rec.DateEnd;
 					}
+
+					if (rec.ItemType == OgranGARecord.ITEM_ENUM.rezOPRCH) {
+						if (prevDateOPRCH > DateTime.MinValue) {
+							dataOPRCH.Points.Add(new ChartDataPoint(prevDateOPRCH, ga));
+						}
+						else {
+							dataOPRCH.Points.Add(new ChartDataPoint(DateStart, rec.DateStart > DateStart ? ga : ga + 0.3));
+						}
+						dataOPRCH.Points.Add(new ChartDataPoint(rec.DateStart, ga + 0.3));
+						dataOPRCH.Points.Add(new ChartDataPoint(rec.DateEnd, ga + 0.3));
+						prevDateOPRCH = rec.DateEnd;
+					}
+
+					if (rec.ItemType == OgranGARecord.ITEM_ENUM.rezAVRCHM) {
+						if (prevDateAVRCHM > DateTime.MinValue) {
+							dataAVRCHM.Points.Add(new ChartDataPoint(prevDateAVRCHM, ga));
+						}
+						else {
+							dataAVRCHM.Points.Add(new ChartDataPoint(DateStart, rec.DateStart > DateStart ? ga : ga + 0.3));
+						}
+						dataAVRCHM.Points.Add(new ChartDataPoint(rec.DateStart, ga + 0.3));
+						dataAVRCHM.Points.Add(new ChartDataPoint(rec.DateEnd, ga + 0.3));
+						prevDateAVRCHM = rec.DateEnd;
+					}
+
+
 
 					if (rec.ItemType == OgranGARecord.ITEM_ENUM.pAfterMax) {
 						if (prevDateAfterMax > DateTime.MinValue) {
@@ -329,6 +381,8 @@ namespace VotGES.OgranGA {
 				processChartDataStops(data, ga);
 				processChartDataStops(dataGen, ga);
 				processChartDataStops(dataNPRCH, ga);
+				processChartDataStops(dataOPRCH, ga);
+				processChartDataStops(dataAVRCHM, ga);
 
 				answer.Data.addSerie(dataAfterMax);
 				answer.Data.addSerie(dataLessMin);
@@ -336,9 +390,11 @@ namespace VotGES.OgranGA {
 				answer.Data.addSerie(dataHHG);
 				answer.Data.addSerie(dataHHT);
 				answer.Data.addSerie(dataNPRCH);
+				answer.Data.addSerie(dataOPRCH);
+				answer.Data.addSerie(dataAVRCHM);
 				answer.Data.addSerie(data);
 				answer.Data.addSerie(dataGen);
-				
+							
 
 				if (ga <= 2 || ga >= 9) {
 					processChartDataStops(dataSK, ga);

@@ -200,6 +200,28 @@ namespace ModbusLib {
 		public double GA9_NPRCH() { return isGANPRCH(9); }
 		public double GA10_NPRCH() { return isGANPRCH(10); }
 
+		public double GA1_OPRCH() { return isGAOPRCH(1); }
+		public double GA2_OPRCH() { return isGAOPRCH(2); }
+		public double GA3_OPRCH() { return isGAOPRCH(3); }
+		public double GA4_OPRCH() { return isGAOPRCH(4); }
+		public double GA5_OPRCH() { return isGAOPRCH(5); }
+		public double GA6_OPRCH() { return isGAOPRCH(6); }
+		public double GA7_OPRCH() { return isGAOPRCH(7); }
+		public double GA8_OPRCH() { return isGAOPRCH(8); }
+		public double GA9_OPRCH() { return isGAOPRCH(9); }
+		public double GA10_OPRCH() { return isGAOPRCH(10); }
+
+		public double GA1_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA2_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA3_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA4_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA5_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA6_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA7_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA8_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA9_AVRCHM() { return isGAAVRCHM(1); }
+		public double GA10_AVRCHM() { return isGAAVRCHM(1); }
+
 		#endregion
 
 		protected double isGARun(int gaNumber) {
@@ -245,6 +267,28 @@ namespace ModbusLib {
 			try {
 				UInt16 state = (UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)];
 				return (GlobalVotGES.getBIT(state, 3) == 1 && isGAGen(gaNumber) > 0 )? 1 : 0;
+			}
+			catch {
+				return 0;
+			}
+		}
+
+		protected double isGAOPRCH(int gaNumber) {
+			return 0;
+			try {
+				double correct = this[String.Format("MB_GA{0}_PF", gaNumber)];
+				return correct != 0?0:1;
+			}
+			catch {
+				return 0;
+			}
+		}
+
+		protected double isGAAVRCHM(int gaNumber) {
+			return 0;
+			try {
+				double correct = this[String.Format("MB_GA{0}_PF", gaNumber)];
+				return correct != 0 ? 0 : 1;
 			}
 			catch {
 				return 0;

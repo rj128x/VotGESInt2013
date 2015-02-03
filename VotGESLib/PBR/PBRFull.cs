@@ -34,7 +34,7 @@ namespace VotGES.PBR
 			ChangePBR=new SortedList<DateTime,bool>();
 
 			foreach (DateTime dt in GES.SteppedPBR.Keys) {
-				bool change=GTP1.ChangePBR[dt] || GTP2.ChangePBR[dt] || GES.ChangePBR[dt] || RGE2.ChangePBR[dt] || RGE3.ChangePBR[dt] || RGE4.ChangePBR[dt];
+				bool change=GTP1.ChangePBR[dt] || GTP2.ChangePBR[dt] || GES.ChangePBR[dt] /*|| RGE2.ChangePBR[dt] || RGE3.ChangePBR[dt] || RGE4.ChangePBR[dt]*/;
 				ChangePBR.Add(dt, change);
 			}
 

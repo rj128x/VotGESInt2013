@@ -1339,11 +1339,15 @@ namespace VotGES.OgranGA
         
         private int _cntAfterMax;
         
+        private int _cntAVRCHM;
+        
         private int _cntLessMin;
         
         private int _cntNPRCH;
         
         private int _cntOgran;
+        
+        private int _cntOPRCH;
         
         private int _cntPusk;
         
@@ -1360,6 +1364,10 @@ namespace VotGES.OgranGA
         private double _timeAfterMax;
         
         private string _timeAfterMaxStr;
+        
+        private double _timeAVRCHM;
+        
+        private string _timeAVRCHMStr;
         
         private double _timeGen;
         
@@ -1384,6 +1392,10 @@ namespace VotGES.OgranGA
         private double _timeOgran;
         
         private string _timeOgranStr;
+        
+        private double _timeOPRCH;
+        
+        private string _timeOPRCHStr;
         
         private double _timeRun;
         
@@ -1410,12 +1422,16 @@ namespace VotGES.OgranGA
         partial void OnCreated();
         partial void OncntAfterMaxChanging(int value);
         partial void OncntAfterMaxChanged();
+        partial void OncntAVRCHMChanging(int value);
+        partial void OncntAVRCHMChanged();
         partial void OncntLessMinChanging(int value);
         partial void OncntLessMinChanged();
         partial void OncntNPRCHChanging(int value);
         partial void OncntNPRCHChanged();
         partial void OncntOgranChanging(int value);
         partial void OncntOgranChanged();
+        partial void OncntOPRCHChanging(int value);
+        partial void OncntOPRCHChanged();
         partial void OncntPuskChanging(int value);
         partial void OncntPuskChanged();
         partial void OncntStopChanging(int value);
@@ -1432,6 +1448,10 @@ namespace VotGES.OgranGA
         partial void OntimeAfterMaxChanged();
         partial void OnTimeAfterMaxStrChanging(string value);
         partial void OnTimeAfterMaxStrChanged();
+        partial void OntimeAVRCHMChanging(double value);
+        partial void OntimeAVRCHMChanged();
+        partial void OnTimeAVRCHMStrChanging(string value);
+        partial void OnTimeAVRCHMStrChanged();
         partial void OntimeGenChanging(double value);
         partial void OntimeGenChanged();
         partial void OnTimeGenStrChanging(string value);
@@ -1456,6 +1476,10 @@ namespace VotGES.OgranGA
         partial void OntimeOgranChanged();
         partial void OnTimeOgranStrChanging(string value);
         partial void OnTimeOgranStrChanged();
+        partial void OntimeOPRCHChanging(double value);
+        partial void OntimeOPRCHChanged();
+        partial void OnTimeOPRCHStrChanging(string value);
+        partial void OnTimeOPRCHStrChanged();
         partial void OntimeRunChanging(double value);
         partial void OntimeRunChanged();
         partial void OnTimeRunStrChanging(string value);
@@ -1504,6 +1528,30 @@ namespace VotGES.OgranGA
                     this._cntAfterMax = value;
                     this.RaiseDataMemberChanged("cntAfterMax");
                     this.OncntAfterMaxChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntAVRCHM".
+        /// </summary>
+        [DataMember()]
+        public int cntAVRCHM
+        {
+            get
+            {
+                return this._cntAVRCHM;
+            }
+            set
+            {
+                if ((this._cntAVRCHM != value))
+                {
+                    this.OncntAVRCHMChanging(value);
+                    this.RaiseDataMemberChanging("cntAVRCHM");
+                    this.ValidateProperty("cntAVRCHM", value);
+                    this._cntAVRCHM = value;
+                    this.RaiseDataMemberChanged("cntAVRCHM");
+                    this.OncntAVRCHMChanged();
                 }
             }
         }
@@ -1576,6 +1624,30 @@ namespace VotGES.OgranGA
                     this._cntOgran = value;
                     this.RaiseDataMemberChanged("cntOgran");
                     this.OncntOgranChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "cntOPRCH".
+        /// </summary>
+        [DataMember()]
+        public int cntOPRCH
+        {
+            get
+            {
+                return this._cntOPRCH;
+            }
+            set
+            {
+                if ((this._cntOPRCH != value))
+                {
+                    this.OncntOPRCHChanging(value);
+                    this.RaiseDataMemberChanging("cntOPRCH");
+                    this.ValidateProperty("cntOPRCH", value);
+                    this._cntOPRCH = value;
+                    this.RaiseDataMemberChanged("cntOPRCH");
+                    this.OncntOPRCHChanged();
                 }
             }
         }
@@ -1769,6 +1841,55 @@ namespace VotGES.OgranGA
                     this._timeAfterMaxStr = value;
                     this.RaisePropertyChanged("TimeAfterMaxStr");
                     this.OnTimeAfterMaxStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeAVRCHM".
+        /// </summary>
+        [DataMember()]
+        public double timeAVRCHM
+        {
+            get
+            {
+                return this._timeAVRCHM;
+            }
+            set
+            {
+                if ((this._timeAVRCHM != value))
+                {
+                    this.OntimeAVRCHMChanging(value);
+                    this.RaiseDataMemberChanging("timeAVRCHM");
+                    this.ValidateProperty("timeAVRCHM", value);
+                    this._timeAVRCHM = value;
+                    this.RaiseDataMemberChanged("timeAVRCHM");
+                    this.OntimeAVRCHMChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeAVRCHMStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeAVRCHMStr
+        {
+            get
+            {
+                return this._timeAVRCHMStr;
+            }
+            set
+            {
+                if ((this._timeAVRCHMStr != value))
+                {
+                    this.OnTimeAVRCHMStrChanging(value);
+                    this.ValidateProperty("TimeAVRCHMStr", value);
+                    this._timeAVRCHMStr = value;
+                    this.RaisePropertyChanged("TimeAVRCHMStr");
+                    this.OnTimeAVRCHMStrChanged();
                 }
             }
         }
@@ -2063,6 +2184,55 @@ namespace VotGES.OgranGA
                     this._timeOgranStr = value;
                     this.RaisePropertyChanged("TimeOgranStr");
                     this.OnTimeOgranStrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "timeOPRCH".
+        /// </summary>
+        [DataMember()]
+        public double timeOPRCH
+        {
+            get
+            {
+                return this._timeOPRCH;
+            }
+            set
+            {
+                if ((this._timeOPRCH != value))
+                {
+                    this.OntimeOPRCHChanging(value);
+                    this.RaiseDataMemberChanging("timeOPRCH");
+                    this.ValidateProperty("timeOPRCH", value);
+                    this._timeOPRCH = value;
+                    this.RaiseDataMemberChanged("timeOPRCH");
+                    this.OntimeOPRCHChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TimeOPRCHStr".
+        /// </summary>
+        [DataMember()]
+        [Editable(false)]
+        [ReadOnly(true)]
+        public string TimeOPRCHStr
+        {
+            get
+            {
+                return this._timeOPRCHStr;
+            }
+            set
+            {
+                if ((this._timeOPRCHStr != value))
+                {
+                    this.OnTimeOPRCHStrChanging(value);
+                    this.ValidateProperty("TimeOPRCHStr", value);
+                    this._timeOPRCHStr = value;
+                    this.RaisePropertyChanged("TimeOPRCHStr");
+                    this.OnTimeOPRCHStrChanged();
                 }
             }
         }

@@ -652,17 +652,17 @@ namespace VotGES.Piramida.Report {
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_P));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_P));
 
-			childRecord = record.addChild(GetFullReportRecord("Q ГА", "gaQ"));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Q));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Q));
+			childRecord = record.addChild(GetFullReportRecord("Коррекция P ГА", "gaPF"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA2_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA3_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA4_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA5_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA6_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA7_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA8_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_PF));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_PF));
 
 			childRecord = record.addChild(GetFullReportRecord("Открытие НА", "gaOtkrNA"));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA1_OtkrNA));

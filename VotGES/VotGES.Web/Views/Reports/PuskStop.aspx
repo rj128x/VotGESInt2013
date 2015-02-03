@@ -236,6 +236,30 @@
 			</td>
 		</tr>
 
+        <tr>
+			<th>Время ОПРЧ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeOPRCHStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeOPRCHStr %>
+			</td>
+		</tr>
+
+        <tr>
+			<th>Время АВРЧМ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeAVRCHMStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeAVRCHMStr %>
+			</td>
+		</tr>
+
 	</table>
 </body>
 </html>

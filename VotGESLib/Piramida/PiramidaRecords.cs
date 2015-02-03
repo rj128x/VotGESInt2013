@@ -269,7 +269,7 @@ namespace VotGES.Piramida {
 
 		public static PiramidaRecord P_GA3_Priem = new PiramidaRecord(0, 8738, 17, "Генератор-3 прием (P)");
 		public static PiramidaRecord P_GA3_Otd = new PiramidaRecord(0, 8738, 18, "Генератор-3 отдача (P)");
-		public static PiramidaRecord Q_GA3_Priem = new PiramidaRecord(0, 8738, 18, "Генератор-3 прием (Q)");
+		public static PiramidaRecord Q_GA3_Priem = new PiramidaRecord(0, 8738, 19, "Генератор-3 прием (Q)");
 		public static PiramidaRecord Q_GA3_Otd = new PiramidaRecord(0, 8738, 20, "Генератор-3 отдача (Q)");
 
 		public static PiramidaRecord P_GA4_Priem = new PiramidaRecord(0, 8738, 21, "Генератор-4 прием (P)");
@@ -396,16 +396,16 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord MBW_GA9_P = new PiramidaRecord(2, 3, 209, "ГА-9 P");
 		public static PiramidaRecord MBW_GA10_P = new PiramidaRecord(2, 3, 210, "ГА-10 P");
 
-		public static PiramidaRecord MBW_GA1_Q = new PiramidaRecord(2, 3, 301, "ГА-1 Q");
-		public static PiramidaRecord MBW_GA2_Q = new PiramidaRecord(2, 3, 302, "ГА-2 Q");
-		public static PiramidaRecord MBW_GA3_Q = new PiramidaRecord(2, 3, 303, "ГА-3 Q");
-		public static PiramidaRecord MBW_GA4_Q = new PiramidaRecord(2, 3, 304, "ГА-4 Q");
-		public static PiramidaRecord MBW_GA5_Q = new PiramidaRecord(2, 3, 305, "ГА-5 Q");
-		public static PiramidaRecord MBW_GA6_Q = new PiramidaRecord(2, 3, 306, "ГА-6 Q");
-		public static PiramidaRecord MBW_GA7_Q = new PiramidaRecord(2, 3, 307, "ГА-7 Q");
-		public static PiramidaRecord MBW_GA8_Q = new PiramidaRecord(2, 3, 308, "ГА-8 Q");
-		public static PiramidaRecord MBW_GA9_Q = new PiramidaRecord(2, 3, 309, "ГА-9 Q");
-		public static PiramidaRecord MBW_GA10_Q = new PiramidaRecord(2, 3, 310, "ГА-10 Q");
+		public static PiramidaRecord MBW_GA1_PF = new PiramidaRecord(2, 3, 301, "ГА-1 коррекция P по F");
+		public static PiramidaRecord MBW_GA2_PF = new PiramidaRecord(2, 3, 302, "ГА-2 коррекция P по F");
+		public static PiramidaRecord MBW_GA3_PF = new PiramidaRecord(2, 3, 303, "ГА-3 коррекция P по F");
+		public static PiramidaRecord MBW_GA4_PF = new PiramidaRecord(2, 3, 304, "ГА-4 коррекция P по F");
+		public static PiramidaRecord MBW_GA5_PF = new PiramidaRecord(2, 3, 305, "ГА-5 коррекция P по F");
+		public static PiramidaRecord MBW_GA6_PF = new PiramidaRecord(2, 3, 306, "ГА-6 коррекция P по F");
+		public static PiramidaRecord MBW_GA7_PF = new PiramidaRecord(2, 3, 307, "ГА-7 коррекция P по F");
+		public static PiramidaRecord MBW_GA8_PF = new PiramidaRecord(2, 3, 308, "ГА-8 коррекция P по F");
+		public static PiramidaRecord MBW_GA9_PF = new PiramidaRecord(2, 3, 309, "ГА-9 коррекция P по F");
+		public static PiramidaRecord MBW_GA10_PF = new PiramidaRecord(2, 3, 310, "ГА-10 коррекция P по F");
 
 		public static PiramidaRecord MBW_GA1_OtkrNA = new PiramidaRecord(2, 3, 401, "ГА-1 Открытие НА");
 		public static PiramidaRecord MBW_GA2_OtkrNA = new PiramidaRecord(2, 3, 402, "ГА-2 Открытие НА");
