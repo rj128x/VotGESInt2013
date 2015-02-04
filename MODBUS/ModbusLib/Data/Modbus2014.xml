@@ -80,25 +80,25 @@
     <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA10_P_FLAG' Addr='900' Scale='1' FlagBit='2'/>
 
-    <ModbusInitData ID='GA1_PF' Addr='15' Name='Г1 Q' Scale='0.1'   Item='301' WriteToDBHH='1' WriteToDBMin='1'  MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA1_PF' Addr='15' Name='Г1 PF' Scale='0.01' Add='-50'  Item='301' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA1_PF_FLAG' Addr='0' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA2_PF' Addr='115' Name='Г2 Q' Scale='0.1'   Item='302' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA2_PF' Addr='115' Name='Г2 PF' Scale='0.01' Add='-50'  Item='302' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA2_PF_FLAG' Addr='100' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA3_PF' Addr='215' Name='Г3 Q' Scale='0.1'   Item='303' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA3_PF' Addr='215' Name='Г3 PF' Scale='0.01' Add='-50'  Item='303' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA3_PF_FLAG' Addr='200' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA4_PF' Addr='315' Name='Г4 Q' Scale='0.1'   Item='304' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA4_PF' Addr='315' Name='Г4 PF' Scale='0.01' Add='-50'  Item='304' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA4_PF_FLAG' Addr='300' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA5_PF' Addr='415' Name='Г5 Q' Scale='0.1'   Item='305' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA5_PF' Addr='415' Name='Г5 PF' Scale='0.01' Add='-50'  Item='305' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA5_PF_FLAG' Addr='400' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA6_PF' Addr='515' Name='Г6 Q' Scale='0.1'   Item='306' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA6_PF' Addr='515' Name='Г6 PF' Scale='0.01' Add='-50'  Item='306' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA6_PF_FLAG' Addr='500' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA7_PF' Addr='615' Name='Г7 Q' Scale='0.1'   Item='307' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA7_PF' Addr='615' Name='Г7 PF' Scale='0.01' Add='-50'  Item='307' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA7_PF_FLAG' Addr='600' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA8_PF' Addr='715' Name='Г8 Q' Scale='0.1'   Item='308' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA8_PF' Addr='715' Name='Г8 PF' Scale='0.01' Add='-50'  Item='308' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA8_PF_FLAG' Addr='700' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA9_PF' Addr='815' Name='Г9 Q' Scale='0.1'   Item='309' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA9_PF' Addr='815' Name='Г9 PF' Scale='0.01' Add='-50'  Item='309' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA9_PF_FLAG' Addr='800' Scale='1' FlagBit='14'/>
-    <ModbusInitData ID='GA10_PF' Addr='915' Name='Г10 Q' Scale='0.1'   Item='310' WriteToDBHH='1' WriteToDBMin='1' MinValue='-100' MaxValue='200' SignVal='1'/>
+    <ModbusInitData ID='GA10_PF' Addr='915' Name='Г10 PF' Scale='0.01' Add='-50'  Item='310' WriteToDBHH='1' WriteToDBMin='1' MinValue='-49' MaxValue='49' />
     <ModbusInitData ID='GA10_PF_FLAG' Addr='900' Scale='1' FlagBit='14'/>
 
     <ModbusInitData ID='GA1_OtrkNA' Addr='6' Name='Г1 Открытие направляющего аппарата' Scale='0.1'   Item='401' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='2000'/>

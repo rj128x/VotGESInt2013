@@ -264,11 +264,10 @@ namespace ModbusLib {
 		}
 
 		protected double isGANPRCH(int gaNumber) {
-			return 0;
 			try {
 				double correct = this[String.Format("MB_GA{0}_PF", gaNumber)];
 				UInt16 state = (UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)];
-				int nprch=GlobalVotGES.getBIT(state, 2);
+				int nprch=GlobalVotGES.getBIT(state, 13);
 				return  nprch== 1 && correct!=0 ? 1 : 0;
 			}
 			catch {
@@ -277,11 +276,10 @@ namespace ModbusLib {
 		}
 
 		protected double isGAOPRCH(int gaNumber) {
-			return 0;
 			try {
 				double correct = this[String.Format("MB_GA{0}_PF", gaNumber)];
 				UInt16 state = (UInt16)this[String.Format("MB_GA{0}_STATE", gaNumber)];
-				int nprch = GlobalVotGES.getBIT(state, 2);
+				int nprch = GlobalVotGES.getBIT(state, 13);
 				return nprch == 0 && correct != 0 ? 1 : 0;
 			}
 			catch {
