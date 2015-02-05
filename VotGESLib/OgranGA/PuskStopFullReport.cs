@@ -150,7 +150,7 @@ namespace VotGES.OgranGA {
 				serieHHT.AllowHigh = false;
 
 				ChartSerieProperties serieNPRCH = new ChartSerieProperties();
-				serieNPRCH.Color = ChartColor.GetColorStr(System.Drawing.Color.BlueViolet);
+				serieNPRCH.Color = ChartColor.GetColorStr(System.Drawing.Color.DarkOrange);
 				serieNPRCH.LineWidth = 0;
 				serieNPRCH.SerieType = ChartSerieType.stepLine;
 				serieNPRCH.TagName = "ga_nprch" + ga;
@@ -158,7 +158,7 @@ namespace VotGES.OgranGA {
 				serieNPRCH.AllowHigh = false;
 
 				ChartSerieProperties serieOPRCH = new ChartSerieProperties();
-				serieOPRCH.Color = ChartColor.GetColorStr(System.Drawing.Color.AliceBlue);
+				serieOPRCH.Color = ChartColor.GetColorStr(System.Drawing.Color.BlueViolet);
 				serieOPRCH.LineWidth = 0;
 				serieOPRCH.SerieType = ChartSerieType.stepLine;
 				serieOPRCH.TagName = "ga_oprch" + ga;
@@ -166,7 +166,7 @@ namespace VotGES.OgranGA {
 				serieOPRCH.AllowHigh = false;
 
 				ChartSerieProperties serieAVRCHM = new ChartSerieProperties();
-				serieAVRCHM.Color = ChartColor.GetColorStr(System.Drawing.Color.AliceBlue);
+				serieAVRCHM.Color = ChartColor.GetColorStr(System.Drawing.Color.BlueViolet);
 				serieAVRCHM.LineWidth = 0;
 				serieAVRCHM.SerieType = ChartSerieType.stepLine;
 				serieAVRCHM.TagName = "ga_avrchm" + ga;
@@ -354,7 +354,7 @@ namespace VotGES.OgranGA {
 							dataAfterMax.Points.Add(new ChartDataPoint(prevDateAfterMax, ga));
 						}
 						else {
-							dataAfterMax.Points.Add(new ChartDataPoint(DateStart, rec.DateStart > DateStart ? ga : ga + 0.4));
+							dataAfterMax.Points.Add(new ChartDataPoint(DateStart, rec.DateStart > DateStart ? ga : ga + 0.9));
 						}
 						dataAfterMax.Points.Add(new ChartDataPoint(rec.DateStart, ga + 0.9));
 						dataAfterMax.Points.Add(new ChartDataPoint(rec.DateEnd, ga + 0.9));
