@@ -11,14 +11,21 @@ namespace VotGES.Web.Services {
 	using VotGES.Piramida.Report;
 	using VotGES.Piramida;
 	using VotGES.Chart;
+	using VotGES.Rashod;
 
 	public class FullGraphVyrab {
 		public GraphVyrabAnswer GTP { get; set; }
 		public GraphVyrabRGEAnswer RGE { get; set; }
 		public Dictionary<int, string> TimeStopGA { get; set; }
 		public double Napor { get; set; }
+		public double QOpt { get; set; }
+		public double QFakt { get; set; }
+		public double QVER { get; set; }
 		public FullGraphVyrab() {
 			Napor = 21;
+			QOpt = 0;
+			QFakt = 0;
+			QVER = 0;
 		}
 	}
 
@@ -107,12 +114,31 @@ namespace VotGES.Web.Services {
 			}
 
 			try {
-				List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-4), DateTime.Now.AddHours(-2), 1, 2, 12, (new int[] { 276 }).ToList(), true, true, "P3000");
-				answer.Napor = list.Last().Value0;
+				List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddMinutes(-130), DateTime.Now.AddHours(-2), 3, 2, 4, (new int[] { 1,4 }).ToList(), true, true, "PMin");
+				foreach (PiramidaEnrty entry in list) {
+					switch (entry.Item) {
+						case 1:
+							answer.QFakt = entry.Value0;
+							break;
+						case 4:
+							answer.Napor = entry.Value0;
+							break;
+					}					
+				}
+				double p1 = answer.GTP.TableCurrent[1].GTP1;
+				double p2 = answer.GTP.TableCurrent[1].GTP2;
+				List<int> gtp1 = new List<int>(new int[] { 1, 2 });
+				List<int> gtp2 = new List<int>(new int[] { 3, 4, 5, 6, 7, 8, 9, 10 });
+				List<int> ges = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+				answer.QOpt = RUSA.getOptimRashod(p1, answer.Napor, true, null, gtp1) + RUSA.getOptimRashod(p2, answer.Napor, true, null, gtp2);
+				answer.QVER = answer.QFakt > 0 ? answer.QOpt / answer.QFakt * 100 : answer.QOpt == 0 ? 100 : 0;
+				
 			}
 			catch (Exception e) {
 				Logger.Error("Ошибка при получении напора" + e);
 			}
+
+			
 
 			return answer;
 		}

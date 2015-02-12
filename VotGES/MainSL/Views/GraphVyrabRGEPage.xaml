@@ -224,19 +224,33 @@
 
 						<Border Style="{StaticResource borderGray}" Margin="0,10,0,0">
 							<StackPanel>
-								<TextBlock Text="ВЫРАБОТКА" Style="{StaticResource Label}" HorizontalAlignment="Center"/>
+								<TextBlock Text="Эффективность" Style="{StaticResource Label}" HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal">
 								<TextBlock Text="План (МВт*ч):" Style="{StaticResource Label}"/>
-								<TextBlock Text="{Binding GTP.VyrabPlan, StringFormat='#,#0'}" Style="{StaticResource Value}"/>
+								<TextBlock Text="{Binding GTP.VyrabPlan, StringFormat='0'}" Style="{StaticResource Value}"/>
 								<TextBlock Text="Факт (МВт*ч):" Style="{StaticResource Label}"/>
-								<TextBlock Text="{Binding GTP.VyrabFakt, StringFormat='#,#0'}" Style="{StaticResource Value}"/>
-								<TextBlock Text="Отклонение:" Style="{StaticResource Label}"/>
-								<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-									<TextBlock Text="{Binding GTP.VyrabDiff, StringFormat='#,#0'}" Style="{StaticResource Value}"/>
-									<TextBlock Text="МВт*ч " Style="{StaticResource Label}"/>
-									<TextBlock Text="{Binding GTP.VyrabDiffProc, StringFormat='#,#0.##'}" Style="{StaticResource Value}"/>
-									<TextBlock Text="%" Style="{StaticResource Label}"/>
-								</StackPanel>
-							</StackPanel>
+								<TextBlock Text="{Binding GTP.VyrabFakt, StringFormat='0'}" Style="{StaticResource Value}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Text="Отклонение:" Style="{StaticResource Label}"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding GTP.VyrabDiff, StringFormat='#,#0'}" Style="{StaticResource Value}"/>
+                                        <TextBlock Text="МВт*ч " Style="{StaticResource Label}"/>
+                                        <TextBlock Text="{Binding GTP.VyrabDiffProc, StringFormat='#,#0.##'}" Style="{StaticResource Value}"/>
+                                        <TextBlock Text="%" Style="{StaticResource Label}"/>
+                                    </StackPanel>                                    
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Qопт (м3/сек): " Style="{StaticResource Label}"/>
+                                    <TextBlock Text="{Binding QOpt, StringFormat='0'}" Style="{StaticResource Value}"/>
+                                    <TextBlock Text="Qфакт (м3/сек): " Style="{StaticResource Label}"/>
+                                    <TextBlock Text="{Binding QFakt, StringFormat='0'}" Style="{StaticResource Value}"/>                                    
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Text="ОВЭР (%): " Style="{StaticResource Label}"/>
+                                    <TextBlock Text="{Binding QVER, StringFormat='#.##'}" Style="{StaticResource Value}"/>
+                                </StackPanel>
+                            </StackPanel>
 						</Border>
 						<Border Style="{StaticResource borderGray}" Margin="0,10,0,0" Name="pnlRefresh">
 							<StackPanel>

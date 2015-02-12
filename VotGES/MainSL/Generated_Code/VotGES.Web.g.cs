@@ -8084,6 +8084,12 @@ namespace VotGES.Web.Services
         
         private double _napor;
         
+        private double _qFakt;
+        
+        private double _qOpt;
+        
+        private double _qver;
+        
         private GraphVyrabRGEAnswer _rge;
         
         private Dictionary<int, string> _timeStopGA;
@@ -8099,6 +8105,12 @@ namespace VotGES.Web.Services
         partial void OnGTPChanged();
         partial void OnNaporChanging(double value);
         partial void OnNaporChanged();
+        partial void OnQFaktChanging(double value);
+        partial void OnQFaktChanged();
+        partial void OnQOptChanging(double value);
+        partial void OnQOptChanged();
+        partial void OnQVERChanging(double value);
+        partial void OnQVERChanged();
         partial void OnRGEChanging(GraphVyrabRGEAnswer value);
         partial void OnRGEChanged();
         partial void OnTimeStopGAChanging(Dictionary<int, string> value);
@@ -8160,6 +8172,78 @@ namespace VotGES.Web.Services
                     this._napor = value;
                     this.RaiseDataMemberChanged("Napor");
                     this.OnNaporChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "QFakt".
+        /// </summary>
+        [DataMember()]
+        public double QFakt
+        {
+            get
+            {
+                return this._qFakt;
+            }
+            set
+            {
+                if ((this._qFakt != value))
+                {
+                    this.OnQFaktChanging(value);
+                    this.RaiseDataMemberChanging("QFakt");
+                    this.ValidateProperty("QFakt", value);
+                    this._qFakt = value;
+                    this.RaiseDataMemberChanged("QFakt");
+                    this.OnQFaktChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "QOpt".
+        /// </summary>
+        [DataMember()]
+        public double QOpt
+        {
+            get
+            {
+                return this._qOpt;
+            }
+            set
+            {
+                if ((this._qOpt != value))
+                {
+                    this.OnQOptChanging(value);
+                    this.RaiseDataMemberChanging("QOpt");
+                    this.ValidateProperty("QOpt", value);
+                    this._qOpt = value;
+                    this.RaiseDataMemberChanged("QOpt");
+                    this.OnQOptChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "QVER".
+        /// </summary>
+        [DataMember()]
+        public double QVER
+        {
+            get
+            {
+                return this._qver;
+            }
+            set
+            {
+                if ((this._qver != value))
+                {
+                    this.OnQVERChanging(value);
+                    this.RaiseDataMemberChanging("QVER");
+                    this.ValidateProperty("QVER", value);
+                    this._qver = value;
+                    this.RaiseDataMemberChanged("QVER");
+                    this.OnQVERChanged();
                 }
             }
         }
