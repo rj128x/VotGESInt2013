@@ -2,12 +2,12 @@
 <ModbusInitDataArray xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 							xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<ID>Calc</ID>
-	<WriteMin>0</WriteMin>
+	<WriteMin>1</WriteMin>
 	<WriteHH>1</WriteHH>
 	<Obj>30</Obj>
 	<ObjType>2</ObjType>
 	<DBNameHH>PSV</DBNameHH>
-	<DBNameMin>PSV</DBNameMin>
+	<DBNameMin>PMin</DBNameMin>
 	<DBNameDiff>PSV</DBNameDiff>
 	<ParNumberHH>12</ParNumberHH>
 	<ParNumberDiff>13</ParNumberDiff>
@@ -20,12 +20,12 @@
 		<ModbusInitData ID="P_RGE3" Name="P РГЕ3" FuncName="P_RGE3" WriteToDBHH="1" Item="33" MinValue="0" MaxValue="250"/>
 		<ModbusInitData ID="P_RGE4" Name="P РГЕ4" FuncName="P_RGE4" WriteToDBHH="1" Item="34"  MinValue="0" MaxValue="500"/>
 		
-		<ModbusInitData ID="Rashod_GTP1" Name="Расход ГТП2" FuncName="Rashod_GTP1" WriteToDBHH="1" Item="5" MinValue="0" MaxValue="2000"/>
-		<ModbusInitData ID="Rashod_GTP2" Name="Расход ГТП1" FuncName="Rashod_GTP2" WriteToDBHH="1" Item="6" MinValue="0" MaxValue="8000"/>
-		<ModbusInitData ID="Rashod_GES" Name="Расход ГЭС" FuncName="Rashod_GES" WriteToDBHH="1" Item="4" MinValue="0" MaxValue="10000"/>		
-		<ModbusInitData ID="OptRashod_GTP1" Name="Опт Расход ГТП1" FuncName="OptRashod_GTP1" WriteToDBHH="1" Item="2" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="2000"/>
-		<ModbusInitData ID="OptRashod_GTP2" Name="Опт Расход ГТП2" FuncName="OptRashod_GTP2" WriteToDBHH="1" Item="3" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="8000"/>
-		<ModbusInitData ID="OptRashod_GES" Name="Опт Расход ГЭС" FuncName="OptRashod_GES" WriteToDBHH="1" Item="1" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="10000"/>
+		<ModbusInitData ID="Rashod_GTP1" Name="Расход ГТП2" FuncName="Rashod_GTP1" WriteToDBHH="1" WriteToDBMin="1" Item="5" MinValue="0" MaxValue="2000"/>
+		<ModbusInitData ID="Rashod_GTP2" Name="Расход ГТП1" FuncName="Rashod_GTP2" WriteToDBHH="1" WriteToDBMin="1" Item="6" MinValue="0" MaxValue="8000"/>
+		<ModbusInitData ID="Rashod_GES" Name="Расход ГЭС" FuncName="Rashod_GES" WriteToDBHH="1" WriteToDBMin="1" Item="4" MinValue="0" MaxValue="10000"/>		
+		<ModbusInitData ID="OptRashod_GTP1" Name="Опт Расход ГТП1" FuncName="OptRashod_GTP1" WriteToDBMin="1" WriteToDBHH="1" Item="2" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="2000"/>
+		<ModbusInitData ID="OptRashod_GTP2" Name="Опт Расход ГТП2" FuncName="OptRashod_GTP2" WriteToDBMin="1" WriteToDBHH="1" Item="3" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="8000"/>
+		<ModbusInitData ID="OptRashod_GES" Name="Опт Расход ГЭС" FuncName="OptRashod_GES" WriteToDBMin="1" WriteToDBHH="1" Item="1" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="10000"/>
 
     <ModbusInitData ID="GA1_AFTER_MAX" Name="ГА-1 Режим больше макс мощности" FuncName="GA1_AFTER_MAX" WriteToDBHH="0" Item="101" WriteToDBDiff="0" Diff="1" MinTimeDiff="0"/>
     <ModbusInitData ID="GA2_AFTER_MAX" Name="ГА-2 Режим больше макс мощности" FuncName="GA2_AFTER_MAX" WriteToDBHH="0" Item="102" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
