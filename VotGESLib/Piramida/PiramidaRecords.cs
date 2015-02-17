@@ -369,7 +369,7 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord MBW_GES_Rash = new PiramidaRecord(2, 3, 1, "ГЭС Расход");
 		public static PiramidaRecord MBW_VB = new PiramidaRecord(2, 3, 2, "ВБ");
 		public static PiramidaRecord MBW_NB = new PiramidaRecord(2, 3, 3, "НБ");
-		public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напро");
+		public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напор");
 		public static PiramidaRecord MBW_Temp = new PiramidaRecord(2, 3, 5, "Температура");
 		public static PiramidaRecord MBW_TempShit = new PiramidaRecord(2, 3, 6, "Температура щитовых сооружений");
 
@@ -441,9 +441,39 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord MBW_GA10_Napor = new PiramidaRecord(2, 3, 610, "ГА-10 Напор");
 
 
+		public static PiramidaRecord NPRCH_GA1_P = new PiramidaRecord(2, 5, 101, "ГА-1 P");
+		public static PiramidaRecord NPRCH_GA2_P = new PiramidaRecord(2, 5, 102, "ГА-2 P");
+		public static PiramidaRecord NPRCH_GA3_P = new PiramidaRecord(2, 5, 103, "ГА-3 P");
+		public static PiramidaRecord NPRCH_GA4_P = new PiramidaRecord(2, 5, 104, "ГА-4 P");
+		public static PiramidaRecord NPRCH_GA5_P = new PiramidaRecord(2, 5, 105, "ГА-5 P");
+		public static PiramidaRecord NPRCH_GA6_P = new PiramidaRecord(2, 5, 106, "ГА-6 P");
+		public static PiramidaRecord NPRCH_GA7_P = new PiramidaRecord(2, 5, 107, "ГА-7 P");
+		public static PiramidaRecord NPRCH_GA8_P = new PiramidaRecord(2, 5, 108, "ГА-8 P");
+		public static PiramidaRecord NPRCH_GA9_P = new PiramidaRecord(2, 5, 109, "ГА-9 P");
+		public static PiramidaRecord NPRCH_GA10_P = new PiramidaRecord(2, 5, 110, "ГА-10 P");
 
+		public static PiramidaRecord NPRCH_GA1_PZad = new PiramidaRecord(2, 5, 201, "ГА-1 задание P");
+		public static PiramidaRecord NPRCH_GA2_PZad = new PiramidaRecord(2, 5, 202, "ГА-2 задание P");
+		public static PiramidaRecord NPRCH_GA3_PZad = new PiramidaRecord(2, 5, 203, "ГА-3 задание P");
+		public static PiramidaRecord NPRCH_GA4_PZad = new PiramidaRecord(2, 5, 204, "ГА-4 задание P");
+		public static PiramidaRecord NPRCH_GA5_PZad = new PiramidaRecord(2, 5, 205, "ГА-5 задание P");
+		public static PiramidaRecord NPRCH_GA6_PZad = new PiramidaRecord(2, 5, 206, "ГА-6 задание P");
+		public static PiramidaRecord NPRCH_GA7_PZad = new PiramidaRecord(2, 5, 207, "ГА-7 задание P");
+		public static PiramidaRecord NPRCH_GA8_PZad = new PiramidaRecord(2, 5, 208, "ГА-8 задание P");
+		public static PiramidaRecord NPRCH_GA9_PZad = new PiramidaRecord(2, 5, 209, "ГА-9 задание P");
+		public static PiramidaRecord NPRCH_GA10_PZad = new PiramidaRecord(2, 5, 210, "ГА-10 задание P");
 
-		
+		public static PiramidaRecord NPRCH_GA1_PF = new PiramidaRecord(2, 5, 301, "ГА-1 P коррекция");
+		public static PiramidaRecord NPRCH_GA2_PF = new PiramidaRecord(2, 5, 302, "ГА-2 P коррекция");
+		public static PiramidaRecord NPRCH_GA3_PF = new PiramidaRecord(2, 5, 303, "ГА-3 P коррекция");
+		public static PiramidaRecord NPRCH_GA4_PF = new PiramidaRecord(2, 5, 304, "ГА-4 P коррекция");
+		public static PiramidaRecord NPRCH_GA5_PF = new PiramidaRecord(2, 5, 305, "ГА-5 P коррекция");
+		public static PiramidaRecord NPRCH_GA6_PF = new PiramidaRecord(2, 5, 306, "ГА-6 P коррекция");
+		public static PiramidaRecord NPRCH_GA7_PF = new PiramidaRecord(2, 5, 307, "ГА-7 P коррекция");
+		public static PiramidaRecord NPRCH_GA8_PF = new PiramidaRecord(2, 5, 308, "ГА-8 P коррекция");
+		public static PiramidaRecord NPRCH_GA9_PF = new PiramidaRecord(2, 5, 309, "ГА-9 P коррекция");
+		public static PiramidaRecord NPRCH_GA10_PF = new PiramidaRecord(2, 5, 310, "ГА-10 P коррекция");
+				
 		/*
 		=СЦЕПИТЬ("public static PiramidaRecord MB";[@Addr];"=new PiramidaRecord(2, 3,"; [@Addr];", """;[@Name];""");")
 		 * */

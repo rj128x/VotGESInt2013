@@ -67,6 +67,7 @@ namespace VotGES.Piramida.Report
 					case ReportTypeEnum.dayByHalfHours:
 					case ReportTypeEnum.dayByHours:
 					case ReportTypeEnum.dayByMinutes:
+					case ReportTypeEnum.dayBySeconds:
 					case ReportTypeEnum.day:
 						return getFullDay(settings.Date);
 					case ReportTypeEnum.monthByDays:
@@ -128,6 +129,7 @@ namespace VotGES.Piramida.Report
 				reportType = value;
 				switch (reportType) {
 					case ReportTypeEnum.dayByMinutes:
+					case ReportTypeEnum.dayBySeconds:
 					case ReportTypeEnum.dayByHalfHours:
 					case ReportTypeEnum.dayByHours:
 					case ReportTypeEnum.day:
@@ -401,6 +403,7 @@ namespace VotGES.Piramida.Report
 			MBTypeNames = new Dictionary<FullReportMembersType, string>();
 			IsFullReport = !onlyDates;
 			if (!onlyDates) {
+				//ReportTypeNames.Add(ReportTypeEnum.dayBySeconds, "За сутки по секундам");
 				ReportTypeNames.Add(ReportTypeEnum.dayByMinutes, "За сутки по минутам");
 				ReportTypeNames.Add(ReportTypeEnum.dayByHalfHours, "За сутки по 30 минут");
 				ReportTypeNames.Add(ReportTypeEnum.dayByHours, "За сутки по часам");

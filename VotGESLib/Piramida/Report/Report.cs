@@ -11,9 +11,9 @@ namespace VotGES.Piramida.Report {
 	public enum ReportTypeEnum {
 		dayByMinutes, dayByHalfHours, dayByHours, monthByDays, monthByHalfHours,
 		monthByHours, quarterByDays, yearByHalfHours, yearByHours, yearByDays, yearByMonths, yearByQarters, years, day, month, quarter, year,
-		monthByWeeks, quarterByWeeks, yearByWeeks
+		monthByWeeks, quarterByWeeks, yearByWeeks,dayBySeconds
 	}
-	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year, week }
+	public enum IntervalReportEnum { minute, halfHour, hour, day, month, quarter, year, week,second }
 	public enum ResultTypeEnum { min, max, avg, sum }
 	public enum DBOperEnum { min, max, avg, sum, eq }
 
@@ -179,6 +179,8 @@ namespace VotGES.Piramida.Report {
 					return IntervalReportEnum.week;
 				case ReportTypeEnum.yearByWeeks:
 					return IntervalReportEnum.week;
+				case ReportTypeEnum.dayBySeconds:
+					return IntervalReportEnum.second;
 			}
 			return IntervalReportEnum.halfHour;
 		}
@@ -202,6 +204,8 @@ namespace VotGES.Piramida.Report {
 					return Date.AddYears(1);
 				case IntervalReportEnum.week:
 					return Date.AddDays(7);
+				case IntervalReportEnum.second:
+					return Date.AddSeconds(1);
 			}
 			return Date;
 		}
@@ -442,6 +446,9 @@ namespace VotGES.Piramida.Report {
 					connection = PiramidaAccess.getConnection("PSV");
 				}
 			}
+			if (Interval == IntervalReportEnum.second) {
+				connection = PiramidaAccess.getConnection("PSec");
+			}
 
 			connection.Open();
 			SqlDataReader reader = null; SqlCommand command = null;
@@ -502,6 +509,14 @@ namespace VotGES.Piramida.Report {
 							commandText = String.Format("SELECT  {0}, {1} from DATA  WHERE {2} and datepart(second,DATA_DATE)=0",
 								dateParam, valueOper, valueParams);
 						}
+						break;
+					case IntervalReportEnum.second:
+						dateParam =
+							String.Format(
+							"ITEM, datepart(year,{0}), datepart(month,{0}), datepart(day,{0}), datepart(hour,{0}), datepart(minute,{0}), datepart(second,{0})",
+							"DATA_DATE");
+						commandText = String.Format("SELECT  {0}, {1} from DATA  WHERE {2} GROUP BY {0}",
+							dateParam, valueOper, valueParams);						
 						break;
 					case IntervalReportEnum.halfHour:
 						dateParam =
@@ -609,6 +624,7 @@ namespace VotGES.Piramida.Report {
 					int day = -1;
 					int hour = -1;
 					int min = -1;
+					int sec = -1;
 					int quarter = -1;
 					double val = -1;
 					DateTime date = DateTime.Now;
@@ -625,6 +641,17 @@ namespace VotGES.Piramida.Report {
 							min = (int)reader[5];
 							val = (double)reader[6];
 							date = new DateTime(year, month, day, hour, min, 0);
+							ok = true;
+							break;
+						case IntervalReportEnum.second:
+							year = (int)reader[1];
+							month = (int)reader[2];
+							day = (int)reader[3];
+							hour = (int)reader[4];
+							min = (int)reader[5];
+							sec = (int)reader[6];
+							val = (double)reader[7];
+							date = new DateTime(year, month, day, hour, min, sec);
 							ok = true;
 							break;
 						case IntervalReportEnum.halfHour:
@@ -883,6 +910,8 @@ namespace VotGES.Piramida.Report {
 				switch (Interval) {
 					case IntervalReportEnum.minute:
 						return "HH:mm";
+					case IntervalReportEnum.second:
+						return "HH:mm:ss";
 					case IntervalReportEnum.halfHour:
 					case IntervalReportEnum.hour:
 						return "dd.MM HH:mm";
@@ -900,6 +929,8 @@ namespace VotGES.Piramida.Report {
 				switch (Interval) {
 					case IntervalReportEnum.minute:
 						return "HH:mm";
+					case IntervalReportEnum.second:
+						return "HH:mm:ss";
 					case IntervalReportEnum.halfHour:
 					case IntervalReportEnum.hour:
 						return (DateStart.Day == 1 && DateEnd.Day == 1) ? "dd HH:mm" : "HH:mm";

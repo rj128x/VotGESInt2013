@@ -26,6 +26,13 @@ namespace VotGES.Piramida.Report
 				result = ResultTypeEnum.sum;
 				scaleDiv = 1;
 			}
+			if (interval == IntervalReportEnum.second) {
+				parNumber = 44;
+				oper = DBOperEnum.avg;
+				result = ResultTypeEnum.avg;
+				scaleDiv = 1;
+			}
+
 			bool otherType=false;
 			if (mbType != FullReportMembersType.def) {
 				otherType=true;

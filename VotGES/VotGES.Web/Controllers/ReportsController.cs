@@ -16,6 +16,7 @@ using System.Threading;
 using VotGES.OgranGA;
 using VotGES.Rashod;
 using VotGES.Web.Models;
+using VotGES.NPRCH;
 
 namespace VotGES.Web.Controllers
 {	
@@ -189,5 +190,17 @@ namespace VotGES.Web.Controllers
 			return VERReportMonthToFile(date.Year, date.Month);
 		}
 
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult CreateNPRCHDataPrevDate() {
+			DateTime dateStart = DateTime.Now.Date.AddDays(-1);
+			DateTime dateEnd = dateStart.AddDays(1);
+			DateTime ds = dateStart.AddDays(0);
+			while (ds < dateEnd) {
+				DateTime de = ds.AddHours(1);
+				MonitorNPRCH monitor = new MonitorNPRCH(ds, de, "E:/MBData/TEMP", "sr-votges-int", 21, "nprch", "Cnceflvby951");
+				ds = de.AddDays(0);
+			}
+			return Content("finish");
+		}
 	}
 }

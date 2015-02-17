@@ -700,7 +700,48 @@ namespace VotGES.Piramida.Report {
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA9_Napor));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_GA10_Napor));
 
+			/*record = RootSN.addChild(GetFullReportRecord("НПРЧ", "nprch"));
 			
+			childRecord = record.addChild(GetFullReportRecord("ГА-1", "ga1_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA1_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA1_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA1_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-2", "ga2_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA2_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA2_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA2_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-3", "ga3_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA3_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA3_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA3_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-4", "ga4_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA4_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA4_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA4_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-5", "ga5_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA5_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA5_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA5_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-6", "ga6_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA6_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA6_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA6_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-7", "ga7_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA7_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA7_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA7_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-8", "ga8_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA8_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA8_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA8_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-9", "ga9_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA9_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA9_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA9_PF));
+			childRecord = record.addChild(GetFullReportRecord("ГА-10", "ga10_nprch"));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA10_P));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA10_PZad));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.NPRCH_GA10_PF));*/
 		}
 
 

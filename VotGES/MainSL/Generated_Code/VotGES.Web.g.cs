@@ -5274,6 +5274,8 @@ namespace VotGES.Piramida.Report
         quarterByWeeks = 18,
         
         yearByWeeks = 19,
+        
+        dayBySeconds = 20,
     }
 }
 namespace VotGES.PrognozNB
