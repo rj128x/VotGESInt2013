@@ -159,7 +159,7 @@ namespace ModbusLib {
 					Headers.Add(header);
 					if (InitArray.FullData.ContainsKey(header)) {
 						ModbusInitData init = InitArray.FullData[header];
-						if (init.WriteToDBDiff || init.WriteToDBHH || init.WriteToDBMin) {
+						if (init.WriteToDBDiff || init.WriteToDBHH || init.WriteToDBMin || init.WriteToDBSec) {
 							if (!Data.ContainsKey(header)) {
 								Data.Add(header, new DataDBRecord(header, init));
 							}
@@ -223,7 +223,8 @@ namespace ModbusLib {
 			string df = Settings.single.DBDateFormat;
 			foreach (DataDBRecord rec in Data.Values) {
 				ModbusInitData init = InitArray.FullData[rec.Header];
-				if (init.WriteToDBHH || init.WriteToDBMin || init.WriteToDBDiff) {
+				if (init.WriteToDBHH || init.WriteToDBMin || init.WriteToDBDiff || init.WriteToDBSec) {			
+		
 					if (init.WriteToDBMin && mode == RWModeEnum.min) {
 						string insert = String.Format(frmt, init.ParNumberMin, init.Obj, init.Item, rec.AvgMin, 0, rec.Min, rec.Max, rec.Eq, init.ObjType,
 							Date.AddMinutes(1).ToString(df), DateTime.Now.ToString(df), DBSettings.getSeason(Date.AddMinutes(1)));
@@ -238,6 +239,23 @@ namespace ModbusLib {
 
 						inserts[init.DBNameMin].Add(insert);
 						deletes[init.DBNameMin].Add(delete);
+					}
+
+					if (init.WriteToDBSec && mode == RWModeEnum.min) {
+						string delete = String.Format(frmDelAll, init.ParNumberSec, init.Obj, init.ObjType, init.Item, Date.ToString(df) ,Date.AddMinutes(1).ToString(df));
+						if (!deletes.ContainsKey(init.DBNameSec)) {
+								deletes.Add(init.DBNameSec, new List<string>());
+						}
+						deletes[init.DBNameSec].Add(delete);
+
+						foreach (KeyValuePair<DateTime, double> de in rec.Vals) {
+							string insert = String.Format(frmt, init.ParNumberSec, init.Obj, init.Item, de.Value, 0, 0, 0, 0, init.ObjType,
+								de.Key.ToString(df), DateTime.Now.ToString(df), DBSettings.getSeason(de.Key));
+							if (!inserts.ContainsKey(init.DBNameSec)) {
+								inserts.Add(init.DBNameSec, new List<string>());
+							}
+							inserts[init.DBNameSec].Add(insert);							
+						}
 					}
 
 					if (init.WriteToDBHH && mode == RWModeEnum.hh) {
@@ -311,9 +329,7 @@ namespace ModbusLib {
 							}
 							inserts[init.DBNameDiff].Add(insert);
 							prevDate = diff.Key;
-
 						}
-
 					}
 				}
 			}

@@ -18,7 +18,7 @@ namespace ModbusLib.ModbusReader
 			Logger.InitFileLogger(Settings.single.LogPath, "logR");
 
 			try {
-				MasterModbusReader reader=new MasterModbusReader(5000);
+				MasterModbusReader reader=new MasterModbusReader(900);
 				reader.Read();
 			} catch (Exception e) {
 				Logger.Error(e.ToString());

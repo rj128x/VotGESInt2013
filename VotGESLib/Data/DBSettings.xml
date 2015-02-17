@@ -30,5 +30,12 @@
 			<User>sa</User>
 			<Password>pswd</Password>
 		</DBInfo>
+    <DBInfo>
+      <ID>PSec</ID>
+      <Address>sr-votges-int\sqlexpress</Address>
+      <DBName>PiramidaSec</DBName>
+      <User>sa</User>
+      <Password>pswd</Password>
+    </DBInfo>
 	</Databases>
 </DBSettings>	

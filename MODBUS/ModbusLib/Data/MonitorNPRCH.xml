@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModbusInitDataArray xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ServerInfoArray>		
+		<ServerInfo>
+			<IP>192.168.140.230</IP>
+			<Port>502</Port>
+		</ServerInfo>
+    <ServerInfo>
+      <IP>10.7.101.251</IP>
+      <Port>510</Port>
+    </ServerInfo>
+	</ServerInfoArray>
+	
+	<ID>NPRCH</ID>
+	<WriteMin>1</WriteMin>
+	<WriteHH>1</WriteHH>
+	<Obj>5</Obj>
+	<ObjType>2</ObjType>
+	<DBNameHH>PSV</DBNameHH>
+	<DBNameMin>PMin</DBNameMin>
+	<DBNameDiff>PSV</DBNameDiff>
+  <DBNameSec>PSec</DBNameSec>
+	<ParNumberHH>12</ParNumberHH>
+	<ParNumberMin>4</ParNumberMin>
+	<ParNumberDiff>13</ParNumberDiff>
+  <ParNumberSec>44</ParNumberSec>
+	
+	<Data>
+    <ModbusInitData ID='GA1_P' Addr='3' Name='Г1 З' Scale='0.1'   Item='101' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA1_P_FLAG' Addr='0' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA2_P' Addr='103' Name='Г2 З' Scale='0.1'   Item='102' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA2_P_FLAG' Addr='100' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA3_P' Addr='203' Name='Г3 З' Scale='0.1'   Item='103' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA3_P_FLAG' Addr='200' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA4_P' Addr='303' Name='Г4 З' Scale='0.1'   Item='104' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA4_P_FLAG' Addr='300' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA5_P' Addr='403' Name='Г5 З' Scale='0.1'   Item='105' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA5_P_FLAG' Addr='400' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA6_P' Addr='503' Name='Г6 З' Scale='0.1'   Item='106' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA6_P_FLAG' Addr='500' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA7_P' Addr='603' Name='Г7 З' Scale='0.1'   Item='107' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA7_P_FLAG' Addr='600' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA8_P' Addr='703' Name='Г8 З' Scale='0.1'   Item='108' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA8_P_FLAG' Addr='700' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA9_P' Addr='803' Name='Г9 З' Scale='0.1'   Item='109' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA9_P_FLAG' Addr='800' Scale='1' FlagBit='2'/>
+    <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='110' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA10_P_FLAG' Addr='900' Scale='1' FlagBit='2'/>
+
+    <ModbusInitData ID='GA1_PZad' Addr='2' Name='Г1 З' Scale='0.1'   Item='201' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA1_PZad_FLAG' Addr='0' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA2_PZad' Addr='102' Name='Г2 З' Scale='0.1'   Item='202' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA2_PZad_FLAG' Addr='100' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA3_PZad' Addr='202' Name='Г3 З' Scale='0.1'   Item='203' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA3_PZad_FLAG' Addr='200' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA4_PZad' Addr='302' Name='Г4 З' Scale='0.1'   Item='204' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA4_PZad_FLAG' Addr='300' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA5_PZad' Addr='402' Name='Г5 З' Scale='0.1'   Item='205' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA5_PZad_FLAG' Addr='400' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA6_PZad' Addr='502' Name='Г6 З' Scale='0.1'   Item='206' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA6_PZad_FLAG' Addr='500' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA7_PZad' Addr='602' Name='Г7 З' Scale='0.1'   Item='207' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA7_PZad_FLAG' Addr='600' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA8_PZad' Addr='702' Name='Г8 З' Scale='0.1'   Item='208' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA8_PZad_FLAG' Addr='700' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA9_PZad' Addr='802' Name='Г9 З' Scale='0.1'   Item='209' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA9_PZad_FLAG' Addr='800' Scale='1' FlagBit='3'/>
+    <ModbusInitData ID='GA10_PZad' Addr='902' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='0' MaxValue='120'/>
+    <ModbusInitData ID='GA10_PZad_FLAG' Addr='900' Scale='1' FlagBit='3'/>
+
+    <ModbusInitData ID='GA1_PF' Addr='15' Name='Г1 PF' Scale='0.01' Add='-50'  Item='301' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA1_PF_FLAG' Addr='0' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA2_PF' Addr='115' Name='Г2 PF' Scale='0.01' Add='-50'  Item='302' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA2_PF_FLAG' Addr='100' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA3_PF' Addr='215' Name='Г3 PF' Scale='0.01' Add='-50'  Item='303' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA3_PF_FLAG' Addr='200' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA4_PF' Addr='315' Name='Г4 PF' Scale='0.01' Add='-50'  Item='304' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA4_PF_FLAG' Addr='300' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA5_PF' Addr='415' Name='Г5 PF' Scale='0.01' Add='-50'  Item='305' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA5_PF_FLAG' Addr='400' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA6_PF' Addr='515' Name='Г6 PF' Scale='0.01' Add='-50'  Item='306' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA6_PF_FLAG' Addr='500' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA7_PF' Addr='615' Name='Г7 PF' Scale='0.01' Add='-50'  Item='307' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA7_PF_FLAG' Addr='600' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA8_PF' Addr='715' Name='Г8 PF' Scale='0.01' Add='-50'  Item='308' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA8_PF_FLAG' Addr='700' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA9_PF' Addr='815' Name='Г9 PF' Scale='0.01' Add='-50'  Item='309' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA9_PF_FLAG' Addr='800' Scale='1' FlagBit='14'/>
+    <ModbusInitData ID='GA10_PF' Addr='915' Name='Г10 PF' Scale='0.01' Add='-50'  Item='310' WriteToDBHH='0' WriteToDBMin='0' WriteToDBSec='1' MinValue='-30' MaxValue='30' />
+    <ModbusInitData ID='GA10_PF_FLAG' Addr='900' Scale='1' FlagBit='14'/>  
+
+	</Data>
+
+</ModbusInitDataArray>

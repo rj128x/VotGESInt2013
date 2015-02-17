@@ -82,16 +82,16 @@
     <table class='cifr'>
 		<tr>
 			<th rowspan="2">Дата</th>
-			<th colspan="4">Генератор №1</th>
-			<th colspan="4">Генератор №2</th>
+			<th colspan="3">Генератор №1</th>
+			<th colspan="3">Генератор №2</th>
 			<th colspan="3">Генератор №3</th>
 			<th colspan="3">Генератор №4</th>
 			<th colspan="3">Генератор №5</th>
 			<th colspan="3">Генератор №6</th>
 			<th colspan="3">Генератор №7</th>
 			<th colspan="3">Генератор №8</th>
-			<th colspan="4">Генератор №9</th>
-			<th colspan="4">Генератор №10</th>
+			<th colspan="3">Генератор №9</th>
+			<th colspan="3">Генератор №10</th>
 		</tr>
 		<tr>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -106,14 +106,6 @@
                  <th>
 					Генерация
 				</th>
-            
-                <%if (ga==1||ga==2||ga==9||ga==10){ %>
-                <th>
-					СК
-				</th>
-                <%} %>
-
-
 			<%} %>
 		</tr>
         <% foreach (DateTime date in Model.sumDataByDays.Keys){ %>
@@ -136,14 +128,6 @@
                          OgranGARecord.getFullTimeStr(Model.sumDataByDays[date].sumData[ga].timeGen))
                     %>
                 </td>
-
-                 <%if (ga==1||ga==2||ga==9||ga==10){ %>
-                <td>
-                    <%= String.Format("{0}",
-                         OgranGARecord.getFullTimeStr(Model.sumDataByDays[date].sumData[ga].timeSK))
-                    %>
-                </td>
-                <%} %>
             <%} %>
         </tr>
         <%} %>

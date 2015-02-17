@@ -29,6 +29,9 @@ namespace ModbusLib {
 		public bool WriteToDBMin { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
+		public bool WriteToDBSec { get; set; }
+
+		[System.Xml.Serialization.XmlAttribute]
 		public bool WriteToDBHH { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
@@ -44,6 +47,9 @@ namespace ModbusLib {
 		public int ParNumberDiff { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
+		public int ParNumberSec { get; set; }
+
+		[System.Xml.Serialization.XmlAttribute]
 		public int Obj { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
@@ -57,6 +63,9 @@ namespace ModbusLib {
 
 		[System.Xml.Serialization.XmlAttribute]
 		public string DBNameDiff { get; set; }
+
+		[System.Xml.Serialization.XmlAttribute]
+		public string DBNameSec { get; set; }
 
 		[System.Xml.Serialization.XmlAttribute]
 		public int Item { get; set; }
@@ -92,9 +101,11 @@ namespace ModbusLib {
 			WriteToDBMin = false;
 			WriteToDBHH = false;
 			WriteToDBDiff = false;
+			WriteToDBSec = false;
 			ParNumberMin = -1;
 			ParNumberHH = -1;
 			ParNumberDiff = -1;
+			ParNumberSec = -1;
 			Obj = -1;
 			ObjType = -1;
 			DBNameMin = null;
@@ -131,12 +142,14 @@ namespace ModbusLib {
 		public int ParNumberMin { get; set; }
 		public int ParNumberHH { get; set; }
 		public int ParNumberDiff { get; set; }
+		public int ParNumberSec { get; set; }
 
 		public int Obj { get; set; }
 		public int ObjType { get; set; }
 		public string DBNameMin { get; set; }
 		public string DBNameHH { get; set; }
 		public string DBNameDiff { get; set; }
+		public string DBNameSec { get; set; }
 
 
 		public void processData() {
@@ -147,12 +160,15 @@ namespace ModbusLib {
 					init.ParNumberHH = init.ParNumberHH == -1 ? ParNumberHH : init.ParNumberHH;
 					init.ParNumberMin = init.ParNumberMin == -1 ? ParNumberMin : init.ParNumberMin;
 					init.ParNumberDiff = init.ParNumberDiff == -1 ? ParNumberDiff : init.ParNumberDiff;
+					init.ParNumberSec = init.ParNumberSec == -1 ? ParNumberSec : init.ParNumberSec;
+
 					init.Obj = init.Obj == -1 ? Obj : init.Obj;
 					init.ObjType = init.ObjType == -1 ? ObjType : init.ObjType;
 					init.Item = init.Item == -1 ? init.Addr : init.Item;
 					init.DBNameHH = init.DBNameHH == null ? DBNameHH : init.DBNameHH;
 					init.DBNameMin = init.DBNameMin == null ? DBNameMin : init.DBNameMin;
 					init.DBNameDiff = init.DBNameDiff == null ? DBNameDiff : init.DBNameDiff;
+					init.DBNameSec = init.DBNameSec == null ? DBNameSec : init.DBNameSec;
 
 					if (init.Name.Contains("_FLAG") && !init.ID.Contains("_FLAG")) {
 						init.ID = (init.Addr - 1) + "_FLAG";

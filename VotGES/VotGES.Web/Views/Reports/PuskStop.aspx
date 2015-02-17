@@ -236,6 +236,18 @@
 			</td>
 		</tr>
 
+         <tr>
+			<th>Переходов в НПРЧ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].cntNPRCH.ToString() %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.cntNPRCH.ToString() %>
+			</td>
+		</tr>
+
         <tr>
 			<th>Время ОПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -249,16 +261,18 @@
 		</tr>
 
         <tr>
-			<th>Время АВРЧМ</th>
+			<th>Переходов в ОПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
 				<td>
-					<%=Model.sumData[ga].TimeAVRCHMStr %>
+					<%=Model.sumData[ga].cntOPRCH.ToString() %>
 				</td>
 			<%} %>
 			<td>
-				<%=Model.sumRecord.TimeAVRCHMStr %>
+				<%=Model.sumRecord.cntOPRCH.ToString() %>
 			</td>
 		</tr>
+
+        
 
 	</table>
 </body>

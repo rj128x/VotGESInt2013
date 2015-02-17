@@ -110,6 +110,10 @@ namespace ClearDB {
 							hh = 24;
 							ClearDB.Clear(date, date.AddHours(hh), "PMin");
 							break;
+						case "clearSec":
+							hh = 24;
+							ClearDB.Clear(date, date.AddHours(hh), "PSec");
+							break;
 						case "optim":
 							hh = 24;
 							Water.CalcOptim(date, date.AddHours(hh));
