@@ -2,12 +2,11 @@
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<LogPath>C:/MBData/Log</LogPath>
-	<DataPath>z:/MBData</DataPath>
+	<DataPath>c:/MBData</DataPath>
 	<HoursDiff>2</HoursDiff>	
 	<InitFiles>
 		<string>Data\Modbus2014.xml</string>
     <string>Data\Water3000.xml</string>
-    <string>Data\MonitorNPRCH.xml</string>
 	</InitFiles>
 	<InitCalcFile>Data\MBDataCalc.xml</InitCalcFile>
 	<DBDateFormat>yyyy-MM-dd HH:mm:ss</DBDateFormat>

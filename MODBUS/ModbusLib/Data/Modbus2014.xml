@@ -79,6 +79,7 @@
     <ModbusInitData ID='GA9_P_FLAG' Addr='800' Scale='1' FlagBit='2'/>
     <ModbusInitData ID='GA10_P' Addr='903' Name='Г10 З' Scale='0.1'   Item='210' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='120'/>
     <ModbusInitData ID='GA10_P_FLAG' Addr='900' Scale='1' FlagBit='2'/>
+  
 
     <ModbusInitData ID='GA1_PF' Addr='15' Name='Г1 PF' Scale='0.01' Add='-50'  Item='301' WriteToDBHH='1' WriteToDBMin='1' MinValue='-30' MaxValue='30' />
     <ModbusInitData ID='GA1_PF_FLAG' Addr='0' Scale='1' FlagBit='14'/>

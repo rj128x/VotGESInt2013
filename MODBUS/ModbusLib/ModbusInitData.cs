@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using VotGES;
 
@@ -97,6 +98,7 @@ namespace ModbusLib {
 		[System.Xml.Serialization.XmlAttribute]
 		public int MinTimeDiff { get; set; }
 
+		
 		public ModbusInitData() {
 			WriteToDBMin = false;
 			WriteToDBHH = false;
@@ -186,6 +188,8 @@ namespace ModbusLib {
 
 		}
 
+		public static DateTime prevMailDate = DateTime.MinValue;
+
 		public void WriteVal(int addr, double val, SortedList<string, double> DataArray) {			
 			foreach (ModbusInitData data in Data) {
 				if (data.Addr == addr) {
@@ -204,10 +208,20 @@ namespace ModbusLib {
 						val=GlobalVotGES.getBIT((short)val,data.ValBit);
 					}
 
+					if (data.ID.Contains("PF") && (!data.ID.Contains("_FLAG")) && Math.Abs(val) > 0) {
+						Logger.Info("Send Mail");
+						if (prevMailDate.AddSeconds(30) < DateTime.Now) {
+							SendMail("Работа в ОПРЧ " + data.ID, data.ID);
+							prevMailDate = DateTime.Now;
+						}
+					}
+
 					if (val > data.MaxValue || val < data.MinValue) {
 						Logger.Info(String.Format("Выход за границы диапазона {0} val={1}", data.ID, val));
 						val = double.NaN;
 					}
+
+
 
 					if (DataArray.ContainsKey(data.ID)) {
 						DataArray[data.ID] = val;
@@ -217,6 +231,39 @@ namespace ModbusLib {
 				}
 			}
 		}
+
+		public static bool SendMail(string subject, string message) {
+			try {
+				List<string> mailToList = new List<string>();
+				mailToList.Add("ChekunovaMV@votges.rushydro.ru");
+				mailToList.Add("FedorkoAV@votges.rushydro.ru");
+				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
+
+				mess.From = new MailAddress("ChekunovaMV@votges.rushydro.ru");
+				mess.Subject = subject; mess.Body = message;
+				foreach (string mail in mailToList) {
+					mess.To.Add(mail);
+				}
+
+				mess.SubjectEncoding = System.Text.Encoding.UTF8;
+				mess.BodyEncoding = System.Text.Encoding.UTF8;
+				mess.IsBodyHtml = false;
+			
+				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("mx-votges-021", 25);
+				client.Host= "mx-votges-021";				
+				client.UseDefaultCredentials = false;
+				client.Credentials = new System.Net.NetworkCredential("ChekunovaMV", "rJ320204", "CORP");				
+				// Отправляем письмо
+				client.Send(mess);
+				return true;
+			}
+			catch (Exception e) {
+				Logger.Info("Ошибка при отправке почты");
+				Logger.Info(e.ToString());
+			}
+			return false;
+		}
+
 
 	}
 
