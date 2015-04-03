@@ -188,7 +188,7 @@ namespace ModbusLib {
 
 		}
 
-		public static DateTime prevMailDate = DateTime.MinValue;
+		//public static DateTime prevMailDate = DateTime.MinValue;
 
 		public void WriteVal(int addr, double val, SortedList<string, double> DataArray) {			
 			foreach (ModbusInitData data in Data) {
@@ -208,13 +208,13 @@ namespace ModbusLib {
 						val=GlobalVotGES.getBIT((short)val,data.ValBit);
 					}
 
-					if (data.ID.Contains("PF") && (!data.ID.Contains("_FLAG")) && Math.Abs(val) > 0) {
+					/*if (data.ID.Contains("PF") && (!data.ID.Contains("_FLAG")) && Math.Abs(val) > 0) {
 						Logger.Info("Send Mail");
 						if (prevMailDate.AddSeconds(30) < DateTime.Now) {
 							SendMail("Работа в ОПРЧ " + data.ID, data.ID);
 							prevMailDate = DateTime.Now;
 						}
-					}
+					}*/
 
 					if (val > data.MaxValue || val < data.MinValue) {
 						Logger.Info(String.Format("Выход за границы диапазона {0} val={1}", data.ID, val));
