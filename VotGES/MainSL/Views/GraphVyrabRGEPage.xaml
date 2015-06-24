@@ -26,7 +26,7 @@
 							<RowDefinition Height="1*"/>
 							<RowDefinition Height="1*"/>
 							<RowDefinition Height="1*"/>
-							<RowDefinition Height="1*"/>
+							<RowDefinition Height="2*"/>
 						</Grid.RowDefinitions>
 						<usr:ChartControl x:Name="chartControlRGE1" VerticalAlignment="Stretch" Grid.Row="0"/>
 						<TextBlock Text="ГГ 1-2" FontSize="12" FontStyle="Italic" FontWeight="ExtraBold"

@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BytesRoad.Net.Ftp">
+      <HintPath>..\libs\ftpLib\BytesRoad.Net.Ftp.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\libs\ziplib\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\log4net\log4net.dll</HintPath>
@@ -68,6 +74,7 @@
       <DependentUpon>nnet.resx</DependentUpon>
     </Compile>
     <Compile Include="NNET\NNET.cs" />
+    <Compile Include="NPRCH\MonitorNPRCH.cs" />
     <Compile Include="OgranGA\KapRemontsData.cs" />
     <Compile Include="OgranGA\OgranGA.cs" />
     <Compile Include="OgranGA\OgranGAReport.cs" />

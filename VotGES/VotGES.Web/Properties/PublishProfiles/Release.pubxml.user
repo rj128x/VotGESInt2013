@@ -15,6 +15,15 @@
     <File Include="bat/CommandLine.dll">
       <publishTime>01/10/2014 11:51:13</publishTime>
     </File>
+    <File Include="bat/NPRCH.bat">
+      <publishTime>02/17/2015 14:53:15</publishTime>
+    </File>
+    <File Include="bat/reindex.bat">
+      <publishTime>06/24/2015 13:06:50</publishTime>
+    </File>
+    <File Include="bat/reindex.sql">
+      <publishTime>06/24/2015 13:05:13</publishTime>
+    </File>
     <File Include="bat/VERData.bat">
       <publishTime>10/01/2014 11:48:54</publishTime>
     </File>
@@ -121,10 +130,10 @@
       <publishTime>03/18/2010 18:31:26</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>02/19/2015 11:29:49</publishTime>
+      <publishTime>06/24/2015 13:35:33</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>02/19/2015 11:29:50</publishTime>
+      <publishTime>06/24/2015 13:35:52</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
       <publishTime>04/12/2013 02:58:20</publishTime>
@@ -139,7 +148,7 @@
       <publishTime>04/12/2013 02:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>04/06/2015 12:45:33</publishTime>
+      <publishTime>06/24/2015 13:45:36</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
