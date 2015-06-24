@@ -1,0 +1,1 @@
+sqlcmd -S 192.168.140.240 -U sa -P pswd -i "E:\Projects\VOTGES\bat\reindex.sql"

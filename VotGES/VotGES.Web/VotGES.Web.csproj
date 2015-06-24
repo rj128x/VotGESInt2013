@@ -145,6 +145,7 @@
     <Content Include="bat\CommandLine.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="bat\reindex.sql" />
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Global.asax" />
     <Content Include="MainSLTestPage.aspx" />
@@ -234,6 +235,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\Instruction8075.doc" />
+    <Content Include="bat\NPRCH.bat" />
+    <Content Include="bat\reindex.bat" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
   </ItemGroup>

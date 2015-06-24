@@ -36,7 +36,7 @@ namespace MainSL.Views
 			context = new GraphVyrabDomainContext();
 			pnlSettings.DataContext = CurrentAnswer;
 			settings = new SettingsGraphVyab();
-			chbIsSteppedPBR.IsChecked = true;
+			chbIsSteppedPBR.IsChecked = false;
 			settings.Second = 60;
 			settings.AutoRefresh = false;
 			pnlRefresh.DataContext = settings;

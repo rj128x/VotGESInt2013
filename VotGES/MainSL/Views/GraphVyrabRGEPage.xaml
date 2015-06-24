@@ -14,13 +14,13 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<sdk:TabControl SelectionChanged="TabControl_SelectionChanged">
-				<sdk:TabItem Name="tabChart" Header="График ГТП">
+			<sdk:TabControl SelectionChanged="TabControl_SelectionChanged" >
+				<sdk:TabItem Name="tabChart" Header="График ГТП" IsSelected="true">
 					<Grid>
 						<usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
 					</Grid>
 				</sdk:TabItem>
-				<sdk:TabItem Name="tabChartRGE" Header="График РГЕ" IsSelected="true">
+				<sdk:TabItem Name="tabChartRGE" Header="График РГЕ" >
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="1*"/>
