@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,12 +37,18 @@
     <Reference Include="BytesRoad.Net.Ftp">
       <HintPath>..\libs\ftpLib\BytesRoad.Net.Ftp.dll</HintPath>
     </Reference>
+    <Reference Include="Infrastructure">
+      <HintPath>..\libs\MC\Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\libs\ziplib\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\log4net\log4net.dll</HintPath>
+      <HintPath>..\libs\MC\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="ModesApiExternal">
+      <HintPath>..\libs\MC\ModesApiExternal.dll</HintPath>
     </Reference>
     <Reference Include="PHPSerializationLibrary, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,6 +75,9 @@
     <Compile Include="Chart\ChartProperties.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ModesCentre\MCPBRData.cs" />
+    <Compile Include="ModesCentre\MCServerReader.cs" />
+    <Compile Include="ModesCentre\MCSettings.cs" />
     <Compile Include="nnet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,6 +163,10 @@
     <None Include="Data\rashods\rashod.xls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\MCSettings.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\KapRemontsData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
