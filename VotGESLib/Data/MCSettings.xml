@@ -4,41 +4,56 @@
   <MCServer>sr-vm-062.corp.gidroogk.com</MCServer>
   <MCUser>mc_votges</MCUser>
   <MCPassword>mcV0tges</MCPassword>
+
+  <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
+  <SMTPUser></SMTPUser>
+  <SMTPPassword></SMTPPassword>
+  <SMTPPort>25</SMTPPort>
+  <SMTPDomain></SMTPDomain>
+  <SMTPFrom>SR-VOTGES-INT@votges.rushydro.ru</SMTPFrom>
+  <AutooperMail>autooper_votges@votges.rushydro.ru</AutooperMail>
   <MCData>
     <MCSettingsRecord>
       <MCCode>2617</MCCode>
       <PiramidaCode>1</PiramidaCode>
       <WriteIntegratedData>1</WriteIntegratedData>
+      <Autooper>0</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2299</MCCode>
       <PiramidaCode>2</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>0</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2375</MCCode>
       <PiramidaCode>3</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>0</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2297</MCCode>
       <PiramidaCode>1045</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2298</MCCode>
       <PiramidaCode>1046</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2373</MCCode>
       <PiramidaCode>1703</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
     </MCSettingsRecord>
     <MCSettingsRecord>
       <MCCode>2374</MCCode>
       <PiramidaCode>1704</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
     </MCSettingsRecord>
   </MCData>
 </MCSettings>

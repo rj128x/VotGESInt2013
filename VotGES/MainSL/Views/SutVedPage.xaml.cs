@@ -72,6 +72,11 @@ namespace MainSL.Views
 			FloatWindow.OpenWindowFull(uri);
 		}
 
+		private void btnGetPBRMC_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/PBRFromMC?year={0}&month={1}&day={2}", settings.Date.Year, settings.Date.Month, settings.Date.Day);
+			FloatWindow.OpenWindow(uri);
+		}
+
 		
 
 

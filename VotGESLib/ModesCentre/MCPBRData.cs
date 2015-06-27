@@ -51,9 +51,10 @@ namespace VotGES.ModesCentre {
 			return integr;
 		}
 
-		protected void writeToDB(string DBName,SortedList<DateTime,double>data,int parnumber) {
+		protected bool writeToDB(string DBName,SortedList<DateTime,double>data,int parnumber) {
 
 			SqlConnection con = null;
+			bool ok = false;
 			try {
 				con = PiramidaAccess.getConnection(DBName);
 				con.Open();
@@ -82,22 +83,35 @@ namespace VotGES.ModesCentre {
 				}
 
 				transact.Commit();
+				ok = true;
 			} catch (Exception e) {
 				Logger.Info("ошибка при записи ПБР в базу " + e);
+				ok = false;
 
 			} finally {
 				try {
 					con.Close();
 				} catch { }
 			}
+			return ok;
 		}
 
-		public void ProcessData() {
-			writeToDB("P3000", Data, 212);
+		public void addAutooperData(List<string> data) {
+			if (DataSettings.Autooper) {
+				foreach (KeyValuePair<DateTime, double> de in Data) {
+					data.Add(String.Format("{0};{1};{2}", Item, de.Key.ToString("yyyyMMddTHHmm"), de.Value));
+				}
+			}
+		}
+
+		public bool ProcessData() {
+			bool ok = false;
+			ok=ok&&writeToDB("P3000", Data, 212);
 			if (DataSettings.WriteIntegratedData) {
 				SortedList<DateTime, double> integr = createInegratedData();
-				writeToDB("P3000", integr, 204);
+				ok=ok&&writeToDB("P3000", integr, 204);
 			}
+			return ok;
 		}
 	}
 

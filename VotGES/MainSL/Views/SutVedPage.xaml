@@ -22,7 +22,10 @@
 					<Button Content="Получить ПБР" Name="btnGetPBR"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnGetPBR_Click"/>
-					<Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20"
+                    <Button Content="Выгрузить ПБР из MC" Name="btnGetPBRMC"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnGetPBRMC_Click"/>
+                    <Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20" Visibility="Collapsed"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnPrikaz20_Click"/>
                     <Button Content="ВЭР" Name="btnVER"

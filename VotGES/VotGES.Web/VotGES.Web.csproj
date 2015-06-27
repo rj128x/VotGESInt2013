@@ -155,6 +155,7 @@
     <Content Include="Views\Home\MainSL.aspx" />
     <Content Include="Views\Home\Test.aspx" />
     <Content Include="Views\Reports\PBRrge.aspx" />
+    <Content Include="Views\Reports\MCReport.aspx" />
     <Content Include="Views\Reports\TimeStopGA.aspx" />
     <Content Include="Views\Reports\PuskStopByDays.aspx" />
     <Content Include="Views\Reports\VERReportMonth.aspx" />

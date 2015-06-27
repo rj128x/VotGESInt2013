@@ -4,14 +4,19 @@ using ModesApiExternal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace VotGES.ModesCentre {
 	public class MCServerReader {
 		public Dictionary<int, MCPBRData> Data{get;set;}
 		public DateTime Date { get; set; }
+		public List<string> LogInfo { get; set; }
+		public List<string> AutooperData { get; set; }
 		public MCServerReader(DateTime date) {
 			Date = date;
+			LogInfo = new List<string>();
+			AutooperData = new List<string>();
 			Logger.Info("Connect MC");
 			try {
 				ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
@@ -26,6 +31,7 @@ namespace VotGES.ModesCentre {
 				foreach (IGenObject obj in ts.GenTree) {
 					getPlan(api, obj);
 				}
+				sendAutooperData();
 				ModesApiFactory.CloseConnection();
 			} catch (Exception e) {
 				Logger.Info("Ошибка при получении ПБР с сервера MC " + e);
@@ -41,13 +47,46 @@ namespace VotGES.ModesCentre {
 				MCPBRData pbr = new MCPBRData(obj.Id);
 				foreach (PlanValueItem item in data) {
 					if (item.ObjFactor == 0) {
-						pbr.AddValue(item.DT, item.Value);
+						pbr.AddValue(item.DT.SystemToLocalHqEx(), item.Value);
 					}
 				}
-				pbr.ProcessData();
+				LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx()));
+				bool ok=pbr.ProcessData();
+				LogInfo.Add("===Данные записаны в базу: " + (ok ? "Успеншно" : "Ошибка"));
+				pbr.addAutooperData(AutooperData);
 			}
 			foreach (IGenObject ch in obj.Children) {
 				getPlan(api, ch);
+			}
+		}
+
+		public void sendAutooperData() {
+			try {
+				List<string> mailToList=new List<string>();
+
+				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
+
+				mess.From = new MailAddress(MCSettings.Single.SMTPFrom);
+				mess.Subject = Date.ToString("yyyyMMddTHHmm"); mess.Body = "";
+				mess.To.Add(MCSettings.Single.AutooperMail);
+
+				mess.SubjectEncoding = System.Text.Encoding.UTF8;
+				mess.BodyEncoding = System.Text.Encoding.UTF8;
+				mess.IsBodyHtml = false;
+				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(MCSettings.Single.SMTPServer, MCSettings.Single.SMTPPort);
+				client.EnableSsl = true;
+				if (string.IsNullOrEmpty(MCSettings.Single.SMTPUser)) {
+					client.UseDefaultCredentials = true;
+				} else {
+					client.Credentials = new System.Net.NetworkCredential(MCSettings.Single.SMTPUser, MCSettings.Single.SMTPPassword, MCSettings.Single.SMTPDomain);
+				}
+				// Отправляем письмо
+				client.Send(mess);
+				LogInfo.Add("Данные в автооператор отправлены успешно");
+
+			} catch (Exception e) {
+				Logger.Error(String.Format("Ошибка при отправке почты: {0}", e.ToString()), Logger.LoggerSource.server);
+				LogInfo.Add("Данные в автооператор не отправлены");
 			}
 		}
 	}

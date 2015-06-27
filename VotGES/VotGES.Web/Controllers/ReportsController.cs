@@ -17,6 +17,7 @@ using VotGES.OgranGA;
 using VotGES.Rashod;
 using VotGES.Web.Models;
 using VotGES.NPRCH;
+using VotGES.ModesCentre;
 
 namespace VotGES.Web.Controllers
 {	
@@ -201,6 +202,13 @@ namespace VotGES.Web.Controllers
 				ds = de.AddDays(0);
 			}
 			return Content("finish");
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult PBRFromMC(int year, int month, int day) {
+			MCServerReader reader = new MCServerReader(new DateTime(year, month, day));
+			ViewResult view = View("MCReport", reader);
+			return view;
 		}
 	}
 }
