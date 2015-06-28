@@ -70,7 +70,7 @@ namespace VotGES.ModesCentre {
 
 				List<string> inserts = new List<string>();
 				foreach (KeyValuePair<DateTime, double> de in data) {
-					string ins = String.Format(InsertInfoFormat, parnumber, 0, Item, de.Value, 2, de.Key.ToString(DateFormat), DateTime.Now.ToString(DateFormat), DBSettings.getSeason(de.Key));
+					string ins = String.Format(InsertInfoFormat, parnumber, 0, Item, (de.Value*1000).ToString().Replace(',','.'), 2, de.Key.ToString(DateFormat), DateTime.Now.ToString(DateFormat), DBSettings.getSeason(de.Key));
 					inserts.Add(ins);
 					if (inserts.Count % 30 == 0 || de.Key == data.Last().Key) {
 						string insertsSQL = String.Join("\nUNION ALL\n", ins);
