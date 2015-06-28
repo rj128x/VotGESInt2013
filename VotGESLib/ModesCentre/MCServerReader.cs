@@ -3,6 +3,7 @@ using Modes.BusinessLogic;
 using ModesApiExternal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -62,13 +63,20 @@ namespace VotGES.ModesCentre {
 
 		public void sendAutooperData() {
 			try {
-				List<string> mailToList=new List<string>();
+				string fn = Date.ToString("yyyyMMddTHHmm") + ".csv";
+				TextWriter writer = new StreamWriter(Date.ToString("yyyyMMddTHHmm"));
+				foreach (string str in AutooperData) {
+					writer.WriteLine(str);
+				}
+				writer.Close();
 
+				FileInfo file = new FileInfo(fn);
 				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
 
 				mess.From = new MailAddress(MCSettings.Single.SMTPFrom);
 				mess.Subject = Date.ToString("yyyyMMddTHHmm"); mess.Body = "";
 				mess.To.Add(MCSettings.Single.AutooperMail);
+				mess.Attachments.Add(new Attachment(fn));
 
 				mess.SubjectEncoding = System.Text.Encoding.UTF8;
 				mess.BodyEncoding = System.Text.Encoding.UTF8;
@@ -83,7 +91,9 @@ namespace VotGES.ModesCentre {
 				// Отправляем письмо
 				client.Send(mess);
 				LogInfo.Add("Данные в автооператор отправлены успешно");
-
+				try {
+					file.Delete();
+				}catch{};
 			} catch (Exception e) {
 				Logger.Error(String.Format("Ошибка при отправке почты: {0}", e.ToString()), Logger.LoggerSource.server);
 				LogInfo.Add("Данные в автооператор не отправлены");
