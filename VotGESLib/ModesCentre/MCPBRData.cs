@@ -12,6 +12,7 @@ namespace VotGES.ModesCentre {
 		public static string DateFormat = "yyyy-MM-dd HH:mm:ss";
 
 		public SortedList<DateTime, double> Data { get; set; }
+		public SortedList<DateTime, double> DataHH { get; set; }
 		public int Item { get; set; }
 		public MCSettingsRecord DataSettings;
 
@@ -23,6 +24,7 @@ namespace VotGES.ModesCentre {
 				}
 			}
 			Data = new SortedList<DateTime, double>();
+			DataHH = new SortedList<DateTime, double>();
 		}
 
 		public void AddValue(DateTime date, double val) {
@@ -51,6 +53,22 @@ namespace VotGES.ModesCentre {
 				index++;
 			}
 			return integr;
+		}
+
+		protected SortedList<DateTime, double> createHHData() {
+			SortedList<DateTime, double> hh = new SortedList<DateTime, double>();
+			int index = 0;
+			foreach (KeyValuePair<DateTime, double> de in Data) {
+				hh.Add(de.Key, de.Value);
+				DateTime nextDate = index < Data.Count - 1 ? Data.Keys[index + 1] : Data.Last().Key;				
+				if (de.Key == nextDate)
+					break;
+				DateTime dt = de.Key.AddMinutes(30);
+				double val = (de.Value + Data[nextDate]) / 2;				
+				hh.Add(dt, val);				
+				index++;
+			}
+			return hh;
 		}
 
 		protected bool writeToDB(string DBName,SortedList<DateTime,double>data,int parnumber) {
@@ -111,7 +129,8 @@ namespace VotGES.ModesCentre {
 
 		public bool ProcessData() {
 			bool ok = true;
-			ok=ok&&writeToDB("P3000", Data, 212);
+			DataHH = createHHData();
+			ok=ok&&writeToDB("P3000", DataHH, 212);
 			if (DataSettings.WriteIntegratedData) {
 				SortedList<DateTime, double> integr = createInegratedData();
 				ok=ok&&writeToDB("P3000", integr, 204);

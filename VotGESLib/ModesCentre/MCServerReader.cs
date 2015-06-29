@@ -65,12 +65,13 @@ namespace VotGES.ModesCentre {
 		public void sendAutooperData() {
 			try {
 				string fn = "pbr-000000-"+Date.ToString("yyyyMMdd") + ".csv";
-				TextWriter writer = new StreamWriter(fn,false,Encoding.ASCII);				
+				
 				string body = String.Join("\n",AutooperData);
+				/*TextWriter writer = new StreamWriter(fn, false, Encoding.ASCII);				
 				foreach (string str in AutooperData) {
 					writer.WriteLine(str);					
 				}
-				writer.Close();
+				writer.Close();*/
 
 				FileInfo file = new FileInfo(fn);
 				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
@@ -79,7 +80,7 @@ namespace VotGES.ModesCentre {
 				mess.Subject = "pbr-000000-" + Date.ToString("yyyyMMdd"); 
 				mess.Body = body;
 				mess.To.Add(MCSettings.Single.AutooperMail);
-				mess.Attachments.Add(new Attachment(fn));
+				//mess.Attachments.Add(new Attachment(fn));
 
 				mess.SubjectEncoding = System.Text.Encoding.Default;
 				mess.BodyEncoding = System.Text.Encoding.Default;

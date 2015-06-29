@@ -24,7 +24,7 @@ namespace MainSL.Views
 		public SutVedPage() {
 			InitializeComponent();
 			settings = new SettingsBase();
-			settings.Date = DateTime.Now.Date.AddDays(-1);
+			settings.Date = DateTime.Now.Date;
 			pnlSettings.DataContext = settings;
 			context = new ReportBaseDomainContext();
 			
