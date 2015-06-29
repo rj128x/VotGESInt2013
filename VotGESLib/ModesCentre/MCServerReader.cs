@@ -51,9 +51,10 @@ namespace VotGES.ModesCentre {
 						pbr.AddValue(item.DT.SystemToLocalHqEx(), item.Value);
 					}
 				}
-				LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx()));
+				LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx(),obj.Description));
 				bool ok=pbr.ProcessData();
-				LogInfo.Add("===Данные записаны в базу: " + (ok ? "Успеншно" : "Ошибка"));
+				//bool ok = true;
+				LogInfo.Add("===Данные записаны в базу: " + (ok ? "Успешно" : "Ошибка"));
 				pbr.addAutooperData(AutooperData);
 			}
 			foreach (IGenObject ch in obj.Children) {
@@ -63,10 +64,11 @@ namespace VotGES.ModesCentre {
 
 		public void sendAutooperData() {
 			try {
-				string fn = Date.ToString("yyyyMMddTHHmm") + ".csv";
-				TextWriter writer = new StreamWriter(Date.ToString("yyyyMMddTHHmm"));
+				string fn = "pbr-000000-"+Date.ToString("yyyyMMdd") + ".csv";
+				TextWriter writer = new StreamWriter(fn,false,Encoding.ASCII);				
+				string body = String.Join("\n",AutooperData);
 				foreach (string str in AutooperData) {
-					writer.WriteLine(str);
+					writer.WriteLine(str);					
 				}
 				writer.Close();
 
@@ -74,12 +76,13 @@ namespace VotGES.ModesCentre {
 				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
 
 				mess.From = new MailAddress(MCSettings.Single.SMTPFrom);
-				mess.Subject = Date.ToString("yyyyMMddTHHmm"); mess.Body = "";
+				mess.Subject = "pbr-000000-" + Date.ToString("yyyyMMdd"); 
+				mess.Body = body;
 				mess.To.Add(MCSettings.Single.AutooperMail);
 				mess.Attachments.Add(new Attachment(fn));
 
-				mess.SubjectEncoding = System.Text.Encoding.UTF8;
-				mess.BodyEncoding = System.Text.Encoding.UTF8;
+				mess.SubjectEncoding = System.Text.Encoding.Default;
+				mess.BodyEncoding = System.Text.Encoding.Default;
 				mess.IsBodyHtml = false;
 				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(MCSettings.Single.SMTPServer, MCSettings.Single.SMTPPort);
 				client.EnableSsl = true;

@@ -7,6 +7,7 @@ using System.Web.Routing;
 using VotGES.Web.Logging;
 using VotGES.Piramida;
 using VotGES.OgranGA;
+using VotGES.ModesCentre;
 
 namespace VotGES.Web
 {
@@ -29,6 +30,7 @@ namespace VotGES.Web
 
 		protected void Application_Start() {
 			DBSettings.init(Server.MapPath("/bin/Data/DBSettings.xml"));
+			MCSettings.init(Server.MapPath("/bin/Data/MCSettings.xml"));
 			try {
 				KapRemontsData.init(Server.MapPath("/bin/Data/KapRemontsData.xml"));
 				Logger.Info(KapRemontsData.Single.Data.Count.ToString());

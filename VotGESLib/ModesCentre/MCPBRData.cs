@@ -36,23 +36,25 @@ namespace VotGES.ModesCentre {
 		protected SortedList<DateTime, double> createInegratedData() {
 			SortedList<DateTime, double>  integr = new SortedList<DateTime, double>();
 			double sum = 0;
+			int index=0;
 			foreach (KeyValuePair<DateTime, double> de in Data) {
-				KeyValuePair<DateTime, double> next =  Data.Last();
-				if (de.Key == next.Key)
+				DateTime nextDate = index < Data.Count - 1 ? Data.Keys[index + 1] : Data.Last().Key;
+				if (de.Key == nextDate)
 					break;
 				DateTime dt = de.Key.AddMinutes(0);
-				double step = (de.Value + next.Value) / 60;
-				while (dt < next.Key) {
+				double step = (de.Value + Data[nextDate]) / 60;
+				while (dt < nextDate) {
 					integr.Add(dt, sum);
 					sum += step;
 					dt = dt.AddMinutes(1);
 				}
+				index++;
 			}
 			return integr;
 		}
 
 		protected bool writeToDB(string DBName,SortedList<DateTime,double>data,int parnumber) {
-
+			Logger.Info("Запись данных по объекту "+parnumber);
 			SqlConnection con = null;
 			bool ok = false;
 			try {
@@ -65,20 +67,23 @@ namespace VotGES.ModesCentre {
 				SqlCommand commandDel = transact.Connection.CreateCommand();
 				commandDel.CommandText = delStr;
 				commandDel.Transaction = transact;
-				//Logger.Info(delStr);
+				Logger.Info("Удаление ПБР");
 				commandDel.ExecuteNonQuery();
+				Logger.Info("===Удаление ПБР");
 
 				List<string> inserts = new List<string>();
 				foreach (KeyValuePair<DateTime, double> de in data) {
 					string ins = String.Format(InsertInfoFormat, parnumber, 0, Item, (de.Value*1000).ToString().Replace(',','.'), 2, de.Key.ToString(DateFormat), DateTime.Now.ToString(DateFormat), DBSettings.getSeason(de.Key));
 					inserts.Add(ins);
 					if (inserts.Count % 30 == 0 || de.Key == data.Last().Key) {
-						string insertsSQL = String.Join("\nUNION ALL\n", ins);
+						string insertsSQL = String.Join("\nUNION ALL\n", inserts);
 						string insertSQL = String.Format("{0}\n{1}", InsertIntoHeader, insertsSQL);
 						SqlCommand commandIns = transact.Connection.CreateCommand();
 						commandIns.CommandText = insertSQL;
 						commandIns.Transaction = transact;
+						Logger.Info("Запись данных");
 						commandIns.ExecuteNonQuery();
+						inserts.Clear();
 					}
 				}
 
@@ -99,13 +104,13 @@ namespace VotGES.ModesCentre {
 		public void addAutooperData(List<string> data) {
 			if (DataSettings.Autooper) {
 				foreach (KeyValuePair<DateTime, double> de in Data) {
-					data.Add(String.Format("{0};{1};{2}", Item, de.Key.ToString("yyyyMMddTHHmm"), de.Value));
+					data.Add(String.Format("{0};{1};{2};", Item, de.Key.ToString("yyyyMMddTHHmm"), de.Value));
 				}
 			}
 		}
 
 		public bool ProcessData() {
-			bool ok = false;
+			bool ok = true;
 			ok=ok&&writeToDB("P3000", Data, 212);
 			if (DataSettings.WriteIntegratedData) {
 				SortedList<DateTime, double> integr = createInegratedData();

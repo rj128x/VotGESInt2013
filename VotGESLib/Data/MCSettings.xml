@@ -6,11 +6,11 @@
   <MCPassword>mcV0tges</MCPassword>
 
   <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
-  <SMTPUser></SMTPUser>
-  <SMTPPassword></SMTPPassword>
+  <SMTPUser>autooper_votges</SMTPUser>
+  <SMTPPassword>Qaz12345</SMTPPassword>
   <SMTPPort>25</SMTPPort>
-  <SMTPDomain></SMTPDomain>
-  <SMTPFrom>SR-VOTGES-INT@votges.rushydro.ru</SMTPFrom>
+  <SMTPDomain>corp</SMTPDomain>
+  <SMTPFrom>autooper_votges@votges.rushydro.ru</SMTPFrom>
   <AutooperMail>autooper_votges@votges.rushydro.ru</AutooperMail>
   <MCData>
     <MCSettingsRecord>
