@@ -37,18 +37,19 @@ namespace VotGES.ModesCentre {
 
 		protected SortedList<DateTime, double> createInegratedData() {
 			SortedList<DateTime, double>  integr = new SortedList<DateTime, double>();
-			double sum = 0;
 			int index=0;
+			
 			foreach (KeyValuePair<DateTime, double> de in Data) {
 				DateTime nextDate = index < Data.Count - 1 ? Data.Keys[index + 1] : Data.Last().Key;
 				if (de.Key == nextDate)
 					break;
 				DateTime dt = de.Key.AddMinutes(0);
-				double step = (de.Value + Data[nextDate]) / 60;
+				int i = 0;
 				while (dt < nextDate) {
-					integr.Add(dt, sum);
-					sum += step;
+					double sum = de.Value + (Data[nextDate] - de.Value) / 60 * i;
+					integr.Add(dt, sum);					
 					dt = dt.AddMinutes(1);
+					i++;
 				}
 				index++;
 			}
@@ -87,13 +88,12 @@ namespace VotGES.ModesCentre {
 				commandDel.Transaction = transact;
 				Logger.Info("Удаление ПБР");
 				commandDel.ExecuteNonQuery();
-				Logger.Info("===Удаление ПБР");
 
 				List<string> inserts = new List<string>();
 				foreach (KeyValuePair<DateTime, double> de in data) {
 					string ins = String.Format(InsertInfoFormat, parnumber, 0, Item, (de.Value*1000).ToString().Replace(',','.'), 2, de.Key.ToString(DateFormat), DateTime.Now.ToString(DateFormat), DBSettings.getSeason(de.Key));
 					inserts.Add(ins);
-					if (inserts.Count % 30 == 0 || de.Key == data.Last().Key) {
+					if (inserts.Count % 100 == 0 || de.Key == data.Last().Key) {
 						string insertsSQL = String.Join("\nUNION ALL\n", inserts);
 						string insertSQL = String.Format("{0}\n{1}", InsertIntoHeader, insertsSQL);
 						SqlCommand commandIns = transact.Connection.CreateCommand();
@@ -131,9 +131,11 @@ namespace VotGES.ModesCentre {
 			bool ok = true;
 			DataHH = createHHData();
 			ok=ok&&writeToDB("P3000", DataHH, 212);
+			ok = ok && writeToDB("P2000", DataHH, 212);
 			if (DataSettings.WriteIntegratedData) {
 				SortedList<DateTime, double> integr = createInegratedData();
 				ok=ok&&writeToDB("P3000", integr, 204);
+				ok = ok && writeToDB("P2000", integr, 204);
 			}
 			return ok;
 		}

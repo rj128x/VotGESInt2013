@@ -15,6 +15,7 @@ namespace VotGES.ModesCentre {
 		public List<string> LogInfo { get; set; }
 		public List<string> AutooperData { get; set; }
 		public MCServerReader(DateTime date) {
+			Logger.Info("Чтение ПБР за " + date.ToString());
 			Date = date;
 			LogInfo = new List<string>();
 			AutooperData = new List<string>();
@@ -28,7 +29,8 @@ namespace VotGES.ModesCentre {
 				ts = api.GetModesTimeSlice(Date.LocalHqToSystemEx(), zone
 						  , TreeContent.PGObjects /*только оборудование, по которому СО публикует ПГ(включая родителей)*/
 						  , false);
-
+								
+								
 				foreach (IGenObject obj in ts.GenTree) {
 					getPlan(api, obj);
 				}
