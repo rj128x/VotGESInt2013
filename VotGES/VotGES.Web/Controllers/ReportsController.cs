@@ -206,6 +206,7 @@ namespace VotGES.Web.Controllers
 
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult PBRFromMC(int year, int month, int day) {
+			Logger.Info(String.Format("Запрос ПБР из MC за {0}-{1}-{2}", year, month, day));
 			MCServerReader reader = new MCServerReader(new DateTime(year, month, day));
 			ViewResult view = View("MCReport", reader);
 			return view;
