@@ -211,5 +211,12 @@ namespace VotGES.Web.Controllers
 			ViewResult view = View("MCReport", reader);
 			return view;
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult PBRFromMCToday() {
+			Logger.Info(String.Format("Запрос ПБР из MC за {0}", DateTime.Now.Date));
+			MCServerReader reader = new MCServerReader(DateTime.Now.Date);
+			return Content("finish");
+		}
 	}
 }

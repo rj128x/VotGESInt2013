@@ -239,6 +239,9 @@
     <Content Include="docs\Instruction8075.doc" />
     <Content Include="bat\NPRCH.bat" />
     <Content Include="bat\reindex.bat" />
+    <Content Include="bat\MCPBR.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
   </ItemGroup>

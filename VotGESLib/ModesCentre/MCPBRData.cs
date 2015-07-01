@@ -72,6 +72,22 @@ namespace VotGES.ModesCentre {
 			return hh;
 		}
 
+		protected SortedList<DateTime, double> createHH15Data() {
+			SortedList<DateTime, double> hh = new SortedList<DateTime, double>();
+			int index = 0;
+			foreach (KeyValuePair<DateTime, double> de in Data) {
+				hh.Add(de.Key.AddMinutes(-15), de.Value);
+				DateTime nextDate = index < Data.Count - 1 ? Data.Keys[index + 1] : Data.Last().Key;
+				if (de.Key == nextDate)
+					break;
+				DateTime dt = de.Key.AddMinutes(30);
+				double val = (de.Value + Data[nextDate]) / 2;
+				hh.Add(dt.AddMinutes(-15), val);
+				index++;
+			}
+			return hh;
+		}
+
 		protected bool writeToDB(string DBName,SortedList<DateTime,double>data,int parnumber) {
 			Logger.Info("Запись данных по объекту "+parnumber);
 			SqlConnection con = null;
@@ -81,7 +97,7 @@ namespace VotGES.ModesCentre {
 				con.Open();
 				SqlTransaction transact = con.BeginTransaction();
 				string delStr = String.Format("DELETE FROM DATA WHERE object=0 and objtype=2 and item={0} and parnumber={1} and data_date>='{2}' and data_date<='{3}'",
-				Item,parnumber, Data.First().Key.ToString(DateFormat), Data.Last().Key.ToString(DateFormat));
+				Item,parnumber, data.First().Key.ToString(DateFormat), data.Last().Key.ToString(DateFormat));
 
 				SqlCommand commandDel = transact.Connection.CreateCommand();
 				commandDel.CommandText = delStr;
@@ -130,8 +146,10 @@ namespace VotGES.ModesCentre {
 		public bool ProcessData() {
 			bool ok = true;
 			DataHH = createHHData();
+			SortedList<DateTime, double> data15 = createHH15Data();
 			ok=ok&&writeToDB("P3000", DataHH, 212);
 			ok = ok && writeToDB("P2000", DataHH, 212);
+			ok = ok && writeToDB("P2000", data15, 213);
 			if (DataSettings.WriteIntegratedData) {
 				SortedList<DateTime, double> integr = createInegratedData();
 				ok=ok&&writeToDB("P3000", integr, 204);
