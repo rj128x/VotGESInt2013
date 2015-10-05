@@ -143,9 +143,12 @@ namespace VotGES.ModesCentre {
 			}
 		}
 
+		public void CreateData() {
+			DataHH = createHHData();			
+		}
+
 		public bool ProcessData() {
 			bool ok = true;
-			DataHH = createHHData();
 			SortedList<DateTime, double> data15 = createHH15Data();
 			ok=ok&&writeToDB("P3000", DataHH, 212);
 			ok = ok && writeToDB("P2000", DataHH, 212);

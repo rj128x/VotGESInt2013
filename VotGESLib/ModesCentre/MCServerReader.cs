@@ -17,15 +17,33 @@ namespace VotGES.ModesCentre {
 		public List<string> LogInfo { get; set; }
 		public List<string> AutooperData { get; set; }
 		public int NPBR { get; set; }
+		protected IApiExternal api;
+		public List<MCPBRData> ProcessedPBRS;
+
+		public void modesConnect() {
+			int index = 0;
+			while (!ModesApiFactory.IsInitilized && index<=10) {
+				try {
+					Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
+					ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
+					api = ModesApiFactory.GetModesApi();
+				}
+				catch (Exception e) {
+					Logger.Info(e.ToString());
+				}
+				index++;
+			}
+		}
+
 		public MCServerReader(DateTime date) {
 			Logger.Info("Чтение ПБР за " + date.ToString());
 			Date = date;
 			LogInfo = new List<string>();
 			AutooperData = new List<string>();
 			Logger.Info("Connect MC");
+			ProcessedPBRS = new List<MCPBRData>();
 			try {
-				ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
-				IApiExternal api = ModesApiFactory.GetModesApi();
+				modesConnect();
 				SyncZone zone = SyncZone.First;
 
 				IModesTimeSlice ts = null;
@@ -35,9 +53,52 @@ namespace VotGES.ModesCentre {
 
 				bool ok = true;				
 				foreach (IGenObject obj in ts.GenTree) {
-					ok=ok&&getPlan(api, obj);
+					ok=ok&&getPlan(obj);
 				}
 				if (ok) {
+					if (ProcessedPBRS.Count != 7) {
+						Logger.Info("Количество ПБР !=7");
+					}
+					else {
+						foreach (MCPBRData pbr in ProcessedPBRS) {
+							pbr.CreateData();
+							pbr.addAutooperData(AutooperData);
+						}
+						Logger.Info("АО кол.строк " + AutooperData.Count);
+						if (AutooperData.Count == 100) {
+							Logger.Info("Отправка в АО кол.строк ");
+							try {
+								sendAutooperData();
+								Logger.Info("Данный отправлены  в АО");
+							}
+							catch (Exception e) {
+								Logger.Info("Ошибка при отправке данных в АО");
+								Logger.Info(e.ToString());
+							}
+						}
+						else {
+							Logger.Info("Неверное количество данных в АО");
+						}
+						
+					}			
+				}
+
+				if (ok) {
+					Logger.Info("Зaпись ПБР в Базу");
+					foreach (MCPBRData pbr in ProcessedPBRS) {
+						try {
+							bool okWrite = false;
+							int i = 0;
+							while (!okWrite && i<3) {
+								Logger.Info(String.Format("Запись {0} ПБР. Попытка {1}", pbr.Item, i));
+								okWrite = pbr.ProcessData();
+								i++;
+							}
+						}
+						catch {
+							Logger.Info("Ошибка при записи ПБР в базу");
+						}
+					}
 					try {
 						Logger.Info("Запись номера ПБР: " + NPBR.ToString());
 						SqlConnection con = PiramidaAccess.getConnection("P2000");
@@ -52,24 +113,23 @@ namespace VotGES.ModesCentre {
 					catch (Exception e){
 						Logger.Info(e.ToString());
 						Logger.Info("Ошибка при записи номера ПБР в базу");
-					}
-				}
-				sendAutooperData();
+					}					
+				}					
 				ModesApiFactory.CloseConnection();
 			} catch (Exception e) {
 				Logger.Info("Ошибка при получении ПБР с сервера MC " + e);
 			}
 		}
 
-		public bool getPlan(IApiExternal api, IGenObject obj) {
+		public bool getPlan(IGenObject obj) {			
 			DateTime dt1 = Date.Date.LocalHqToSystemEx();
 			DateTime dt0 = Date.Date.AddDays(1).LocalHqToSystemEx();
+			modesConnect();
 			IList<PlanValueItem> data = api.GetPlanValuesActual(dt1, dt0, obj);
 			bool ok = true;
 			if (data.Count > 0) {
 				Logger.Info(String.Format("Обработка ПБР для {0}({1})",obj.Description,obj.Id));
 				MCPBRData pbr = new MCPBRData(obj.Id);
-				int index = 0;
 				foreach (PlanValueItem item in data) {
 					if (item.ObjFactor == 0) {
 						pbr.AddValue(item.DT.SystemToLocalHqEx(), item.Value);						
@@ -84,17 +144,18 @@ namespace VotGES.ModesCentre {
 				}
 				LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx(),obj.Description));
 				if (data.Count > 1) {
-					ok = ok && pbr.ProcessData();
-					LogInfo.Add("===Данные записаны в базу: " + (ok ? "Успешно" : "Ошибка"));
-					pbr.addAutooperData(AutooperData);
+					//ok = ok && pbr.ProcessData();					
+					ProcessedPBRS.Add(pbr);
 				}
 				else {
 					LogInfo.Add("Недостаточно данных");
 					ok = false;
-				}				
+				}
+				LogInfo.Add("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
+				Logger.Info("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
 			}
 			foreach (IGenObject ch in obj.Children) {
-				ok=ok && getPlan(api, ch);
+				ok=ok && getPlan(ch);
 			}
 			return ok;
 		}
