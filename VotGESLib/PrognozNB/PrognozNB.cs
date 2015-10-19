@@ -333,10 +333,6 @@ namespace VotGES.PrognozNB
 		}
 
 
-
-
-
-
 		public void AddChartData(ChartData data) {
 			ChartDataSerie prognozNBSerie=new ChartDataSerie();
 			foreach (KeyValuePair<DateTime,double> de in Prognoz) {

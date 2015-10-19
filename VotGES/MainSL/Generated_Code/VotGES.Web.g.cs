@@ -5311,6 +5311,8 @@ namespace VotGES.PrognozNB
         
         private double _qFakt;
         
+        private List<PrognozRusaData> _rusa;
+        
         private double _vyrabFakt;
         
         #region Определение методов расширяемости
@@ -5332,6 +5334,8 @@ namespace VotGES.PrognozNB
         partial void OnPrognozValuesChanged();
         partial void OnQFaktChanging(double value);
         partial void OnQFaktChanged();
+        partial void OnRUSAChanging(List<PrognozRusaData> value);
+        partial void OnRUSAChanged();
         partial void OnVyrabFaktChanging(double value);
         partial void OnVyrabFaktChanged();
 
@@ -5493,6 +5497,31 @@ namespace VotGES.PrognozNB
         }
         
         /// <summary>
+        /// Возвращает или задает значение параметра "RUSA".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public List<PrognozRusaData> RUSA
+        {
+            get
+            {
+                return this._rusa;
+            }
+            set
+            {
+                if ((this._rusa != value))
+                {
+                    this.OnRUSAChanging(value);
+                    this.RaiseDataMemberChanging("RUSA");
+                    this.ValidateProperty("RUSA", value);
+                    this._rusa = value;
+                    this.RaiseDataMemberChanged("RUSA");
+                    this.OnRUSAChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Возвращает или задает значение параметра "VyrabFakt".
         /// </summary>
         [DataMember()]
@@ -5512,6 +5541,229 @@ namespace VotGES.PrognozNB
                     this._vyrabFakt = value;
                     this.RaiseDataMemberChanged("VyrabFakt");
                     this.OnVyrabFaktChanged();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Класс "PrognozRusaData".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.PrognozNB")]
+    public sealed partial class PrognozRusaData : ComplexObject
+    {
+        
+        private DateTime _date;
+        
+        private double _kpd;
+        
+        private double _napor;
+        
+        private double _p;
+        
+        private double _q;
+        
+        private string _sostav;
+        
+        private double _udRash;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnDateChanging(DateTime value);
+        partial void OnDateChanged();
+        partial void OnKPDChanging(double value);
+        partial void OnKPDChanged();
+        partial void OnNaporChanging(double value);
+        partial void OnNaporChanged();
+        partial void OnPChanging(double value);
+        partial void OnPChanged();
+        partial void OnQChanging(double value);
+        partial void OnQChanged();
+        partial void OnSostavChanging(string value);
+        partial void OnSostavChanged();
+        partial void OnUdRashChanging(double value);
+        partial void OnUdRashChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="PrognozRusaData"/>.
+        /// </summary>
+        public PrognozRusaData()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Date".
+        /// </summary>
+        [DataMember()]
+        public DateTime Date
+        {
+            get
+            {
+                return this._date;
+            }
+            set
+            {
+                if ((this._date != value))
+                {
+                    this.OnDateChanging(value);
+                    this.RaiseDataMemberChanging("Date");
+                    this.ValidateProperty("Date", value);
+                    this._date = value;
+                    this.RaiseDataMemberChanged("Date");
+                    this.OnDateChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "KPD".
+        /// </summary>
+        [DataMember()]
+        public double KPD
+        {
+            get
+            {
+                return this._kpd;
+            }
+            set
+            {
+                if ((this._kpd != value))
+                {
+                    this.OnKPDChanging(value);
+                    this.RaiseDataMemberChanging("KPD");
+                    this.ValidateProperty("KPD", value);
+                    this._kpd = value;
+                    this.RaiseDataMemberChanged("KPD");
+                    this.OnKPDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Napor".
+        /// </summary>
+        [DataMember()]
+        public double Napor
+        {
+            get
+            {
+                return this._napor;
+            }
+            set
+            {
+                if ((this._napor != value))
+                {
+                    this.OnNaporChanging(value);
+                    this.RaiseDataMemberChanging("Napor");
+                    this.ValidateProperty("Napor", value);
+                    this._napor = value;
+                    this.RaiseDataMemberChanged("Napor");
+                    this.OnNaporChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "P".
+        /// </summary>
+        [DataMember()]
+        public double P
+        {
+            get
+            {
+                return this._p;
+            }
+            set
+            {
+                if ((this._p != value))
+                {
+                    this.OnPChanging(value);
+                    this.RaiseDataMemberChanging("P");
+                    this.ValidateProperty("P", value);
+                    this._p = value;
+                    this.RaiseDataMemberChanged("P");
+                    this.OnPChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Q".
+        /// </summary>
+        [DataMember()]
+        public double Q
+        {
+            get
+            {
+                return this._q;
+            }
+            set
+            {
+                if ((this._q != value))
+                {
+                    this.OnQChanging(value);
+                    this.RaiseDataMemberChanging("Q");
+                    this.ValidateProperty("Q", value);
+                    this._q = value;
+                    this.RaiseDataMemberChanged("Q");
+                    this.OnQChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Sostav".
+        /// </summary>
+        [DataMember()]
+        public string Sostav
+        {
+            get
+            {
+                return this._sostav;
+            }
+            set
+            {
+                if ((this._sostav != value))
+                {
+                    this.OnSostavChanging(value);
+                    this.RaiseDataMemberChanging("Sostav");
+                    this.ValidateProperty("Sostav", value);
+                    this._sostav = value;
+                    this.RaiseDataMemberChanged("Sostav");
+                    this.OnSostavChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "UdRash".
+        /// </summary>
+        [DataMember()]
+        public double UdRash
+        {
+            get
+            {
+                return this._udRash;
+            }
+            set
+            {
+                if ((this._udRash != value))
+                {
+                    this.OnUdRashChanging(value);
+                    this.RaiseDataMemberChanging("UdRash");
+                    this.ValidateProperty("UdRash", value);
+                    this._udRash = value;
+                    this.RaiseDataMemberChanged("UdRash");
+                    this.OnUdRashChanged();
                 }
             }
         }

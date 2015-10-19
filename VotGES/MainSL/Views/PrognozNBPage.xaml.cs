@@ -127,6 +127,8 @@ namespace MainSL.Views
 					rightPanel.Visibility = System.Windows.Visibility.Visible;
 
 					pnlAnswer.DataContext = oper.Value;
+					RusaGrid.ItemsSource = oper.Value.RUSA;
+										
 				} catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());
 					GlobalStatus.Current.ErrorLoad("Ошибка");

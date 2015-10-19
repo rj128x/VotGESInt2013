@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using VotGES.Piramida;
 using VotGES.Chart;
+using VotGES.Rashod;
 
 namespace VotGES.PrognozNB
 {
@@ -16,6 +17,18 @@ namespace VotGES.PrognozNB
 		public double NBMin { get; set; }
 		public double NBMax { get; set; }
 	}
+
+	public class PrognozRusaData {
+		public DateTime Date { get; set; }
+		public string Sostav { get; set; }
+		public double KPD { get; set; }
+		public double Q { get; set; }
+		public double P { get; set; }
+		public double Napor { get; set; }
+		public double UdRash { get; set; }
+	}
+
+
 	public class PrognozNBByPBRAnswer
 	{
 
@@ -25,7 +38,8 @@ namespace VotGES.PrognozNB
 		public double NBAvg { get; set; }
 		public double NBMin { get; set; }
 		public double NBMax { get; set; }
-		public List<PrognozValue> PrognozValues{get;set;}		
+		public List<PrognozValue> PrognozValues{get;set;}
+		public List<PrognozRusaData> RUSA{get;set;}
 	}
 
 	public class PrognozNBByPBR : PrognozNBFunc
@@ -157,6 +171,7 @@ namespace VotGES.PrognozNB
 
 		public void processAnswer() {
 			PrognozNBByPBRAnswer answer=new PrognozNBByPBRAnswer();
+			answer.RUSA = new List<PrognozRusaData>();
 			foreach (DateTime date in PFakt.Keys) {
 				if (date > DateStart && date <= DatePrognozStart) {
 					answer.VyrabFakt += PFakt[date] / 2;
@@ -221,6 +236,31 @@ namespace VotGES.PrognozNB
 
 			answer.PrognozValues = values.Values.ToList();
 			PrognozAnswer = answer;
+
+			foreach (KeyValuePair<DateTime, double> ke in Prognoz.PArr) {
+				try {
+					PrognozRusaData dat = new PrognozRusaData();
+					double p = ke.Value;
+					double napor = Prognoz.Napors[ke.Key];
+					List<int> sostav = new List<int>();
+					List<int> avail = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+					double q = RUSA.getOptimRashod(p, napor, true, sostav, avail);
+					sostav.Sort();
+					string str = String.Format("{0}: {1} (Расход: {2} КПД: {3})", ke.Key, String.Join(",", sostav), q, 0);
+					dat.Date = ke.Key;
+					dat.KPD = RashodTable.KPD(p, napor, q)*100;
+					dat.Sostav = String.Join(",", sostav);
+					dat.UdRash = q/p;
+					dat.Q = q;
+					dat.P = p;
+					dat.Napor = napor;
+					answer.RUSA.Add(dat);
+				}
+				catch (Exception e) {
+					//Logger.Info(e.ToString());
+				}
+			}
+			
 		}
 
 		public void startPrognoz(bool correct) {
