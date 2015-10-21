@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotGESLib", "VotGESLib\VotGESLib.csproj", "{C4806689-AB9A-4F1F-998A-97B67D0DC9FE}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainSL", "VotGES\MainSL\MainSL.csproj", "{32D8A89A-EADA-4430-B89E-E3062C2B31F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotGES.Web", "VotGES\VotGES.Web\VotGES.Web.csproj", "{16BCD066-C421-4DEA-9035-FFA2EDA14B3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPrognoz", "TestPrognoz\TestPrognoz.csproj", "{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,16 @@ Global
 		{16BCD066-C421-4DEA-9035-FFA2EDA14B3A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{16BCD066-C421-4DEA-9035-FFA2EDA14B3A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{16BCD066-C421-4DEA-9035-FFA2EDA14B3A}.Release|x86.ActiveCfg = Release|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,5 +137,6 @@ Global
 		{4C8CEEC9-12D6-4092-BC0D-64BC9B16229B} = {09D2F916-BE5F-4D37-830F-493AD15E4523}
 		{32D8A89A-EADA-4430-B89E-E3062C2B31F6} = {1D39987A-4F1F-4A62-96C0-7936A23D7E79}
 		{16BCD066-C421-4DEA-9035-FFA2EDA14B3A} = {1D39987A-4F1F-4A62-96C0-7936A23D7E79}
+		{8AEB6A41-7C6A-4930-89DC-985562D3ABD7} = {09D2F916-BE5F-4D37-830F-493AD15E4523}
 	EndGlobalSection
 EndGlobal

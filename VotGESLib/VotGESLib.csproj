@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,6 +89,7 @@
     <Compile Include="OgranGA\OgranGA.cs" />
     <Compile Include="OgranGA\OgranGAReport.cs" />
     <Compile Include="OgranGA\PuskStopFullReport.cs" />
+    <Compile Include="OutputLog.cs" />
     <Compile Include="PBR\GraphVyrab.cs" />
     <Compile Include="PBR\PBRData.cs" />
     <Compile Include="PBR\PBRDataHH.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="PrognozNB\PrognozNB.cs" />
     <Compile Include="PrognozNB\PrognozNBByPBR.cs" />
     <Compile Include="PrognozNB\PrognozNBFunc.cs" />
+    <Compile Include="PrognozNB\TestPrognoz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rashods.Designer.cs">
       <AutoGen>True</AutoGen>
