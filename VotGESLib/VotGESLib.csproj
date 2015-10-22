@@ -75,7 +75,9 @@
     <Compile Include="Chart\ChartProperties.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ModesCentre\MCMaketData.cs" />
     <Compile Include="ModesCentre\MCPBRData.cs" />
+    <Compile Include="ModesCentre\MCMaketReader.cs" />
     <Compile Include="ModesCentre\MCServerReader.cs" />
     <Compile Include="ModesCentre\MCSettings.cs" />
     <Compile Include="nnet.Designer.cs">

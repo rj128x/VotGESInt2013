@@ -42,6 +42,7 @@ namespace VotGES.ModesCentre {
 			AutooperData = new List<string>();
 			Logger.Info("Connect MC");
 			ProcessedPBRS = new List<MCPBRData>();
+
 			try {
 				modesConnect();
 				SyncZone zone = SyncZone.First;
@@ -51,10 +52,15 @@ namespace VotGES.ModesCentre {
 						  , TreeContent.PGObjects /*только оборудование, по которому СО публикует ПГ(включая родителей)*/
 						  , false);
 
+				
 				bool ok = true;				
 				foreach (IGenObject obj in ts.GenTree) {
-					ok=ok&&getPlan(obj);
+					ok=ok&&getPlan(obj);					
 				}
+
+				Logger.Info("finish");
+				return;
+
 				if (ok) {
 					if (ProcessedPBRS.Count != 7) {
 						Logger.Info("Количество ПБР !=7");
@@ -121,11 +127,13 @@ namespace VotGES.ModesCentre {
 			}
 		}
 
+		
+
 		public bool getPlan(IGenObject obj) {			
 			DateTime dt1 = Date.Date.LocalHqToSystemEx();
 			DateTime dt0 = Date.Date.AddDays(1).LocalHqToSystemEx();
 			modesConnect();
-			IList<PlanValueItem> data = api.GetPlanValuesActual(dt1, dt0, obj);
+			IList<PlanValueItem> data = api.GetPlanValuesActual(dt1, dt0, obj);			
 			bool ok = true;
 			if (data.Count > 0) {
 				Logger.Info(String.Format("Обработка ПБР для {0}({1})",obj.Description,obj.Id));

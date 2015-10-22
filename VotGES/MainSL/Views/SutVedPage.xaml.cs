@@ -77,6 +77,11 @@ namespace MainSL.Views
 			FloatWindow.OpenWindow(uri);
 		}
 
+		private void btnGet53500MC_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/MaketFromMC?year={0}&month={1}&day={2}", settings.Date.Year, settings.Date.Month, settings.Date.Day);
+			FloatWindow.OpenWindow(uri);
+		}
+
 		
 
 

@@ -218,5 +218,20 @@ namespace VotGES.Web.Controllers
 			MCServerReader reader = new MCServerReader(DateTime.Now.Date);
 			return Content("finish");
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult MaketFromMCToday() {
+			Logger.Info(String.Format("Запрос Макета 53500 из MC за {0}", DateTime.Now.Date));
+			MCMaketReader reader = new MCMaketReader(DateTime.Now.Date);
+			return Content("finish");
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult MaketFromMC(int year, int month, int day) {
+			Logger.Info(String.Format("Запрос Макета из MC за {0}-{1}-{2}", year, month, day));
+			MCMaketReader reader = new MCMaketReader(new DateTime(year, month, day));
+			ViewResult view = View("MCMaketReport", reader);
+			return view;
+		}
 	}
 }

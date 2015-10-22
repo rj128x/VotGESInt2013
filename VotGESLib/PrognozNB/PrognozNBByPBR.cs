@@ -237,13 +237,36 @@ namespace VotGES.PrognozNB
 			answer.PrognozValues = values.Values.ToList();
 			PrognozAnswer = answer;
 
+
+			SortedList<DateTime,List<int>>Avail=new SortedList<DateTime,List<int>>();
+			try {
+				List<int> allGa = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+				List<PiramidaEnrty> m53500 = PiramidaAccess.GetDataFromDB(Prognoz.PArr.Keys.First(), Prognoz.PArr.Keys.Last(), 53500, 2, 212, allGa, true, true, "P3000");
+				foreach (PiramidaEnrty rec in m53500) {
+					if (!Avail.ContainsKey(rec.Date)) {
+						Avail.Add(rec.Date, new List<int>());
+						Avail.Add(rec.Date.AddMinutes(-30), new List<int>());
+					}
+					if (!Avail[rec.Date].Contains(rec.Item) && rec.Value0 > 0) {
+						Avail[rec.Date].Add(rec.Item);
+						Avail[rec.Date.AddMinutes(-30)].Add(rec.Item);
+					}
+				}
+			}
+			catch {}
+
 			foreach (KeyValuePair<DateTime, double> ke in Prognoz.PArr) {
 				try {
+					
 					PrognozRusaData dat = new PrognozRusaData();
 					double p = ke.Value;
 					double napor = Prognoz.Napors[ke.Key];
 					List<int> sostav = new List<int>();
 					List<int> avail = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+					try{
+						avail=Avail[ke.Key];						
+					}catch{};
+					//Logger.Info(String.Format("{0}: {1}", ke.Key, String.Join(",", avail)));
 					double q = RUSA.getOptimRashod(p, napor, true, sostav, avail);
 					sostav.Sort();
 					string str = String.Format("{0}: {1} (Расход: {2} КПД: {3})", ke.Key, String.Join(",", sostav), q, 0);

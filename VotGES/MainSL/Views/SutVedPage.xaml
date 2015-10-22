@@ -25,6 +25,9 @@
                     <Button Content="Выгрузить ПБР из MC" Name="btnGetPBRMC"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnGetPBRMC_Click"/>
+                    <Button Content="Выгрузить 53500 из MC" Name="btnGet53500MC"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnGet53500MC_Click"/>
                     <Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20" Visibility="Collapsed"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnPrikaz20_Click"/>

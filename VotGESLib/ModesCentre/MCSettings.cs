@@ -12,11 +12,23 @@ namespace VotGES.ModesCentre {
 		public bool Autooper { get; set; }
 	}
 
+	public class MCMaketVar {
+		public int PiramidaCode { get; set; }
+		public int MCCode { get; set; }
+	}
+
+	public class MCMaketRecord {
+		public int MCcode { get; set; }
+		public int GA { get; set; }
+		public List<MCMaketVar> Vars { get; set; }
+	}
+
 	public class MCSettings {
 		public string MCServer { get; set; }
 		public string MCUser { get; set; }
 		public string MCPassword { get; set; }
 		public List<MCSettingsRecord> MCData { get; set; }
+		public List<MCMaketRecord> MaketData { get; set; }
 		public static MCSettings Single { get; protected set; }
 
 		public string SMTPServer { get; set; }
