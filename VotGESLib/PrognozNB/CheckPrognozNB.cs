@@ -23,33 +23,37 @@ namespace VotGES.PrognozNB
 		}
 
 		public void startPrognoz(bool correct) {
-			prognoz = new PrognozNB();
+			Prognoz = new PrognozNB();
 
-			prognoz.FirstData = readFirstData(DatePrognozStart);
+			Prognoz.FirstData = readFirstData(DatePrognozStart);
+			Prognoz.FirstDataSut = readFirstDataSut(DatePrognozStart);
 			readP();
 			readPBR();
 			readWater();
 			checkData(DateStart,DateEnd);
 
-			prognoz.DatePrognozStart = DatePrognozStart;
-			prognoz.DatePrognozEnd = DateEnd;
-			prognoz.T = TSum / TCount;
-			prognoz.PArr = new SortedList<DateTime, double>();
-			prognoz.IsQFakt = IsQFakt;
+			Prognoz.DatePrognozStart = DatePrognozStart;
+			Prognoz.DatePrognozEnd = DateEnd;
+			Prognoz.PArr = new SortedList<DateTime, double>();
+			Prognoz.IsQFakt = IsQFakt;
 			if (IsQFakt) {
 				foreach (KeyValuePair<DateTime,double> de in QFakt) {
 					if (de.Key > DatePrognozStart) {
-						prognoz.PArr.Add(de.Key, de.Value);
+						Prognoz.PArr.Add(de.Key, de.Value);
 					}
 				}
 			} else {
 				foreach (KeyValuePair<DateTime,double> de in PFakt) {
+					DateTime dt = de.Key.Minute == 0 ? de.Key : de.Key.AddMinutes(60);
+					if (!Prognoz.PArr.ContainsKey(dt))
+						Prognoz.PArr.Add(dt, 0);
 					if (de.Key > DatePrognozStart) {
-						prognoz.PArr.Add(de.Key, de.Value);
+						Prognoz.PArr[dt]+= de.Value;
 					}
 				}
 			}
-			prognoz.calcPrognoz(correct);
+			//prognoz.calcPrognoz(correct);
+			Prognoz.calcPrognozNeW();
 		}
 
 		public override ChartAnswer getChart() {

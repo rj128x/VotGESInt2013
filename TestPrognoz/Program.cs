@@ -5,22 +5,22 @@ using System.Text;
 using VotGES;
 using VotGES.Piramida;
 using VotGES.PrognozNB;
+using System.Runtime.InteropServices;
 
 namespace TestPrognoz
 {
     public class Program
     {
+			[DllImport("C:/dc_votges/dc_votges.dll", EntryPoint="predict_ub")]
+			public static extern double predict_ub(String iv);
 			static void Main(string[] args) {
-				Logger.InitFileLogger("C:/prognoz", "logL");
-				DBSettings.init();
-				TestPrognozClass TP = new TestPrognozClass();
-				//TP.readData();
-				//TP.SaveInitData("C:/Prognoz/InitFull.ser");
-				TP.ReadInitData("C:/Prognoz/InitFull.ser");
-				TP.ProcessData();
-				TP.SaveResultData("C:/prognoz/Data.ser");
-				//TP.ReadResultData("C:/prognoz/Data.ser");
-				TP.TestData();
+				double v = predict_ub("0;1445385600;1;1;1;1;1;1;1;1;746;746;746;82;82;82;0;0;;;;;2173;2693;2916.96734466636;2921.24655659458;3476.88443774899;3376.87191196921;3753.26760666277;4078.02587382522;4102.10659945451;3833.31540488522;2390.32844340541;2130.54184200273;1726.57569824165;1466.88178453146;1227.76466906511;973.752007418832;1140.82581205675;960.164813841798;953.969975464899;1585.72463804782;3945.7581188598;3449.24831530336;3464.54128046239;3484.10603292577;3495.95088218556;2999.3834344026;2996.37010363974;2996.44320569841;3002.94609552199;3522.55695350945;3541.20044847688;3551.77486746659;3566.27056651717;3570.29218024869;3582.05979251186;3063.15584254314;1510.67078734787;1494.06478279574;88.9137988505747;88.8941982758621;88.8684016169882;88.8599770114942;88.8531350574713;88.8360344827586;88.8332931034483;88.824356321839;88.8458649425287;88.8580603448276;88.8572598870057;88.86");
+				Console.WriteLine(v.ToString());
+				Console.ReadLine();
+
+
+
+				
 			}
     }
 }

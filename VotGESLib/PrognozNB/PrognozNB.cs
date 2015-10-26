@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VotGES.Chart;
+using VotGES.Rashod;
 
 namespace VotGES.PrognozNB
 {
@@ -15,65 +16,32 @@ namespace VotGES.PrognozNB
 		public double T { get; set; }
 		public double NB { get; set; }
 		public double VB { get; set; }
+		public double Pritok { get; set; }
 	}
 	
 	public class PrognozNB
-	{
-		protected SortedList<DateTime,PrognozNBFirstData> firstData;
-		public SortedList<DateTime, PrognozNBFirstData> FirstData {
-			get { return firstData; }
-			set { firstData = value; }
-		}
+	{		
+		public SortedList<DateTime, PrognozNBFirstData> FirstData { get; set; }
+		public SortedList<DateTime, PrognozNBFirstData> FirstDataSut { get; set; }
 
-		double t=0;
-		public double T {
-			get { return t; }
-			set { t = value; }
-		}
 		
-		protected DateTime datePrognozStart;
-		public DateTime DatePrognozStart {
-			get { return datePrognozStart; }
-			set { datePrognozStart = value; }
-		}
+		public double T  {get;set;}
+		
+		public DateTime DatePrognozStart {get;set;} 
 
-		protected DateTime datePrognozEnd;
-		public DateTime DatePrognozEnd {
-			get { return datePrognozEnd; }
-			set { datePrognozEnd = value; }
-		}
+		public DateTime DatePrognozEnd{get;set;} 
 
-		protected SortedList<DateTime, double> rashods;
-		public SortedList<DateTime, double> Rashods {
-			get { return rashods; }
-			protected set { rashods = value; }
-		}
+		public SortedList<DateTime, double> Rashods {get;set;}
 
-		protected SortedList<DateTime, double> napors;
-		public SortedList<DateTime, double> Napors {
-			get { return napors; }
-			protected set { napors = value; }
-		}
+		public SortedList<DateTime, double> Napors {get;set;}
 
-		protected SortedList<DateTime, double> pArr;
-		public SortedList<DateTime, double> PArr {
-			get { return pArr; }
-			set { pArr = value; }
-		}
+		public SortedList<DateTime, double> PArr {get;set;}
 
-		protected  SortedList<DateTime, double> prognoz;
-		public SortedList<DateTime, double> Prognoz
-		{
-			get { return prognoz; }
-			set { prognoz = value; }
-		}
+		public SortedList<DateTime, double> Prognoz{get;set;}
+		
+		public SortedList<DateTime, double> PrognozVB {get;set;}
 
-		private bool isQFakt;
-
-		public bool IsQFakt {
-			get { return isQFakt; }
-			set { isQFakt = value; }
-		}
+		public bool IsQFakt {get;set;}
 
 		protected static NNET.NNET nnet;
 
@@ -89,6 +57,182 @@ namespace VotGES.PrognozNB
 			}
 		}
 
+		public void calcPrognozNeW() {
+			SortedList<int,double>InputVector=new SortedList<int,double>();
+
+			SortedList<int, double> prevDataRashodArray = new SortedList<int, double>();
+			SortedList<int, double> prevDataNBArray = new SortedList<int, double>();
+			SortedList<int, double> prevDataVBArray = new SortedList<int, double>();
+			SortedList<int, double> prevDataTArray = new SortedList<int, double>();
+			SortedList<int, double> prevDataPritokArray = new SortedList<int, double>();
+			Prognoz = new SortedList<DateTime, double>();
+
+			int index = 0;
+			double k = 0;
+			foreach (DateTime date in FirstData.Keys) {
+				prevDataRashodArray.Add(index, FirstData[date].Q);
+				prevDataNBArray.Add(index, FirstData[date].NB);
+				prevDataVBArray.Add(index, FirstData[date].VB);
+				//k = FirstData[date].Q / RashodTable.getStationRashod(FirstData[date].P, FirstData[date].VB - FirstData[date].NB, RashodCalcMode.avg);
+				index++;
+			}
+
+			index = 0;
+			foreach (DateTime date in FirstDataSut.Keys) {
+				prevDataTArray.Add(index, FirstDataSut[date].T);
+				prevDataPritokArray.Add(index,FirstDataSut[date].Pritok);
+				index++;
+			}
+
+			index=0;
+			
+			int cntSut=FirstDataSut.Keys.Count;
+			int cntH=FirstData.Keys.Count;
+
+			for (int i = -1; i <= 69; i++) {
+				InputVector.Add(i, 0);
+			}
+
+			for (int i = 0; i < 8; i++) {
+				InputVector[0]=prevDataTArray[cntSut - i - 1];
+			}
+			InputVector[8]=746;
+			InputVector[9]=746;
+			InputVector[10]=746;
+
+			InputVector[11]=83;
+			InputVector[12]=83;
+			InputVector[13]=83;
+
+			InputVector[14]=0;
+			InputVector[15]=0;
+			InputVector[16]=0;
+			InputVector[17]=0;
+			InputVector[18]=0;
+			InputVector[19]=0;
+
+			InputVector[20]=prevDataPritokArray[cntSut - 1];
+			InputVector[21]=prevDataPritokArray[cntSut - 2];
+
+			DateTime dateStart = PArr.First().Key.Date;
+			DateTime dateEnd = PArr.Last().Key.Date;
+
+			Napors = new SortedList<DateTime, double>();
+			Rashods = new SortedList<DateTime, double>();
+			PrognozVB=new SortedList<DateTime,double>();
+			Prognoz=new SortedList<DateTime,double>();
+
+			while (dateStart < dateEnd) {
+				for (int hour=0;hour<24;hour++){
+					DateTime dt=dateStart.AddHours(hour+1);
+					if (!PrognozVB.ContainsKey(dt)){
+						if (PrognozVB.Count==0)
+							PrognozVB.Add(dt,prevDataVBArray.Last().Value);
+						else
+							PrognozVB.Add(dt, PrognozVB.Last().Value);
+					}
+
+					if (!Prognoz.ContainsKey(dt)){
+						if (Prognoz.Count == 0)
+							Prognoz.Add(dt, prevDataNBArray.Last().Value);
+						else
+							Prognoz.Add(dt, Prognoz.Last().Value);
+					}
+
+					if (!Rashods.ContainsKey(dt)){
+						if (Rashods.Count == 0)
+							Rashods.Add(dt, prevDataRashodArray.Last().Value);
+						else
+							Rashods.Add(dt, Rashods.Last().Value);
+					}
+				}
+
+
+				for (int i = 0; i < 12; i++) {
+					InputVector[22 + i]=prevDataRashodArray[i];
+				}
+
+				double napor = prevDataVBArray.Last().Value-prevDataNBArray.Last().Value;
+				List<int> avail = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+				for (int i = 0; i < 24; i++) {					
+					List<int> sostav = new List<int>();
+					double q = IsQFakt ? PArr[dateStart.AddHours(i + 1)] : RUSA.getOptimRashod(PArr[dateStart.AddHours(i + 1)], napor, true, sostav, avail);
+					
+
+					InputVector[34 + i]=q;
+				}
+
+				for (int i=0;i<12;i++){
+					InputVector[58+i]=prevDataVBArray[i];
+				}
+
+				InputVector[-1]=(dateStart.Ticks - (new DateTime(1970, 1, 1)).Ticks) / 10000000;
+					
+
+				for (int step = 0; step <= 1; step++) {
+					for (int i = 0; i < 12; i++) {
+						InputVector[58 + i] = prevDataVBArray[i];
+					}
+					InputVector[20] = prevDataPritokArray[cntSut - 1];
+					InputVector[21] = prevDataPritokArray[cntSut - 2];
+
+					for (int hour = 0; hour < 24; hour++) {
+						DateTime dt=dateStart.AddHours(hour+1);
+						String str = hour.ToString() + ";" + String.Join(";", InputVector.Values).Replace(',', '.');
+						//Logger.Info(str);
+						double vb = PrognozNBFunc.predict_ub(str);
+
+						PrognozVB[dt] = vb;
+						double np = vb - Prognoz[dt];
+						Napors[dt] = np;
+						List<int> sostav = new List<int>();
+						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, true, sostav, avail);
+						Rashods[dt] = q;
+						//InputVector[34 + hour] = q;
+
+						if (hour > 12 && step==1) {
+							prevDataVBArray[hour - 13] = vb;
+						}
+					}
+
+					for (int h = 0; h < 24; h++) {
+						InputVector[34 + h] = Rashods[dateStart.AddHours(h + 1)];
+					}
+
+						for (int i = 0; i < 12; i++) {
+							InputVector[58 + i] = prevDataNBArray[i];
+						}
+					InputVector[20] = 63.27;
+					InputVector[21] = 63.20;
+
+					for (int hour = 0; hour < 24; hour++) {
+						DateTime dt = dateStart.AddHours(hour + 1);
+						String str = hour.ToString() + ";" + String.Join(";", InputVector.Values).Replace(',', '.');
+						double nb = PrognozNBFunc.predict_nb(str);
+
+						Prognoz[dt] = nb;
+						double np = PrognozVB[dt] - nb;
+						Napors[dt] = np;
+						List<int> sostav = new List<int>();
+						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, true, sostav, avail);
+						Rashods[dt] = q;
+						//InputVector[34 + hour] = q;
+
+						if (hour > 12 && step == 1) {
+							prevDataNBArray[hour - 13] = nb;
+							prevDataRashodArray[hour - 13] = q;
+						}
+					}
+					for (int h = 0; h < 24; h++) {
+						InputVector[34 + h] = Rashods[dateStart.AddHours(h + 1)];
+					}
+				}
+				dateStart = dateStart.AddHours(24);
+			}
+		}
+
+
+
 		protected void calcPrognozWithCorrect() {
 			//PArr.Add(FirstData.Last().Key, FirstData.Last().Value.P);
 			if (PArr.Count % 23 != 0) {
@@ -102,7 +246,7 @@ namespace VotGES.PrognozNB
 			SortedList<int,double>prevDataRashodArray=new SortedList<int, double>();
 			SortedList<int,double>prevDataNBArray=new SortedList<int, double>();
 			SortedList<int,double>prevDataVBArray=new SortedList<int, double>();
-			prognoz=new SortedList<DateTime, double>();
+			Prognoz=new SortedList<DateTime, double>();
 
 			int index=0;
 			double k=0;
@@ -115,29 +259,29 @@ namespace VotGES.PrognozNB
 			}
 
 
-			napors=new SortedList<DateTime, double>();
-			rashods = new SortedList<DateTime, double>();
+			Napors=new SortedList<DateTime, double>();
+			Rashods = new SortedList<DateTime, double>();
 
 
 			double napor=prevDataVBArray.Last().Value - prevDataNBArray.Last().Value;
-			foreach (KeyValuePair<DateTime,double>de in pArr) {
-				napors.Add(de.Key, napor);
+			foreach (KeyValuePair<DateTime,double>de in PArr) {
+				Napors.Add(de.Key, napor);
 			}
 
 			foreach (KeyValuePair<DateTime,double> de in PArr) {
-				double rashod=IsQFakt ? de.Value : RashodTable.getStationRashod(de.Value, napors[de.Key], RashodCalcMode.avg) * k;
-				rashods.Add(de.Key, rashod);
-				prognoz.Add(de.Key, 0);
+				double rashod=IsQFakt ? de.Value : RashodTable.getStationRashod(de.Value, Napors[de.Key], RashodCalcMode.avg) * k;
+				Rashods.Add(de.Key, rashod);
+				Prognoz.Add(de.Key, 0);
 			}
 			//prognoz.Add(prognoz.First().Key.AddMinutes(-30), prevDataNBArray[4]);
 
-			double currentNapor=napors.First().Value;
+			double currentNapor=Napors.First().Value;
 			SortedList<DateTime,double> dataForPrognoz=new SortedList<DateTime, double>();
 			SortedList<DateTime,double> naporsForPrognoz=new SortedList<DateTime, double>();
-			for (int indexPoint=0; indexPoint < pArr.Keys.Count; indexPoint++) {
-				DateTime Key=pArr.Keys[indexPoint];
-				dataForPrognoz.Add(Key, pArr[Key]);
-				naporsForPrognoz.Add(Key, napors[Key]);
+			for (int indexPoint=0; indexPoint < PArr.Keys.Count; indexPoint++) {
+				DateTime Key=PArr.Keys[indexPoint];
+				dataForPrognoz.Add(Key, PArr[Key]);
+				naporsForPrognoz.Add(Key, Napors[Key]);
 				if (dataForPrognoz.Count == 23) {
 					SortedList<int,double> outputVector=new SortedList<int, double>();
 					for (int step=0; step <= 3; step++) {
@@ -161,12 +305,12 @@ namespace VotGES.PrognozNB
 						for (int i=0; i < 23; i++) {
 							double rashod=0;
 							if (!IsQFakt) {
-								rashod = RashodTable.getStationRashod(pArr[dataForPrognoz.Keys[i]], naporsForPrognoz[dataForPrognoz.Keys[i]], RashodCalcMode.avg)*k;
+								rashod = RashodTable.getStationRashod(PArr[dataForPrognoz.Keys[i]], naporsForPrognoz[dataForPrognoz.Keys[i]], RashodCalcMode.avg)*k;
 							} else {
-								rashod = rashods[dataForPrognoz.Keys[i]];
+								rashod = Rashods[dataForPrognoz.Keys[i]];
 							}
 
-							rashods[dataForPrognoz.Keys[i]] = rashod;
+							Rashods[dataForPrognoz.Keys[i]] = rashod;
 							inputVector[i + 12] = rashod;
 						}
 
@@ -181,18 +325,18 @@ namespace VotGES.PrognozNB
 						//prognoz[dataForPrognoz.Keys[0].AddMinutes(-30)] = outputVector[0] / correct;
 
 						for (int i=0; i < outputVector.Count-1; i++) {
-							prognoz[dataForPrognoz.Keys[i]] = outputVector[i+1] / correct;
+							Prognoz[dataForPrognoz.Keys[i]] = outputVector[i+1] / correct;
 						}
 
 						for (int i=0; i < 23; i++) {
-							naporsForPrognoz[dataForPrognoz.Keys[i]] = prevDataVBArray[4] - prognoz[dataForPrognoz.Keys[i]];
-							napors[dataForPrognoz.Keys[i]] = naporsForPrognoz[dataForPrognoz.Keys[i]];
+							naporsForPrognoz[dataForPrognoz.Keys[i]] = prevDataVBArray[4] - Prognoz[dataForPrognoz.Keys[i]];
+							Napors[dataForPrognoz.Keys[i]] = naporsForPrognoz[dataForPrognoz.Keys[i]];
 						}
 					}
 
 					for (int i=0; i <= 4; i++) {
-						prevDataNBArray[i] = prognoz[dataForPrognoz.Keys[18 + i]];
-						prevDataRashodArray[i] = rashods[dataForPrognoz.Keys[18 + i]];
+						prevDataNBArray[i] = Prognoz[dataForPrognoz.Keys[18 + i]];
+						prevDataRashodArray[i] = Rashods[dataForPrognoz.Keys[18 + i]];
 					}
 
 					dataForPrognoz.Clear();
@@ -203,14 +347,14 @@ namespace VotGES.PrognozNB
 			rashods.Remove(rashods.First().Key);
 			napors.Remove(napors.First().Key);*/
 
-			while (prognoz.Last().Key > DatePrognozEnd) {
-				prognoz.Remove(prognoz.Last().Key);
+			while (Prognoz.Last().Key > DatePrognozEnd) {
+				Prognoz.Remove(Prognoz.Last().Key);
 			}
-			while (rashods.Last().Key > DatePrognozEnd) {
-				rashods.Remove(rashods.Last().Key);
+			while (Rashods.Last().Key > DatePrognozEnd) {
+				Rashods.Remove(Rashods.Last().Key);
 			}
-			while (napors.Last().Key > DatePrognozEnd) {
-				napors.Remove(napors.Last().Key);
+			while (Napors.Last().Key > DatePrognozEnd) {
+				Napors.Remove(Napors.Last().Key);
 			}
 		}
 
@@ -228,7 +372,7 @@ namespace VotGES.PrognozNB
 			SortedList<int,double>prevDataRashodArray=new SortedList<int, double>();
 			SortedList<int,double>prevDataNBArray=new SortedList<int, double>();
 			SortedList<int,double>prevDataVBArray=new SortedList<int, double>();
-			prognoz = new SortedList<DateTime, double>();
+			Prognoz = new SortedList<DateTime, double>();
 
 			int index=0;
 			double k=0;
@@ -241,29 +385,29 @@ namespace VotGES.PrognozNB
 			}
 
 
-			napors = new SortedList<DateTime, double>();
-			rashods = new SortedList<DateTime, double>();
+			Napors = new SortedList<DateTime, double>();
+			Rashods = new SortedList<DateTime, double>();
 
 
 			double napor=prevDataVBArray.Last().Value - prevDataNBArray.Last().Value;
-			foreach (KeyValuePair<DateTime,double>de in pArr) {
-				napors.Add(de.Key, napor);
+			foreach (KeyValuePair<DateTime,double>de in PArr) {
+				Napors.Add(de.Key, napor);
 			}
 
 			foreach (KeyValuePair<DateTime,double> de in PArr) {
-				double rashod=IsQFakt ? de.Value : RashodTable.getStationRashod(de.Value, napors[de.Key], RashodCalcMode.avg) * k;
-				rashods.Add(de.Key, rashod);
-				prognoz.Add(de.Key, 0);
+				double rashod=IsQFakt ? de.Value : RashodTable.getStationRashod(de.Value, Napors[de.Key], RashodCalcMode.avg) * k;
+				Rashods.Add(de.Key, rashod);
+				Prognoz.Add(de.Key, 0);
 			}
 			//prognoz.Add(rashods.First().Key.AddMinutes(-30), prevDataNBArray[4]);
 
-			double currentNapor=napors.First().Value;
+			double currentNapor=Napors.First().Value;
 			SortedList<DateTime,double> dataForPrognoz=new SortedList<DateTime, double>();
 			SortedList<DateTime,double> naporsForPrognoz=new SortedList<DateTime, double>();
-			for (int indexPoint=0; indexPoint < pArr.Keys.Count; indexPoint++) {
-				DateTime Key=pArr.Keys[indexPoint];
-				dataForPrognoz.Add(Key, pArr[Key]);
-				naporsForPrognoz.Add(Key, napors[Key]);
+			for (int indexPoint=0; indexPoint < PArr.Keys.Count; indexPoint++) {
+				DateTime Key=PArr.Keys[indexPoint];
+				dataForPrognoz.Add(Key, PArr[Key]);
+				naporsForPrognoz.Add(Key, Napors[Key]);
 				if (dataForPrognoz.Count == 24) {
 					SortedList<int,double> outputVector=new SortedList<int, double>();
 					for (int step=0; step <= 3; step++) {
@@ -285,12 +429,12 @@ namespace VotGES.PrognozNB
 						for (int i=0; i < 24; i++) {
 							double rashod=0;
 							if (!IsQFakt) {
-								rashod = RashodTable.getStationRashod(pArr[dataForPrognoz.Keys[i]], naporsForPrognoz[dataForPrognoz.Keys[i]], RashodCalcMode.avg) * k;
+								rashod = RashodTable.getStationRashod(PArr[dataForPrognoz.Keys[i]], naporsForPrognoz[dataForPrognoz.Keys[i]], RashodCalcMode.avg) * k;
 							} else {
-								rashod = rashods[dataForPrognoz.Keys[i]];
+								rashod = Rashods[dataForPrognoz.Keys[i]];
 							}
 
-							rashods[dataForPrognoz.Keys[i]] = rashod;
+							Rashods[dataForPrognoz.Keys[i]] = rashod;
 							inputVector[i + 11] = rashod;
 						}
 
@@ -302,18 +446,18 @@ namespace VotGES.PrognozNB
 						outputVector = nnet.calc(inputVector);
 
 						for (int i=0; i < outputVector.Count; i++) {
-							prognoz[dataForPrognoz.Keys[i]] = outputVector[i];
+							Prognoz[dataForPrognoz.Keys[i]] = outputVector[i];
 						}
 
 						for (int i=0; i < 24; i++) {
-							naporsForPrognoz[dataForPrognoz.Keys[i]] = prevDataVBArray[4] - prognoz[dataForPrognoz.Keys[i]];
-							napors[dataForPrognoz.Keys[i]] = naporsForPrognoz[dataForPrognoz.Keys[i]];
+							naporsForPrognoz[dataForPrognoz.Keys[i]] = prevDataVBArray[4] - Prognoz[dataForPrognoz.Keys[i]];
+							Napors[dataForPrognoz.Keys[i]] = naporsForPrognoz[dataForPrognoz.Keys[i]];
 						}
 					}
 
 					for (int i=0; i <= 4; i++) {
-						prevDataNBArray[i] = prognoz[dataForPrognoz.Keys[19 + i]];
-						prevDataRashodArray[i] = rashods[dataForPrognoz.Keys[19 + i]];
+						prevDataNBArray[i] = Prognoz[dataForPrognoz.Keys[19 + i]];
+						prevDataRashodArray[i] = Rashods[dataForPrognoz.Keys[19 + i]];
 					}
 
 					dataForPrognoz.Clear();
@@ -321,14 +465,14 @@ namespace VotGES.PrognozNB
 			}
 
 
-			while (prognoz.Last().Key > DatePrognozEnd) {
-				prognoz.Remove(prognoz.Last().Key);
+			while (Prognoz.Last().Key > DatePrognozEnd) {
+				Prognoz.Remove(Prognoz.Last().Key);
 			}
-			while (rashods.Last().Key > DatePrognozEnd) {
-				rashods.Remove(rashods.Last().Key);
+			while (Rashods.Last().Key > DatePrognozEnd) {
+				Rashods.Remove(Rashods.Last().Key);
 			}
-			while (napors.Last().Key > DatePrognozEnd) {
-				napors.Remove(napors.Last().Key);
+			while (Napors.Last().Key > DatePrognozEnd) {
+				Napors.Remove(Napors.Last().Key);
 			}
 		}
 
@@ -337,6 +481,11 @@ namespace VotGES.PrognozNB
 			ChartDataSerie prognozNBSerie=new ChartDataSerie();
 			foreach (KeyValuePair<DateTime,double> de in Prognoz) {
 				prognozNBSerie.Points.Add(new ChartDataPoint(de.Key,de.Value));
+			}
+
+			ChartDataSerie prognozVBSerie = new ChartDataSerie();
+			foreach (KeyValuePair<DateTime, double> de in PrognozVB) {
+				prognozVBSerie.Points.Add(new ChartDataPoint(de.Key, de.Value));
 			}
 
 			ChartDataSerie prognozQSerie=new ChartDataSerie();
@@ -350,10 +499,12 @@ namespace VotGES.PrognozNB
 			}
 
 			prognozNBSerie.Name = "NBPrognoz";
+			prognozVBSerie.Name = "VBPrognoz";
 			prognozQSerie.Name = "QPrognoz";
 			prognozNaporSerie.Name = "NaporPrognoz";
 
 			data.addSerie(prognozNBSerie);
+			data.addSerie(prognozVBSerie);
 			data.addSerie(prognozQSerie);
 			data.addSerie(prognozNaporSerie);
 		}
@@ -456,10 +607,19 @@ namespace VotGES.PrognozNB
 			vbSerie.Color = "0-255-255";
 			vbSerie.LineWidth = 2;
 			vbSerie.SerieType = ChartSerieType.line;
-			vbSerie.Title = "ВБ";
+			vbSerie.Title = "ВБ факт";
 			vbSerie.TagName = "VB";
 			vbSerie.Enabled = false;
 			vbSerie.YAxisIndex = 3;
+
+			ChartSerieProperties vbPrognozSerie = new ChartSerieProperties();
+			vbPrognozSerie.Color = "0-255-255";
+			vbPrognozSerie.LineWidth = 1;
+			vbPrognozSerie.SerieType = ChartSerieType.line;
+			vbPrognozSerie.Title = "ВБ прогноз";
+			vbPrognozSerie.TagName = "VBPrognoz";
+			vbPrognozSerie.Enabled = false;
+			vbPrognozSerie.YAxisIndex = 3;
 
 			ChartSerieProperties naporSerie=new ChartSerieProperties();
 			naporSerie.Color = "255-0-255";
@@ -503,6 +663,7 @@ namespace VotGES.PrognozNB
 			props.addSerie(qFaktSerie);
 			props.addSerie(qPrognozSerie);
 			props.addSerie(vbSerie);
+			props.addSerie(vbPrognozSerie);
 			props.addSerie(naporSerie);
 			props.addSerie(naporPrognozSerie);
 			props.addSerie(tSerie);

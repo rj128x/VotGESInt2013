@@ -4,106 +4,65 @@ using System.Linq;
 using System.Text;
 using VotGES.Piramida;
 using VotGES.Chart;
+using System.Runtime.InteropServices;
 
 namespace VotGES.PrognozNB
 {
 	public class PrognozNBFunc
 	{
+		[DllImport("C:/dc_votges/dc_votges.dll",EntryPoint = "predict_ub")]
+		public static extern double predict_ub(String iv);
+
+		[DllImport("C:/dc_votges/dc_votges.dll", EntryPoint = "predict_nb")]
+		public static extern double predict_nb(String iv);
+
+		[DllImport("C:/dc_votges/dc_votges.dll", EntryPoint = "p_max")]
+		public static extern double p_max(double h, int n);
+
+		[DllImport("C:/dc_votges/dc_votges.dll", EntryPoint = "nu_max")]
+		public static extern double nu_max(double h);
+				
+		
 		protected DateTime dateStart;
-		public DateTime DateStart {
-			get { return dateStart; }
-			set { dateStart = value; }
-		}
+		public DateTime DateStart {get;set;}
 
-		protected DateTime dateEnd;
-		public DateTime DateEnd {
-			get { return dateEnd; }
-			set { dateEnd = value; }
-		}
+		public DateTime DateEnd {get;set;}
+				
+		public DateTime DatePrognozStart {get;set;}
 
-		protected DateTime datePrognozStart;
-		public DateTime DatePrognozStart {
-			get { return datePrognozStart; }
-			set { datePrognozStart = value; }
-		}
+		
+		public int DaysCount {get;set;}
+				
+		public SortedList<DateTime, double> PBR {get;set;} 
 
-		protected int daysCount;
-		public int DaysCount {
-			get { return daysCount; }
-			set { daysCount = value; }
-		}
+		public SortedList<DateTime, double> NBFakt{get;set;}
+				
+		public SortedList<DateTime, double> NaporFakt{get;set;}
+				
+		public SortedList<DateTime, double> VBFakt{get;set;}
+				
+		public SortedList<DateTime, double> QFakt{get;set;}
+				
+		public SortedList<DateTime, double> TFakt{get;set;}
+				
+		public SortedList<DateTime, double> PFakt{get;set;}
+				
+		public double T {get;set;}
+				
+		public PrognozNB Prognoz{get;set;}
 
-		protected SortedList<DateTime,double> pbr;
-		public SortedList<DateTime, double> PBR {
-			get { return pbr; }
-			set { pbr = value; }
-		}
-
-		protected SortedList<DateTime,double> nbFakt;
-		public SortedList<DateTime, double> NBFakt {
-			get { return nbFakt; }
-			set { nbFakt = value; }
-		}
-
-		protected SortedList<DateTime,double> naporFakt;
-		public SortedList<DateTime, double> NaporFakt {
-			get { return naporFakt; }
-			set { naporFakt = value; }
-		}
-
-		protected SortedList<DateTime,double> vbFakt;
-		public SortedList<DateTime, double> VBFakt {
-			get { return vbFakt; }
-			set { vbFakt = value; }
-		}
-
-		protected SortedList<DateTime,double> qFakt;
-		public SortedList<DateTime, double> QFakt {
-			get { return qFakt; }
-			set { qFakt = value; }
-		}
-
-		protected SortedList<DateTime,double> tFakt;
-		public SortedList<DateTime, double> TFakt {
-			get { return tFakt; }
-			set { tFakt = value; }
-		}
-
-		protected SortedList<DateTime,double> pFakt;
-		public SortedList<DateTime, double> PFakt {
-			get { return pFakt; }
-			set { pFakt = value; }
-		}
-
-		protected double t;
-		public double T {
-			get { return t; }
-			set { t = value; }
-		}
-
-		protected PrognozNB prognoz;
-		public PrognozNB Prognoz {
-			get { return prognoz; }
-			set { prognoz = value; }
-		}
-
-
-		protected double TSum { get; set; }
-		protected double TCount { get; set; }
-
+		
 		public PrognozNBFunc(DateTime dateStart, int daysCount) {
 			DateStart = dateStart.Date;
 			DaysCount = daysCount;
 			DateEnd = DateStart.AddDays(daysCount);
-			pbr = new SortedList<DateTime, double>();
-			nbFakt = new SortedList<DateTime, double>();
-			vbFakt = new SortedList<DateTime, double>();
-			qFakt = new SortedList<DateTime, double>();
-			pFakt = new SortedList<DateTime, double>();
-			tFakt = new SortedList<DateTime, double>();
-			naporFakt = new SortedList<DateTime, double>();
-			TSum = 0;
-			TCount = 0;
+			PBR = new SortedList<DateTime, double>();
+			NBFakt = new SortedList<DateTime, double>();
+			VBFakt = new SortedList<DateTime, double>();
+			QFakt = new SortedList<DateTime, double>();
+			PFakt = new SortedList<DateTime, double>();
+			TFakt = new SortedList<DateTime, double>();
+			NaporFakt = new SortedList<DateTime, double>();
 		}
 
 
@@ -111,99 +70,111 @@ namespace VotGES.PrognozNB
 		public void readPBR() {
 			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 0, 2, 212, (new int[] { 1 }).ToList<int>(), false, true);
 			foreach (PiramidaEnrty data in dataArr) {
-				if (!pbr.Keys.Contains(data.Date)) {
-					pbr.Add(data.Date, data.Value0 / 1000);
+				if (!PBR.Keys.Contains(data.Date)) {
+					if (data.Date.Minute==0)
+						PBR.Add(data.Date, data.Value0 / 1000);
 				}
 			}
 		}
 
 		public void readP() {
-			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 0, 2, 12, (new int[] { 1 }).ToList<int>(), false, true);
+			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart.AddMinutes(-30), DateEnd, 0, 2, 12, (new int[] { 1 }).ToList<int>(), false, true);
 			foreach (PiramidaEnrty data in dataArr) {
-				if (!pFakt.Keys.Contains(data.Date)) {
-					pFakt.Add(data.Date, data.Value0/ 1000);
+				DateTime dt = data.Date.Minute > 0 ? data.Date.AddMinutes(30) : data.Date;
+				if (!PFakt.Keys.Contains(dt)) {
+					PFakt.Add(dt, 0);
 				}
+				PFakt[dt] += data.Value0 / 2 / 1000;
 			}
 		}
 
 		public void readWater() {
 			int[] items=new int[] { 354, 276,373,275,274 };
 			List<int> il=items.ToList();			
-			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 1, 2, 12, il, false, true);
+			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart.AddMinutes(-30), DateEnd, 1, 2, 12, il, true, true);
 
 			foreach (PiramidaEnrty data in dataArr) {
+				DateTime dt = data.Date.Minute > 0 ? data.Date.AddMinutes(30) : data.Date;
 				switch (data.Item) {
 					case 354:
-						if (!qFakt.Keys.Contains(data.Date)) {
-							qFakt.Add(data.Date, data.Value0);
+						if (!QFakt.Keys.Contains(dt)) {
+							QFakt.Add(dt, 0);
 						}
+						QFakt[dt] += data.Value0 / 2;
 						break;
 					case 276:
-						if (!naporFakt.Keys.Contains(data.Date)) {
-							naporFakt.Add(data.Date, data.Value0);
+						if (!NaporFakt.Keys.Contains(dt)) {
+							NaporFakt.Add(dt, 0);
 						}
+						NaporFakt[dt] += data.Value0 / 2;
 						break;
 					case 275:
-						if (!nbFakt.Keys.Contains(data.Date)) {
-							nbFakt.Add(data.Date, data.Value0);
+						if (!NBFakt.Keys.Contains(dt)) {
+							NBFakt.Add(dt, 0);
 						}
+						NBFakt[dt] += data.Value0 / 2;
 						break;
 					case 274:
-						if (!vbFakt.Keys.Contains(data.Date)) {
-							vbFakt.Add(data.Date, data.Value0);
+						if (!VBFakt.Keys.Contains(dt)) {
+							VBFakt.Add(dt, 0);
 						}
+						VBFakt[dt] += data.Value0 / 2;
 						break;
 					case 373:
-						if (!tFakt.Keys.Contains(data.Date)) {
-							tFakt.Add(data.Date, data.Value0);
-							TSum += data.Value0;
-							TCount++;
+						if (!TFakt.Keys.Contains(dt)) {
+							TFakt.Add(dt, 0);
 						}
+						TFakt[dt] += data.Value0 / 2;
 						break;
 				}
 			}
 		}
 
 		public void checkData(DateTime dateStart, DateTime dateEnd) {
-			DateTime date=dateStart.AddMinutes(30);
+			DateTime date=dateStart.AddMinutes(60);
 			while (date <= dateEnd) {
-				if (!nbFakt.Keys.Contains(date)||nbFakt[date]==0) {
-					if (nbFakt.Keys.Contains(date))
-						nbFakt.Remove(date);
-					if (nbFakt.Keys.Contains(date.AddMinutes(-30)))
-						nbFakt.Add(date,nbFakt[date.AddMinutes(-30)]);
-					else nbFakt.Add(date,66);
+
+				if (!NBFakt.Keys.Contains(date) || NBFakt[date] ==0) {
+					if (NBFakt.Keys.Contains(date))
+						NBFakt.Remove(date);
+					if (NBFakt.Keys.Contains(date.AddMinutes(-60)))
+						NBFakt.Add(date, NBFakt[date.AddMinutes(-60)]);
+					else NBFakt.Add(date, 66);
 				}
-				if (!vbFakt.Keys.Contains(date) || vbFakt[date] == 0) {
-					if (vbFakt.Keys.Contains(date))
-						vbFakt.Remove(date);
-					if (vbFakt.Keys.Contains(date.AddMinutes(-30)))
-						vbFakt.Add(date, nbFakt[date.AddMinutes(-30)]);
-					else vbFakt.Add(date, 87);
+				if (NBFakt[date] < 60)
+					NBFakt[date] = NBFakt[date]*2;
+								
+				if (!VBFakt.Keys.Contains(date) || VBFakt[date] == 0) {
+					if (VBFakt.Keys.Contains(date))
+						VBFakt.Remove(date);
+					if (VBFakt.Keys.Contains(date.AddMinutes(-60)))
+						VBFakt.Add(date, VBFakt[date.AddMinutes(-60)]);
+					else VBFakt.Add(date, 87);
 				}
-				if (!tFakt.Keys.Contains(date) || tFakt[date] == 0) {
-					if (tFakt.Keys.Contains(date))
-						tFakt.Remove(date);
-					if (tFakt.Keys.Contains(date.AddMinutes(-30)))
-						tFakt.Add(date, tFakt[date.AddMinutes(-30)]);
-					else tFakt.Add(date, 0);
+				if (VBFakt[date] < 80)
+					VBFakt[date] *= 2;
+
+				
+				if (!NaporFakt.Keys.Contains(date) || NaporFakt[date] == 0) {
+					if (NaporFakt.Keys.Contains(date))
+						NaporFakt.Remove(date);
+					NaporFakt.Add(date, VBFakt[date] - NBFakt[date]);
 				}
-				if (!naporFakt.Keys.Contains(date) || naporFakt[date] == 0) {
-					if (naporFakt.Keys.Contains(date))
-						naporFakt.Remove(date);
-					naporFakt.Add(date, vbFakt[date] - nbFakt[date]);
+				if (NaporFakt[date] < 15)
+					NaporFakt[date] *= 2;
+
+
+				if (!PFakt.Keys.Contains(date)) {
+					if (PFakt.Keys.Contains(date.AddMinutes(-60)))
+						PFakt.Add(date, PFakt[date.AddMinutes(-60)]);
+					else PFakt.Add(date, 100);
 				}
-				if (!pFakt.Keys.Contains(date)) {
-					if (pFakt.Keys.Contains(date.AddMinutes(-30)))
-						pFakt.Add(date, pFakt[date.AddMinutes(-30)]);
-					else pFakt.Add(date, 100);
+				if (!QFakt.Keys.Contains(date) || (QFakt[date] == 0 && PFakt[date] > 0)) {
+					if (QFakt.Keys.Contains(date))
+						QFakt.Remove(date);
+					QFakt.Add(date, RashodTable.getStationRashod(PFakt[date], NaporFakt[date], RashodCalcMode.avg));
 				}
-				if (!qFakt.Keys.Contains(date) || (qFakt[date] == 0 && pFakt[date]>0)) {
-					if (qFakt.Keys.Contains(date))
-						qFakt.Remove(date);
-					qFakt.Add(date,RashodTable.getStationRashod(pFakt[date],naporFakt[date],RashodCalcMode.avg));
-				}
-				date = date.AddMinutes(30);
+				date = date.AddMinutes(60);
 			}
 		}
 
@@ -211,10 +182,10 @@ namespace VotGES.PrognozNB
 			
 			int[] items=new int[] { 354, 276, 373, 275, 274 };
 			List<int> il=items.ToList();
-			DateTime ds=date.AddHours(-2);
+			DateTime ds=date.AddHours(-12);
 			DateTime de=date.AddHours(0);
-			List<PiramidaEnrty> dataArrW = PiramidaAccess.GetDataFromDB(ds, de, 1, 2, 12, il, true, true);
-			List<PiramidaEnrty> dataArrP = PiramidaAccess.GetDataFromDB(ds, de, 0, 2, 12, (new int[] { 1 }).ToList<int>(), true, true);
+			List<PiramidaEnrty> dataArrW = PiramidaAccess.GetDataFromDB(ds.AddMinutes(-30), de, 1, 2, 12, il, true, true);
+			List<PiramidaEnrty> dataArrP = PiramidaAccess.GetDataFromDB(ds.AddMinutes(-30), de, 0, 2, 12, (new int[] { 1 }).ToList<int>(), true, true);
 			List<PiramidaEnrty> dataArr = new List<PiramidaEnrty>();
 			foreach (PiramidaEnrty entry in dataArrW) {
 				dataArr.Add(entry);
@@ -222,37 +193,61 @@ namespace VotGES.PrognozNB
 			foreach (PiramidaEnrty entry in dataArrP) {
 				dataArr.Add(entry);
 			}
+
 			return processFirstData(dataArr);
 		}
+
+		public virtual SortedList<DateTime, PrognozNBFirstData> readFirstDataSut(DateTime date) {
+
+			int[] items = new int[] {373, };
+			int[] itemsSut = new int[] { 24 };
+			List<int> il = items.ToList();
+			DateTime ds = date.Date.AddDays(-8);
+			DateTime de = date.Date.AddHours(0);
+			List<PiramidaEnrty> dataArrW = PiramidaAccess.GetDataFromDB(ds, de, 1, 2, 26, il, true, true);
+			List<PiramidaEnrty> dataArrSut = PiramidaAccess.GetDataFromDB(ds,de, 7, 2, 26, itemsSut.ToList(), true, true);
+			List<PiramidaEnrty> dataArr = new List<PiramidaEnrty>();
+			
+			foreach (PiramidaEnrty entry in dataArrW) {
+				dataArr.Add(entry);
+			}
+
+			foreach (PiramidaEnrty entry in dataArrSut) {
+				dataArr.Add(entry);
+			}
+			return processFirstData(dataArr);
+		}
+
 
 		protected SortedList<DateTime, PrognozNBFirstData> processFirstData(List<PiramidaEnrty> dataArr) {
 			SortedList<DateTime,PrognozNBFirstData> firstData=new SortedList<DateTime, PrognozNBFirstData>();
 			foreach (PiramidaEnrty data in dataArr) {
-				if (!firstData.Keys.Contains(data.Date)) {
+				DateTime date = data.Date.Minute == 0 ? data.Date : data.Date.AddMinutes(30);
+				if (!firstData.Keys.Contains(date)) {
 					PrognozNBFirstData newData=new PrognozNBFirstData();
-					newData.Date = data.Date;
-					firstData.Add(data.Date, newData);
+					newData.Date = date;
+					firstData.Add(date, newData);
 				}
+				
 
 				switch (data.Item) {
 					case 1:						
-						firstData[data.Date].P = data.Value0/1000;
+						firstData[date].P += data.Value0/2/1000;
 						break;
 					case 354:
-						firstData[data.Date].Q = data.Value0;
+						firstData[date].Q += data.Value0/2;
 						break;
 					case 275:
-						firstData[data.Date].NB = data.Value0;
+						firstData[date].NB += data.Value0/2;
 						break;
 					case 274:
-						firstData[data.Date].VB = data.Value0;
+						firstData[date].VB += data.Value0/2;
 						break;
 					case 373:
-						firstData[data.Date].T = data.Value0;
-						if (data.Date <= DateStart) {
-							TSum += data.Value0;
-							TCount++;
-						}
+						firstData[date].T = data.Value0;
+						break;
+					case 24:
+						firstData[date].Pritok = data.Value0;
 						break;
 				}
 			}
