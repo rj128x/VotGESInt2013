@@ -28,6 +28,25 @@ namespace VotGES.PrognozNB
 		public double UdRash { get; set; }
 	}
 
+	public class PrognozNBInitData {
+		public DateTime Date { get; set; }
+		public double Pritok0 { get; set; }
+		public double Pritok1 { get; set; }
+
+		public double T1 { get; set; }
+		public double T2 { get; set; }
+		public double T3 { get; set; }
+		public double T4 { get; set; }
+		public double T5 { get; set; }
+		public double T6 { get; set; }
+		public double T7 { get; set; }
+		public double T8 { get; set; }
+
+		public double koef { get; set; }
+
+		public bool UseInitData { get; set; }
+	}
+
 
 	public class PrognozNBByPBRAnswer
 	{
@@ -40,11 +59,12 @@ namespace VotGES.PrognozNB
 		public double NBMax { get; set; }
 		public List<PrognozValue> PrognozValues{get;set;}
 		public List<PrognozRusaData> RUSA{get;set;}
+		public PrognozNBInitData InitData { get; set; }
 	}
 
 	public class PrognozNBByPBR : PrognozNBFunc
 	{
-		
+		public bool QMax { get; set; }
 
 		protected SortedList<DateTime,double> userPBR;
 		public SortedList<DateTime, double> UserPBR {
@@ -86,11 +106,9 @@ namespace VotGES.PrognozNB
 
 			DatePrognozStart = datePrognozStart;
 			int hour=DatePrognozStart.Hour;
-			int min=DatePrognozStart.Minute;
-			min = min < 30 ? 0 : min;
-			min = min > 30 ? 30 : min;
-			//DatePrognozStart = DatePrognozStart.Date.AddHours(hour).AddMinutes(min);
-			DatePrognozStart = DateStart.Date;
+
+			DatePrognozStart = DatePrognozStart.Date.AddHours(hour+1);
+			//DatePrognozStart = DateStart.Date;
 			UserPBR = userPBR;
 
 
@@ -109,7 +127,7 @@ namespace VotGES.PrognozNB
 
 		public void preparePArr() {
 			pbrFull = new SortedList<DateTime, double>();
-			DateTime date=DatePrognozStart.AddMinutes(0);
+			DateTime date=DateStart.AddMinutes(0);
 			while (date <= DateEnd) {
 				if (userPBR != null && userPBR.Keys.Contains(date)) {
 					pbrFull.Add(date, userPBR[date]);
@@ -128,37 +146,6 @@ namespace VotGES.PrognozNB
 			}
 
 		}
-
-		/*public override SortedList<DateTime, PrognozNBFirstData> readFirstData(DateTime date) {
-			date = DatePrognozStart.AddMinutes(0);
-			int[] items=new int[] { 354, 276, 373, 275, 274 };
-			List<PiramidaEnrty> dataArr=null;
-			List<PiramidaEnrty> dataArrP,dataArrW=null;
-			List<int> il=items.ToList();
-			double cntW=0;
-			double cntP=0;
-			int index=0;
-			while ((cntW < 25 || cntP<5) && index <= 10) {
-				DateTime ds=date.AddHours(-2);
-				DateTime de=date.AddHours(0);
-				dataArrW=PiramidaAccess.GetDataFromDB(ds, de, 1, 2, 12, il, true, true);
-				dataArrP = PiramidaAccess.GetDataFromDB(ds, de, 0, 2, 12, (new int[] { 1 }).ToList<int>(), true, true);
-				dataArr = new List<PiramidaEnrty>();
-				foreach (PiramidaEnrty entry in dataArrW) {
-					dataArr.Add(entry);
-					cntW++;
-				}
-				foreach (PiramidaEnrty entry in dataArrP) {
-					dataArr.Add(entry);
-					cntP++;
-				}
-				//cnt = dataArr.Count();
-				date = date.AddMinutes(-30);
-				index++;
-			}
-			DatePrognozStart = date.AddMinutes(30);
-			return processFirstData(dataArr);
-		}*/
 
 		public override void writeFaktData(Chart.ChartData data) {
 			base.writeFaktData(data);
@@ -268,7 +255,7 @@ namespace VotGES.PrognozNB
 						avail=Avail[ke.Key];						
 					}catch{};
 					//Logger.Info(String.Format("{0}: {1}", ke.Key, String.Join(",", avail)));
-					double q = RUSA.getOptimRashod(p, napor, true, sostav, avail);
+					double q = RUSA.getOptimRashod(p, napor, !QMax, sostav, avail);
 					sostav.Sort();
 					string str = String.Format("{0}: {1} (Расход: {2} КПД: {3})", ke.Key, String.Join(",", sostav), q, 0);
 					dat.Date = ke.Key;
@@ -284,24 +271,25 @@ namespace VotGES.PrognozNB
 					//Logger.Info(e.ToString());
 				}
 			}
-			
 		}
 
-		public void startPrognoz(bool correct) {
+		public void startPrognoz(PrognozNBInitData initData) {
 			Prognoz = new PrognozNB();
 
-			Prognoz.FirstData = readFirstData(DatePrognozStart);
-			Prognoz.FirstDataSut = readFirstDataSut(DatePrognozStart);
+			Prognoz.FirstData = readFirstData(DateStart);
+			Prognoz.FirstDataSut = readFirstDataSut(DateStart);
 			readP();
 			readPBR();
 			readWater();
 			preparePArr();
-			checkData(DateStart, DateEnd);
+			checkData(DateStart, DatePrognozStart);
 
-			Prognoz.DatePrognozStart = DatePrognozStart;
+			Prognoz.DatePrognozStart = DateStart;
 			Prognoz.DatePrognozEnd = DateEnd;
 			Prognoz.PArr = new SortedList<DateTime, double>();
 			Prognoz.IsQFakt = false;
+			Prognoz.QMax = QMax;
+			Prognoz.InitData = initData==null?new PrognozNBInitData():initData;
 			bool isFirst=true;
 			double prev=0;
 			foreach (KeyValuePair<DateTime,double> de in PBRFull) {
@@ -314,11 +302,13 @@ namespace VotGES.PrognozNB
 			//prognoz.calcPrognoz(correct);
 			Prognoz.calcPrognozNeW();
 			processAnswer();
+			PrognozAnswer.InitData = Prognoz.InitData;
+			
 			
 
-			Prognoz.Prognoz.Add(DatePrognozStart, Prognoz.FirstData.Last().Value.NB);
+			/*Prognoz.Prognoz.Add(DatePrognozStart, Prognoz.FirstData.Last().Value.NB);
 			Prognoz.Rashods.Add(DatePrognozStart, Prognoz.FirstData.Last().Value.Q);
-			Prognoz.Napors.Add(DatePrognozStart, Prognoz.FirstData.Last().Value.VB - Prognoz.FirstData.Last().Value.NB);
+			Prognoz.Napors.Add(DatePrognozStart, Prognoz.FirstData.Last().Value.VB - Prognoz.FirstData.Last().Value.NB);*/
 			PrognozAnswer.Chart = getChart();
 			PrognozAnswer.Chart.processAxes();
 		}

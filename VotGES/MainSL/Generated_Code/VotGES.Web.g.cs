@@ -5301,6 +5301,8 @@ namespace VotGES.PrognozNB
         
         private ChartAnswer _chart;
         
+        private PrognozNBInitData _initData;
+        
         private double _nbAvg;
         
         private double _nbMax;
@@ -5324,6 +5326,8 @@ namespace VotGES.PrognozNB
         partial void OnCreated();
         partial void OnChartChanging(ChartAnswer value);
         partial void OnChartChanged();
+        partial void OnInitDataChanging(PrognozNBInitData value);
+        partial void OnInitDataChanged();
         partial void OnNBAvgChanging(double value);
         partial void OnNBAvgChanged();
         partial void OnNBMaxChanging(double value);
@@ -5371,6 +5375,31 @@ namespace VotGES.PrognozNB
                     this._chart = value;
                     this.RaiseDataMemberChanged("Chart");
                     this.OnChartChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "InitData".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public PrognozNBInitData InitData
+        {
+            get
+            {
+                return this._initData;
+            }
+            set
+            {
+                if ((this._initData != value))
+                {
+                    this.OnInitDataChanging(value);
+                    this.RaiseDataMemberChanging("InitData");
+                    this.ValidateProperty("InitData", value);
+                    this._initData = value;
+                    this.RaiseDataMemberChanged("InitData");
+                    this.OnInitDataChanged();
                 }
             }
         }
@@ -5541,6 +5570,397 @@ namespace VotGES.PrognozNB
                     this._vyrabFakt = value;
                     this.RaiseDataMemberChanged("VyrabFakt");
                     this.OnVyrabFaktChanged();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Класс "PrognozNBInitData".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.PrognozNB")]
+    public sealed partial class PrognozNBInitData : ComplexObject
+    {
+        
+        private DateTime _date;
+        
+        private double _koef;
+        
+        private double _pritok0;
+        
+        private double _pritok1;
+        
+        private double _t1;
+        
+        private double _t2;
+        
+        private double _t3;
+        
+        private double _t4;
+        
+        private double _t5;
+        
+        private double _t6;
+        
+        private double _t7;
+        
+        private double _t8;
+        
+        private bool _useInitData;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnDateChanging(DateTime value);
+        partial void OnDateChanged();
+        partial void OnkoefChanging(double value);
+        partial void OnkoefChanged();
+        partial void OnPritok0Changing(double value);
+        partial void OnPritok0Changed();
+        partial void OnPritok1Changing(double value);
+        partial void OnPritok1Changed();
+        partial void OnT1Changing(double value);
+        partial void OnT1Changed();
+        partial void OnT2Changing(double value);
+        partial void OnT2Changed();
+        partial void OnT3Changing(double value);
+        partial void OnT3Changed();
+        partial void OnT4Changing(double value);
+        partial void OnT4Changed();
+        partial void OnT5Changing(double value);
+        partial void OnT5Changed();
+        partial void OnT6Changing(double value);
+        partial void OnT6Changed();
+        partial void OnT7Changing(double value);
+        partial void OnT7Changed();
+        partial void OnT8Changing(double value);
+        partial void OnT8Changed();
+        partial void OnUseInitDataChanging(bool value);
+        partial void OnUseInitDataChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="PrognozNBInitData"/>.
+        /// </summary>
+        public PrognozNBInitData()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Date".
+        /// </summary>
+        [DataMember()]
+        public DateTime Date
+        {
+            get
+            {
+                return this._date;
+            }
+            set
+            {
+                if ((this._date != value))
+                {
+                    this.OnDateChanging(value);
+                    this.RaiseDataMemberChanging("Date");
+                    this.ValidateProperty("Date", value);
+                    this._date = value;
+                    this.RaiseDataMemberChanged("Date");
+                    this.OnDateChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "koef".
+        /// </summary>
+        [DataMember()]
+        public double koef
+        {
+            get
+            {
+                return this._koef;
+            }
+            set
+            {
+                if ((this._koef != value))
+                {
+                    this.OnkoefChanging(value);
+                    this.RaiseDataMemberChanging("koef");
+                    this.ValidateProperty("koef", value);
+                    this._koef = value;
+                    this.RaiseDataMemberChanged("koef");
+                    this.OnkoefChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Pritok0".
+        /// </summary>
+        [DataMember()]
+        public double Pritok0
+        {
+            get
+            {
+                return this._pritok0;
+            }
+            set
+            {
+                if ((this._pritok0 != value))
+                {
+                    this.OnPritok0Changing(value);
+                    this.RaiseDataMemberChanging("Pritok0");
+                    this.ValidateProperty("Pritok0", value);
+                    this._pritok0 = value;
+                    this.RaiseDataMemberChanged("Pritok0");
+                    this.OnPritok0Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Pritok1".
+        /// </summary>
+        [DataMember()]
+        public double Pritok1
+        {
+            get
+            {
+                return this._pritok1;
+            }
+            set
+            {
+                if ((this._pritok1 != value))
+                {
+                    this.OnPritok1Changing(value);
+                    this.RaiseDataMemberChanging("Pritok1");
+                    this.ValidateProperty("Pritok1", value);
+                    this._pritok1 = value;
+                    this.RaiseDataMemberChanged("Pritok1");
+                    this.OnPritok1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T1".
+        /// </summary>
+        [DataMember()]
+        public double T1
+        {
+            get
+            {
+                return this._t1;
+            }
+            set
+            {
+                if ((this._t1 != value))
+                {
+                    this.OnT1Changing(value);
+                    this.RaiseDataMemberChanging("T1");
+                    this.ValidateProperty("T1", value);
+                    this._t1 = value;
+                    this.RaiseDataMemberChanged("T1");
+                    this.OnT1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T2".
+        /// </summary>
+        [DataMember()]
+        public double T2
+        {
+            get
+            {
+                return this._t2;
+            }
+            set
+            {
+                if ((this._t2 != value))
+                {
+                    this.OnT2Changing(value);
+                    this.RaiseDataMemberChanging("T2");
+                    this.ValidateProperty("T2", value);
+                    this._t2 = value;
+                    this.RaiseDataMemberChanged("T2");
+                    this.OnT2Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T3".
+        /// </summary>
+        [DataMember()]
+        public double T3
+        {
+            get
+            {
+                return this._t3;
+            }
+            set
+            {
+                if ((this._t3 != value))
+                {
+                    this.OnT3Changing(value);
+                    this.RaiseDataMemberChanging("T3");
+                    this.ValidateProperty("T3", value);
+                    this._t3 = value;
+                    this.RaiseDataMemberChanged("T3");
+                    this.OnT3Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T4".
+        /// </summary>
+        [DataMember()]
+        public double T4
+        {
+            get
+            {
+                return this._t4;
+            }
+            set
+            {
+                if ((this._t4 != value))
+                {
+                    this.OnT4Changing(value);
+                    this.RaiseDataMemberChanging("T4");
+                    this.ValidateProperty("T4", value);
+                    this._t4 = value;
+                    this.RaiseDataMemberChanged("T4");
+                    this.OnT4Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T5".
+        /// </summary>
+        [DataMember()]
+        public double T5
+        {
+            get
+            {
+                return this._t5;
+            }
+            set
+            {
+                if ((this._t5 != value))
+                {
+                    this.OnT5Changing(value);
+                    this.RaiseDataMemberChanging("T5");
+                    this.ValidateProperty("T5", value);
+                    this._t5 = value;
+                    this.RaiseDataMemberChanged("T5");
+                    this.OnT5Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T6".
+        /// </summary>
+        [DataMember()]
+        public double T6
+        {
+            get
+            {
+                return this._t6;
+            }
+            set
+            {
+                if ((this._t6 != value))
+                {
+                    this.OnT6Changing(value);
+                    this.RaiseDataMemberChanging("T6");
+                    this.ValidateProperty("T6", value);
+                    this._t6 = value;
+                    this.RaiseDataMemberChanged("T6");
+                    this.OnT6Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T7".
+        /// </summary>
+        [DataMember()]
+        public double T7
+        {
+            get
+            {
+                return this._t7;
+            }
+            set
+            {
+                if ((this._t7 != value))
+                {
+                    this.OnT7Changing(value);
+                    this.RaiseDataMemberChanging("T7");
+                    this.ValidateProperty("T7", value);
+                    this._t7 = value;
+                    this.RaiseDataMemberChanged("T7");
+                    this.OnT7Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "T8".
+        /// </summary>
+        [DataMember()]
+        public double T8
+        {
+            get
+            {
+                return this._t8;
+            }
+            set
+            {
+                if ((this._t8 != value))
+                {
+                    this.OnT8Changing(value);
+                    this.RaiseDataMemberChanging("T8");
+                    this.ValidateProperty("T8", value);
+                    this._t8 = value;
+                    this.RaiseDataMemberChanged("T8");
+                    this.OnT8Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "UseInitData".
+        /// </summary>
+        [DataMember()]
+        public bool UseInitData
+        {
+            get
+            {
+                return this._useInitData;
+            }
+            set
+            {
+                if ((this._useInitData != value))
+                {
+                    this.OnUseInitDataChanging(value);
+                    this.RaiseDataMemberChanging("UseInitData");
+                    this.ValidateProperty("UseInitData", value);
+                    this._useInitData = value;
+                    this.RaiseDataMemberChanged("UseInitData");
+                    this.OnUseInitDataChanged();
                 }
             }
         }
@@ -9422,21 +9842,15 @@ namespace VotGES.Web.Services
         /// <param name="date">Значение параметра "date" для данного действия.</param>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
         /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
-        /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
-        /// <param name="hourStart">Значение параметра "hourStart" для данного действия.</param>
-        /// <param name="minStart">Значение параметра "minStart" для данного действия.</param>
         /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
         /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, bool correctByPrev, int hourStart, int minStart, Action<InvokeOperation<ChartAnswer>> callback, object userState)
+        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, Action<InvokeOperation<ChartAnswer>> callback, object userState)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("date", date);
             parameters.Add("countDays", countDays);
             parameters.Add("isQFakt", isQFakt);
-            parameters.Add("correctByPrev", correctByPrev);
-            parameters.Add("hourStart", hourStart);
-            parameters.Add("minStart", minStart);
             this.ValidateMethod("checkPrognozNB", parameters);
             return ((InvokeOperation<ChartAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(ChartAnswer), parameters, true, callback, userState)));
         }
@@ -9447,19 +9861,13 @@ namespace VotGES.Web.Services
         /// <param name="date">Значение параметра "date" для данного действия.</param>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
         /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
-        /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
-        /// <param name="hourStart">Значение параметра "hourStart" для данного действия.</param>
-        /// <param name="minStart">Значение параметра "minStart" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, bool correctByPrev, int hourStart, int minStart)
+        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("date", date);
             parameters.Add("countDays", countDays);
             parameters.Add("isQFakt", isQFakt);
-            parameters.Add("correctByPrev", correctByPrev);
-            parameters.Add("hourStart", hourStart);
-            parameters.Add("minStart", minStart);
             this.ValidateMethod("checkPrognozNB", parameters);
             return ((InvokeOperation<ChartAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(ChartAnswer), parameters, true, null, null)));
         }
@@ -9468,17 +9876,19 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "getPrognoz" службы DomainService.
         /// </summary>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
-        /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
+        /// <param name="maxQ">Значение параметра "maxQ" для данного действия.</param>
         /// <param name="pbr">Значение параметра "pbr" для данного действия.</param>
+        /// <param name="initData">Значение параметра "initData" для данного действия.</param>
         /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
         /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<PrognozNBByPBRAnswer> getPrognoz(int countDays, bool correctByPrev, Dictionary<DateTime, double> pbr, Action<InvokeOperation<PrognozNBByPBRAnswer>> callback, object userState)
+        public InvokeOperation<PrognozNBByPBRAnswer> getPrognoz(int countDays, bool maxQ, Dictionary<DateTime, double> pbr, PrognozNBInitData initData, Action<InvokeOperation<PrognozNBByPBRAnswer>> callback, object userState)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("countDays", countDays);
-            parameters.Add("correctByPrev", correctByPrev);
+            parameters.Add("maxQ", maxQ);
             parameters.Add("pbr", pbr);
+            parameters.Add("initData", initData);
             this.ValidateMethod("getPrognoz", parameters);
             return ((InvokeOperation<PrognozNBByPBRAnswer>)(this.InvokeOperation("getPrognoz", typeof(PrognozNBByPBRAnswer), parameters, true, callback, userState)));
         }
@@ -9487,15 +9897,17 @@ namespace VotGES.Web.Services
         /// Асинхронно вызывает метод "getPrognoz" службы DomainService.
         /// </summary>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
-        /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
+        /// <param name="maxQ">Значение параметра "maxQ" для данного действия.</param>
         /// <param name="pbr">Значение параметра "pbr" для данного действия.</param>
+        /// <param name="initData">Значение параметра "initData" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<PrognozNBByPBRAnswer> getPrognoz(int countDays, bool correctByPrev, Dictionary<DateTime, double> pbr)
+        public InvokeOperation<PrognozNBByPBRAnswer> getPrognoz(int countDays, bool maxQ, Dictionary<DateTime, double> pbr, PrognozNBInitData initData)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("countDays", countDays);
-            parameters.Add("correctByPrev", correctByPrev);
+            parameters.Add("maxQ", maxQ);
             parameters.Add("pbr", pbr);
+            parameters.Add("initData", initData);
             this.ValidateMethod("getPrognoz", parameters);
             return ((InvokeOperation<PrognozNBByPBRAnswer>)(this.InvokeOperation("getPrognoz", typeof(PrognozNBByPBRAnswer), parameters, true, null, null)));
         }
@@ -9522,15 +9934,12 @@ namespace VotGES.Web.Services
             /// <param name="date">Значение параметра "date" для данного действия.</param>
             /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
             /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
-            /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
-            /// <param name="hourStart">Значение параметра "hourStart" для данного действия.</param>
-            /// <param name="minStart">Значение параметра "minStart" для данного действия.</param>
             /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
             /// <param name="asyncState">Необязательный объект состояния.</param>
             /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
             [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/PrognozNBService/checkPrognozNBDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/PrognozNBService/checkPrognozNB", ReplyAction="http://tempuri.org/PrognozNBService/checkPrognozNBResponse")]
-            IAsyncResult BegincheckPrognozNB(DateTime date, int countDays, bool isQFakt, bool correctByPrev, int hourStart, int minStart, AsyncCallback callback, object asyncState);
+            IAsyncResult BegincheckPrognozNB(DateTime date, int countDays, bool isQFakt, AsyncCallback callback, object asyncState);
             
             /// <summary>
             /// Завершает асинхронную операцию, начатую "BegincheckPrognozNB".
@@ -9543,14 +9952,15 @@ namespace VotGES.Web.Services
             /// Асинхронно вызывает операцию "getPrognoz".
             /// </summary>
             /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
-            /// <param name="correctByPrev">Значение параметра "correctByPrev" для данного действия.</param>
+            /// <param name="maxQ">Значение параметра "maxQ" для данного действия.</param>
             /// <param name="pbr">Значение параметра "pbr" для данного действия.</param>
+            /// <param name="initData">Значение параметра "initData" для данного действия.</param>
             /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
             /// <param name="asyncState">Необязательный объект состояния.</param>
             /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
             [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/PrognozNBService/getPrognozDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/PrognozNBService/getPrognoz", ReplyAction="http://tempuri.org/PrognozNBService/getPrognozResponse")]
-            IAsyncResult BegingetPrognoz(int countDays, bool correctByPrev, Dictionary<DateTime, double> pbr, AsyncCallback callback, object asyncState);
+            IAsyncResult BegingetPrognoz(int countDays, bool maxQ, Dictionary<DateTime, double> pbr, PrognozNBInitData initData, AsyncCallback callback, object asyncState);
             
             /// <summary>
             /// Завершает асинхронную операцию, начатую "BegingetPrognoz".

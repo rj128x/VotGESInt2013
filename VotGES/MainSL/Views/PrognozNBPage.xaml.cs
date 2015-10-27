@@ -15,6 +15,7 @@ using VotGES.Chart;
 using MainSL.PBR;
 using System.ComponentModel;
 using System.ServiceModel.DomainServices.Client;
+using VotGES.PrognozNB;
 
 namespace MainSL.Views
 {
@@ -50,26 +51,28 @@ namespace MainSL.Views
 				}
 			}
 
-			private bool correctByPrev;
-			public bool CorrectByPrev {
-				get { return correctByPrev; }
-				set { 
-					correctByPrev = value;
-					NotifyChanged("CorrectByPrev");
+			private bool maxQ;
+			public bool MaxQ {
+				get { return maxQ; }
+				set {
+					maxQ = value;
+					NotifyChanged("MaxQ");
 				}
 			}
+			
 
 			public Dictionary<DateTime, double> PrevData { get; set; }
 
 			public Settings() {
-				CorrectByPrev = true;
+				MaxQ = false;
 			}
 		}
 
-
-
+		
+		
 		PrognozNBContext context;
 		public Settings settings;
+		public PrognozNBInitData initData;
 		public PrognozNBPage() {
 			InitializeComponent();
 			context=new PrognozNBContext();
@@ -77,6 +80,8 @@ namespace MainSL.Views
 			settings.CountDays = 1;
 			settings.UserPBR = new PBRData(null);
 			pnlSettings.DataContext = settings;
+			initData = new PrognozNBInitData();
+			tabInit.DataContext = initData;
 		}
 
 		public PBREditorWindow pbrEditor;
@@ -108,7 +113,7 @@ namespace MainSL.Views
 
 		protected void loadPrognoz(bool useUserPBR) {
 			settings.UserPBR.convertToHalfHoursPBR();
-			InvokeOperation currentOper=context.getPrognoz(settings.CountDays,settings.CorrectByPrev, useUserPBR ? settings.UserPBR.Data : null, oper => {
+			InvokeOperation currentOper=context.getPrognoz(settings.CountDays,settings.MaxQ, useUserPBR ? settings.UserPBR.Data : null,initData, oper => {
 				if (oper.IsCanceled) {
 					return;
 				}
@@ -116,6 +121,8 @@ namespace MainSL.Views
 					GlobalStatus.Current.StartProcess();
 					ChartAnswer answer=oper.Value.Chart;
 					chartControl.Create(answer);
+					initData = oper.Value.InitData;
+					tabInit.DataContext = initData;
 
 					ChartDataSerie serie=answer.Data.Series[answer.Data.SeriesNames["PBR"]];
 					Dictionary<DateTime,double> data=new Dictionary<DateTime, double>();

@@ -133,7 +133,6 @@ namespace VotGES.PrognozNB
 		public void checkData(DateTime dateStart, DateTime dateEnd) {
 			DateTime date=dateStart.AddMinutes(60);
 			while (date <= dateEnd) {
-
 				if (!NBFakt.Keys.Contains(date) || NBFakt[date] ==0) {
 					if (NBFakt.Keys.Contains(date))
 						NBFakt.Remove(date);

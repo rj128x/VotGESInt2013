@@ -10,20 +10,19 @@ namespace VotGES.PrognozNB
 	public class CheckPrognozNB:PrognozNBFunc
 	{
 		public bool IsQFakt { get; protected set; }
-		public int HourStart { get; protected set; }
-		public int MinStart { get; protected set; }
-		public CheckPrognozNB(DateTime dateStart, int daysCount, bool isQFakt,int hourStart, int minStart):base(dateStart,daysCount) {
+
+		public CheckPrognozNB(DateTime dateStart, int daysCount, bool isQFakt):base(dateStart,daysCount) {
 			DateStart = dateStart.Date;
 			DaysCount = daysCount;
 			IsQFakt = isQFakt;
-			MinStart = minStart;
-			HourStart = hourStart;
-			DatePrognozStart = DateStart.AddHours(HourStart).AddMinutes(MinStart);
+
+			DatePrognozStart = DateStart.AddHours(0);
 			DateEnd = DateStart.AddDays(daysCount);
 		}
 
-		public void startPrognoz(bool correct) {
+		public void startPrognoz() {
 			Prognoz = new PrognozNB();
+			Prognoz.InitData = new PrognozNBInitData();
 
 			Prognoz.FirstData = readFirstData(DatePrognozStart);
 			Prognoz.FirstDataSut = readFirstDataSut(DatePrognozStart);

@@ -104,7 +104,7 @@ namespace MainSL.Views
 		}
 
 		private void btnGetPrognoz_Click(object sender, RoutedEventArgs e) {
-			InvokeOperation currentOper=context.checkPrognozNB(settings.Date, settings.CountDays, settings.IsQFakt,settings.CorrectByPrev, settings.HourStart, settings.MinStart, 
+			InvokeOperation currentOper=context.checkPrognozNB(settings.Date, settings.CountDays, settings.IsQFakt, 
 				oper => {
 					if (oper.IsCanceled) {
 						return;
