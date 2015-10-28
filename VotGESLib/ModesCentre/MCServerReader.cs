@@ -58,9 +58,6 @@ namespace VotGES.ModesCentre {
 					ok=ok&&getPlan(obj);					
 				}
 
-				Logger.Info("finish");
-				return;
-
 				if (ok) {
 					if (ProcessedPBRS.Count != 7) {
 						Logger.Info("Количество ПБР !=7");

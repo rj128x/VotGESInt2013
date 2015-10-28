@@ -5584,7 +5584,13 @@ namespace VotGES.PrognozNB
         
         private DateTime _date;
         
-        private double _koef;
+        private double _davl1;
+        
+        private double _davl2;
+        
+        private double _davl3;
+        
+        private double _koeff;
         
         private double _pritok0;
         
@@ -5608,6 +5614,12 @@ namespace VotGES.PrognozNB
         
         private bool _useInitData;
         
+        private double _vl1;
+        
+        private double _vl2;
+        
+        private double _vl3;
+        
         #region Определение методов расширяемости
 
         /// <summary>
@@ -5617,8 +5629,14 @@ namespace VotGES.PrognozNB
         partial void OnCreated();
         partial void OnDateChanging(DateTime value);
         partial void OnDateChanged();
-        partial void OnkoefChanging(double value);
-        partial void OnkoefChanged();
+        partial void OnDavl1Changing(double value);
+        partial void OnDavl1Changed();
+        partial void OnDavl2Changing(double value);
+        partial void OnDavl2Changed();
+        partial void OnDavl3Changing(double value);
+        partial void OnDavl3Changed();
+        partial void OnKoeffChanging(double value);
+        partial void OnKoeffChanged();
         partial void OnPritok0Changing(double value);
         partial void OnPritok0Changed();
         partial void OnPritok1Changing(double value);
@@ -5641,6 +5659,12 @@ namespace VotGES.PrognozNB
         partial void OnT8Changed();
         partial void OnUseInitDataChanging(bool value);
         partial void OnUseInitDataChanged();
+        partial void OnVl1Changing(double value);
+        partial void OnVl1Changed();
+        partial void OnVl2Changing(double value);
+        partial void OnVl2Changed();
+        partial void OnVl3Changing(double value);
+        partial void OnVl3Changed();
 
         #endregion
         
@@ -5678,25 +5702,97 @@ namespace VotGES.PrognozNB
         }
         
         /// <summary>
-        /// Возвращает или задает значение параметра "koef".
+        /// Возвращает или задает значение параметра "Davl1".
         /// </summary>
         [DataMember()]
-        public double koef
+        public double Davl1
         {
             get
             {
-                return this._koef;
+                return this._davl1;
             }
             set
             {
-                if ((this._koef != value))
+                if ((this._davl1 != value))
                 {
-                    this.OnkoefChanging(value);
-                    this.RaiseDataMemberChanging("koef");
-                    this.ValidateProperty("koef", value);
-                    this._koef = value;
-                    this.RaiseDataMemberChanged("koef");
-                    this.OnkoefChanged();
+                    this.OnDavl1Changing(value);
+                    this.RaiseDataMemberChanging("Davl1");
+                    this.ValidateProperty("Davl1", value);
+                    this._davl1 = value;
+                    this.RaiseDataMemberChanged("Davl1");
+                    this.OnDavl1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Davl2".
+        /// </summary>
+        [DataMember()]
+        public double Davl2
+        {
+            get
+            {
+                return this._davl2;
+            }
+            set
+            {
+                if ((this._davl2 != value))
+                {
+                    this.OnDavl2Changing(value);
+                    this.RaiseDataMemberChanging("Davl2");
+                    this.ValidateProperty("Davl2", value);
+                    this._davl2 = value;
+                    this.RaiseDataMemberChanged("Davl2");
+                    this.OnDavl2Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Davl3".
+        /// </summary>
+        [DataMember()]
+        public double Davl3
+        {
+            get
+            {
+                return this._davl3;
+            }
+            set
+            {
+                if ((this._davl3 != value))
+                {
+                    this.OnDavl3Changing(value);
+                    this.RaiseDataMemberChanging("Davl3");
+                    this.ValidateProperty("Davl3", value);
+                    this._davl3 = value;
+                    this.RaiseDataMemberChanged("Davl3");
+                    this.OnDavl3Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Koeff".
+        /// </summary>
+        [DataMember()]
+        public double Koeff
+        {
+            get
+            {
+                return this._koeff;
+            }
+            set
+            {
+                if ((this._koeff != value))
+                {
+                    this.OnKoeffChanging(value);
+                    this.RaiseDataMemberChanging("Koeff");
+                    this.ValidateProperty("Koeff", value);
+                    this._koeff = value;
+                    this.RaiseDataMemberChanged("Koeff");
+                    this.OnKoeffChanged();
                 }
             }
         }
@@ -5964,6 +6060,78 @@ namespace VotGES.PrognozNB
                 }
             }
         }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Vl1".
+        /// </summary>
+        [DataMember()]
+        public double Vl1
+        {
+            get
+            {
+                return this._vl1;
+            }
+            set
+            {
+                if ((this._vl1 != value))
+                {
+                    this.OnVl1Changing(value);
+                    this.RaiseDataMemberChanging("Vl1");
+                    this.ValidateProperty("Vl1", value);
+                    this._vl1 = value;
+                    this.RaiseDataMemberChanged("Vl1");
+                    this.OnVl1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Vl2".
+        /// </summary>
+        [DataMember()]
+        public double Vl2
+        {
+            get
+            {
+                return this._vl2;
+            }
+            set
+            {
+                if ((this._vl2 != value))
+                {
+                    this.OnVl2Changing(value);
+                    this.RaiseDataMemberChanging("Vl2");
+                    this.ValidateProperty("Vl2", value);
+                    this._vl2 = value;
+                    this.RaiseDataMemberChanged("Vl2");
+                    this.OnVl2Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Vl3".
+        /// </summary>
+        [DataMember()]
+        public double Vl3
+        {
+            get
+            {
+                return this._vl3;
+            }
+            set
+            {
+                if ((this._vl3 != value))
+                {
+                    this.OnVl3Changing(value);
+                    this.RaiseDataMemberChanging("Vl3");
+                    this.ValidateProperty("Vl3", value);
+                    this._vl3 = value;
+                    this.RaiseDataMemberChanged("Vl3");
+                    this.OnVl3Changed();
+                }
+            }
+        }
     }
     
     /// <summary>
@@ -5973,19 +6141,29 @@ namespace VotGES.PrognozNB
     public sealed partial class PrognozRusaData : ComplexObject
     {
         
+        private string _avail;
+        
         private DateTime _date;
         
         private double _kpd;
         
         private double _napor;
         
+        private double _nb;
+        
+        private double _nuMax;
+        
         private double _p;
+        
+        private double _pMax;
         
         private double _q;
         
         private string _sostav;
         
         private double _udRash;
+        
+        private double _vb;
         
         #region Определение методов расширяемости
 
@@ -5994,20 +6172,30 @@ namespace VotGES.PrognozNB
         /// не может быть использован для последующей настройки объекта.
         /// </summary>
         partial void OnCreated();
+        partial void OnAvailChanging(string value);
+        partial void OnAvailChanged();
         partial void OnDateChanging(DateTime value);
         partial void OnDateChanged();
         partial void OnKPDChanging(double value);
         partial void OnKPDChanged();
         partial void OnNaporChanging(double value);
         partial void OnNaporChanged();
+        partial void OnNBChanging(double value);
+        partial void OnNBChanged();
+        partial void OnNUMaxChanging(double value);
+        partial void OnNUMaxChanged();
         partial void OnPChanging(double value);
         partial void OnPChanged();
+        partial void OnPMaxChanging(double value);
+        partial void OnPMaxChanged();
         partial void OnQChanging(double value);
         partial void OnQChanged();
         partial void OnSostavChanging(string value);
         partial void OnSostavChanged();
         partial void OnUdRashChanging(double value);
         partial void OnUdRashChanged();
+        partial void OnVBChanging(double value);
+        partial void OnVBChanged();
 
         #endregion
         
@@ -6018,6 +6206,30 @@ namespace VotGES.PrognozNB
         public PrognozRusaData()
         {
             this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Avail".
+        /// </summary>
+        [DataMember()]
+        public string Avail
+        {
+            get
+            {
+                return this._avail;
+            }
+            set
+            {
+                if ((this._avail != value))
+                {
+                    this.OnAvailChanging(value);
+                    this.RaiseDataMemberChanging("Avail");
+                    this.ValidateProperty("Avail", value);
+                    this._avail = value;
+                    this.RaiseDataMemberChanged("Avail");
+                    this.OnAvailChanged();
+                }
+            }
         }
         
         /// <summary>
@@ -6093,6 +6305,54 @@ namespace VotGES.PrognozNB
         }
         
         /// <summary>
+        /// Возвращает или задает значение параметра "NB".
+        /// </summary>
+        [DataMember()]
+        public double NB
+        {
+            get
+            {
+                return this._nb;
+            }
+            set
+            {
+                if ((this._nb != value))
+                {
+                    this.OnNBChanging(value);
+                    this.RaiseDataMemberChanging("NB");
+                    this.ValidateProperty("NB", value);
+                    this._nb = value;
+                    this.RaiseDataMemberChanged("NB");
+                    this.OnNBChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "NUMax".
+        /// </summary>
+        [DataMember()]
+        public double NUMax
+        {
+            get
+            {
+                return this._nuMax;
+            }
+            set
+            {
+                if ((this._nuMax != value))
+                {
+                    this.OnNUMaxChanging(value);
+                    this.RaiseDataMemberChanging("NUMax");
+                    this.ValidateProperty("NUMax", value);
+                    this._nuMax = value;
+                    this.RaiseDataMemberChanged("NUMax");
+                    this.OnNUMaxChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Возвращает или задает значение параметра "P".
         /// </summary>
         [DataMember()]
@@ -6112,6 +6372,30 @@ namespace VotGES.PrognozNB
                     this._p = value;
                     this.RaiseDataMemberChanged("P");
                     this.OnPChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "PMax".
+        /// </summary>
+        [DataMember()]
+        public double PMax
+        {
+            get
+            {
+                return this._pMax;
+            }
+            set
+            {
+                if ((this._pMax != value))
+                {
+                    this.OnPMaxChanging(value);
+                    this.RaiseDataMemberChanging("PMax");
+                    this.ValidateProperty("PMax", value);
+                    this._pMax = value;
+                    this.RaiseDataMemberChanged("PMax");
+                    this.OnPMaxChanged();
                 }
             }
         }
@@ -6184,6 +6468,30 @@ namespace VotGES.PrognozNB
                     this._udRash = value;
                     this.RaiseDataMemberChanged("UdRash");
                     this.OnUdRashChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "VB".
+        /// </summary>
+        [DataMember()]
+        public double VB
+        {
+            get
+            {
+                return this._vb;
+            }
+            set
+            {
+                if ((this._vb != value))
+                {
+                    this.OnVBChanging(value);
+                    this.RaiseDataMemberChanging("VB");
+                    this.ValidateProperty("VB", value);
+                    this._vb = value;
+                    this.RaiseDataMemberChanged("VB");
+                    this.OnVBChanged();
                 }
             }
         }

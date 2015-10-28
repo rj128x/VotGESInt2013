@@ -223,10 +223,10 @@
       <publishTime>06/28/2015 13:20:58</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>10/27/2015 15:37:12</publishTime>
+      <publishTime>10/28/2015 10:31:52</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>10/27/2015 15:42:04</publishTime>
+      <publishTime>10/28/2015 10:32:09</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
       <publishTime>12/04/2013 01:58:20</publishTime>
@@ -241,7 +241,7 @@
       <publishTime>12/04/2013 01:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>10/27/2015 15:45:22</publishTime>
+      <publishTime>10/28/2015 10:32:08</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
@@ -448,7 +448,7 @@
       <publishTime>09/16/2014 08:32:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/27/2015 15:42:15</publishTime>
+      <publishTime>10/28/2015 10:44:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

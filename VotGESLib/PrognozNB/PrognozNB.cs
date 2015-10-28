@@ -125,13 +125,20 @@ namespace VotGES.PrognozNB
 						break;
 				}
 			}
-			InputVector[8]=746;
-			InputVector[9]=746;
-			InputVector[10]=746;
 
-			InputVector[11]=83;
-			InputVector[12]=83;
-			InputVector[13]=83;
+			InputVector[8]=InitData.UseInitData?InitData.Davl1:746;
+			InputVector[9] = InitData.UseInitData ? InitData.Davl2 : 746;
+			InputVector[10] = InitData.UseInitData ? InitData.Davl3 : 746;
+			InitData.Davl1 = InputVector[8]; InitData.Davl2 = InputVector[9]; InitData.Davl3 = InputVector[10];
+
+
+			InputVector[11] = InitData.UseInitData ? InitData.Vl1 : 83;
+			InputVector[12] = InitData.UseInitData ? InitData.Vl2 : 83;
+			InputVector[13] = InitData.UseInitData ? InitData.Vl3 : 83;
+			InitData.Vl1 = InputVector[11]; InitData.Vl2 = InputVector[12]; InitData.Vl3 = InputVector[13];
+
+			double Koeff = InitData.UseInitData ? InitData.Koeff : 1;
+			InitData.Koeff = Koeff;
 
 			InputVector[14]=0;
 			InputVector[15]=0;
@@ -183,6 +190,8 @@ namespace VotGES.PrognozNB
 						else
 							Rashods.Add(dt, Rashods.Last().Value);
 					}
+
+
 				}
 
 
@@ -194,7 +203,7 @@ namespace VotGES.PrognozNB
 				List<int> avail = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 				for (int i = 0; i < 24; i++) {					
 					List<int> sostav = new List<int>();
-					double q = IsQFakt ? PArr[dateStart.AddHours(i + 1)] : RUSA.getOptimRashod(PArr[dateStart.AddHours(i + 1)], napor, !QMax, sostav, avail);
+					double q = IsQFakt ? PArr[dateStart.AddHours(i + 1)] : RUSA.getOptimRashod(PArr[dateStart.AddHours(i + 1)], napor, !QMax, sostav, avail)*Koeff;
 					
 
 					InputVector[34 + i]=q;
@@ -224,7 +233,7 @@ namespace VotGES.PrognozNB
 						double np = vb - Prognoz[dt];
 						Napors[dt] = np;
 						List<int> sostav = new List<int>();
-						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, !QMax, sostav, avail);
+						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, !QMax, sostav, avail) * Koeff;
 						Rashods[dt] = q;
 						//InputVector[34 + hour] = q;
 
@@ -252,7 +261,7 @@ namespace VotGES.PrognozNB
 						double np = PrognozVB[dt] - nb;
 						Napors[dt] = np;
 						List<int> sostav = new List<int>();
-						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, !QMax, sostav, avail);
+						double q = IsQFakt ? PArr[dt] : RUSA.getOptimRashod(PArr[dt], np, !QMax, sostav, avail) * Koeff;
 						Rashods[dt] = q;
 						//InputVector[34 + hour] = q;
 
@@ -264,7 +273,7 @@ namespace VotGES.PrognozNB
 					for (int h = 0; h < 24; h++) {
 						InputVector[34 + h] = Rashods[dateStart.AddHours(h + 1)];
 					}
-				}
+				}				
 				dateStart = dateStart.AddHours(24);
 			}
 		}

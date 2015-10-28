@@ -24,7 +24,11 @@
             </sdk:TabItem>
             <sdk:TabItem Name="tabInit" Header="Исходные данные" >
                 <Grid VerticalAlignment="Stretch" >
-                    <StackPanel Orientation="Vertical">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                             <TextBlock Text="Приток день 0: " Style="{StaticResource Label}" Width="100"/>
                             <TextBox Name="txtPritok0" Width="50" TextAlignment="Right" Text="{Binding Pritok0, Mode=TwoWay}" 								
@@ -77,12 +81,44 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <TextBlock Text="K : " Style="{StaticResource Label}" Width="100"/>
-                            <TextBox Name="txtK" Width="50" TextAlignment="Right" Text="{Binding Koef, Mode=TwoWay,StringFormat='00.00'}" 								
+                            <TextBox Name="txtK" Width="50" TextAlignment="Right" Text="{Binding Koeff, Mode=TwoWay,StringFormat='00.00'}" 								
 						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
                     </StackPanel>
                         <StackPanel>
                             <CheckBox Name="chbUseInitData" IsChecked="{Binding UseInitData, Mode=TwoWay}" Content="Применить данные" Style="{StaticResource LabelChb}"
 						 IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl1" Width="50" TextAlignment="Right" Text="{Binding Davl1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl2" Width="50" TextAlignment="Right" Text="{Binding Davl2, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl3" Width="50" TextAlignment="Right" Text="{Binding Davl3, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl1" Width="50" TextAlignment="Right" Text="{Binding Vl1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl2" Width="50" TextAlignment="Right" Text="{Binding Vl2, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl3" Width="50" TextAlignment="Right" Text="{Binding Vl3, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -103,6 +139,13 @@
                                 <sdk:DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Sostav}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="Доступные ГА" ClipboardContentBinding="{Binding Avail}" Width="150">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Avail}"/>
                                     </DataTemplate>
                                 </sdk:DataGridTemplateColumn.CellTemplate>
                             </sdk:DataGridTemplateColumn>
@@ -141,6 +184,35 @@
                                     </DataTemplate>
                                 </sdk:DataGridTemplateColumn.CellTemplate>
                             </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="ВБ" ClipboardContentBinding="{Binding VB}" Width="70">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding VB, StringFormat='#,#0.00'}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="НБ" ClipboardContentBinding="{Binding NB}" Width="70">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NB, StringFormat='#,#0.00'}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="Pmax" ClipboardContentBinding="{Binding PMax}" Width="70">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding PMax, StringFormat='#,#0'}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="Hmax" ClipboardContentBinding="{Binding NUMax}" Width="70">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NUMax, StringFormat='#,#0'}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
                 </Grid>

@@ -21,11 +21,17 @@ namespace VotGES.PrognozNB
 	public class PrognozRusaData {
 		public DateTime Date { get; set; }
 		public string Sostav { get; set; }
+		public string Avail { get; set; }
 		public double KPD { get; set; }
 		public double Q { get; set; }
 		public double P { get; set; }
 		public double Napor { get; set; }
 		public double UdRash { get; set; }
+		public double VB { get; set; }
+		public double NB { get; set; }
+		public double PMax { get; set; }
+		public double NUMax { get; set; }
+
 	}
 
 	public class PrognozNBInitData {
@@ -42,7 +48,15 @@ namespace VotGES.PrognozNB
 		public double T7 { get; set; }
 		public double T8 { get; set; }
 
-		public double koef { get; set; }
+		public double Davl1 { get; set; }
+		public double Davl2 { get; set; }
+		public double Davl3 { get; set; }
+
+		public double Vl1 { get; set; }
+		public double Vl2 { get; set; }
+		public double Vl3 { get; set; }
+
+		public double Koeff { get; set; }
 
 		public bool UseInitData { get; set; }
 	}
@@ -261,10 +275,22 @@ namespace VotGES.PrognozNB
 					dat.Date = ke.Key;
 					dat.KPD = RashodTable.KPD(p, napor, q)*100;
 					dat.Sostav = String.Join(",", sostav);
+					dat.Avail = String.Join(",", avail);
+					dat.VB = Prognoz.PrognozVB[ke.Key];
+					dat.NB = Prognoz.Prognoz[ke.Key];
 					dat.UdRash = q/p;
 					dat.Q = q;
 					dat.P = p;
 					dat.Napor = napor;
+					double state=0;
+					for (int ga=1;ga<=10;ga++){
+						if (avail.Contains(ga)) {
+							state += Math.Pow(2, ga - 1);
+						}
+					}
+					dat.PMax = PrognozNBFunc.p_max(dat.Napor, (int)state);
+					dat.NUMax = PrognozNBFunc.nu_max(dat.Napor);
+					//dat.PMax=PrognozNBFunc.p_max(dat.Napor)
 					answer.RUSA.Add(dat);
 				}
 				catch (Exception e) {
