@@ -237,8 +237,8 @@ namespace VotGES.PrognozNB
 						Rashods[dt] = q;
 						//InputVector[34 + hour] = q;
 
-						if (hour > 12 && step==1) {
-							prevDataVBArray[hour - 13] = vb;
+						if (hour > 11 && step==1) {
+							prevDataVBArray[hour - 12] = vb;
 						}
 					}
 
@@ -265,9 +265,9 @@ namespace VotGES.PrognozNB
 						Rashods[dt] = q;
 						//InputVector[34 + hour] = q;
 
-						if (hour > 12 && step == 1) {
-							prevDataNBArray[hour - 13] = nb;
-							prevDataRashodArray[hour - 13] = q;
+						if (hour > 11 && step==1) {
+							prevDataNBArray[hour - 12] = nb;
+							prevDataRashodArray[hour - 12] = q;
 						}
 					}
 					for (int h = 0; h < 24; h++) {

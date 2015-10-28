@@ -68,7 +68,7 @@ namespace VotGES.PrognozNB
 
 
 		public void readPBR() {
-			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 0, 2, 212, (new int[] { 1 }).ToList<int>(), false, true);
+			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 0, 2, 212, (new int[] { 1 }).ToList<int>(), true, true);
 			foreach (PiramidaEnrty data in dataArr) {
 				if (!PBR.Keys.Contains(data.Date)) {
 					if (data.Date.Minute==0)
@@ -79,12 +79,20 @@ namespace VotGES.PrognozNB
 
 		public void readP() {
 			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart.AddMinutes(-30), DateEnd, 0, 2, 12, (new int[] { 1 }).ToList<int>(), false, true);
+			SortedList<DateTime, int> cntP = new SortedList<DateTime, int>();
 			foreach (PiramidaEnrty data in dataArr) {
 				DateTime dt = data.Date.Minute > 0 ? data.Date.AddMinutes(30) : data.Date;
+				if (!cntP.ContainsKey(dt))
+					cntP.Add(dt, 0);
+				cntP[dt]++;
 				if (!PFakt.Keys.Contains(dt)) {
 					PFakt.Add(dt, 0);
 				}
-				PFakt[dt] += data.Value0 / 2 / 1000;
+				PFakt[dt] += data.Value0 / 1000;
+			}
+			foreach (DateTime dt in cntP.Keys) {
+				try { PFakt[dt] /= cntP[dt]; }
+				catch { }
 			}
 		}
 
@@ -92,41 +100,60 @@ namespace VotGES.PrognozNB
 			int[] items=new int[] { 354, 276,373,275,274 };
 			List<int> il=items.ToList();			
 			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart.AddMinutes(-30), DateEnd, 1, 2, 12, il, true, true);
+			SortedList<DateTime, SortedList<int, int>> CntData = new SortedList<DateTime, SortedList<int, int>>();
 
 			foreach (PiramidaEnrty data in dataArr) {
 				DateTime dt = data.Date.Minute > 0 ? data.Date.AddMinutes(30) : data.Date;
+				if (!CntData.ContainsKey(dt))
+					CntData.Add(dt, new SortedList<int, int>());
+				if (!CntData[dt].ContainsKey(data.Item))
+					CntData[dt].Add(data.Item, 0);
+				CntData[dt][data.Item]++;
 				switch (data.Item) {
 					case 354:
 						if (!QFakt.Keys.Contains(dt)) {
 							QFakt.Add(dt, 0);
 						}
-						QFakt[dt] += data.Value0 / 2;
+						QFakt[dt] += data.Value0 ;
 						break;
 					case 276:
 						if (!NaporFakt.Keys.Contains(dt)) {
 							NaporFakt.Add(dt, 0);
 						}
-						NaporFakt[dt] += data.Value0 / 2;
+						NaporFakt[dt] += data.Value0 ;
 						break;
 					case 275:
 						if (!NBFakt.Keys.Contains(dt)) {
 							NBFakt.Add(dt, 0);
 						}
-						NBFakt[dt] += data.Value0 / 2;
+						NBFakt[dt] += data.Value0 ;
 						break;
 					case 274:
 						if (!VBFakt.Keys.Contains(dt)) {
 							VBFakt.Add(dt, 0);
 						}
-						VBFakt[dt] += data.Value0 / 2;
+						VBFakt[dt] += data.Value0 ;
 						break;
 					case 373:
 						if (!TFakt.Keys.Contains(dt)) {
 							TFakt.Add(dt, 0);
 						}
-						TFakt[dt] += data.Value0 / 2;
+						TFakt[dt] += data.Value0 ;
 						break;
 				}
+			}
+
+			foreach (DateTime dt in CntData.Keys) {
+				try { QFakt[dt] /= CntData[dt][354]; }
+				catch { }
+				try { NaporFakt[dt] /= CntData[dt][276]; }
+				catch { }
+				try { NBFakt[dt] /= CntData[dt][275]; }
+				catch { }
+				try { VBFakt[dt] /= CntData[dt][274]; }
+				catch { }
+				try { TFakt[dt] /= CntData[dt][373]; }
+				catch { }
 			}
 		}
 
@@ -140,8 +167,6 @@ namespace VotGES.PrognozNB
 						NBFakt.Add(date, NBFakt[date.AddMinutes(-60)]);
 					else NBFakt.Add(date, 66);
 				}
-				if (NBFakt[date] < 60)
-					NBFakt[date] = NBFakt[date]*2;
 								
 				if (!VBFakt.Keys.Contains(date) || VBFakt[date] == 0) {
 					if (VBFakt.Keys.Contains(date))
@@ -150,18 +175,12 @@ namespace VotGES.PrognozNB
 						VBFakt.Add(date, VBFakt[date.AddMinutes(-60)]);
 					else VBFakt.Add(date, 87);
 				}
-				if (VBFakt[date] < 80)
-					VBFakt[date] *= 2;
-
 				
 				if (!NaporFakt.Keys.Contains(date) || NaporFakt[date] == 0) {
 					if (NaporFakt.Keys.Contains(date))
 						NaporFakt.Remove(date);
 					NaporFakt.Add(date, VBFakt[date] - NBFakt[date]);
 				}
-				if (NaporFakt[date] < 15)
-					NaporFakt[date] *= 2;
-
 
 				if (!PFakt.Keys.Contains(date)) {
 					if (PFakt.Keys.Contains(date.AddMinutes(-60)))
@@ -220,27 +239,34 @@ namespace VotGES.PrognozNB
 
 		protected SortedList<DateTime, PrognozNBFirstData> processFirstData(List<PiramidaEnrty> dataArr) {
 			SortedList<DateTime,PrognozNBFirstData> firstData=new SortedList<DateTime, PrognozNBFirstData>();
+			SortedList<DateTime, SortedList<int, int>> CntData = new SortedList<DateTime, SortedList<int, int>>();
+
 			foreach (PiramidaEnrty data in dataArr) {
 				DateTime date = data.Date.Minute == 0 ? data.Date : data.Date.AddMinutes(30);
+				if (!CntData.ContainsKey(date))
+					CntData.Add(date, new SortedList<int, int>());
+				if (!CntData[date].ContainsKey(data.Item))
+					CntData[date].Add(data.Item, 0);
+				CntData[date][data.Item]++;
+
 				if (!firstData.Keys.Contains(date)) {
 					PrognozNBFirstData newData=new PrognozNBFirstData();
 					newData.Date = date;
 					firstData.Add(date, newData);
-				}
-				
+				}				
 
 				switch (data.Item) {
 					case 1:						
-						firstData[date].P += data.Value0/2/1000;
+						firstData[date].P += data.Value0/1000;
 						break;
 					case 354:
-						firstData[date].Q += data.Value0/2;
+						firstData[date].Q += data.Value0;
 						break;
 					case 275:
-						firstData[date].NB += data.Value0/2;
+						firstData[date].NB += data.Value0;
 						break;
 					case 274:
-						firstData[date].VB += data.Value0/2;
+						firstData[date].VB += data.Value0;
 						break;
 					case 373:
 						firstData[date].T = data.Value0;
@@ -249,6 +275,21 @@ namespace VotGES.PrognozNB
 						firstData[date].Pritok = data.Value0;
 						break;
 				}
+			}
+
+			foreach (DateTime dt in CntData.Keys) {
+				try { firstData[dt].P /= CntData[dt][1]; }
+				catch { }
+				try { firstData[dt].Q /= CntData[dt][354]; }
+				catch { }
+				try { firstData[dt].NB /= CntData[dt][275]; }
+				catch { }
+				try { firstData[dt].VB /= CntData[dt][274]; }
+				catch { }
+				try { firstData[dt].T /= CntData[dt][373]; }
+				catch { }
+				try { firstData[dt].Pritok /= CntData[dt][24]; }
+				catch { }
 			}
 
 			foreach (DateTime date in firstData.Keys) {

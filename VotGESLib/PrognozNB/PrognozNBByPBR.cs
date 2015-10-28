@@ -121,7 +121,7 @@ namespace VotGES.PrognozNB
 			DatePrognozStart = datePrognozStart;
 			int hour=DatePrognozStart.Hour;
 
-			DatePrognozStart = DatePrognozStart.Date.AddHours(hour+1);
+			DatePrognozStart = DatePrognozStart.Date.AddHours(hour);
 			//DatePrognozStart = DateStart.Date;
 			UserPBR = userPBR;
 
@@ -133,8 +133,10 @@ namespace VotGES.PrognozNB
 			DateTime de=DatePrognozStart.AddDays(-1);
 			List<PiramidaEnrty> dataArr=PiramidaAccess.GetDataFromDB(DateStart, DateEnd, 0, 2, 212, (new int[] { 1 }).ToList<int>(), true, true);
 			foreach (PiramidaEnrty data in dataArr) {
-				if (!pbrPrevSutki.Keys.Contains(data.Date)) {
-					pbrPrevSutki.Add(data.Date, data.Value0 / 1000);
+				if (data.Date.Minute == 0) {
+					if (!pbrPrevSutki.Keys.Contains(data.Date)) {
+						pbrPrevSutki.Add(data.Date, data.Value0 / 1000);
+					}
 				}
 			}
 		}
@@ -176,7 +178,7 @@ namespace VotGES.PrognozNB
 			answer.RUSA = new List<PrognozRusaData>();
 			foreach (DateTime date in PFakt.Keys) {
 				if (date > DateStart && date <= DatePrognozStart) {
-					answer.VyrabFakt += PFakt[date] / 2;
+					answer.VyrabFakt += PFakt[date];
 				}
 			}
 
@@ -212,7 +214,7 @@ namespace VotGES.PrognozNB
 					values[dt].Date = currentDate;
 				}
 				double nb= Prognoz.Prognoz[currentDate];
-				values[dt].Vyrab += Prognoz.PArr[currentDate]/2;
+				values[dt].Vyrab += Prognoz.PArr[currentDate];
 				values[dt].QAvg += Prognoz.Rashods[currentDate];
 				values[dt].NBAvg += nb;
 				values[dt].NBMin = values[dt].NBMin < nb ? values[dt].NBMin : nb;
@@ -247,19 +249,16 @@ namespace VotGES.PrognozNB
 				foreach (PiramidaEnrty rec in m53500) {
 					if (!Avail.ContainsKey(rec.Date)) {
 						Avail.Add(rec.Date, new List<int>());
-						Avail.Add(rec.Date.AddMinutes(-30), new List<int>());
 					}
 					if (!Avail[rec.Date].Contains(rec.Item) && rec.Value0 > 0) {
 						Avail[rec.Date].Add(rec.Item);
-						Avail[rec.Date.AddMinutes(-30)].Add(rec.Item);
 					}
 				}
 			}
 			catch {}
 
 			foreach (KeyValuePair<DateTime, double> ke in Prognoz.PArr) {
-				try {
-					
+				try {					
 					PrognozRusaData dat = new PrognozRusaData();
 					double p = ke.Value;
 					double napor = Prognoz.Napors[ke.Key];
@@ -324,6 +323,10 @@ namespace VotGES.PrognozNB
 				}
 				prev = de.Value;
 				isFirst = false;
+			}
+			foreach (KeyValuePair<DateTime, double> de in PFakt) {
+				if (Prognoz.PArr.ContainsKey(de.Key))
+					Prognoz.PArr[de.Key] = PFakt[de.Key];
 			}
 			//prognoz.calcPrognoz(correct);
 			Prognoz.calcPrognozNeW();

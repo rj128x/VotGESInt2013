@@ -204,14 +204,7 @@
                                         <TextBlock Text="{Binding PMax, StringFormat='#,#0'}"/>
                                     </DataTemplate>
                                 </sdk:DataGridTemplateColumn.CellTemplate>
-                            </sdk:DataGridTemplateColumn>
-                            <sdk:DataGridTemplateColumn Header="Hmax" ClipboardContentBinding="{Binding NUMax}" Width="70">
-                                <sdk:DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding NUMax, StringFormat='#,#0'}"/>
-                                    </DataTemplate>
-                                </sdk:DataGridTemplateColumn.CellTemplate>
-                            </sdk:DataGridTemplateColumn>
+                            </sdk:DataGridTemplateColumn>                            
                             
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
