@@ -118,9 +118,12 @@ namespace VotGES.ModesCentre {
 						Logger.Info("Ошибка при записи номера ПБР в базу");
 					}					
 				}					
-				ModesApiFactory.CloseConnection();
+				
 			} catch (Exception e) {
 				Logger.Info("Ошибка при получении ПБР с сервера MC " + e);
+			}
+			finally {
+				ModesApiFactory.CloseConnection();
 			}
 		}
 

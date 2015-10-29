@@ -116,8 +116,18 @@
 							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Влажность3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBlock Text="Влажность 3: " Style="{StaticResource Label}" Width="100"/>
                             <TextBox Name="txtVl3" Width="50" TextAlignment="Right" Text="{Binding Vl3, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Подпор 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPodpor1" Width="50" TextAlignment="Right" Text="{Binding Podpor1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Подпор 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPodpor2" Width="50" TextAlignment="Right" Text="{Binding Podpor2, Mode=TwoWay}" 								
 							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
                         </StackPanel>
                     </StackPanel>

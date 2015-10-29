@@ -59,6 +59,9 @@ namespace VotGES.PrognozNB
 		public double Koeff { get; set; }
 
 		public bool UseInitData { get; set; }
+
+		public double Podpor1 { get; set; }
+		public double Podpor2 { get; set; }
 	}
 
 

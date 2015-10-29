@@ -70,26 +70,32 @@ namespace VotGES.ModesCentre {
 			} catch (Exception e) {
 				Logger.Info("Ошибка при получении ПБР с сервера MC " + e);
 			}
+			finally {
+				ModesApiFactory.CloseConnection();
+			}
 		}
 
 
 		public void getMaket(DateTime DateStart, DateTime DateEnd) {
 			DateTime dt1 = DateStart.Date.LocalHqToSystemEx();
 			DateTime dt0 = DateEnd.Date.AddDays(1).LocalHqToSystemEx();
-
+			LogInfo.Add(String.Format("Получение макетов с {0} по {1}", dt1, dt0));
 			modesConnect();
-			IList<IMaketHeader> headers= api.GetMaketHeaders53500(dt1,dt0);
+			IList<IMaketHeader> headers= api.GetMaketHeaders53500(dt1,dt0);			
 			foreach (IMaketHeader header in headers) {
 				//Logger.Info("process header " + header.Mrid);
 				if (header.DtTarget >= DateStart && header.DtTarget <= DateEnd) {
+					LogInfo.Add(String.Format("Обработка макета {0} ({1}) ", header.DtTarget,header.Mrid));
 					DateTime ds = header.DtTarget.SystemToLocalHqEx().Date;
 					if (header.StProceed != StateProceed.Accept)
 						continue;
+					LogInfo.Add(String.Format("Чтение макета {0} ({1}) ", header.DtTarget, header.Mrid));
 					Guid[] ids=new Guid[]{header.Mrid};
 					IList<IMaketEquipment> maketData=api.GetMaket53500Equipment(ids);
 					foreach (IMaketEquipment maket in maketData) {									
 						Logger.Info("process maket " + maket.Mrid);
-						foreach (IGenObject obj in maket.GenTree) {							
+						foreach (IGenObject obj in maket.GenTree) {
+							LogInfo.Add(String.Format("Обработка объекта {0} ({1}) ", obj.Id, obj.Name));
 							processGenTreeObject(obj,ds);
 						}
 					}

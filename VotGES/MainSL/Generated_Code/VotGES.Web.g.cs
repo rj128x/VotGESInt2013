@@ -5592,6 +5592,10 @@ namespace VotGES.PrognozNB
         
         private double _koeff;
         
+        private double _podpor1;
+        
+        private double _podpor2;
+        
         private double _pritok0;
         
         private double _pritok1;
@@ -5637,6 +5641,10 @@ namespace VotGES.PrognozNB
         partial void OnDavl3Changed();
         partial void OnKoeffChanging(double value);
         partial void OnKoeffChanged();
+        partial void OnPodpor1Changing(double value);
+        partial void OnPodpor1Changed();
+        partial void OnPodpor2Changing(double value);
+        partial void OnPodpor2Changed();
         partial void OnPritok0Changing(double value);
         partial void OnPritok0Changed();
         partial void OnPritok1Changing(double value);
@@ -5793,6 +5801,54 @@ namespace VotGES.PrognozNB
                     this._koeff = value;
                     this.RaiseDataMemberChanged("Koeff");
                     this.OnKoeffChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Podpor1".
+        /// </summary>
+        [DataMember()]
+        public double Podpor1
+        {
+            get
+            {
+                return this._podpor1;
+            }
+            set
+            {
+                if ((this._podpor1 != value))
+                {
+                    this.OnPodpor1Changing(value);
+                    this.RaiseDataMemberChanging("Podpor1");
+                    this.ValidateProperty("Podpor1", value);
+                    this._podpor1 = value;
+                    this.RaiseDataMemberChanged("Podpor1");
+                    this.OnPodpor1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Podpor2".
+        /// </summary>
+        [DataMember()]
+        public double Podpor2
+        {
+            get
+            {
+                return this._podpor2;
+            }
+            set
+            {
+                if ((this._podpor2 != value))
+                {
+                    this.OnPodpor2Changing(value);
+                    this.RaiseDataMemberChanging("Podpor2");
+                    this.ValidateProperty("Podpor2", value);
+                    this._podpor2 = value;
+                    this.RaiseDataMemberChanged("Podpor2");
+                    this.OnPodpor2Changed();
                 }
             }
         }

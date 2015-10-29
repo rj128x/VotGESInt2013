@@ -1,1 +1,1 @@
-CmdHttpRequest -u http://sr-votges-int:8075/Reports/VERReportToFilePrevDate
+CmdHttpRequest -u http://sr-votges-015:8075/Reports/VERReportToFilePrevDate

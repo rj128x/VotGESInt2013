@@ -249,8 +249,10 @@ namespace VotGES.PrognozNB
 						for (int i = 0; i < 12; i++) {
 							InputVector[58 + i] = prevDataNBArray[i];
 						}
-					InputVector[20] = 63.27;
-					InputVector[21] = 63.20;
+						InputVector[20] = InitData.UseInitData ? InitData.Podpor1 : 63.27;
+						InputVector[21] = InitData.UseInitData ? InitData.Podpor2 : 63.27;
+						InitData.Podpor1 = InputVector[20];
+						InitData.Podpor2 = InputVector[21];
 
 					for (int hour = 0; hour < 24; hour++) {
 						DateTime dt = dateStart.AddHours(hour + 1);
