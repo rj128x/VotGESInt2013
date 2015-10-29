@@ -260,6 +260,7 @@ namespace VotGES.PrognozNB
 			}
 			catch {}
 
+			List<int>prevAvail=null;
 			foreach (KeyValuePair<DateTime, double> ke in Prognoz.PArr) {
 				try {					
 					PrognozRusaData dat = new PrognozRusaData();
@@ -267,9 +268,15 @@ namespace VotGES.PrognozNB
 					double napor = Prognoz.Napors[ke.Key];
 					List<int> sostav = new List<int>();
 					List<int> avail = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-					try{
-						avail=Avail[ke.Key];						
-					}catch{};
+					if (!Avail.ContainsKey(ke.Key)) {
+						if (prevAvail != null)
+							avail = prevAvail;
+					}
+					else {
+						avail = Avail[ke.Key];
+					}
+					prevAvail = avail;
+					
 					//Logger.Info(String.Format("{0}: {1}", ke.Key, String.Join(",", avail)));
 					double q = RUSA.getOptimRashod(p, napor, !QMax, sostav, avail);
 					sostav.Sort();

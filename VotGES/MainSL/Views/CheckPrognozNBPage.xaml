@@ -13,7 +13,123 @@
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
-		<usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
+        <sdk:TabControl>
+            <sdk:TabItem Header="График" IsSelected="True">
+                <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>  
+            </sdk:TabItem>
+            <sdk:TabItem Name="tabInit" Header="Исходные данные" >
+                <Grid VerticalAlignment="Stretch" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Приток день 0: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPritok0" Width="50" TextAlignment="Right" Text="{Binding Pritok0, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Приток день 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPritok1" Width="50" TextAlignment="Right" Text="{Binding Pritok1, Mode=TwoWay}"								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T1 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT1" Width="50" TextAlignment="Right" Text="{Binding T1, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T2 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT2" Width="50" TextAlignment="Right" Text="{Binding T2, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT3" Width="50" TextAlignment="Right" Text="{Binding T3, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T4 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT4" Width="50" TextAlignment="Right" Text="{Binding T4, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T5 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT5" Width="50" TextAlignment="Right" Text="{Binding T5, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T6 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT6" Width="50" TextAlignment="Right" Text="{Binding T6, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T7 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT7" Width="50" TextAlignment="Right" Text="{Binding T7, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="T8 : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtT8" Width="50" TextAlignment="Right" Text="{Binding T8, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="K : " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtK" Width="50" TextAlignment="Right" Text="{Binding Koeff, Mode=TwoWay,StringFormat='00.00'}" 								
+						IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <CheckBox Name="chbUseInitData" IsChecked="{Binding UseInitData, Mode=TwoWay}" Content="Применить данные" Style="{StaticResource LabelChb}"
+						 IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl1" Width="50" TextAlignment="Right" Text="{Binding Davl1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl2" Width="50" TextAlignment="Right" Text="{Binding Davl2, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Атм. давление 3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtDavl3" Width="50" TextAlignment="Right" Text="{Binding Davl3, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl1" Width="50" TextAlignment="Right" Text="{Binding Vl1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl2" Width="50" TextAlignment="Right" Text="{Binding Vl2, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Влажность 3: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtVl3" Width="50" TextAlignment="Right" Text="{Binding Vl3, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Подпор 1: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPodpor1" Width="50" TextAlignment="Right" Text="{Binding Podpor1, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Подпор 2: " Style="{StaticResource Label}" Width="100"/>
+                            <TextBox Name="txtPodpor2" Width="50" TextAlignment="Right" Text="{Binding Podpor2, Mode=TwoWay}" 								
+							IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </sdk:TabItem>
+        </sdk:TabControl>
+		
 		<StackPanel Name="pnlSettings" Grid.Column="1" >
 			<sdk:Calendar Name="clndDate" SelectedDate="{Binding Date, Mode=TwoWay}"  
 				IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>

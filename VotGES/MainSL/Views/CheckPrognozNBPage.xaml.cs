@@ -14,6 +14,7 @@ using VotGES.Web.Services;
 using VotGES.Chart;
 using System.ComponentModel;
 using System.ServiceModel.DomainServices.Client;
+using VotGES.PrognozNB;
 
 namespace MainSL.Views
 {
@@ -84,6 +85,7 @@ namespace MainSL.Views
 
 		public Settings settings;
 		PrognozNBContext context;
+		public PrognozNBInitData initData; 
 		public CheckPrognozNBPage() {
 			InitializeComponent();
 			context = new PrognozNBContext();
@@ -93,6 +95,8 @@ namespace MainSL.Views
 			settings.HourStart = 0;
 			settings.MinStart = 0;
 			pnlSettings.DataContext = settings;
+			initData = new PrognozNBInitData();
+			tabInit.DataContext = initData;
 		}
 
 		// Выполняется, когда пользователь переходит на эту страницу.
@@ -104,14 +108,16 @@ namespace MainSL.Views
 		}
 
 		private void btnGetPrognoz_Click(object sender, RoutedEventArgs e) {
-			InvokeOperation currentOper=context.checkPrognozNB(settings.Date, settings.CountDays, settings.IsQFakt, 
+			InvokeOperation currentOper=context.checkPrognozNB(settings.Date, settings.CountDays, settings.IsQFakt,initData, 
 				oper => {
 					if (oper.IsCanceled) {
 						return;
 					}
 					GlobalStatus.Current.StartProcess();
 					try {
-						ChartAnswer answer=oper.Value;
+						ChartAnswer answer=oper.Value.Chart;
+						initData = oper.Value.InitData;
+						tabInit.DataContext = initData;
 						chartControl.Create(answer);
 					} catch (Exception ex) {
 						Logging.Logger.info(ex.ToString());

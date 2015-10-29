@@ -5293,6 +5293,91 @@ namespace VotGES.PrognozNB
     
     
     /// <summary>
+    /// Класс "CheckPrognozNBAnswer".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.PrognozNB")]
+    public sealed partial class CheckPrognozNBAnswer : ComplexObject
+    {
+        
+        private ChartAnswer _chart;
+        
+        private PrognozNBInitData _initData;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnChartChanging(ChartAnswer value);
+        partial void OnChartChanged();
+        partial void OnInitDataChanging(PrognozNBInitData value);
+        partial void OnInitDataChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="CheckPrognozNBAnswer"/>.
+        /// </summary>
+        public CheckPrognozNBAnswer()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Chart".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public ChartAnswer Chart
+        {
+            get
+            {
+                return this._chart;
+            }
+            set
+            {
+                if ((this._chart != value))
+                {
+                    this.OnChartChanging(value);
+                    this.RaiseDataMemberChanging("Chart");
+                    this.ValidateProperty("Chart", value);
+                    this._chart = value;
+                    this.RaiseDataMemberChanged("Chart");
+                    this.OnChartChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "InitData".
+        /// </summary>
+        [DataMember()]
+        [Display(AutoGenerateField=false)]
+        public PrognozNBInitData InitData
+        {
+            get
+            {
+                return this._initData;
+            }
+            set
+            {
+                if ((this._initData != value))
+                {
+                    this.OnInitDataChanging(value);
+                    this.RaiseDataMemberChanging("InitData");
+                    this.ValidateProperty("InitData", value);
+                    this._initData = value;
+                    this.RaiseDataMemberChanged("InitData");
+                    this.OnInitDataChanged();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     /// Класс "PrognozNBByPBRAnswer".
     /// </summary>
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/VotGES.PrognozNB")]
@@ -10206,17 +10291,19 @@ namespace VotGES.Web.Services
         /// <param name="date">Значение параметра "date" для данного действия.</param>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
         /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
+        /// <param name="initData">Значение параметра "initData" для данного действия.</param>
         /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
         /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, Action<InvokeOperation<ChartAnswer>> callback, object userState)
+        public InvokeOperation<CheckPrognozNBAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, PrognozNBInitData initData, Action<InvokeOperation<CheckPrognozNBAnswer>> callback, object userState)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("date", date);
             parameters.Add("countDays", countDays);
             parameters.Add("isQFakt", isQFakt);
+            parameters.Add("initData", initData);
             this.ValidateMethod("checkPrognozNB", parameters);
-            return ((InvokeOperation<ChartAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(ChartAnswer), parameters, true, callback, userState)));
+            return ((InvokeOperation<CheckPrognozNBAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(CheckPrognozNBAnswer), parameters, true, callback, userState)));
         }
         
         /// <summary>
@@ -10225,15 +10312,17 @@ namespace VotGES.Web.Services
         /// <param name="date">Значение параметра "date" для данного действия.</param>
         /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
         /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
+        /// <param name="initData">Значение параметра "initData" для данного действия.</param>
         /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
-        public InvokeOperation<ChartAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt)
+        public InvokeOperation<CheckPrognozNBAnswer> checkPrognozNB(DateTime date, int countDays, bool isQFakt, PrognozNBInitData initData)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("date", date);
             parameters.Add("countDays", countDays);
             parameters.Add("isQFakt", isQFakt);
+            parameters.Add("initData", initData);
             this.ValidateMethod("checkPrognozNB", parameters);
-            return ((InvokeOperation<ChartAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(ChartAnswer), parameters, true, null, null)));
+            return ((InvokeOperation<CheckPrognozNBAnswer>)(this.InvokeOperation("checkPrognozNB", typeof(CheckPrognozNBAnswer), parameters, true, null, null)));
         }
         
         /// <summary>
@@ -10298,19 +10387,20 @@ namespace VotGES.Web.Services
             /// <param name="date">Значение параметра "date" для данного действия.</param>
             /// <param name="countDays">Значение параметра "countDays" для данного действия.</param>
             /// <param name="isQFakt">Значение параметра "isQFakt" для данного действия.</param>
+            /// <param name="initData">Значение параметра "initData" для данного действия.</param>
             /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
             /// <param name="asyncState">Необязательный объект состояния.</param>
             /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
             [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/PrognozNBService/checkPrognozNBDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/PrognozNBService/checkPrognozNB", ReplyAction="http://tempuri.org/PrognozNBService/checkPrognozNBResponse")]
-            IAsyncResult BegincheckPrognozNB(DateTime date, int countDays, bool isQFakt, AsyncCallback callback, object asyncState);
+            IAsyncResult BegincheckPrognozNB(DateTime date, int countDays, bool isQFakt, PrognozNBInitData initData, AsyncCallback callback, object asyncState);
             
             /// <summary>
             /// Завершает асинхронную операцию, начатую "BegincheckPrognozNB".
             /// </summary>
             /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BegincheckPrognozNB".</param>
-            /// <returns>Объект "ChartAnswer", возвращенный из операции "checkPrognozNB".</returns>
-            ChartAnswer EndcheckPrognozNB(IAsyncResult result);
+            /// <returns>Объект "CheckPrognozNBAnswer", возвращенный из операции "checkPrognozNB".</returns>
+            CheckPrognozNBAnswer EndcheckPrognozNB(IAsyncResult result);
             
             /// <summary>
             /// Асинхронно вызывает операцию "getPrognoz".

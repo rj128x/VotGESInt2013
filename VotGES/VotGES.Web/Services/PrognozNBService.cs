@@ -24,19 +24,21 @@ namespace VotGES.Web.Services
 	[EnableClientAccess()]
 	public class PrognozNBService : DomainService
 	{
-		
-		public ChartAnswer checkPrognozNB(DateTime date,int countDays, bool isQFakt) {
+
+		public CheckPrognozNBAnswer checkPrognozNB(DateTime date, int countDays, bool isQFakt, PrognozNBInitData initData) {
 			WebLogger.Info(String.Format("Получение прогноза (факт) {0} - {1}", date, countDays));
 			try {
 				if (date.AddHours(-2).Date >= DateTime.Now.Date)
 					date = DateTime.Now.AddHours(-2).Date.AddHours(-24);
-				
-				
+							
 				
 				CheckPrognozNB prognoz=new CheckPrognozNB(date.Date,countDays,isQFakt);
 				//PrognozNBByPBR prognoz=new PrognozNBByPBR(date.Date, 1, date.Date.AddHours(8).AddMinutes(15),null);
-				prognoz.startPrognoz();				
-				return prognoz.getChart();
+				prognoz.startPrognoz(initData);
+				CheckPrognozNBAnswer answer = new CheckPrognozNBAnswer();
+				answer.Chart = prognoz.getChart();
+				answer.InitData = prognoz.Prognoz.InitData;
+				return answer;
 			} catch (Exception e) {
 				WebLogger.Error(e.ToString());
 				return null;

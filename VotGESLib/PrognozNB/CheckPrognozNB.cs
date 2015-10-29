@@ -7,6 +7,11 @@ using VotGES.Chart;
 
 namespace VotGES.PrognozNB
 {
+	public class CheckPrognozNBAnswer {
+		public ChartAnswer Chart{get;set;}
+		public PrognozNBInitData InitData { get; set; }
+	}
+
 	public class CheckPrognozNB:PrognozNBFunc
 	{
 		public bool IsQFakt { get; protected set; }
@@ -20,12 +25,13 @@ namespace VotGES.PrognozNB
 			DateEnd = DateStart.AddDays(daysCount);
 		}
 
-		public void startPrognoz() {
+		public void startPrognoz(PrognozNBInitData initData) {
 			Prognoz = new PrognozNB();
 			Prognoz.InitData = new PrognozNBInitData();
 
 			Prognoz.FirstData = readFirstData(DatePrognozStart);
 			Prognoz.FirstDataSut = readFirstDataSut(DatePrognozStart);
+			Prognoz.InitData = initData == null ? new PrognozNBInitData() : initData;
 			readP();
 			readPBR();
 			readWater();
