@@ -30,6 +30,7 @@ namespace VotGES.PrognozNB
 		public double VB { get; set; }
 		public double NB { get; set; }
 		public double PMax { get; set; }
+		public double POgran { get; set; }
 		public double NUMax { get; set; }
 
 	}
@@ -292,11 +293,20 @@ namespace VotGES.PrognozNB
 					dat.P = p;
 					dat.Napor = napor;
 					double state=0;
+					double pOgran=0;
+					double np=Math.Round(napor*10)/10;
 					for (int ga=1;ga<=10;ga++){
 						if (avail.Contains(ga)) {
 							state += Math.Pow(2, ga - 1);
+							try {
+								pOgran += OgranLineTable.OgranData[ga][np];
+							}
+							catch {
+								pOgran += ga <= 2 ? 110 : 100;
+							}							
 						}
 					}
+					dat.POgran = pOgran;
 					dat.PMax = PrognozNBFunc.p_max(dat.Napor, (int)state);
 					dat.NUMax = PrognozNBFunc.nu_max(dat.Napor);
 					//dat.PMax=PrognozNBFunc.p_max(dat.Napor)

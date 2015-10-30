@@ -6298,6 +6298,8 @@ namespace VotGES.PrognozNB
         
         private double _pMax;
         
+        private double _pOgran;
+        
         private double _q;
         
         private string _sostav;
@@ -6329,6 +6331,8 @@ namespace VotGES.PrognozNB
         partial void OnPChanged();
         partial void OnPMaxChanging(double value);
         partial void OnPMaxChanged();
+        partial void OnPOgranChanging(double value);
+        partial void OnPOgranChanged();
         partial void OnQChanging(double value);
         partial void OnQChanged();
         partial void OnSostavChanging(string value);
@@ -6537,6 +6541,30 @@ namespace VotGES.PrognozNB
                     this._pMax = value;
                     this.RaiseDataMemberChanged("PMax");
                     this.OnPMaxChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "POgran".
+        /// </summary>
+        [DataMember()]
+        public double POgran
+        {
+            get
+            {
+                return this._pOgran;
+            }
+            set
+            {
+                if ((this._pOgran != value))
+                {
+                    this.OnPOgranChanging(value);
+                    this.RaiseDataMemberChanging("POgran");
+                    this.ValidateProperty("POgran", value);
+                    this._pOgran = value;
+                    this.RaiseDataMemberChanged("POgran");
+                    this.OnPOgranChanged();
                 }
             }
         }

@@ -214,8 +214,15 @@
                                         <TextBlock Text="{Binding PMax, StringFormat='#,#0'}"/>
                                     </DataTemplate>
                                 </sdk:DataGridTemplateColumn.CellTemplate>
-                            </sdk:DataGridTemplateColumn>                            
-                            
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="Pmax(h)" ClipboardContentBinding="{Binding POgran}" Width="70">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding POgran, StringFormat='#,#0'}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
                 </Grid>

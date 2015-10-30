@@ -60,6 +60,7 @@ namespace VotGES.PrognozNB
 			SortedList<int, double> prevDataVBArray = new SortedList<int, double>();
 			SortedList<int, double> prevDataTArray = new SortedList<int, double>();
 			SortedList<int, double> prevDataPritokArray = new SortedList<int, double>();
+			
 			Prognoz = new SortedList<DateTime, double>();
 
 			int index = 0;
@@ -184,6 +185,7 @@ namespace VotGES.PrognozNB
 							Prognoz.Add(dt, Prognoz.Last().Value);
 					}
 
+
 					if (!Rashods.ContainsKey(dt)){
 						if (Rashods.Count == 0)
 							Rashods.Add(dt, prevDataRashodArray.Last().Value);
@@ -271,10 +273,13 @@ namespace VotGES.PrognozNB
 							prevDataNBArray[hour - 12] = nb;
 							prevDataRashodArray[hour - 12] = q;
 						}
+						
 					}
 					for (int h = 0; h < 24; h++) {
 						InputVector[34 + h] = Rashods[dateStart.AddHours(h + 1)];
 					}
+
+
 				}				
 				dateStart = dateStart.AddHours(24);
 			}
