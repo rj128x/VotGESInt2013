@@ -98,6 +98,9 @@ namespace ClearDB {
 			if (task == "sutVed") {
 				SutVed.ProcessFolder(Settings.single.SutVedPath, Settings.single.SutVedPathTo);
 			}
+			else if (task == "checkModbus") {
+				CheckModbusWater.CheckData();
+			}
 			else {
 				double hh = 24;
 				while (date <= dateEnd) {

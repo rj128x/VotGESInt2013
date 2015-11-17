@@ -5,4 +5,12 @@
 	<DBDateFormat>yyyy-MM-dd HH:mm:ss</DBDateFormat>
 	<SutVedPath>e:/ToPiramida/sutVed</SutVedPath>
 	<SutVedPathTo>e:/Projects/ARC_53500_SUTVED/sutVed</SutVedPathTo>
+  
+  <ErrorMailTo>ChekunovaMV@votges.rushydro.ru</ErrorMailTo>
+  <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
+  <SMTPUser>chekunovamv</SMTPUser>
+  <SMTPPassword>rJ320204</SMTPPassword>
+  <SMTPPort>25</SMTPPort>
+  <SMTPDomain>corp</SMTPDomain>
+  <SMTPFrom>chekunovaMV@votges.rushydro.ru</SMTPFrom>
 </Settings>	

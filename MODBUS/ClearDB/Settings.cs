@@ -15,6 +15,14 @@ namespace ClearDB
 		public string SutVedPath { get; set; }
 		public string SutVedPathTo { get; set; }
 		public string DBDateFormat { get; set; }
+
+		public string SMTPServer { get; set; }
+		public string SMTPDomain { get; set; }
+		public int SMTPPort { get; set; }
+		public string SMTPUser { get; set; }
+		public string SMTPPassword { get; set; }
+		public string SMTPFrom { get; set; }
+		public string ErrorMailTo { get; set; }
 		
 		public static Settings single {
 			get {
