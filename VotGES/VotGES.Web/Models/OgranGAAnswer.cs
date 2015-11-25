@@ -25,9 +25,9 @@ namespace VotGES.Web.Models {
 		public double CurrentKPD { get; protected set; }
 		public double CurrentRashod { get; protected set; }
 
-		public void createAnswer(int ga, bool createNarab,bool createCurrent) {
+		public void createAnswer(int ga, bool createNarab,bool createCurrent,DateTime now) {
 			if (createNarab) {
-				DateTime now = DateTime.Now;
+				//DateTime now = DateTime.Now;
 				DateTime expStart = new DateTime(1960, 1, 1);
 				DateTime yearStart = new DateTime(now.Year, 1, 1);
 				DateTime monthStart = new DateTime(now.Year, now.Month, 1);

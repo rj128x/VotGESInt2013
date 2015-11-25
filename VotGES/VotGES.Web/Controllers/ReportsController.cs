@@ -108,6 +108,22 @@ namespace VotGES.Web.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult PuskStopToDate(int year1, int month1, int day1, int hour1, int minute1) {
+			DateTime dateStart = new DateTime(year1, month1, day1,hour1,minute1,0);
+			Logger.Info(String.Format("Пуски-остановы на дату {0}", dateStart));
+			//OgranGAReport report = new OgranGAReport(dateStart, dateEnd);
+			SortedList<int, OgranGAAnswer> Data = new SortedList<int, OgranGAAnswer>();
+			for (int ga = 1; ga <= 10; ga++) {
+				OgranGAAnswer answer = new OgranGAAnswer();
+				answer.createAnswer(ga, true, false, dateStart);
+				Data.Add(ga, answer);
+			}
+
+			return View("PuskStopToDate", Data);
+		}
+
+
+		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult TimeStopGA() {
 			Logger.Info("Получение информации о простое гидроагрегатов");
 			TimeStopGAAnswer answer = new TimeStopGAAnswer();

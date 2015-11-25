@@ -22,7 +22,7 @@ namespace VotGES.Web.Services {
 		public OgranGAAnswer getOgranGAAnswer(int ga) {
 			WebLogger.Info("OgranGATable process", VotGES.Logger.LoggerSource.service);
 			OgranGAAnswer answer = new OgranGAAnswer();
-			answer.createAnswer(ga,true,true);
+			answer.createAnswer(ga,true,true,DateTime.Now);
 
 			ChartSerieProperties serie = new ChartSerieProperties();
 			serie.Color = ChartColor.GetColorStr(System.Drawing.Color.Black);
@@ -48,7 +48,7 @@ namespace VotGES.Web.Services {
 		public OgranGAAnswer getOgranGAData(int ga) {
 			WebLogger.Info("OgranGAData process", VotGES.Logger.LoggerSource.service);
 			OgranGAAnswer answer = new OgranGAAnswer();
-			answer.createAnswer(ga, false, true);
+			answer.createAnswer(ga, false, true,DateTime.Now);
 			//answer.ChartAnswer.Data.addSerie(answer.CurrentData);
 			
 			return answer;
