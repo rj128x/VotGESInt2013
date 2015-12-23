@@ -6,10 +6,10 @@
 				xmlns:usr="clr-namespace:MainSL.Views" 
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           d:DesignWidth="800"
+           d:DesignWidth="1200"
            Title="РУСА">
 	<Grid x:Name="LayoutRoot">
-		<StackPanel  Width="800">
+		<StackPanel  Width="1200">
 			<usr:RUSAControl x:Name="cntrlRUSA" Height="300" MaxHeight="300"/>
 
 			<Grid >

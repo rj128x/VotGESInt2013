@@ -80,43 +80,26 @@
 <body>
 	<h1>Простой генераторов  <%=DateTime.Now.ToString("dd.MM.yyyy HH:mm") %> </h1>
 
-    <table class="cifr">
-
-    </table>
-
+    <h2>С начала года</h2>
     <table class='cifr'>
 		<tr>
-			<th rowspan="2">Параметр</th>
-			<th colspan="2">Генератор №1</th>
-			<th colspan="2">Генератор №2</th>
-			<th colspan="2">Генератор №3</th>
-			<th colspan="2">Генератор №4</th>
-			<th colspan="2">Генератор №5</th>
-			<th colspan="2">Генератор №6</th>
-			<th colspan="2">Генератор №7</th>
-			<th colspan="2">Генератор №8</th>
-			<th colspan="2">Генератор №9</th>
-			<th colspan="2">Генератор №10</th>
+			<th >Параметр</th>
+			<th >Генератор №1</th>
+			<th >Генератор №2</th>
+			<th >Генератор №3</th>
+			<th >Генератор №4</th>
+			<th >Генератор №5</th>
+			<th >Генератор №6</th>
+			<th >Генератор №7</th>
+			<th >Генератор №8</th>
+			<th >Генератор №9</th>
+			<th >Генератор №10</th>
 		</tr>
-		<tr>
-			<%for (int ga=1;ga<=10;ga++){ %>
-				<th>
-					НГ
-				</th>
-                <th>
-					НМ
-				</th>
-            <%} %>
-		</tr>
-
         <tr>
             <th>Простой</th>
             <%for (int ga=1;ga<=10;ga++){ %>
                 <td>
                     <%=OgranGARecord.getDaysStr(Model.YearRecords[ga].timeStop) %>
-                </td>
-                <td>
-                    <%=OgranGARecord.getDaysStr(Model.MonthRecords[ga].timeStop) %>
                 </td>
             <%} %>
         </tr>
@@ -127,6 +110,47 @@
                 <td>
                     <%=OgranGARecord.getDaysStr(Model.YearRecords[ga].timeRun) %>
                 </td>
+            <%} %>
+        </tr>
+
+        <tr>
+            <th>Пусков/Остановов</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
+                <td>
+                    <%=Model.YearRecords[ga].cntPusk %>/<%=Model.YearRecords[ga].cntStop %>
+                </td>
+            <%} %>
+        </tr>
+      
+	</table>
+
+    <h2>С начала месяца</h2>
+     <table class='cifr'>
+		<tr>
+			<th >Параметр</th>
+			<th >Генератор №1</th>
+			<th >Генератор №2</th>
+			<th >Генератор №3</th>
+			<th >Генератор №4</th>
+			<th >Генератор №5</th>
+			<th >Генератор №6</th>
+			<th >Генератор №7</th>
+			<th >Генератор №8</th>
+			<th >Генератор №9</th>
+			<th >Генератор №10</th>
+		</tr>
+        <tr>
+            <th>Простой</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
+                <td>
+                    <%=OgranGARecord.getDaysStr(Model.MonthRecords[ga].timeStop) %>
+                </td>
+            <%} %>
+        </tr>
+
+        <tr>
+            <th>Работа</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
                 <td>
                     <%=OgranGARecord.getDaysStr(Model.MonthRecords[ga].timeRun) %>
                 </td>
@@ -137,16 +161,54 @@
             <th>Пусков/Остановов</th>
             <%for (int ga=1;ga<=10;ga++){ %>
                 <td>
-                    <%=Model.YearRecords[ga].cntPusk %>/<%=Model.YearRecords[ga].cntStop %>
-                </td>
-                <td>
                    <%=Model.MonthRecords[ga].cntPusk %>/<%=Model.MonthRecords[ga].cntStop %>
+                </td>
+            <%} %>
+        </tr>      
+	</table>
+
+    <h2>Последние 7 дней</h2>
+     <table class='cifr'>
+		<tr>
+			<th >Параметр</th>
+			<th >Генератор №1</th>
+			<th >Генератор №2</th>
+			<th >Генератор №3</th>
+			<th >Генератор №4</th>
+			<th >Генератор №5</th>
+			<th >Генератор №6</th>
+			<th >Генератор №7</th>
+			<th >Генератор №8</th>
+			<th >Генератор №9</th>
+			<th >Генератор №10</th>
+		</tr>
+        <tr>
+            <th>Простой</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
+                <td>
+                    <%=OgranGARecord.getDaysStr(Model.WeekRecords[ga].timeStop) %>
                 </td>
             <%} %>
         </tr>
 
+        <tr>
+            <th>Работа</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
+                <td>
+                    <%=OgranGARecord.getDaysStr(Model.WeekRecords[ga].timeRun) %>
+                </td>
+            <%} %>
+        </tr>
 
-      
+        <tr>
+            <th>Пусков/Остановов</th>
+            <%for (int ga=1;ga<=10;ga++){ %>
+                <td>
+                   <%=Model.WeekRecords[ga].cntPusk %>/<%=Model.WeekRecords[ga].cntStop %>
+                </td>
+            <%} %>
+        </tr>      
 	</table>
+
 </body>
 </html>

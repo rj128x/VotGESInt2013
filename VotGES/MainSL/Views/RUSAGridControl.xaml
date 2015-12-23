@@ -36,6 +36,13 @@
 						</DataTemplate>
 					</sdk:DataGridTemplateColumn.CellTemplate>
 				</sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T нар"	ClipboardContentBinding="{Binding TSUM, StringFormat='0'}" SortMemberPath="TSUM">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TSUM, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
 				<sdk:DataGridTemplateColumn Header="Кол" Width="35" ClipboardContentBinding="{Binding Count}" SortMemberPath="Count">
 					<sdk:DataGridTemplateColumn.CellTemplate >
 						<DataTemplate>
@@ -114,9 +121,80 @@
 							<TextBlock Text="{Binding PGA10, StringFormat='0'}"/>
 						</DataTemplate>
 					</sdk:DataGridTemplateColumn.CellTemplate>
-				</sdk:DataGridTemplateColumn>
+				</sdk:DataGridTemplateColumn>                
+                <sdk:DataGridTemplateColumn Header="T1"	ClipboardContentBinding="{Binding TGA1, StringFormat='0'}" SortMemberPath="TGA1">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA1, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T2"	ClipboardContentBinding="{Binding TGA2, StringFormat='0'}" SortMemberPath="TGA2">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA2, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T3"	ClipboardContentBinding="{Binding TGA3, StringFormat='0'}" SortMemberPath="TGA3">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA3, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T4"	ClipboardContentBinding="{Binding TGA4, StringFormat='0'}" SortMemberPath="TGA4">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA4, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T5"	ClipboardContentBinding="{Binding TGA5, StringFormat='0'}" SortMemberPath="TGA5">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA5, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T6"	ClipboardContentBinding="{Binding TGA6, StringFormat='0'}" SortMemberPath="TGA6">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA6, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T7"	ClipboardContentBinding="{Binding TGA7, StringFormat='0'}" SortMemberPath="TGA7">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA7, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T8"	ClipboardContentBinding="{Binding TGA8, StringFormat='0'}" SortMemberPath="TGA8">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA8, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T9"	ClipboardContentBinding="{Binding TGA9, StringFormat='0'}" SortMemberPath="TGA9">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA9, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTemplateColumn Header="T10"	ClipboardContentBinding="{Binding TGA10, StringFormat='0'}" SortMemberPath="TGA10">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TGA10, StringFormat='0'}"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
 
-			</sdk:DataGrid.Columns>
+
+            </sdk:DataGrid.Columns>
 		</sdk:DataGrid>
 	</Grid>
 </UserControl>

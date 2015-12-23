@@ -61,6 +61,20 @@ namespace VotGES.Web.Models
 		public double PGA9 { get; set; }
 		public double PGA10 { get; set; }
 
+		public double TGA1 { get; set; }
+		public double TGA2 { get; set; }
+		public double TGA3 { get; set; }
+		public double TGA4 { get; set; }
+		public double TGA5 { get; set; }
+		public double TGA6 { get; set; }
+		public double TGA7 { get; set; }
+		public double TGA8 { get; set; }
+		public double TGA9 { get; set; }
+		public double TGA10 { get; set; }
+
+		public double TSUM { get; set; }
+		
+
 		public void ProcessSostav(Dictionary<int, double> sostav){
 			PGA1 = sostav.ContainsKey(1) ? sostav[1] : 0;
 			PGA2 = sostav.ContainsKey(2) ? sostav[2] : 0;
@@ -72,6 +86,20 @@ namespace VotGES.Web.Models
 			PGA8 = sostav.ContainsKey(8) ? sostav[8] : 0;
 			PGA9 = sostav.ContainsKey(9) ? sostav[9] : 0;
 			PGA10 = sostav.ContainsKey(10) ? sostav[10] : 0;
+		}
+
+		public void processTimeStop(TimeStopGAWeek weekData) {
+			TGA1 = PGA1>0 ? weekData.WeekRecords[1].timeRun / 60.0 : 0;
+			TGA2 = PGA2 > 0 ? weekData.WeekRecords[2].timeRun / 60.0 : 0;
+			TGA3 = PGA3 > 0 ? weekData.WeekRecords[3].timeRun / 60.0 : 0;
+			TGA4 = PGA4 > 0 ? weekData.WeekRecords[4].timeRun / 60.0 : 0;
+			TGA5 = PGA5 > 0 ? weekData.WeekRecords[5].timeRun / 60.0 : 0;
+			TGA6 = PGA6 > 0 ? weekData.WeekRecords[6].timeRun / 60.0 : 0;
+			TGA7 = PGA7 > 0 ? weekData.WeekRecords[7].timeRun / 60.0 : 0;
+			TGA8 = PGA8 > 0 ? weekData.WeekRecords[8].timeRun / 60.0 : 0;
+			TGA9 = PGA9 > 0 ? weekData.WeekRecords[9].timeRun / 60.0 : 0;
+			TGA10 = PGA10 > 0 ? weekData.WeekRecords[10].timeRun / 60.0 : 0;
+			TSUM = TGA1 + TGA2 + TGA3 + TGA4 + TGA5 + TGA6 + TGA7 + TGA8 + TGA9 + TGA10;
 		}
 
 		private int count;
@@ -165,6 +193,7 @@ namespace VotGES.Web.Models
 			get { return result; }
 			set { result = value; }
 		}
+		
 		
 	}
 }

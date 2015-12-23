@@ -8,7 +8,7 @@ namespace VotGES.Web.Models
 {
 	public class ProcessRUSAData
 	{
-		public static void processEqualData(RUSAData data) {
+		public static void processEqualData(RUSAData data,TimeStopGAWeek weekData=null) {
 			SortedList<double,List<int>> sostavs=RUSA.getOptimRashodsFull(data.Power, data.Napor, data.getAvailGenerators());
 			int index=0;
 			data.EqResult = new List<RUSAResult>();
@@ -25,6 +25,8 @@ namespace VotGES.Web.Models
 						result.Sostav.Add(ga, data.Power / sostav.Count);
 					}
 					result.ProcessSostav(result.Sostav);
+					if (weekData != null)
+						result.processTimeStop(weekData);
 					result.Sostav = null;
 
 					result.KPD = RashodTable.KPD(data.Power, data.Napor, rashod) * 100;
@@ -45,7 +47,7 @@ namespace VotGES.Web.Models
 			}
 		}
 
-		public static void processDiffData(RUSAData data) {
+		public static void processDiffData(RUSAData data, TimeStopGAWeek weekData = null) {
 			List<RUSADiffPower.RusaChoice> choices=RUSADiffPower.getChoices(data.getAvailGenerators(), data.Napor, data.Power,5);
 			data.DiffResult = new List<RUSAResult>();
 			foreach (RUSADiffPower.RusaChoice choice in choices) {
@@ -61,6 +63,8 @@ namespace VotGES.Web.Models
 					}
 				}
 				result.ProcessSostav(result.Sostav);
+				if (weekData != null)
+					result.processTimeStop(weekData);
 				result.Sostav = null;
 				result.KPD = RashodTable.KPD(data.Power, data.Napor, rashod)*100;
 				result.Count = count;

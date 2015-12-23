@@ -8624,6 +8624,28 @@ namespace VotGES.Web.Models
         
         private Dictionary<int, double> _sostav;
         
+        private double _tga1;
+        
+        private double _tga10;
+        
+        private double _tga2;
+        
+        private double _tga3;
+        
+        private double _tga4;
+        
+        private double _tga5;
+        
+        private double _tga6;
+        
+        private double _tga7;
+        
+        private double _tga8;
+        
+        private double _tga9;
+        
+        private double _tsum;
+        
         #region Определение методов расширяемости
 
         /// <summary>
@@ -8659,6 +8681,28 @@ namespace VotGES.Web.Models
         partial void OnRashodChanged();
         partial void OnSostavChanging(Dictionary<int, double> value);
         partial void OnSostavChanged();
+        partial void OnTGA1Changing(double value);
+        partial void OnTGA1Changed();
+        partial void OnTGA10Changing(double value);
+        partial void OnTGA10Changed();
+        partial void OnTGA2Changing(double value);
+        partial void OnTGA2Changed();
+        partial void OnTGA3Changing(double value);
+        partial void OnTGA3Changed();
+        partial void OnTGA4Changing(double value);
+        partial void OnTGA4Changed();
+        partial void OnTGA5Changing(double value);
+        partial void OnTGA5Changed();
+        partial void OnTGA6Changing(double value);
+        partial void OnTGA6Changed();
+        partial void OnTGA7Changing(double value);
+        partial void OnTGA7Changed();
+        partial void OnTGA8Changing(double value);
+        partial void OnTGA8Changed();
+        partial void OnTGA9Changing(double value);
+        partial void OnTGA9Changed();
+        partial void OnTSUMChanging(double value);
+        partial void OnTSUMChanged();
 
         #endregion
         
@@ -9003,6 +9047,270 @@ namespace VotGES.Web.Models
                     this._sostav = value;
                     this.RaiseDataMemberChanged("Sostav");
                     this.OnSostavChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA1".
+        /// </summary>
+        [DataMember()]
+        public double TGA1
+        {
+            get
+            {
+                return this._tga1;
+            }
+            set
+            {
+                if ((this._tga1 != value))
+                {
+                    this.OnTGA1Changing(value);
+                    this.RaiseDataMemberChanging("TGA1");
+                    this.ValidateProperty("TGA1", value);
+                    this._tga1 = value;
+                    this.RaiseDataMemberChanged("TGA1");
+                    this.OnTGA1Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA10".
+        /// </summary>
+        [DataMember()]
+        public double TGA10
+        {
+            get
+            {
+                return this._tga10;
+            }
+            set
+            {
+                if ((this._tga10 != value))
+                {
+                    this.OnTGA10Changing(value);
+                    this.RaiseDataMemberChanging("TGA10");
+                    this.ValidateProperty("TGA10", value);
+                    this._tga10 = value;
+                    this.RaiseDataMemberChanged("TGA10");
+                    this.OnTGA10Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA2".
+        /// </summary>
+        [DataMember()]
+        public double TGA2
+        {
+            get
+            {
+                return this._tga2;
+            }
+            set
+            {
+                if ((this._tga2 != value))
+                {
+                    this.OnTGA2Changing(value);
+                    this.RaiseDataMemberChanging("TGA2");
+                    this.ValidateProperty("TGA2", value);
+                    this._tga2 = value;
+                    this.RaiseDataMemberChanged("TGA2");
+                    this.OnTGA2Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA3".
+        /// </summary>
+        [DataMember()]
+        public double TGA3
+        {
+            get
+            {
+                return this._tga3;
+            }
+            set
+            {
+                if ((this._tga3 != value))
+                {
+                    this.OnTGA3Changing(value);
+                    this.RaiseDataMemberChanging("TGA3");
+                    this.ValidateProperty("TGA3", value);
+                    this._tga3 = value;
+                    this.RaiseDataMemberChanged("TGA3");
+                    this.OnTGA3Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA4".
+        /// </summary>
+        [DataMember()]
+        public double TGA4
+        {
+            get
+            {
+                return this._tga4;
+            }
+            set
+            {
+                if ((this._tga4 != value))
+                {
+                    this.OnTGA4Changing(value);
+                    this.RaiseDataMemberChanging("TGA4");
+                    this.ValidateProperty("TGA4", value);
+                    this._tga4 = value;
+                    this.RaiseDataMemberChanged("TGA4");
+                    this.OnTGA4Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA5".
+        /// </summary>
+        [DataMember()]
+        public double TGA5
+        {
+            get
+            {
+                return this._tga5;
+            }
+            set
+            {
+                if ((this._tga5 != value))
+                {
+                    this.OnTGA5Changing(value);
+                    this.RaiseDataMemberChanging("TGA5");
+                    this.ValidateProperty("TGA5", value);
+                    this._tga5 = value;
+                    this.RaiseDataMemberChanged("TGA5");
+                    this.OnTGA5Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA6".
+        /// </summary>
+        [DataMember()]
+        public double TGA6
+        {
+            get
+            {
+                return this._tga6;
+            }
+            set
+            {
+                if ((this._tga6 != value))
+                {
+                    this.OnTGA6Changing(value);
+                    this.RaiseDataMemberChanging("TGA6");
+                    this.ValidateProperty("TGA6", value);
+                    this._tga6 = value;
+                    this.RaiseDataMemberChanged("TGA6");
+                    this.OnTGA6Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA7".
+        /// </summary>
+        [DataMember()]
+        public double TGA7
+        {
+            get
+            {
+                return this._tga7;
+            }
+            set
+            {
+                if ((this._tga7 != value))
+                {
+                    this.OnTGA7Changing(value);
+                    this.RaiseDataMemberChanging("TGA7");
+                    this.ValidateProperty("TGA7", value);
+                    this._tga7 = value;
+                    this.RaiseDataMemberChanged("TGA7");
+                    this.OnTGA7Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA8".
+        /// </summary>
+        [DataMember()]
+        public double TGA8
+        {
+            get
+            {
+                return this._tga8;
+            }
+            set
+            {
+                if ((this._tga8 != value))
+                {
+                    this.OnTGA8Changing(value);
+                    this.RaiseDataMemberChanging("TGA8");
+                    this.ValidateProperty("TGA8", value);
+                    this._tga8 = value;
+                    this.RaiseDataMemberChanged("TGA8");
+                    this.OnTGA8Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TGA9".
+        /// </summary>
+        [DataMember()]
+        public double TGA9
+        {
+            get
+            {
+                return this._tga9;
+            }
+            set
+            {
+                if ((this._tga9 != value))
+                {
+                    this.OnTGA9Changing(value);
+                    this.RaiseDataMemberChanging("TGA9");
+                    this.ValidateProperty("TGA9", value);
+                    this._tga9 = value;
+                    this.RaiseDataMemberChanged("TGA9");
+                    this.OnTGA9Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TSUM".
+        /// </summary>
+        [DataMember()]
+        public double TSUM
+        {
+            get
+            {
+                return this._tsum;
+            }
+            set
+            {
+                if ((this._tsum != value))
+                {
+                    this.OnTSUMChanging(value);
+                    this.RaiseDataMemberChanging("TSUM");
+                    this.ValidateProperty("TSUM", value);
+                    this._tsum = value;
+                    this.RaiseDataMemberChanged("TSUM");
+                    this.OnTSUMChanged();
                 }
             }
         }

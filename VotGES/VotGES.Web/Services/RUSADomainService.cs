@@ -22,12 +22,23 @@ using VotGES.Rashod;
 		public RUSAData processRUSAData(RUSAData data) {
 			WebLogger.Info("RUSA process", VotGES.Logger.LoggerSource.service);
 			data.Result = new List<RUSAResult>();
-			ProcessRUSAData.processEqualData(data);
-			ProcessRUSAData.processDiffData(data);
+			
+			TimeStopGAWeek weekData=null;
+			try { 
+			weekData = new TimeStopGAWeek();
+			weekData.readData();
+			}
+			catch { }
+			ProcessRUSAData.processEqualData(data,weekData);
+			ProcessRUSAData.processDiffData(data,weekData);
 			foreach (RUSAResult result in data.EqResult) {
-				data.Result.Add(result);
+				try { result.processTimeStop(weekData); }
+				catch { }
+				data.Result.Add(result);				
 			}
 			foreach (RUSAResult result in data.DiffResult) {
+				try { result.processTimeStop(weekData); }
+				catch { }
 				data.Result.Add(result);
 			}
 			return data;
