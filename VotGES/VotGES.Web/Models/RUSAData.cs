@@ -73,6 +73,7 @@ namespace VotGES.Web.Models
 		public double TGA10 { get; set; }
 
 		public double TSUM { get; set; }
+		public double QVER { get; set; }
 		
 
 		public void ProcessSostav(Dictionary<int, double> sostav){

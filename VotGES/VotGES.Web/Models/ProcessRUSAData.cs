@@ -30,7 +30,7 @@ namespace VotGES.Web.Models
 					result.Sostav = null;
 
 					result.KPD = RashodTable.KPD(data.Power, data.Napor, rashod) * 100;
-					result.Count = sostav.Count;
+					result.Count = sostav.Count;					
 
 					if (!FullResult.ContainsKey(sostav.Count)) {
 						data.EqResult.Add(result);

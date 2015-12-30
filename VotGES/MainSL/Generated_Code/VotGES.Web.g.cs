@@ -8620,6 +8620,8 @@ namespace VotGES.Web.Models
         
         private double _pga9;
         
+        private double _qver;
+        
         private double _rashod;
         
         private Dictionary<int, double> _sostav;
@@ -8677,6 +8679,8 @@ namespace VotGES.Web.Models
         partial void OnPGA8Changed();
         partial void OnPGA9Changing(double value);
         partial void OnPGA9Changed();
+        partial void OnQVERChanging(double value);
+        partial void OnQVERChanged();
         partial void OnRashodChanging(double value);
         partial void OnRashodChanged();
         partial void OnSostavChanging(Dictionary<int, double> value);
@@ -8999,6 +9003,30 @@ namespace VotGES.Web.Models
                     this._pga9 = value;
                     this.RaiseDataMemberChanged("PGA9");
                     this.OnPGA9Changed();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "QVER".
+        /// </summary>
+        [DataMember()]
+        public double QVER
+        {
+            get
+            {
+                return this._qver;
+            }
+            set
+            {
+                if ((this._qver != value))
+                {
+                    this.OnQVERChanging(value);
+                    this.RaiseDataMemberChanging("QVER");
+                    this.ValidateProperty("QVER", value);
+                    this._qver = value;
+                    this.RaiseDataMemberChanged("QVER");
+                    this.OnQVERChanged();
                 }
             }
         }

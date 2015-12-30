@@ -29,17 +29,34 @@ using VotGES.Rashod;
 			weekData.readData();
 			}
 			catch { }
+			
+
 			ProcessRUSAData.processEqualData(data,weekData);
 			ProcessRUSAData.processDiffData(data,weekData);
+			double minQ = double.MaxValue;
+			foreach (RUSAResult result in data.EqResult) {
+				if (result.Rashod < minQ)
+					minQ = result.Rashod;
+			}
+
 			foreach (RUSAResult result in data.EqResult) {
 				try { result.processTimeStop(weekData); }
 				catch { }
-				data.Result.Add(result);				
+				data.Result.Add(result);
+				result.QVER = minQ / result.Rashod * 100;
 			}
 			foreach (RUSAResult result in data.DiffResult) {
 				try { result.processTimeStop(weekData); }
 				catch { }
 				data.Result.Add(result);
+				result.QVER = minQ / result.Rashod * 100;
+			}
+
+			foreach (FullResultRUSARecord result in data.FullResultList) {
+				foreach (RUSAResult res in result.Data) {
+					res.QVER = minQ / res.Rashod * 100;
+				}
+
 			}
 			return data;
 		}
