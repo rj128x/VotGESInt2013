@@ -42,18 +42,20 @@ namespace MainSL
 			this.ApplicationLifetimeObjects.Add(webcontext);
 			
 			WebContext.Current.Authentication.LoadUser(OnLoadUser_Completed, null);
-			InitializeComponent();			
+			InitializeComponent();
+			this.RootVisual = new MainPage();	
 		}
 
 		private void OnLoadUser_Completed(LoadUserOperation operation) {
 			Logger.info("Пользователь авторизовался в клиенте");
-			
-			this.RootVisual = new MainPage();
+
+			(this.RootVisual as MainPage).init();
 
 		}
 
 		private void Application_Startup(object sender, StartupEventArgs e) {
 			//this.RootVisual = new MainPage();
+			//this.RootVisual = new MainPage();			
 		}
 
 		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
