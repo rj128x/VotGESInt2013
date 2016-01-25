@@ -82,7 +82,7 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
-					<TextBlock x:Name="LoginText" Text="Вы вошли как: "/>
+					<TextBlock x:Name="LoginText" Text="Авторизация: "/>
 					<TextBlock x:Name="LoginName" Text="{Binding Name}"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
