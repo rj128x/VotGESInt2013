@@ -376,9 +376,6 @@
     <Resource Include="Images\3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\votges.png" />
   </ItemGroup>
   <ItemGroup>
@@ -394,7 +391,7 @@
     <Resource Include="Image1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\gaHar\ga2.jpg" />
+    <Resource Include="Images\gaHar\ga2_1.jpg" />
     <Resource Include="Images\gaHar\ga10.jpg" />
     <Resource Include="Images\gaHar\ga1.jpg" />
     <Resource Include="Images\gaHar\ga3.jpg" />
@@ -403,7 +400,7 @@
     <Resource Include="Images\gaHar\ga6.jpg" />
     <Resource Include="Images\gaHar\ga7.jpg" />
     <Resource Include="Images\gaHar\ga8.jpg" />
-    <Resource Include="Images\gaHar\ga9.jpg" />
+    <Resource Include="Images\gaHar\ga9_1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\PuskStopGAFull.xaml">
@@ -421,6 +418,9 @@
     <Content Include="Images\16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\gaHar\ga9.JPG" />
+    <Resource Include="Images\gaHar\ga2.JPG" />
+    <Resource Include="Images\2.JPG" />
     <Content Include="Images\32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

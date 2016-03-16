@@ -117,10 +117,10 @@ namespace MainSL.Views {
 					right = wid * 0.9632;
 					break;
 				case 2:
-					left = wid * 0.065;
-					top = hei * 0.044;
-					bot = hei * 0.887;
-					right = wid * 0.957;
+					left = wid * 0.142;
+					top = hei * 0.015;
+					bot = hei * 0.898;
+					right = wid * 0.968;
 					break;				
 				case 3:
 					left = wid * 0.0598;
@@ -159,10 +159,10 @@ namespace MainSL.Views {
 					right = wid * 0.969;
 					break;
 				case 9:
-					left = wid * 0.066;
-					top = hei * 0.031;
-					bot = hei * 0.892;
-					right = wid * 0.963;
+					left = wid * 0.141;
+					top = hei * 0.022;
+					bot = hei * 0.896;
+					right = wid * 0.971;
 					break;
 				case 10:
 					left = wid * 0.070;
@@ -179,11 +179,11 @@ namespace MainSL.Views {
 			double stepPower =recWidth/100.0;
 			if (ga == 6)
 				stepPower = recWidth / 90.0;
-			if (ga == 8 || ga == 9)
-				stepPower = recWidth / 110.0;
+			if (ga == 8)
+				stepPower = recWidth / 110.0;			
 			double stepNapor = recHeight / 6.0;
 			if (ga==2 || ga==9)
-				stepNapor = recHeight / 7.0;
+				stepNapor = recHeight / 11.0;
 			rect.Width = recWidth;
 			rect.Height = recHeight;
 			rect.Stroke = new SolidColorBrush(Colors.Blue);
@@ -217,12 +217,12 @@ namespace MainSL.Views {
 
 
 				double pointLeft = (point.XValDouble - 20.0) * stepPower;
-				if (ga == 8 || ga == 9 ||ga==5)
+				if (ga == 8 ||ga==5)
 					pointLeft = (point.XValDouble - 10.0) * stepPower;
 
 				double pointTop = rect.Height-(point.YVal-16.0) * stepNapor;
 				if (ga == 2 ||ga==9) {
-					pointTop = rect.Height - (point.YVal - 15.0) * stepNapor;
+					pointTop = rect.Height - (point.YVal - 12.0) * stepNapor;
 				}
 
 

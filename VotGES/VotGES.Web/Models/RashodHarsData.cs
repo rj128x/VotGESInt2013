@@ -137,10 +137,14 @@ namespace VotGES.Web.Models
 
 		public void ProcessMaket() {			
 			double rashod8=(RashodFavr * 24 - Rashod0 * (24 - NeedTime)) / NeedTime;
+			Logger.Info(string.Format("rashod8={0}", rashod8));
 			double power=RashodTable.getPower(maket8Optim?12:11, rashod8, Napor);
+			Logger.Info(string.Format("power={0}", power));
 			PGTP1=(power/10.0)*2;
-			if (power - PGTP1 > 800)
-				PGTP1 = 220;
+			Logger.Info(string.Format("PGTP1={0}", PGTP1));
+			if (power - PGTP1 > pRaspGTP2)
+				PGTP1 = PRaspGTP1;
+			Logger.Info(string.Format("PGTP1={0}", PGTP1));
 			Maket.P8HoursGTP1 = PGTP1;
 			Maket.P8HoursGTP2 = power - PGTP1;
 			Maket.P8HoursGES = power;
