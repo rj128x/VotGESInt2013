@@ -27,7 +27,7 @@ namespace VotGES.Web.Controllers
 		//
 		// GET: /Reports/
 
-		public ActionResult Index() {
+		public ActionResult Index() {            
 			return View();
 		}
 
