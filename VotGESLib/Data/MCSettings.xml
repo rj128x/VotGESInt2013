@@ -12,6 +12,8 @@
   <SMTPDomain>corp</SMTPDomain>
   <SMTPFrom>autooper_votges@votges.rushydro.ru</SMTPFrom>
   <AutooperMail>autooper_votges@votges.rushydro.ru</AutooperMail>
+  <ErrorMail>chekunovaMV@votges.rushydro.ru</ErrorMail>
+  <InfoMail>chekunovaMV@votges.rushydro.ru</InfoMail>
   <MCData>
     <MCSettingsRecord>
       <MCCode>4432</MCCode>

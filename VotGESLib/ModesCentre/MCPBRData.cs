@@ -23,6 +23,9 @@ namespace VotGES.ModesCentre {
 					DataSettings = rec;
 				}
 			}
+			if (DataSettings == null) {
+				Logger.Info("Ошибка при разборе полученного макета. Возможно изменение кодировки MC");
+			}
 			Data = new SortedList<DateTime, double>();
 			DataHH = new SortedList<DateTime, double>();
 		}
@@ -152,17 +155,23 @@ namespace VotGES.ModesCentre {
 		}
 
 		public bool ProcessData() {
-			bool ok = true;
-			SortedList<DateTime, double> data15 = createHH15Data();
-			ok=ok&&writeToDB("P3000", DataHH, 212);
-			ok = ok && writeToDB("P2000", DataHH, 212);
-			ok = ok && writeToDB("P2000", data15, 213);
-			if (DataSettings.WriteIntegratedData) {
-				SortedList<DateTime, double> integr = createInegratedData();
-				ok=ok&&writeToDB("P3000", integr, 204);
-				ok = ok && writeToDB("P2000", integr, 204);
+			try {
+				bool ok = true;
+				SortedList<DateTime, double> data15 = createHH15Data();
+				ok = ok && writeToDB("P3000", DataHH, 212);
+				ok = ok && writeToDB("P2000", DataHH, 212);
+				ok = ok && writeToDB("P2000", data15, 213);
+				if (DataSettings.WriteIntegratedData) {
+					SortedList<DateTime, double> integr = createInegratedData();
+					ok = ok && writeToDB("P3000", integr, 204);
+					ok = ok && writeToDB("P2000", integr, 204);
+				}
+				return ok;
+			}catch (Exception e) {
+				Logger.Info("Ошибка при записи ПБР в базу ");
+				Logger.Info(e.ToString());
+				return false;
 			}
-			return ok;
 		}
 	}
 

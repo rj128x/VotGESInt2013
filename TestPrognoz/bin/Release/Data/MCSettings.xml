@@ -12,9 +12,11 @@
   <SMTPDomain>corp</SMTPDomain>
   <SMTPFrom>autooper_votges@votges.rushydro.ru</SMTPFrom>
   <AutooperMail>autooper_votges@votges.rushydro.ru</AutooperMail>
+  <ErrorMail>chekunovaMV@votges.rushydro.ru</ErrorMail>
+  <InfoMail>chekunovaMV@votges.rushydro.ru</InfoMail>
   <MCData>
     <MCSettingsRecord>
-      <MCCode>2617</MCCode>
+      <MCCode>4432</MCCode>
       <PiramidaCode>1</PiramidaCode>
       <WriteIntegratedData>1</WriteIntegratedData>
       <Autooper>0</Autooper>

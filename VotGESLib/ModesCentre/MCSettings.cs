@@ -38,6 +38,8 @@ namespace VotGES.ModesCentre {
 		public string SMTPPassword { get; set; }
 		public string SMTPFrom { get; set; }
 		public string AutooperMail { get; set; }
+		public string ErrorMail { get; set; }
+		public string InfoMail { get; set; }
 
 		public static void init(string filename = null) {
 			if (filename == null) {
