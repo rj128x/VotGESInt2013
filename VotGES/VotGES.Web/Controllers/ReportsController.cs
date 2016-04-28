@@ -232,10 +232,6 @@ namespace VotGES.Web.Controllers
 		public ActionResult PBRFromMCToday() {
 			Logger.Info(String.Format("Запрос ПБР из MC за {0}", DateTime.Now.Date));
 			MCServerReader reader = new MCServerReader(DateTime.Now.Date);
-			/*if (DateTime.Now.Hour >= 16) {
-				Logger.Info(String.Format("Запрос ПБР из MC за {0}", DateTime.Now.Date.AddDays(1)));
-				reader = new MCServerReader(DateTime.Now.Date.AddDays(1),false);
-			}*/
 			return Content("finish");
 		}
 
