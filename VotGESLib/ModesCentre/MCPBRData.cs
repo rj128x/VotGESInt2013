@@ -136,10 +136,14 @@ namespace VotGES.ModesCentre {
 		}
 
 		public void addAutooperData(List<string> data) {
-			if (DataSettings.Autooper) {
-				foreach (KeyValuePair<DateTime, double> de in Data) {
-					data.Add(String.Format("{0};{1};{2};", Item, de.Key.ToString("yyyyMMddTHHmm"), de.Value));
+			try {
+				if (DataSettings.Autooper) {
+					foreach (KeyValuePair<DateTime, double> de in Data) {
+						data.Add(String.Format("{0};{1};{2};", Item, de.Key.ToString("yyyyMMddTHHmm"), de.Value));
+					}
 				}
+			}catch (Exception e) {
+				Logger.Info(e.ToString());
 			}
 		}
 
