@@ -57,6 +57,7 @@ namespace VotGES.Piramida.Report {
 			RootMain = GetFullReportRecord("Воткинская ГЭС", "votGES");
 			record = RootMain.addChild(GetFullReportRecord("Основные параметры", "mainParams"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GES));
+			record.addChild(GetFullReportRecord(ReportGARecords.Q_GES));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP1));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP2));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE1));
@@ -65,7 +66,17 @@ namespace VotGES.Piramida.Report {
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE4));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SN));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Nebalans_GES));
-			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SP));
+			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SP));			
+			childRecord = record.addChild(GetFullReportRecord(PiramidaRecords.MBW_U110));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U110_1SSH));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U110_2SSH));
+			childRecord = record.addChild(GetFullReportRecord(PiramidaRecords.MBW_U220));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U220_1SSH));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U220_2SSH));
+			childRecord = record.addChild(GetFullReportRecord(PiramidaRecords.MBW_U500));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U500_EML));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U500_KARM));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.MBW_U500_VYAT));
 
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_SK));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_IKM_Saldo500Emelino));
@@ -100,6 +111,8 @@ namespace VotGES.Piramida.Report {
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_Napor));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_NB));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_QGES));
+			record.addChild(GetFullReportRecord(PiramidaRecords.Water_QGG));
+			record.addChild(GetFullReportRecord(PiramidaRecords.Water_QVP));
 			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_QGTP1));
 			record.addChild(GetFullReportRecord(ReportWaterRecords.Water_QGTP2));
 			record.addChild(GetFullReportRecord(PiramidaRecords.Water_Temp));

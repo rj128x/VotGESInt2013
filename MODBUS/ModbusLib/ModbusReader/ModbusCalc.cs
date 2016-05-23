@@ -116,6 +116,38 @@ namespace ModbusLib {
 		}
 		#endregion
 
+		#region U
+
+		public double uAvg(double u1, double u2, double u3) {
+			List<double> UArr = new List<double>();
+			if (u1 > 50)
+				UArr.Add(u1);
+			if (u2 > 50)
+				UArr.Add(u2);
+			if (u3 > 50)
+				UArr.Add(u3);
+			if (UArr.Count == 0)
+				return 0;
+			double uavg=UArr.Average();
+			return uavg;
+		}
+
+
+
+		public double U110() {
+			return uAvg(this["MB_U110_1SSH"], this["MB_U110_2SSH"],0);			
+		}
+
+		public double U220() {
+			return uAvg(this["MB_U220_1SSH"], this["MB_U220_2SSH"], 0);
+		}
+
+		public double U500() {
+			return uAvg(this["MB_U500_KARM"], this["MB_U500_EML"], this["MB_U500_VYAT"]);
+		}
+
+		#endregion
+
 		#region Ogran
 
 		public double GA1_AFTER_MAX() { return isGAAfterMax(1); }

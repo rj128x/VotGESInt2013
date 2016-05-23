@@ -6,6 +6,7 @@ using System.Text;
 namespace VotGES.Piramida {
 	public static class PiramidaRecords {
 		public static PiramidaRecord P_GES = new PiramidaRecord(2, 0, 1, "P ГЭС");
+		public static PiramidaRecord Q_GES = new PiramidaRecord(2, 0, 4, "Q ГЭС");
 		public static PiramidaRecord P_GTP1 = new PiramidaRecord(2, 0, 2, "P ГТП1");
 		public static PiramidaRecord P_GTP2 = new PiramidaRecord(2, 0, 3, "P ГТП2");
 		public static PiramidaRecord P_RGE1 = new PiramidaRecord(2, 0, 1045, "P РГЕ1");
@@ -47,11 +48,6 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord P_IKM_3536N = new PiramidaRecord(2, 0, 79, "СН 35-36Н");
 		public static PiramidaRecord P_IKM_SN_GA = new PiramidaRecord(2, 0, 35, "СН ГА");
 		public static PiramidaRecord P_IKM_Vozb = new PiramidaRecord(2, 0, 42, "СН Возбуждение");
-
-
-
-
-
 
 
 		public static PiramidaRecord P_3AT_500_Priem = new PiramidaRecord(0, 8739, 1, "3АТ 500 кВ Прием (P)");
@@ -323,6 +319,8 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord Water_Napor = new PiramidaRecord(2, 1, 276, "Напор");
 		public static PiramidaRecord Water_Temp = new PiramidaRecord(2, 1, 373, "Температура");
 		public static PiramidaRecord Water_QGES = new PiramidaRecord(2, 1, 354, "Расход ГЭС");
+		public static PiramidaRecord Water_QGG = new PiramidaRecord(2, 1, 355, "Расход ГГ");
+		public static PiramidaRecord Water_QVP = new PiramidaRecord(2, 1, 356, "Расход ВП");
 		public static PiramidaRecord Water_QOptGES = new PiramidaRecord(2, 10, 1, "Опт. расход ГЭС");
 		public static PiramidaRecord Water_QOptGTP1 = new PiramidaRecord(2, 10, 2, "Опт. расход ГТП-1");
 		public static PiramidaRecord Water_QOptGTP2 = new PiramidaRecord(2, 10, 3, "Опт. расход ГТП-2");
@@ -372,6 +370,18 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord MBW_Napor = new PiramidaRecord(2, 3, 4, "Напор");
 		public static PiramidaRecord MBW_Temp = new PiramidaRecord(2, 3, 5, "Температура");
 		public static PiramidaRecord MBW_TempShit = new PiramidaRecord(2, 3, 6, "Температура щитовых сооружений");
+		public static PiramidaRecord MBW_GG_Rash = new PiramidaRecord(2, 3, 7, "ГГ Расход");
+		public static PiramidaRecord MBW_VP_Rash = new PiramidaRecord(2, 3, 8, "ВП Расход");
+		public static PiramidaRecord MBW_U110 = new PiramidaRecord(2, 30, 9, "U 110");
+		public static PiramidaRecord MBW_U220 = new PiramidaRecord(2, 30, 10, "U 220");
+		public static PiramidaRecord MBW_U500 = new PiramidaRecord(2, 30, 11, "U 500");
+		public static PiramidaRecord MBW_U110_1SSH = new PiramidaRecord(2, 3, 12, "U 110 1СШ");
+		public static PiramidaRecord MBW_U110_2SSH = new PiramidaRecord(2, 3, 13, "U 110 2СШ");
+		public static PiramidaRecord MBW_U220_1SSH = new PiramidaRecord(2, 3, 14, "U 220 1СШ");
+		public static PiramidaRecord MBW_U220_2SSH = new PiramidaRecord(2, 3, 15, "U 220 2СШ");
+		public static PiramidaRecord MBW_U500_EML = new PiramidaRecord(2, 3, 16, "U 500 Емелино");
+		public static PiramidaRecord MBW_U500_KARM = new PiramidaRecord(2, 3, 17, "U 500 Карманово");
+		public static PiramidaRecord MBW_U500_VYAT = new PiramidaRecord(2, 3, 18, "U 500 Вятка");
 
 
 		public static PiramidaRecord MBW_GA1_Rash = new PiramidaRecord(2, 3, 101, "ГА-1 Расход");

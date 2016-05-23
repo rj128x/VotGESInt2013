@@ -38,6 +38,29 @@
     <ModbusInitData ID='TempShit' Addr='1032' Name='Температура щитовых сооружений' Scale='0.1' Add='-100'  Item='6'  WriteToDBHH='1'  WriteToDBMin='1'/>
     <ModbusInitData ID='TempShit_FLAG' Addr='1033' Scale='1'/>
     
+    <ModbusInitData ID='GG_Rash' Addr='1034' Name='Расход воды ГГ' Scale='1'    Item='7'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='0' MaxValue='10000'/>
+    <ModbusInitData ID='GG_Rash_FLAG' Addr='1035' Scale='1'/>
+    <ModbusInitData ID='VP_Rash' Addr='1028' Name='Расход воды ВП' Scale='1'    Item='8'  WriteToDBHH='1'  WriteToDBMin='1' MinValue='0' MaxValue='10000'/>
+    <ModbusInitData ID='VP_Rash_FLAG' Addr='1029' Scale='1'/>
+    
+
+    
+    <ModbusInitData ID='U110_1SSH' Addr='1046' Name='U110_1SSH' Scale='0.1'  Item='12'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U110_1SSH_FLAG' Addr='1047' Scale='1'/>
+    <ModbusInitData ID='U110_2SSH' Addr='1048' Name='U110_2SSH' Scale='0.1' Item='13'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U110_2SSH_FLAG' Addr='1049' Scale='1'/>
+    <ModbusInitData ID='U220_1SSH' Addr='1042' Name='U220_1SSH' Scale='0.1' Item='14'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U220_1SSH_FLAG' Addr='1043' Scale='1'/>
+    <ModbusInitData ID='U220_2SSH' Addr='1044' Name='U220_2SSH' Scale='0.1'  Item='15'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U220_2SSH_FLAG' Addr='1045' Scale='1'/>
+    <ModbusInitData ID='U500_KARM' Addr='1038' Name='U500_KARM' Scale='0.1'  Item='16'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U500_KARM_FLAG' Addr='1039' Scale='1'/>
+    <ModbusInitData ID='U500_EML' Addr='1036' Name='U500_EML' Scale='0.1'  Item='17'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U500_EML_FLAG' Addr='1037' Scale='1'/>
+    <ModbusInitData ID='U500_VYAT' Addr='1040' Name='U500_VYAT' Scale='0.1'  Item='18'  WriteToDBHH='1'  WriteToDBMin='1'/>
+    <ModbusInitData ID='U500_VYAT_FLAG' Addr='1041' Scale='1'/>
+    
+    
 		<ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='101' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>
 		<ModbusInitData ID='GA1_Rash_FLAG' Addr='0' Scale='1' FlagBit='9'/>
 		<ModbusInitData ID='GA2_Rash' Addr='110' Name='Г2 Расход' Scale='1'   Item='102' WriteToDBHH='1' WriteToDBMin='1' MinValue='0' MaxValue='1000'/>

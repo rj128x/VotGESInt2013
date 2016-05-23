@@ -13,7 +13,7 @@
 	</ServerInfoArray>
 	
 	<ID>MBW</ID>
-	<WriteMin>0</WriteMin>
+	<WriteMin>1</WriteMin>
 	<WriteHH>1</WriteHH>
 	<Obj>1</Obj>
 	<ObjType>2</ObjType>
@@ -35,6 +35,11 @@
     <ModbusInitData ID='Napor_FLAG' Addr='1025' Scale='1'/>
     <ModbusInitData ID='Temp' Addr='1030' Name='Температура наружного воздуха' Scale='0.1' Add='-100' WriteToDBHH='1' WriteToDBMin="1"  Item='373' />
     <ModbusInitData ID='Temp_FLAG' Addr='1031' Scale='1'/>
+    <ModbusInitData ID='GG_Rash' Addr='1034' Name='Расход воды ГГ' Scale='1'  WriteToDBHH='1' WriteToDBMin="1"   Item='355' MinValue='0' MaxValue='10000'/>
+    <ModbusInitData ID='GG_Rash_FLAG' Addr='1035' Scale='1'/>
+    <ModbusInitData ID='VP_Rash' Addr='1028' Name='Расход воды ВП' Scale='1'  WriteToDBHH='1' WriteToDBMin="1"   Item='356' MinValue='0' MaxValue='10000'/>
+    <ModbusInitData ID='VP_Rash_FLAG' Addr='1029' Scale='1'/>
+    
 
     <ModbusInitData ID='GA1_Rash' Addr='010' Name='Г1 Расход' Scale='1'   Item='104' WriteToDBHH='1' WriteToDBMin="1" MinValue='0' MaxValue='1000'/>
     <ModbusInitData ID='GA1_Rash_FLAG' Addr='0' Scale='1' FlagBit='9'/>

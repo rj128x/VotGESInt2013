@@ -67,6 +67,7 @@ namespace VotGES.Piramida.Report
 		public static void AddPRecords(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {
 
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_GES, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.Q_GES, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_GTP1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_GTP2, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType:result, dbOper:oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_RGE1, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));

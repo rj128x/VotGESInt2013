@@ -27,6 +27,11 @@
 		<ModbusInitData ID="OptRashod_GTP2" Name="Опт Расход ГТП2" FuncName="OptRashod_GTP2" WriteToDBMin="1" WriteToDBHH="1" Item="3" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="8000"/>
 		<ModbusInitData ID="OptRashod_GES" Name="Опт Расход ГЭС" FuncName="OptRashod_GES" WriteToDBMin="1" WriteToDBHH="1" Item="1" Obj="10" ObjType="2" DBNameHH="P3000" MinValue="0" MaxValue="10000"/>
 
+    <ModbusInitData ID='U110' Addr='1032' Name='U110'  Item='9'  WriteToDBHH='1'  WriteToDBMin='1' FuncName="U110"/>
+    <ModbusInitData ID='U220' Addr='1032' Name='U220'  Item='10'  WriteToDBHH='1'  WriteToDBMin='1' FuncName="U220"/>
+    <ModbusInitData ID='U500' Addr='1032' Name='U500'  Item='11'  WriteToDBHH='1'  WriteToDBMin='1' FuncName="U500"/>
+    
+    
     <ModbusInitData ID="GA1_AFTER_MAX" Name="ГА-1 Режим больше макс мощности" FuncName="GA1_AFTER_MAX" WriteToDBHH="0" Item="101" WriteToDBDiff="0" Diff="1" MinTimeDiff="0"/>
     <ModbusInitData ID="GA2_AFTER_MAX" Name="ГА-2 Режим больше макс мощности" FuncName="GA2_AFTER_MAX" WriteToDBHH="0" Item="102" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
     <ModbusInitData ID="GA3_AFTER_MAX" Name="ГА-3 Режим больше макс мощности" FuncName="GA3_AFTER_MAX" WriteToDBHH="0" Item="103" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
@@ -130,6 +135,8 @@
     <ModbusInitData ID="GA8_AVRCHM" Name="ГА-8 аврчм" FuncName="GA8_AVRCHM" WriteToDBHH="0" Item="1008" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
     <ModbusInitData ID="GA9_AVRCHM" Name="ГА-9 аврчм" FuncName="GA9_AVRCHM" WriteToDBHH="0" Item="1009" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
     <ModbusInitData ID="GA10_AVRCHM" Name="ГА-10 аврчм" FuncName="GA10_AVRCHM" WriteToDBHH="0" Item="1010" WriteToDBDiff="1" Diff="1" MinTimeDiff="0"/>
+
+
 
   </Data>
 
