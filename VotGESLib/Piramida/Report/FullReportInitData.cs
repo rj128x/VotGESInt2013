@@ -57,7 +57,9 @@ namespace VotGES.Piramida.Report {
 			RootMain = GetFullReportRecord("Воткинская ГЭС", "votGES");
 			record = RootMain.addChild(GetFullReportRecord("Основные параметры", "mainParams"));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GES));
-			record.addChild(GetFullReportRecord(ReportGARecords.Q_GES));
+			childRecord=record.addChild(GetFullReportRecord(ReportGARecords.Q_GES));
+			childRecord.addChild(GetFullReportRecord(ReportGARecords.Q_GES_OTD));
+			childRecord.addChild(GetFullReportRecord(ReportGARecords.Q_GES_PR));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP1));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_GTP2));
 			record.addChild(GetFullReportRecord(PiramidaRecords.P_RGE1));

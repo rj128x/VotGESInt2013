@@ -30,6 +30,8 @@ namespace VotGES.Piramida.Report
 		public static RecordTypeCalc Q_GA10=new RecordTypeCalc("Q_GA10", "ГА-10 Q", null);
 
 		public static RecordTypeCalc Q_GES = new RecordTypeCalc("Q_GES", "ГЭС Q", null);
+		public static RecordTypeCalc Q_GES_OTD = new RecordTypeCalc("Q_GES_OTD", "ГЭС Q Отдача", null);
+		public static RecordTypeCalc Q_GES_PR = new RecordTypeCalc("Q_GES_PR", "ГЭС Q Прием", null);
 
 		public static RecordTypeCalc P_SN_GA=new RecordTypeCalc("P_SN_GA", "СН генераторов", null);
 		public static RecordTypeCalc P_Vozb=new RecordTypeCalc("P_Vozb", "Возбуждение", null);
@@ -203,6 +205,24 @@ namespace VotGES.Piramida.Report
 					report[date, ReportGARecords.Q_GA5.ID]+ report[date, ReportGARecords.Q_GA6.ID]+ report[date, ReportGARecords.Q_GA7.ID]+ report[date, ReportGARecords.Q_GA8.ID]+
 					report[date, ReportGARecords.Q_GA9.ID]+ report[date, ReportGARecords.Q_GA10.ID]);
 				});
+
+
+			Q_GES_OTD.CalcFunction =
+				new RecordCalcDelegate((report, date) => {
+					return (report[date, PiramidaRecords.Q_GA1_Otd.Key] + report[date, PiramidaRecords.Q_GA2_Otd.Key]+ report[date, PiramidaRecords.Q_GA3_Otd.Key]
+					+ report[date, PiramidaRecords.Q_GA4_Otd.Key]+ report[date, PiramidaRecords.Q_GA5_Otd.Key]+ report[date, PiramidaRecords.Q_GA6_Otd.Key]
+					+ report[date, PiramidaRecords.Q_GA7_Otd.Key]+ report[date, PiramidaRecords.Q_GA8_Otd.Key]+ report[date, PiramidaRecords.Q_GA9_Otd.Key]
+					+ report[date, PiramidaRecords.Q_GA10_Otd.Key]);
+				});
+
+			Q_GES_PR.CalcFunction =
+				new RecordCalcDelegate((report, date) => {
+					return (report[date, PiramidaRecords.Q_GA1_Priem.Key] + report[date, PiramidaRecords.Q_GA2_Priem.Key] + report[date, PiramidaRecords.Q_GA3_Priem.Key]
+					+ report[date, PiramidaRecords.Q_GA4_Priem.Key] + report[date, PiramidaRecords.Q_GA5_Priem.Key] + report[date, PiramidaRecords.Q_GA6_Priem.Key]
+					+ report[date, PiramidaRecords.Q_GA7_Priem.Key] + report[date, PiramidaRecords.Q_GA8_Priem.Key] + report[date, PiramidaRecords.Q_GA9_Priem.Key]
+					+ report[date, PiramidaRecords.Q_GA10_Priem.Key]);
+				});
+
 		}
 
 		public static void AddCalcRecords(Report report, bool visible, bool toChart, ResultTypeEnum oper) {
@@ -234,6 +254,8 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeCalc(Q_GA9, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(Q_GA10, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(Q_GES, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(Q_GES_OTD, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(Q_GES_PR, toChart, visible, oper));
 		}
 
 		public static void AddPRecordsGAP(Report report, int parNumber, double scaleMult, double scaleDiv, bool visible, bool toChart, DBOperEnum oper, ResultTypeEnum result) {
