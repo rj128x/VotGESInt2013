@@ -130,7 +130,7 @@ namespace VotGES.ModesCentre
 			} finally {
 				ModesApiFactory.CloseConnection();
 			}
-			if (sendError)
+			//if (sendError)
 				sendErrorPBRData(!sendError);
 			
 			

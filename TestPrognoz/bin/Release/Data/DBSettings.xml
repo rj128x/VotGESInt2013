@@ -4,10 +4,10 @@
 	<Databases>
 		<DBInfo>
 			<ID>PSV</ID>
-			<Address>192.168.140.240</Address>
+			<Address>sr-votges-015\sqlexpress</Address>
 			<DBName>PiramidaSV</DBName>
 			<User>sa</User>
-			<Password>pswd</Password>
+			<Password>psWD!159!</Password>
 		</DBInfo>
 		<DBInfo>
 			<ID>P2000</ID>
@@ -18,17 +18,17 @@
 		</DBInfo>
 		<DBInfo>
 			<ID>P3000</ID>
-			<Address>192.168.140.240</Address>
+			<Address>sr-votges-015\sqlexpress</Address>
 			<DBName>Piramida3000</DBName>
 			<User>sa</User>
-			<Password>pswd</Password>
+			<Password>psWD!159!</Password>
 		</DBInfo>
 		<DBInfo>
 			<ID>PMin</ID>
-			<Address>192.168.140.240</Address>
+			<Address>sr-votges-015\sqlexpress</Address>
 			<DBName>PiramidaMin</DBName>
 			<User>sa</User>
-			<Password>pswd</Password>
+			<Password>psWD!159!</Password>
 		</DBInfo>
     <DBInfo>
       <ID>PSec</ID>

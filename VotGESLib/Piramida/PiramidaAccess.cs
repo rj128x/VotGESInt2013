@@ -55,7 +55,7 @@ namespace VotGES.Piramida
 	public class PiramidaAccess
 	{
 		public static string getConnectionString(DBInfo dbInfo) {
-			return String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};Connection Timeout={4}",
+			return String.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};Connection Timeout={4};Trusted_Connection=False;",
 				dbInfo.Address, dbInfo.DBName, dbInfo.User, dbInfo.Password, 3);
 		}
 
@@ -116,7 +116,12 @@ namespace VotGES.Piramida
 
 
 		public static SqlConnection getConnection(string dbName) {
-			SqlConnection con=new SqlConnection(getConnectionString(DBSettings.single.DBInfoList[dbName]));			
+			SqlConnection con=new SqlConnection(getConnectionString(DBSettings.single.DBInfoList[dbName]));
+			/*con.Open();
+			SqlCommand command = con.CreateCommand();
+			command.CommandText = "SET DATEFORMAT ymd";
+			command.ExecuteNonQuery();*/
+
 			return con;
 		}
 
