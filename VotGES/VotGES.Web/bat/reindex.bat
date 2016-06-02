@@ -1,1 +1,3 @@
-sqlcmd -S 192.168.140.240 -U sa -P pswd -i "E:\Projects\VOTGES\bat\reindex.sql"
+sqlcmd -S .\sqlexpress -U sa -P psWD!159! -i "c:\int\VOTGES\bat\reindexMin.sql"
+sqlcmd -S .\sqlexpress -U sa -P psWD!159! -i "c:\int\VOTGES\bat\reindexSV.sql"
+pause

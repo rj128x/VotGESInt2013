@@ -166,6 +166,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bat\reindex.sql" />
+    <Content Include="bat\reindexMin.sql" />
+    <Content Include="bat\reindexSV.sql" />
     <Content Include="ClientBin\MainSL.xap" />
     <Content Include="Global.asax" />
     <Content Include="MainSLTestPage.aspx" />
