@@ -55,8 +55,8 @@ namespace VotGES.Piramida
 	public class PiramidaAccess
 	{
 		public static string getConnectionString(DBInfo dbInfo) {
-			return String.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};Connection Timeout={4};Trusted_Connection=False;",
-				dbInfo.Address, dbInfo.DBName, dbInfo.User, dbInfo.Password, 3);
+			return String.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};Trusted_Connection=False;",
+				dbInfo.Address, dbInfo.DBName, dbInfo.User, dbInfo.Password);
 		}
 
 
