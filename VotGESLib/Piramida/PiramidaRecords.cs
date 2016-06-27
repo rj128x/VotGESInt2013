@@ -379,8 +379,8 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord MBW_U110_2SSH = new PiramidaRecord(2, 3, 13, "U 110 2СШ");
 		public static PiramidaRecord MBW_U220_1SSH = new PiramidaRecord(2, 3, 14, "U 220 1СШ");
 		public static PiramidaRecord MBW_U220_2SSH = new PiramidaRecord(2, 3, 15, "U 220 2СШ");
-		public static PiramidaRecord MBW_U500_EML = new PiramidaRecord(2, 3, 16, "U 500 Емелино");
-		public static PiramidaRecord MBW_U500_KARM = new PiramidaRecord(2, 3, 17, "U 500 Карманово");
+		public static PiramidaRecord MBW_U500_EML = new PiramidaRecord(2, 3, 17, "U 500 Емелино");
+		public static PiramidaRecord MBW_U500_KARM = new PiramidaRecord(2, 3, 16, "U 500 Карманово");
 		public static PiramidaRecord MBW_U500_VYAT = new PiramidaRecord(2, 3, 18, "U 500 Вятка");
 
 
