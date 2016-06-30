@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using VotGES.Piramida;
+using Tools;
 
 namespace VotGES.ModesCentre
 {
@@ -26,9 +27,12 @@ namespace VotGES.ModesCentre
 			int index = 0;
 			while (!ModesApiFactory.IsInitilized && index <= 10) {
 				try {
-					Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
-					ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
-					api = ModesApiFactory.GetModesApi();
+					using (Impersonator imp = new Impersonator(MCSettings.Single.MCUser, "corp", MCSettings.Single.MCPassword)) {
+						Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
+						//ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
+						ModesApiFactory.Initialize(MCSettings.Single.MCServer);
+						api = ModesApiFactory.GetModesApi();
+					}
 				} catch (Exception e) {
 					Logger.Info(e.ToString());
 				}
@@ -36,7 +40,7 @@ namespace VotGES.ModesCentre
 			}
 		}
 
-		public MCServerReader(DateTime date,bool writeNPBR=true) {
+		public MCServerReader(DateTime date, bool writeNPBR = true) {
 			Logger.Info("Чтение ПБР за " + date.ToString());
 			Date = date;
 			LogInfo = new List<string>();
@@ -131,9 +135,9 @@ namespace VotGES.ModesCentre
 				ModesApiFactory.CloseConnection();
 			}
 			//if (sendError)
-				sendErrorPBRData(!sendError);
-			
-			
+			sendErrorPBRData(!sendError);
+
+
 		}
 
 		public bool getPlan(IGenObject obj) {
@@ -229,10 +233,10 @@ namespace VotGES.ModesCentre
 				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
 
 				mess.From = new MailAddress(MCSettings.Single.SMTPFrom);
-				mess.Subject = info?"Разбор ПБР из MC":"Ошибка при получении ПБР из MC ";
+				mess.Subject = info ? "Разбор ПБР из MC" : "Ошибка при получении ПБР из MC ";
 				mess.Body = body;
 				string mailTo = info ? MCSettings.Single.InfoMail : MCSettings.Single.ErrorMail;
-				string[] mails = mailTo.Split(new char[] { ';' }); 
+				string[] mails = mailTo.Split(new char[] { ';' });
 				foreach (string mail in mails) {
 					if (!string.IsNullOrEmpty(mail)) {
 						mess.To.Add(mail);

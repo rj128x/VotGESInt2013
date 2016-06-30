@@ -121,7 +121,7 @@ namespace VotGES.OgranGA {
 				serieGen.AllowHigh = false;
 
 
-				if (ga <= 2 || ga >= 9) {
+				/*if (ga <= 2 || ga >= 9) {
 					ChartSerieProperties serieSK = new ChartSerieProperties();
 					serieSK.Color = ChartColor.GetColorStr(System.Drawing.Color.Orange);
 					serieSK.LineWidth = 0;
@@ -130,7 +130,7 @@ namespace VotGES.OgranGA {
 					serieSK.HideInLegend = true;
 					serieSK.AllowHigh = false;
 					props.Series.Add(serieSK);
-				}
+				}*/
 
 				ChartSerieProperties serieHHG = new ChartSerieProperties();
 				serieHHG.Color = ChartColor.GetColorStr(System.Drawing.Color.Yellow);

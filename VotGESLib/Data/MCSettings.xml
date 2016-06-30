@@ -2,8 +2,12 @@
 <MCSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <MCServer>sr-vm-062.corp.gidroogk.com</MCServer>
-  <MCUser>mc_votges</MCUser>
-  <MCPassword>mcV0tges</MCPassword>
+  <MCUser>egschu_votges</MCUser>
+  <MCPassword>A@a70352</MCPassword>
+  <!--
+  <MCUser>egshu_votges</MCUser>
+  <MCPassword>A@a70352</MCPassword>
+  -->
 
   <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
   <SMTPUser>autooper_votges</SMTPUser>
