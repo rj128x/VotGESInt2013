@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using VotGES.Piramida;
+using Tools;
 
 namespace VotGES.ModesCentre {
 	public class MCMaketReader {		
@@ -19,13 +20,15 @@ namespace VotGES.ModesCentre {
 
 		public void modesConnect() {
 			int index = 0;
-			while (!ModesApiFactory.IsInitilized && index<=10) {
+			while (!ModesApiFactory.IsInitilized && index <= 10) {
 				try {
-					Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
-					ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
-					api = ModesApiFactory.GetModesApi();
-				}
-				catch (Exception e) {
+					using (Impersonator imp = new Impersonator(MCSettings.Single.MCUser, "corp", MCSettings.Single.MCPassword)) {
+						Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
+						//ModesApiFactory.Initialize(MCSettings.Single.MCServer, MCSettings.Single.MCUser, MCSettings.Single.MCPassword);
+						ModesApiFactory.Initialize(MCSettings.Single.MCServer);
+						api = ModesApiFactory.GetModesApi();
+					}
+				} catch (Exception e) {
 					Logger.Info(e.ToString());
 				}
 				index++;
