@@ -33,6 +33,9 @@ namespace VotGES.ModesCentre
 						ModesApiFactory.Initialize(MCSettings.Single.MCServer);
 						api = ModesApiFactory.GetModesApi();
 					}
+					/*Logger.Info(String.Format("Подключение к MC. Попытка {0}", index));
+					ModesApiFactory.Initialize(MCSettings.Single.MCServer, "mc_votges", "mcV0tges");					
+					api = ModesApiFactory.GetModesApi();*/
 				} catch (Exception e) {
 					Logger.Info(e.ToString());
 				}
@@ -185,7 +188,7 @@ namespace VotGES.ModesCentre
 
 		public void sendAutooperData() {
 			try {
-				string fn = "pbr-000000-" + Date.ToString("yyyyMMdd") + ".csv";
+				string fn = "pbr-0000" + (NPBR < 10 ? "0" : "") + NPBR.ToString() + "-" + Date.ToString("yyyyMMdd") + ".csv";
 
 				string body = String.Join("\r\n", AutooperData);
 				/*TextWriter writer = new StreamWriter(fn, false, Encoding.ASCII);				
@@ -198,7 +201,8 @@ namespace VotGES.ModesCentre
 				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
 
 				mess.From = new MailAddress(MCSettings.Single.SMTPFrom);
-				mess.Subject = "pbr-000000-" + Date.ToString("yyyyMMdd");
+
+				mess.Subject = "pbr-0000" + (NPBR < 10 ? "0" : "") + NPBR.ToString() + "-" + Date.ToString("yyyyMMdd");
 				mess.Body = body;
 				mess.To.Add(MCSettings.Single.AutooperMail);
 				//mess.Attachments.Add(new Attachment(fn));
