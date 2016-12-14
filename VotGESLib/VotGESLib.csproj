@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\MC\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="ModesApi, Version=1.3.5.57, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\modes\ModesApi.dll</HintPath>
+    </Reference>
     <Reference Include="ModesApiExternal, Version=1.3.5.7, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\modes\ModesApiExternal.dll</HintPath>

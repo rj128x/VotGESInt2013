@@ -20,43 +20,50 @@
   <InfoMail>chekunovaMV@votges.rushydro.ru</InfoMail>
   <MCData>
     <MCSettingsRecord>
-      <MCCode>4432</MCCode>
+      <MCCode>4432</MCCode><!--ГТП ГЭС-->
+      <MCName>338730</MCName>
       <PiramidaCode>1</PiramidaCode>
       <WriteIntegratedData>1</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
+    <MCSettingsRecord><!--ГТП 1-->
       <MCCode>2299</MCCode>
+      <MCName>1045</MCName>
       <PiramidaCode>2</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
+    <MCSettingsRecord><!--ГТП 2-->
       <MCCode>2375</MCCode>
+      <MCName>1948</MCName>
       <PiramidaCode>3</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
-      <MCCode>2297</MCCode>
+    <MCSettingsRecord><!--РГЕ ГГ1,2-->
+      <MCCode>4568</MCCode>
+      <MCName>1045</MCName>
       <PiramidaCode>1045</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>1</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
-      <MCCode>2298</MCCode>
+    <MCSettingsRecord><!--РГЕ ГГ7-10-->
+      <MCCode>4569</MCCode>
+      <MCName>1046</MCName>
       <PiramidaCode>1046</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>1</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
-      <MCCode>2373</MCCode>
+    <MCSettingsRecord><!--РГЕ ГГ3,4-->
+      <MCCode>4570</MCCode>
+      <MCName>1703</MCName>
       <PiramidaCode>1703</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>1</Autooper>
     </MCSettingsRecord>
-    <MCSettingsRecord>
-      <MCCode>2374</MCCode>
+    <MCSettingsRecord><!--РГЕ ГГ5,6-->
+      <MCCode>4571</MCCode>
+      <MCName>1704</MCName>
       <PiramidaCode>1704</PiramidaCode>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>1</Autooper>

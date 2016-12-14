@@ -10,11 +10,12 @@ namespace VotGES.ModesCentre {
 		public int PiramidaCode { get; set; }
 		public bool WriteIntegratedData { get; set; }
 		public bool Autooper { get; set; }
+		public string MCName { get; set; }
 	}
 
 	public class MCMaketVar {
 		public int PiramidaCode { get; set; }
-		public int MCCode { get; set; }
+		public int MCCode { get; set; }		
 	}
 
 	public class MCMaketRecord {

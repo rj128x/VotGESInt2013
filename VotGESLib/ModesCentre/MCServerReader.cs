@@ -15,13 +15,13 @@ namespace VotGES.ModesCentre
 {
 	public class MCServerReader
 	{
-		public Dictionary<int, MCPBRData> Data { get; set; }
+		//public Dictionary<int, MCPBRData> Data { get; set; }
 		public DateTime Date { get; set; }
 		public List<string> LogInfo { get; set; }
 		public List<string> AutooperData { get; set; }
 		public int NPBR { get; set; }
 		protected IApiExternal api;
-		public List<MCPBRData> ProcessedPBRS;
+		public Dictionary<int,MCPBRData> ProcessedPBRS;
 
 		public void modesConnect() {
 			int index = 0;
@@ -49,7 +49,7 @@ namespace VotGES.ModesCentre
 			LogInfo = new List<string>();
 			AutooperData = new List<string>();
 			Logger.Info("Connect MC");
-			ProcessedPBRS = new List<MCPBRData>();
+			ProcessedPBRS = new Dictionary<int, MCPBRData>();
 			bool sendError = false;
 
 			try {
@@ -73,7 +73,7 @@ namespace VotGES.ModesCentre
 						Logger.Info("Количество ПБР !=7");
 						sendError = true;
 					} else {
-						foreach (MCPBRData pbr in ProcessedPBRS) {
+						foreach (MCPBRData pbr in ProcessedPBRS.Values) {
 							pbr.CreateData();
 							pbr.addAutooperData(AutooperData);
 						}
@@ -98,7 +98,7 @@ namespace VotGES.ModesCentre
 
 				if (ok) {
 					Logger.Info("Зaпись ПБР в Базу");
-					foreach (MCPBRData pbr in ProcessedPBRS) {
+					foreach (MCPBRData pbr in ProcessedPBRS.Values) {
 						try {
 							pbr.CreateData();
 							bool okWrite = false;
@@ -150,34 +150,46 @@ namespace VotGES.ModesCentre
 			IList<PlanValueItem> data = api.GetPlanValuesActual(dt1, dt0, obj);
 			bool ok = true;
 			if (data.Count > 0) {
-				Logger.Info(String.Format("Обработка ПБР для {0}({1})", obj.Description, obj.Id));
-				LogInfo.Add(String.Format("Обработка ПБР для {0}({1})", obj.Description, obj.Id));
-				MCPBRData pbr = new MCPBRData(obj.Id);
+				Logger.Info(String.Format("Обработка ПБР для {0}({1}) [{2}]", obj.Description, obj.Id, obj.Name));
 
-				if (pbr.DataSettings != null) {
-					foreach (PlanValueItem item in data) {
-						if (item.ObjFactor == 0) {
-							pbr.AddValue(item.DT.SystemToLocalHqEx(), item.Value);
-							string pt = item.Type.ToString().Replace("ПБР", "");
-							int num = 0;
-							try {
-								num = Int32.Parse(pt);
-							} catch { }
-							NPBR = num;
+				LogInfo.Add(String.Format("Обработка ПБР для {0}({1})  [{2}]", obj.Description, obj.Id, obj.Name));
+				List<MCPBRData> pbrs = MCPBRData.getPBRS(obj.Id, obj.Name);
+
+				foreach (MCPBRData pbr in pbrs) { 
+					if (ProcessedPBRS.ContainsKey(pbr.Item)) {
+						string log = string.Format("Данные по коду {0} уже были считаны ",pbr.Item);
+						Logger.Info(log);
+						LogInfo.Add(log);
+						continue;
+					}
+					if (pbr.DataSettings != null) {
+						foreach (PlanValueItem item in data) {
+							if (item.ObjFactor == 0) {
+								pbr.AddValue(item.DT.SystemToLocalHqEx(), item.Value);
+								string pt = item.Type.ToString().Replace("ПБР", "");
+								int num = 0;
+								try {
+									num = Int32.Parse(pt);
+								} catch { }
+								NPBR = num;
+							}
 						}
-					}
-					LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx(), obj.Description));
-					if (pbr.Data.Count > 10) {
-						ProcessedPBRS.Add(pbr);
+						LogInfo.Add(String.Format("Получено {0} записей с {1} по {2} по объекту {3}", pbr.Data.Count, dt1.SystemToLocalHqEx(), dt0.SystemToLocalHqEx(), obj.Description));
+						if (pbr.Data.Count > 10) {
+							if (!ProcessedPBRS.ContainsKey(pbr.Item))
+								ProcessedPBRS.Add(pbr.Item, pbr);
+						} else {
+							LogInfo.Add("Недостаточно данных");
+							ok = false;
+						}
+						LogInfo.Add("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
+						Logger.Info("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
 					} else {
-						LogInfo.Add("Недостаточно данных");
-						ok = false;
+						LogInfo.Add("===Ошибка при разборе полученного макета. Возможно изменение кодировки MC");
 					}
-					LogInfo.Add("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
-					Logger.Info("===Данные считаны: " + (ok ? "Успешно" : "Ошибка"));
-				} else {
-					LogInfo.Add("===Ошибка при разборе полученного макета. Возможно изменение кодировки MC");
+
 				}
+				
 			}
 			foreach (IGenObject ch in obj.Children) {
 				bool ok2 = getPlan(ch);

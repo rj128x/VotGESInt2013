@@ -16,18 +16,34 @@ namespace VotGES.ModesCentre {
 		public int Item { get; set; }
 		public MCSettingsRecord DataSettings;
 
-		public MCPBRData(int mcCode) {
-			foreach (MCSettingsRecord rec in MCSettings.Single.MCData) {
-				if (rec.MCCode == mcCode) {
-					Item = rec.PiramidaCode;
-					DataSettings = rec;
-				}
-			}
-			if (DataSettings == null) {
-				Logger.Info("Ошибка при разборе полученного макета. Возможно изменение кодировки MC");
-			}
+		public MCPBRData(MCSettingsRecord rec) {
+			Item = rec.PiramidaCode;
+			DataSettings = rec;
+			
 			Data = new SortedList<DateTime, double>();
 			DataHH = new SortedList<DateTime, double>();
+		}
+
+		public static List<MCPBRData> getPBRS(int mcCode,string mcName) {
+			List<MCPBRData> result = new List<MCPBRData>();
+			foreach (MCSettingsRecord rec in MCSettings.Single.MCData) {
+				if (rec.MCCode == mcCode) {
+					MCPBRData pbr = new MCPBRData(rec);
+					result.Add(pbr);
+				}
+			}
+			if (result.Count==0) {
+				foreach (MCSettingsRecord rec in MCSettings.Single.MCData) {
+					if (rec.MCName.ToLower() == mcName.ToLower()) {
+						MCPBRData pbr = new MCPBRData(rec);
+						result.Add(pbr);
+					}
+				}
+			}
+			if (result.Count==0) {
+				Logger.Info("Ошибка при разборе полученного макета. Возможно изменение кодировки MC");
+			}
+			return result;
 		}
 
 		public void AddValue(DateTime date, double val) {
