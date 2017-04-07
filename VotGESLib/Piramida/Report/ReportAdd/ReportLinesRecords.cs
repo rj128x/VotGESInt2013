@@ -313,7 +313,8 @@ namespace VotGES.Piramida.Report
 				return
 					report[date,ReportLinesRecords.P_VL500_Saldo.ID] +
 					report[date,ReportGlTransformRecords.P_2AT_500.ID] +
-					report[date,ReportGlTransformRecords.P_3AT_500.ID];
+					report[date,ReportGlTransformRecords.P_3AT_500.ID]-
+					report[date,PiramidaRecords.P_R500_Emelino_priem.Key]- report[date, PiramidaRecords.P_R500_Vyatka_priem.Key];
 			});
 
 			P_VL_Nebalans.CalcFunction=

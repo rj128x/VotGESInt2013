@@ -18,7 +18,7 @@ namespace VotGES.Rashod {
 			string dir = String.Format("{0}/{1}/{2}", Folder, year, month);
 			try {
 				using (UNCAccessWithCredentials unc = new UNCAccessWithCredentials()) {
-					if (unc.NetUseWithCredentials(Folder, "chekunovamv", "corp", "rJ320204")) {
+					if (unc.NetUseWithCredentials(Folder, "ver_votges", "corp", "Ghbdtn12")) {
 						Logger.Info(dir);
 						Directory.CreateDirectory(dir);
 						string fileName = String.Format("{0}/day_{1}.xls", dir, day);
@@ -39,7 +39,7 @@ namespace VotGES.Rashod {
 			string dir = String.Format("{0}/{1}/Table1", Folder, year, month);
 			try {
 				using (UNCAccessWithCredentials unc = new UNCAccessWithCredentials()) {
-					if (unc.NetUseWithCredentials(Folder, "chekunovamv", "corp", "rJ320204")) {
+					if (unc.NetUseWithCredentials(Folder, "ver_votges", "corp", "Ghbdtn12")) {
 						Logger.Info(dir);
 						Directory.CreateDirectory(dir);
 						string fileName = String.Format("{0}/month_{1}.xls", dir, month);
