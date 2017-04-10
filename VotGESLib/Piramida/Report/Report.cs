@@ -130,12 +130,14 @@ namespace VotGES.Piramida.Report {
 
 
 	public class Report {
+		public bool UsePiramida2000 = false;
 		public DateTime DateStart { get; set; }
 		public DateTime DateEnd { get; set; }
 		public DateTime RealDateEnd { get; set; }
 		public IntervalReportEnum Interval { get; set; }
 		public Dictionary<string, RecordTypeBase> RecordTypes { get; set; }
 		protected SortedList<DateTime, Dictionary<string, double>> Data { get; set; }
+		public SortedList<DateTime,List<RecordTypeDB>> EmptyData { get; protected set; }
 		public Dictionary<string, double> ResultData { get; set; }
 		public SortedList<ResultTypeEnum, Dictionary<string, double>> ResultDataFull { get; set; }
 		protected List<string> NeedRecords { get; set; }
@@ -410,6 +412,7 @@ namespace VotGES.Piramida.Report {
 
 		protected void checkDBData() {
 			List<DateTime> forRemove = new List<DateTime>();
+			EmptyData = new SortedList<DateTime, List<RecordTypeDB>>();
 			foreach (DateTime date in Dates) {
 				if (date > RealDateEnd) {
 					forRemove.Add(date);
@@ -419,7 +422,11 @@ namespace VotGES.Piramida.Report {
 						if (recordType is RecordTypeDB) {
 							RecordTypeDB rdb = recordType as RecordTypeDB;
 							if (!Data[date].Keys.Contains(rdb.ID)) {
-								Data[date].Add(rdb.ID, rdb.DefaultValue);
+								Data[date].Add(rdb.ID, rdb.DefaultValue);								
+								if (!EmptyData.ContainsKey(date)) {
+									EmptyData.Add(date, new List<RecordTypeDB>());
+								}								
+								EmptyData[date].Add(rdb);
 							}
 						}
 					}
@@ -440,7 +447,9 @@ namespace VotGES.Piramida.Report {
 
 
 
-			connection = Interval != IntervalReportEnum.minute ? PiramidaAccess.getConnection("P3000") : PiramidaAccess.getConnection("PMin");
+			connection = Interval != IntervalReportEnum.minute ? 
+				(UsePiramida2000? PiramidaAccess.getConnection("P2000"):PiramidaAccess.getConnection("P3000")) : 
+				PiramidaAccess.getConnection("PMin");
 			if (Interval != IntervalReportEnum.minute) {
 				if (objType == "2" && (obj == "3" || obj == "30")) {
 					connection = PiramidaAccess.getConnection("PSV");

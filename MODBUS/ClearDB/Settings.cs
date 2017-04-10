@@ -5,6 +5,7 @@ using System.Text;
 using System.Globalization;
 using VotGES.Piramida;
 using VotGES.XMLSer;
+using VotGES.Piramida.Report;
 
 namespace ClearDB
 {
@@ -23,6 +24,9 @@ namespace ClearDB
 		public string SMTPPassword { get; set; }
 		public string SMTPFrom { get; set; }
 		public string ErrorMailTo { get; set; }
+
+		public NebalansLimits Limits { get; set; }
+		public string AvailEmptyNBData { get; set; }
 		
 		public static Settings single {
 			get {

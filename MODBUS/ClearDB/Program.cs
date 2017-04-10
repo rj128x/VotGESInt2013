@@ -49,6 +49,9 @@ namespace ClearDB {
 			DateTime dateStart = getDate(ds, task == "copy4");
 			DateTime dateEnd = getDate(de, task == "copy4");
 
+			Logger.Info(dateStart.ToString());
+			Logger.Info(dateEnd.ToString());
+
 			Logger.Info("======================================================================================");
 			Logger.Info(task);
 			if ((new string[] { "copy4", "copy12", "copy212", "copy204" }).Contains(task)) {
@@ -100,6 +103,8 @@ namespace ClearDB {
 			}
 			else if (task == "checkModbus") {
 				CheckModbusWater.CheckData();
+			}else if (task == "checkNebalans") {
+				ChekNebalans.checkData(dateStart, dateEnd);
 			}
 			else {
 				double hh = 24;

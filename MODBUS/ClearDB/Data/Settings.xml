@@ -9,8 +9,46 @@
   <ErrorMailTo>ChekunovaMV@votges.rushydro.ru</ErrorMailTo>
   <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
   <SMTPUser>chekunovamv</SMTPUser>
-  <SMTPPassword>rJ320204</SMTPPassword>
+  <SMTPPassword>Qwerty2</SMTPPassword>
   <SMTPPort>25</SMTPPort>
   <SMTPDomain>corp</SMTPDomain>
   <SMTPFrom>chekunovaMV@votges.rushydro.ru</SMTPFrom>
+
+  <Limits>
+    <NB500Min>-5000</NB500Min>
+    <NB500Max>8000</NB500Max>
+    <NB110Min>-2000</NB110Min>
+    <NB110Max>2000</NB110Max>
+    <NB220Min>-3000</NB220Min>
+    <NB220Max>5000</NB220Max>
+    <NBGESMin>-9500</NBGESMin>
+    <NBGESMax>9500</NBGESMax>
+
+    <NBVLMin>-10000</NBVLMin>
+    <NBVLMax>15000</NBVLMax>
+
+    <NB1TMin>-4000</NB1TMin>
+    <NB1TMax>4000</NB1TMax>
+    <NB2ATMin>-4000</NB2ATMin>
+    <NB2ATMax>4000</NB2ATMax>
+    <NB3ATMin>-4000</NB3ATMin>
+    <NB3ATMax>4000</NB3ATMax>
+    <NB4TMin>-4000</NB4TMin>
+    <NB4TMax>4000</NB4TMax>
+    <NB56ATMin>-4000</NB56ATMin>
+    <NB56ATMax>4000</NB56ATMax>
+
+    <NBTransMin>-6000</NBTransMin>
+    <NBTransMax>6000</NBTransMax>
+
+    <SPMin>0</SPMin>
+    <SPMax>15000</SPMax>
+
+    <SNMin>800</SNMin>
+    <SNMax>3000</SNMax>
+
+  </Limits>
+
+  <AvailEmptyNBData>0-8738-21;0-8738-22;0-8740-40;0-8740-42</AvailEmptyNBData>
+  
 </Settings>	

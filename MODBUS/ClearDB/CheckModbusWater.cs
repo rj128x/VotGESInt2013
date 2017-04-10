@@ -20,7 +20,7 @@ namespace ClearDB {
 				object cnt=com.ExecuteScalar();
 				int count = Int32.Parse(cnt.ToString());
 				if (count == 0) {
-					sendMail("Нет данных modbus за последние 10 минут");
+					MailClass.sendMail("Нет данных modbus за последние 10 минут");
 				}
 			}
 			catch (Exception e) {
@@ -28,44 +28,7 @@ namespace ClearDB {
 			}
 		}
 
-		public static void sendMail(string message) {
-			try {
-				string body = message;
-
-
-				System.Net.Mail.MailMessage mess = new System.Net.Mail.MailMessage();
-
-				mess.From = new MailAddress(Settings.single.SMTPFrom);
-				mess.Subject = "ошибка";
-				mess.Body = body;
-
-				string[] addr = Settings.single.ErrorMailTo.Split(new char[] { ';' });
-				foreach (string add in addr) {
-					try {
-						mess.To.Add(add);
-					}
-					catch { }
-				}				
-
-				mess.SubjectEncoding = System.Text.Encoding.UTF8;
-				mess.BodyEncoding = System.Text.Encoding.UTF8;
-				mess.IsBodyHtml = true;
-				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(Settings.single.SMTPServer, Settings.single.SMTPPort);
-				client.EnableSsl = true;
-				if (string.IsNullOrEmpty(Settings.single.SMTPUser)) {
-					client.UseDefaultCredentials = true;
-				}
-				else {
-					client.Credentials = new System.Net.NetworkCredential(Settings.single.SMTPUser, Settings.single.SMTPPassword, Settings.single.SMTPDomain);
-				}
-				// Отправляем письмо
-				client.Send(mess);
-				
-			}
-			catch (Exception e) {
-				Logger.Error(String.Format("Ошибка при отправке почты: {0}", e.ToString()), Logger.LoggerSource.server);
-			}
-		}
+		
 
 	}
 }
