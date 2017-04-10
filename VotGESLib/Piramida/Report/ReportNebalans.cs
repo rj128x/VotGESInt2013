@@ -56,15 +56,32 @@ namespace VotGES.Piramida.Report
 			report.RecordTypes[ReportMainRecords.P_SP.ID].Visible = true;
 			report.RecordTypes[ReportSNRecords.P_SN.ID].Visible = true;
 
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans110.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans220.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans500.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans1T.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans4T.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans2AT.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans3AT.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans56AT.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_NebalansT.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans_GES.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_SN.Key].Visible = true;
+			report.RecordTypes[PiramidaRecords.P_IKM_SP.Key].Visible = true;
+
 
 		}
-		protected string checkLimit(double val, double min,double max,DateTime date,ref int cnt, ref bool hasNB) {
+		protected string checkLimit(double val, double calc, double min,double max,DateTime date,ref int cnt, ref bool hasNB) {
+			string result = "";
 			if (val>max || val < min) {
 				cnt++;
 				hasNB = true;
-				return String.Format("    {0}: {1} \r\n", date.ToString("dd.MM.yyyy HH:mm"), val);				
+				result=String.Format("    {0}: Значение [{1:0.##}] выше/ниже нормы \r\n", date.ToString("dd.MM.yyyy HH:mm"), val);				
 			}
-			return "";
+			if (Math.Abs(calc - val) > 10) {
+				result += String.Format("    ===Несоответствие расчетных данных: Расчет: [{0:0.##}]  БД:[{1:0.##}] \r\n", val, calc);
+			}
+			return result;
 		}
 
 		public string checkData(NebalansLimits lim, string AvailEmpty, ref bool hasNB, ref bool hasEmpty) {
@@ -119,19 +136,32 @@ namespace VotGES.Piramida.Report
 					double vSP = report[date, ReportMainRecords.P_SP.ID] * 2;
 					double vSN = report[date, ReportSNRecords.P_SN.ID] * 2;
 
-					NB500 += checkLimit(v500, lim.NB500Min, lim.NB500Max, date,ref cnt,ref has500);
-					NB220 += checkLimit(v220, lim.NB220Min, lim.NB220Max, date, ref cnt, ref has220);
-					NB110 += checkLimit(v110, lim.NB110Min, lim.NB110Max, date, ref cnt, ref has110);
-					NBVL += checkLimit(vVL, lim.NBVLMin, lim.NBVLMax, date, ref cnt, ref hasVL);
-					NB1T += checkLimit(v1T, lim.NB1TMin, lim.NB1TMax, date, ref cnt, ref has1T);
-					NB4T += checkLimit(v4T, lim.NB4TMin, lim.NB4TMax, date, ref cnt, ref has4T);
-					NB2AT += checkLimit(v2AT, lim.NB2ATMin, lim.NB2ATMax, date, ref cnt, ref has2AT);
-					NB3AT += checkLimit(v3AT, lim.NB3ATMin, lim.NB3ATMax, date, ref cnt, ref has3AT);
-					NB56AT += checkLimit(v56AT, lim.NB56ATMin, lim.NB56ATMax, date, ref cnt, ref has56AT);
-					NBTrans += checkLimit(vTrans, lim.NBTransMin, lim.NBTransMax, date, ref cnt, ref hasTrans);
-					NBGES += checkLimit(vGES, lim.NBGESMin, lim.NBGESMax, date, ref cnt, ref hasGES);
-					SP += checkLimit(vSP, lim.SPMin, lim.SPMax, date, ref cnt, ref hasSP);
-					SN += checkLimit(vSN, lim.SNMin, lim.SNMax, date, ref cnt, ref hasSN);
+					double ikm500= report[date, PiramidaRecords.P_IKM_Nebalans500.Key] * 2;
+					double ikm110 = report[date, PiramidaRecords.P_IKM_Nebalans110.Key] * 2;
+					double ikm220 = report[date, PiramidaRecords.P_IKM_Nebalans220.Key] * 2;
+					double ikm1T = report[date, PiramidaRecords.P_IKM_Nebalans1T.Key] * 2;
+					double ikm4T = report[date, PiramidaRecords.P_IKM_Nebalans4T.Key] * 2;
+					double ikm2AT = report[date, PiramidaRecords.P_IKM_Nebalans2AT.Key] * 2;
+					double ikm3AT = report[date, PiramidaRecords.P_IKM_Nebalans3AT.Key] * 2;
+					double ikm56AT = report[date, PiramidaRecords.P_IKM_Nebalans56AT.Key] * 2;
+					double ikmT = report[date, PiramidaRecords.P_IKM_NebalansT.Key] * 2;
+					double ikmGES= report[date, PiramidaRecords.P_IKM_Nebalans_GES.Key] * 2;
+					double ikmSP= report[date, PiramidaRecords.P_IKM_SP.Key] * 2;
+					double ikmSN = report[date, PiramidaRecords.P_IKM_SN.Key] * 2;
+
+					NB500 += checkLimit(v500,ikm500, lim.NB500Min, lim.NB500Max, date,ref cnt,ref has500);
+					NB220 += checkLimit(v220,ikm220, lim.NB220Min, lim.NB220Max, date, ref cnt, ref has220);
+					NB110 += checkLimit(v110,ikm110, lim.NB110Min, lim.NB110Max, date, ref cnt, ref has110);
+					NBVL += checkLimit(vVL,vVL, lim.NBVLMin, lim.NBVLMax, date, ref cnt, ref hasVL);
+					NB1T += checkLimit(v1T,ikm1T, lim.NB1TMin, lim.NB1TMax, date, ref cnt, ref has1T);
+					NB4T += checkLimit(v4T,ikm4T, lim.NB4TMin, lim.NB4TMax, date, ref cnt, ref has4T);
+					NB2AT += checkLimit(v2AT,ikm2AT, lim.NB2ATMin, lim.NB2ATMax, date, ref cnt, ref has2AT);
+					NB3AT += checkLimit(v3AT,ikm3AT, lim.NB3ATMin, lim.NB3ATMax, date, ref cnt, ref has3AT);
+					NB56AT += checkLimit(v56AT,ikm56AT, lim.NB56ATMin, lim.NB56ATMax, date, ref cnt, ref has56AT);
+					NBTrans += checkLimit(vTrans,ikmT, lim.NBTransMin, lim.NBTransMax, date, ref cnt, ref hasTrans);
+					NBGES += checkLimit(vGES,ikmGES, lim.NBGESMin, lim.NBGESMax, date, ref cnt, ref hasGES);
+					SP += checkLimit(vSP,ikmSP, lim.SPMin, lim.SPMax, date, ref cnt, ref hasSP);
+					SN += checkLimit(vSN,ikmSN, lim.SNMin, lim.SNMax, date, ref cnt, ref hasSN);
 
 				}
 				if (report.EmptyData.Count > 0) {
