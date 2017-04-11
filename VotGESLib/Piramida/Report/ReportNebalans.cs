@@ -71,7 +71,7 @@ namespace VotGES.Piramida.Report
 
 
 		}
-		protected string checkLimit(double val, double calc, double min,double max,DateTime date,ref int cnt, ref bool hasNB) {
+		protected string checkLimit(double val, double calc, double min,double max,DateTime date,ref int cnt, ref bool hasNB,ref bool hasDiffCalc) {
 			string result = "";
 			if (val>max || val < min) {
 				cnt++;
@@ -79,12 +79,13 @@ namespace VotGES.Piramida.Report
 				result=String.Format("    {0}: Значение [{1:0.##}] выше/ниже нормы \r\n", date.ToString("dd.MM.yyyy HH:mm"), val);				
 			}
 			if (Math.Abs(calc - val) > 10) {
+				hasDiffCalc = true;
 				result += String.Format("    ===Несоответствие расчетных данных: Расчет: [{0:0.##}]  БД:[{1:0.##}] \r\n", val, calc);
 			}
 			return result;
 		}
 
-		public string checkData(NebalansLimits lim, string AvailEmpty, ref bool hasNB, ref bool hasEmpty) {
+		public string checkData(NebalansLimits lim, string AvailEmpty, ref bool hasNb, ref bool hasEmpty,ref bool hasEmptyCalc,ref bool hasDiffCalc) {
 			string Result = "";
 			string NB500 = String.Format("Небаланс по СШ500кВ (Норма:[{0}] - [{1}]):  \r\n", lim.NB500Min, lim.NB500Max);
 			string NB110 = String.Format("Небаланс по СШ110кВ (Норма:[{0}] - [{1}]):  \r\n", lim.NB110Min, lim.NB110Max);
@@ -116,6 +117,9 @@ namespace VotGES.Piramida.Report
 			bool hasSN = false;
 
 			hasEmpty=false;
+			hasEmptyCalc = false;
+			hasDiffCalc = false;
+
 
 			string EmptyStr = "Отсутствующие данные: \r\n";
 			int cnt = 0;			
@@ -149,19 +153,19 @@ namespace VotGES.Piramida.Report
 					double ikmSP= report[date, PiramidaRecords.P_IKM_SP.Key] * 2;
 					double ikmSN = report[date, PiramidaRecords.P_IKM_SN.Key] * 2;
 
-					NB500 += checkLimit(v500,ikm500, lim.NB500Min, lim.NB500Max, date,ref cnt,ref has500);
-					NB220 += checkLimit(v220,ikm220, lim.NB220Min, lim.NB220Max, date, ref cnt, ref has220);
-					NB110 += checkLimit(v110,ikm110, lim.NB110Min, lim.NB110Max, date, ref cnt, ref has110);
-					NBVL += checkLimit(vVL,vVL, lim.NBVLMin, lim.NBVLMax, date, ref cnt, ref hasVL);
-					NB1T += checkLimit(v1T,ikm1T, lim.NB1TMin, lim.NB1TMax, date, ref cnt, ref has1T);
-					NB4T += checkLimit(v4T,ikm4T, lim.NB4TMin, lim.NB4TMax, date, ref cnt, ref has4T);
-					NB2AT += checkLimit(v2AT,ikm2AT, lim.NB2ATMin, lim.NB2ATMax, date, ref cnt, ref has2AT);
-					NB3AT += checkLimit(v3AT,ikm3AT, lim.NB3ATMin, lim.NB3ATMax, date, ref cnt, ref has3AT);
-					NB56AT += checkLimit(v56AT,ikm56AT, lim.NB56ATMin, lim.NB56ATMax, date, ref cnt, ref has56AT);
-					NBTrans += checkLimit(vTrans,ikmT, lim.NBTransMin, lim.NBTransMax, date, ref cnt, ref hasTrans);
-					NBGES += checkLimit(vGES,ikmGES, lim.NBGESMin, lim.NBGESMax, date, ref cnt, ref hasGES);
-					SP += checkLimit(vSP,ikmSP, lim.SPMin, lim.SPMax, date, ref cnt, ref hasSP);
-					SN += checkLimit(vSN,ikmSN, lim.SNMin, lim.SNMax, date, ref cnt, ref hasSN);
+					NB500 += checkLimit(v500,ikm500, lim.NB500Min, lim.NB500Max, date,ref cnt,ref has500,ref hasDiffCalc);
+					NB220 += checkLimit(v220,ikm220, lim.NB220Min, lim.NB220Max, date, ref cnt, ref has220, ref hasDiffCalc);
+					NB110 += checkLimit(v110,ikm110, lim.NB110Min, lim.NB110Max, date, ref cnt, ref has110, ref hasDiffCalc);
+					NBVL += checkLimit(vVL,vVL, lim.NBVLMin, lim.NBVLMax, date, ref cnt, ref hasVL, ref hasDiffCalc);
+					NB1T += checkLimit(v1T,ikm1T, lim.NB1TMin, lim.NB1TMax, date, ref cnt, ref has1T, ref hasDiffCalc);
+					NB4T += checkLimit(v4T,ikm4T, lim.NB4TMin, lim.NB4TMax, date, ref cnt, ref has4T, ref hasDiffCalc);
+					NB2AT += checkLimit(v2AT,ikm2AT, lim.NB2ATMin, lim.NB2ATMax, date, ref cnt, ref has2AT, ref hasDiffCalc);
+					NB3AT += checkLimit(v3AT,ikm3AT, lim.NB3ATMin, lim.NB3ATMax, date, ref cnt, ref has3AT, ref hasDiffCalc);
+					NB56AT += checkLimit(v56AT,ikm56AT, lim.NB56ATMin, lim.NB56ATMax, date, ref cnt, ref has56AT, ref hasDiffCalc);
+					NBTrans += checkLimit(vTrans,ikmT, lim.NBTransMin, lim.NBTransMax, date, ref cnt, ref hasTrans, ref hasDiffCalc);
+					NBGES += checkLimit(vGES,ikmGES, lim.NBGESMin, lim.NBGESMax, date, ref cnt, ref hasGES, ref hasDiffCalc);
+					SP += checkLimit(vSP,ikmSP, lim.SPMin, lim.SPMax, date, ref cnt, ref hasSP, ref hasDiffCalc);
+					SN += checkLimit(vSN,ikmSN, lim.SNMin, lim.SNMax, date, ref cnt, ref hasSN, ref hasDiffCalc);
 
 				}
 				if (report.EmptyData.Count > 0) {
@@ -170,7 +174,12 @@ namespace VotGES.Piramida.Report
 						foreach (RecordTypeDB rdb in report.EmptyData[date]) {
 							if (!EmptyIds.Contains(rdb.ID)) {
 								str += String.Format("     ==={0} [{1}] \r\n", rdb.Title, rdb.ID);
-								hasEmpty = true;
+								if (rdb.DBRecord.ObjType==0)
+									hasEmpty = true;
+								else {
+									hasEmptyCalc = true;
+								}
+
 							}
 						}
 						if (!string.IsNullOrEmpty(str)) {
