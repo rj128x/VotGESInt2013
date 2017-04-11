@@ -10,7 +10,7 @@ namespace ClearDB
 {
 	public class MailClass
 	{
-		public static void sendMail(string message,string body="") {
+		public static void sendMail(string message, string body = "", string mailTo = "") {
 			try {
 				body = String.IsNullOrEmpty(body)?message:body;
 
@@ -21,7 +21,8 @@ namespace ClearDB
 				mess.Subject = message;
 				mess.Body = body;
 
-				string[] addr = Settings.single.ErrorMailTo.Split(new char[] { ';' });
+				mailTo = string.IsNullOrEmpty(mailTo) ? Settings.single.ErrorMailTo : mailTo;
+				string[] addr = mailTo.Split(new char[] { ';' });
 				foreach (string add in addr) {
 					try {
 						mess.To.Add(add);

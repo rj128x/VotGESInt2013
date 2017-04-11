@@ -7,6 +7,7 @@
 	<SutVedPathTo>e:/Projects/ARC_53500_SUTVED/sutVed</SutVedPathTo>
   
   <ErrorMailTo>ChekunovaMV@votges.rushydro.ru</ErrorMailTo>
+  <NebalansMailTo>ChekunovaMV@votges.rushydro.ru</NebalansMailTo>
   <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
   <SMTPUser>chekunovamv</SMTPUser>
   <SMTPPassword>Qwerty2</SMTPPassword>
