@@ -37,6 +37,7 @@ namespace VotGES.Piramida.Report
 	}
 	public class ReportNebalans
 	{
+		public bool FoundNebalans = false;
 		public FullReport report;
 		public ReportNebalans(DateTime dateStart, DateTime dateEnd) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
@@ -71,47 +72,38 @@ namespace VotGES.Piramida.Report
 
 
 		}
-		protected string checkLimit(double val, double calc, double min,double max,DateTime date, ref bool hasNB,ref bool hasDiffCalc) {
-			string result = "";
-			if (val>max || val < min) {
-				hasNB = true;
-				result=String.Format("    {0}: Значение [{1:0.##}] выше/ниже нормы \r\n", date.ToString("dd.MM.yyyy HH:mm"), val);				
-			}
-			if (Math.Abs(calc - val) > 10) {
-				hasDiffCalc = true;
-				result += String.Format("    ===Несоответствие расчетных данных: Расчет: [{0:0.##}]  БД:[{1:0.##}] \r\n", val, calc);
-			}
-			return result;
-		}
 
-		protected string checkLimit2( double val, double calc, double min, double max, string caption, ref bool hasNB, ref bool hasDiffCalc) {
+		protected string checkLimit2( double val, double calc, double min, double max, string caption,  ref bool hasDiffCalc) {
 			string result = "";
 			if (val > max || val < min) {
-				hasNB = true;
-				result = String.Format("    {0}: Значение [{1:0.##}] выше/ниже нормы \r\n", caption.Replace("\r\n",""), val);
+				FoundNebalans = true;
+				caption = caption.PadRight(50, ' ').Replace("<br/>", "");
+				result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='100'><b><u>{1:0.##}</b></u></td> <td width='200'>[{2}]-[{3}]</tr>", caption, val,min,max);
 			}
 			if (Math.Abs(calc - val) > 10) {
-				hasDiffCalc = true;
-				result += String.Format("    ===Несоответствие расчетных данных: Расчет: [{0:0.##}]  БД:[{1:0.##}] \r\n", val, calc);
+				hasDiffCalc = true;				
+				if (String.IsNullOrEmpty(result))
+					result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='100'></td><td width='200'></td> </tr>", caption.Replace("<br/>", "")); 
+				result += String.Format("<tr><td colspan='3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>===Несоответствие расчетных данных: Расчет: <u>[{0:0.##}]</u>  БД:[{1:0.##}] </td></tr>", val, calc);
 			}
 			return result;
 		}
 
-		public string checkData(NebalansLimits lim, string AvailEmpty, ref bool hasNb, ref bool hasEmpty,ref bool hasEmptyCalc,ref bool hasDiffCalc, ref String DatesMSG) {
-			string Result = "";
-			string NB500Cap = String.Format("Небаланс по СШ500кВ (Норма:[{0}] - [{1}]):  \r\n", lim.NB500Min, lim.NB500Max);
-			string NB110Cap = String.Format("Небаланс по СШ110кВ (Норма:[{0}] - [{1}]):  \r\n", lim.NB110Min, lim.NB110Max);
-			string NB220Cap = String.Format("Небаланс по СШ220кВ (Норма:[{0}] - [{1}]):  \r\n", lim.NB220Min, lim.NB220Max);
-			string NBVLCap = String.Format("Небаланс по ВЛ (Норма:[{0}] - [{1}]):  \r\n", lim.NBVLMin, lim.NBVLMax);
-			string NB1TCap = String.Format("Небаланс по 1T (Норма:[{0}] - [{1}]):  \r\n", lim.NB1TMin, lim.NB1TMax);
-			string NB2ATCap = String.Format("Небаланс по 2АT (Норма:[{0}] - [{1}]):  \r\n", lim.NB2ATMin, lim.NB2ATMax);
-			string NB3ATCap = String.Format("Небаланс по 3АT (Норма:[{0}] - [{1}]):  \r\n", lim.NB3ATMin, lim.NB3ATMax);
-			string NB4TCap = String.Format("Небаланс по 4T (Норма:[{0}] - [{1}]):  \r\n", lim.NB4TMin, lim.NB4TMax);
-			string NB56ATCap = String.Format("Небаланс по 5-6AT (Норма:[{0}] - [{1}]):  \r\n", lim.NB56ATMin, lim.NB56ATMax);
-			string NBTransCap = String.Format("Небаланс по трансформаторам (Норма:[{0}] - [{1}]):  \r\n", lim.NBTransMin, lim.NBTransMax);
-			string NBGESCap = String.Format("Небаланс по ГЭС (Норма:[{0}] - [{1}]):  \r\n", lim.NBGESMin, lim.NBGESMax);
-			string SPCap = String.Format("Собственное потребление (Норма:[{0}] - [{1}]):  \r\n", lim.SPMin, lim.SPMax);
-			string SNCap = String.Format("Собственные нужды (Норма:[{0}] - [{1}]):  \r\n", lim.SNMin, lim.SNMax);
+		public string checkData(NebalansLimits lim, string AvailEmpty, ref bool hasNb, ref bool hasEmpty,ref bool hasEmptyCalc,ref bool hasDiffCalc) {
+			string DatesMSG = "";
+			string NB500Cap = String.Format("Небаланс по СШ500кВ", lim.NB500Min, lim.NB500Max);
+			string NB110Cap = String.Format("Небаланс по СШ110кВ", lim.NB110Min, lim.NB110Max);
+			string NB220Cap = String.Format("Небаланс по СШ220кВ", lim.NB220Min, lim.NB220Max);
+			string NBVLCap =  String.Format("Небаланс по ВЛ", lim.NBVLMin, lim.NBVLMax);
+			string NB1TCap =  String.Format("Небаланс по 1T", lim.NB1TMin, lim.NB1TMax);
+			string NB2ATCap = String.Format("Небаланс по 2АT", lim.NB2ATMin, lim.NB2ATMax);
+			string NB3ATCap = String.Format("Небаланс по 3АT", lim.NB3ATMin, lim.NB3ATMax);
+			string NB4TCap =    String.Format("Небаланс по 4T", lim.NB4TMin, lim.NB4TMax);
+			string NB56ATCap =  String.Format("Небаланс по 5-6AT", lim.NB56ATMin, lim.NB56ATMax);
+			string NBTransCap = String.Format("Небаланс по трансформаторам", lim.NBTransMin, lim.NBTransMax);
+			string NBGESCap = String.Format("Небаланс по ГЭС", lim.NBGESMin, lim.NBGESMax);
+			string SPCap = String.Format("Собственное потребление", lim.SPMin, lim.SPMax);
+			string SNCap =       String.Format("Собственные нужды", lim.SNMin, lim.SNMax);
 
 			string NB500 = NB500Cap + "";
 			string NB110 = NB110Cap + "";
@@ -130,26 +122,10 @@ namespace VotGES.Piramida.Report
 
 			List<string> EmptyIds = AvailEmpty.Split(';').ToList();
 
-			bool has500 = false;
-			bool has110 = false;
-			bool has220 = false;
-			bool hasVL = false;
-			bool has1T = false;
-			bool has4T = false;
-			bool has2AT = false;
-			bool has3AT = false;
-			bool has56AT = false;
-			bool hasTrans = false;
-			bool hasGES = false;
-			bool hasSP = false;
-			bool hasSN = false;
-
 			hasEmpty=false;
 			hasEmptyCalc = false;
 			hasDiffCalc = false;
 
-
-			string EmptyStr = "Нет данных: \r\n";
 			try {
 				report.ReadData();				
 				foreach (DateTime date in report.Dates) {
@@ -180,43 +156,29 @@ namespace VotGES.Piramida.Report
 					double ikmSP= report[date, PiramidaRecords.P_IKM_SP.Key] * 2;
 					double ikmSN = report[date, PiramidaRecords.P_IKM_SN.Key] * 2;
 
-					NB500 += checkLimit(v500,ikm500, lim.NB500Min, lim.NB500Max, date,ref has500,ref hasDiffCalc);
-					NB220 += checkLimit(v220,ikm220, lim.NB220Min, lim.NB220Max, date,  ref has220, ref hasDiffCalc);
-					NB110 += checkLimit(v110,ikm110, lim.NB110Min, lim.NB110Max, date,  ref has110, ref hasDiffCalc);
-					NBVL += checkLimit(vVL,vVL, lim.NBVLMin, lim.NBVLMax, date,  ref hasVL, ref hasDiffCalc);
-					NB1T += checkLimit(v1T,ikm1T, lim.NB1TMin, lim.NB1TMax, date,  ref has1T, ref hasDiffCalc);
-					NB4T += checkLimit(v4T,ikm4T, lim.NB4TMin, lim.NB4TMax, date, ref has4T, ref hasDiffCalc);
-					NB2AT += checkLimit(v2AT,ikm2AT, lim.NB2ATMin, lim.NB2ATMax, date,  ref has2AT, ref hasDiffCalc);
-					NB3AT += checkLimit(v3AT,ikm3AT, lim.NB3ATMin, lim.NB3ATMax, date, ref has3AT, ref hasDiffCalc);
-					NB56AT += checkLimit(v56AT,ikm56AT, lim.NB56ATMin, lim.NB56ATMax, date, ref has56AT, ref hasDiffCalc);
-					NBTrans += checkLimit(vTrans,ikmT, lim.NBTransMin, lim.NBTransMax, date,  ref hasTrans, ref hasDiffCalc);
-					NBGES += checkLimit(vGES,ikmGES, lim.NBGESMin, lim.NBGESMax, date,  ref hasGES, ref hasDiffCalc);
-					SP += checkLimit(vSP,ikmSP, lim.SPMin, lim.SPMax, date,  ref hasSP, ref hasDiffCalc);
-					SN += checkLimit(vSN,ikmSN, lim.SNMin, lim.SNMax, date, ref hasSN, ref hasDiffCalc);
-
 					string str =
-						checkLimit2(v500, ikm500, lim.NB500Min, lim.NB500Max, NB500Cap, ref has500, ref hasDiffCalc) +
-						checkLimit2(v220, ikm220, lim.NB220Min, lim.NB220Max, NB220Cap, ref has220, ref hasDiffCalc) +
-						checkLimit2(v110, ikm110, lim.NB110Min, lim.NB110Max, NB110Cap, ref has110, ref hasDiffCalc) +
-						checkLimit2(v1T, ikm1T, lim.NB1TMin, lim.NB1TMax, NB1TCap, ref has1T, ref hasDiffCalc) +
-						checkLimit2(v4T, ikm4T, lim.NB4TMin, lim.NB4TMax, NB4TCap, ref has4T, ref hasDiffCalc) +
-						checkLimit2(v2AT, ikm2AT, lim.NB2ATMin, lim.NB2ATMax, NB2ATCap, ref has2AT, ref hasDiffCalc) +
-						checkLimit2(v3AT, ikm3AT, lim.NB3ATMin, lim.NB3ATMax, NB3ATCap, ref has3AT, ref hasDiffCalc) +
-						checkLimit2(v56AT, ikm56AT, lim.NB56ATMin, lim.NB56ATMax, NB56ATCap, ref has56AT, ref hasDiffCalc) +
-						checkLimit2(vTrans, ikmT, lim.NBTransMin, lim.NBTransMax, NBTransCap, ref hasTrans, ref hasDiffCalc) +
-						checkLimit2(vGES, ikmGES, lim.NBGESMin, lim.NBGESMax, NBGESCap, ref hasGES, ref hasDiffCalc) +
-						checkLimit2(vSP, ikmSP, lim.SPMin, lim.SPMax, SPCap, ref hasSP, ref hasDiffCalc) +
-						checkLimit2(vSN, ikmSN, lim.SNMin, lim.SNMax, SNCap, ref hasSN, ref hasDiffCalc);
+						checkLimit2(v500, ikm500, lim.NB500Min, lim.NB500Max, NB500Cap, ref hasDiffCalc) +
+						checkLimit2(v220, ikm220, lim.NB220Min, lim.NB220Max, NB220Cap,  ref hasDiffCalc) +
+						checkLimit2(v110, ikm110, lim.NB110Min, lim.NB110Max, NB110Cap,  ref hasDiffCalc) +
+						checkLimit2(v1T, ikm1T, lim.NB1TMin, lim.NB1TMax, NB1TCap,  ref hasDiffCalc) +
+						checkLimit2(v4T, ikm4T, lim.NB4TMin, lim.NB4TMax, NB4TCap,  ref hasDiffCalc) +
+						checkLimit2(v2AT, ikm2AT, lim.NB2ATMin, lim.NB2ATMax, NB2ATCap,  ref hasDiffCalc) +
+						checkLimit2(v3AT, ikm3AT, lim.NB3ATMin, lim.NB3ATMax, NB3ATCap,  ref hasDiffCalc) +
+						checkLimit2(v56AT, ikm56AT, lim.NB56ATMin, lim.NB56ATMax, NB56ATCap,  ref hasDiffCalc) +
+						checkLimit2(vTrans, ikmT, lim.NBTransMin, lim.NBTransMax, NBTransCap, ref hasDiffCalc) +
+						checkLimit2(vGES, ikmGES, lim.NBGESMin, lim.NBGESMax, NBGESCap,  ref hasDiffCalc) +
+						checkLimit2(vSP, ikmSP, lim.SPMin, lim.SPMax, SPCap,  ref hasDiffCalc) +
+						checkLimit2(vSN, ikmSN, lim.SNMin, lim.SNMax, SNCap,  ref hasDiffCalc);
 
 					if (report.EmptyData.ContainsKey(date) || !String.IsNullOrEmpty(str)){
-						string msg = "";						
+						string msg = "";
 						if (!String.IsNullOrEmpty(str))
-							msg += str + "\r\n";
+							msg += str;
 						if (report.EmptyData.ContainsKey(date)&&report.EmptyData[date].Count>0) {
 							string strE = "";
 							foreach (RecordTypeDB rdb in report.EmptyData[date]) {
 								if (!EmptyIds.Contains(rdb.ID)) {
-									strE += String.Format("     ==={0} [{1}] \r\n", rdb.Title, rdb.ID);
+									strE += String.Format("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==={0} [{1}] <br/>", rdb.Title, rdb.ID);
 									if (rdb.DBRecord.ObjType == 0)
 										hasEmpty = true;
 									else 
@@ -224,60 +186,19 @@ namespace VotGES.Piramida.Report
 								}
 							}
 							if (!String.IsNullOrEmpty(strE))
-								msg += "    Нет данных: \r\n"+strE + "\r\n";
+								msg += "<tr><td colspan='2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Нет данных:</b> <br/>" + strE + "</td>";
 						}
 						if (!String.IsNullOrEmpty(msg))
-							DatesMSG += String.Format("{0}:\r\n{1}", date,msg);
+							DatesMSG += String.Format("<b><u>{0}</u></b>:<br/><table>{1}</table>", date,msg);
 					}
 				}
-
-
-
-				if (report.EmptyData.Count > 0) {
-					foreach (DateTime date in report.EmptyData.Keys) {						
-						string str = "";
-						foreach (RecordTypeDB rdb in report.EmptyData[date]) {
-							if (!EmptyIds.Contains(rdb.ID)) {
-								str += String.Format("     ==={0} [{1}] \r\n", rdb.Title, rdb.ID);
-								if (rdb.DBRecord.ObjType==0)
-									hasEmpty = true;
-								else {
-									hasEmptyCalc = true;
-								}
-
-							}
-						}
-						if (!string.IsNullOrEmpty(str)) {
-							EmptyStr += String.Format("    {0}: \r\n", date.ToString("dd.MM.yyyy HH:mm"));
-							EmptyStr += str;
-						}
-					}
-				}
+				
 			} catch (Exception e) {
 				Logger.Info("Ошибка при чтении данных из отчета небаланса");
 			}
-			hasNb = hasGES||hasTrans || hasVL || hasSP || hasSN || has110 || has220 || has500 || has1T || has4T || has2AT || has3AT || has56AT;
-			if (hasNb) {
-				Result = (hasGES ? NBGES + "\r\n" : "") +
-					(hasTrans ? NBTrans + "\r\n" : "") +
-					(hasVL ? NBVL + "\r\n" : "") +
-					(hasSP ? SP + "\r\n" : "") +
-					(hasSN ? SN + "\r\n" : "") +
-					(has110 ? NB110 + "\r\n" : "") +
-					(has220 ? NB220 + "\r\n" : "") +
-					(has500 ? NB500 + "\r\n" : "") +
-					(has1T ? NB1T + "\r\n" : "") +
-					(has4T ? NB4T + "\r\n" : "") +
-					(has2AT ? NB2AT + "\r\n" : "") +
-					(has3AT ? NB3AT + "\r\n" : "") +
-					(has56AT ? NB56AT + "\r\n" : "");
-
-			}
-			if (hasEmpty) {
-				Result += "\r\n" + EmptyStr;
-			}
-			Logger.Info(Result);
-			return Result;
+			hasNb = FoundNebalans;
+			//Logger.Info(Result);
+			return DatesMSG;
 		}
 
 	}

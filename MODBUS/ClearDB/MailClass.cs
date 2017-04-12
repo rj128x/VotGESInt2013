@@ -31,7 +31,7 @@ namespace ClearDB
 
 				mess.SubjectEncoding = System.Text.Encoding.UTF8;
 				mess.BodyEncoding = System.Text.Encoding.UTF8;
-				mess.IsBodyHtml = false;
+				mess.IsBodyHtml = true;
 				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(Settings.single.SMTPServer, Settings.single.SMTPPort);
 				client.EnableSsl = true;
 				if (string.IsNullOrEmpty(Settings.single.SMTPUser)) {

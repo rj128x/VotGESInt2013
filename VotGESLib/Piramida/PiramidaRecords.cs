@@ -95,7 +95,7 @@ namespace VotGES.Piramida {
 		public static PiramidaRecord P_Vozb_GA7_Priem = new PiramidaRecord(0, 8740, 5, "Возбуждение Г/А 7 прием (P)");
 		public static PiramidaRecord P_Vozb_GA8_Priem = new PiramidaRecord(0, 8740, 6, "Возбуждение Г/А 8 прием (P)");
 		public static PiramidaRecord P_SN_17T_Priem = new PiramidaRecord(0, 8740, 7, "СН 17Т прием (P)");
-		public static PiramidaRecord P_SN_18T_Priem = new PiramidaRecord(0, 8740, 8, "СН 28Т прием (P)");
+		public static PiramidaRecord P_SN_18T_Priem = new PiramidaRecord(0, 8740, 8, "СН 18Т прием (P)");
 
 		public static PiramidaRecord P_1T_110_Priem = new PiramidaRecord(0, 8740, 9, "1Т 110 кВ Прием (P)");
 		public static PiramidaRecord P_1T_110_Otd = new PiramidaRecord(0, 8740, 10, "1Т 110 кВ Отдача (P)");

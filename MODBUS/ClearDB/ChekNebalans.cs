@@ -17,13 +17,11 @@ namespace ClearDB
 			bool hasEmpty=false;
 			bool hasEmptyCalc = false;
 			bool hasDiffCalc = false;
-			string DatesMSG = "";
-			string dates = String.Format("Выборка данных за период  с {0} по {1} \r\n\r\n", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm"));
-			string result = dates+report.checkData(Settings.single.Limits, Settings.single.AvailEmptyNBData, ref hasNB, ref hasEmpty,ref hasEmptyCalc,ref hasDiffCalc,ref DatesMSG);
+			string dates = String.Format("Выборка данных за период  с {0} по {1} <br/><br/>", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm"));
+			string result = dates+report.checkData(Settings.single.Limits, Settings.single.AvailEmptyNBData, ref hasNB, ref hasEmpty,ref hasEmptyCalc,ref hasDiffCalc);
 			string header = string.Format("АСКУЭ{0}{1}{2}", hasNB ? ".Небаланс" : "", hasEmpty ? ".Счетчик" : "", hasEmptyCalc||hasDiffCalc ? ".РасчетБД":"");
 			if (hasEmpty||hasNB||hasEmptyCalc||hasDiffCalc) {
-				MailClass.sendMail(header,result,Settings.single.ErrorMailTo);
-				MailClass.sendMail(header,dates+DatesMSG,Settings.single.NebalansMailTo);
+				MailClass.sendMail(header,result,Settings.single.NebalansMailTo);
 			}		
 
 		}
