@@ -78,13 +78,13 @@ namespace VotGES.Piramida.Report
 			if (val > max || val < min) {
 				FoundNebalans = true;
 				caption = caption.PadRight(50, ' ').Replace("<br/>", "");
-				result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='100'><b><u>{1:0.##}</b></u></td> <td width='200'>[{2}]-[{3}]</tr>", caption, val,min,max);
+				result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='200'><b><u>{1:0.##}</b></u></td> <td width='200'>[{2}]-[{3}]</tr>", caption, val,min,max);
 			}
 			if (Math.Abs(calc - val) > 10) {
 				hasDiffCalc = true;				
 				if (String.IsNullOrEmpty(result))
-					result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='100'></td><td width='200'></td> </tr>", caption.Replace("<br/>", "")); 
-				result += String.Format("<tr><td colspan='3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>===Несоответствие расчетных данных: Расчет: <u>[{0:0.##}]</u>  БД:[{1:0.##}] </td></tr>", val, calc);
+					result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='200'></td><td width='200'></td> </tr>", caption.Replace("<br/>", "")); 
+				result += String.Format("<tr><td  width='300'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>===Несоответствие данных:</td><td width='200' align='right'>Расчет: <u>[{0:0.##}]</u></td> <td  width='200' align='right'>БД:[{1:0.##}] </td></tr>", val, calc);
 			}
 			return result;
 		}
