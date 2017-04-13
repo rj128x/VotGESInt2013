@@ -25,7 +25,7 @@ namespace VotGES.Piramida.Report
 					//report[date, ReportGARecords.P_SN_GA.ID] +
 					report[date, ReportGARecords.P_SK_FULL.ID];*/
 					return 
-						report[date,ReportGARecords.P_GA1.ID]+
+						/*report[date,ReportGARecords.P_GA1.ID]+
 						report[date,ReportGARecords.P_GA2.ID]+
 						report[date,ReportGARecords.P_GA3.ID]+
 						report[date,ReportGARecords.P_GA4.ID]+
@@ -34,7 +34,18 @@ namespace VotGES.Piramida.Report
 						report[date,ReportGARecords.P_GA7.ID]+
 						report[date,ReportGARecords.P_GA8.ID]+
 						report[date,ReportGARecords.P_GA9.ID]+
-						report[date,ReportGARecords.P_GA10.ID]+
+						report[date,ReportGARecords.P_GA10.ID]+*/
+						report[date,PiramidaRecords.P_GA1_Otd.Key]+
+						report[date, PiramidaRecords.P_GA2_Otd.Key] +
+						report[date, PiramidaRecords.P_GA3_Otd.Key] +
+						report[date, PiramidaRecords.P_GA4_Otd.Key] +
+						report[date, PiramidaRecords.P_GA5_Otd.Key] +
+						report[date, PiramidaRecords.P_GA6_Otd.Key] +
+						report[date, PiramidaRecords.P_GA7_Otd.Key] +
+						report[date, PiramidaRecords.P_GA8_Otd.Key] +
+						report[date, PiramidaRecords.P_GA9_Otd.Key] +
+						report[date, PiramidaRecords.P_GA10_Otd.Key] +
+
 						(report[date,ReportLinesRecords.P_VL110_Saldo.ID]+
 						report[date,ReportLinesRecords.P_VL220_Saldo.ID]+
 						report[date,ReportLinesRecords.P_VL500_Saldo.ID]+

@@ -57,7 +57,7 @@ namespace VotGES.Piramida.Report {
 				new RecordCalcDelegate((report, date) => {
 					return
 						(report[date, PiramidaRecords.P_GA3_Otd.Key] + report[date, PiramidaRecords.P_GA4_Otd.Key])
-						- (report[date, PiramidaRecords.P_GA3_Priem.Key] + report[date, PiramidaRecords.P_GA4_Priem.Key])
+						//- (report[date, PiramidaRecords.P_GA3_Priem.Key] + report[date, PiramidaRecords.P_GA4_Priem.Key])
 						- (report[date, PiramidaRecords.P_Vozb_GA3_Priem.Key] + report[date, PiramidaRecords.P_Vozb_GA4_Priem.Key])
 						- (report[date, PiramidaRecords.P_SN_13T_Priem.Key] + report[date, PiramidaRecords.P_SN_14T_Priem.Key])
 						- (report[date, PiramidaRecords.P_2AT_220_Priem.Key] - report[date, PiramidaRecords.P_2AT_220_Otd.Key])
@@ -69,7 +69,7 @@ namespace VotGES.Piramida.Report {
 				new RecordCalcDelegate((report, date) => {
 					return
 						(report[date, PiramidaRecords.P_GA5_Otd.Key] + report[date, PiramidaRecords.P_GA6_Otd.Key])
-						- (report[date, PiramidaRecords.P_GA5_Priem.Key] + report[date, PiramidaRecords.P_GA6_Priem.Key])
+						//- (report[date, PiramidaRecords.P_GA5_Priem.Key] + report[date, PiramidaRecords.P_GA6_Priem.Key])
 						- (report[date, PiramidaRecords.P_Vozb_GA5_Priem.Key] + report[date, PiramidaRecords.P_Vozb_GA6_Priem.Key])
 						- (report[date, PiramidaRecords.P_SN_15T_Priem.Key] + report[date, PiramidaRecords.P_SN_16T_Priem.Key])
 						- (report[date, PiramidaRecords.P_3AT_220_Priem.Key] - report[date, PiramidaRecords.P_3AT_220_Otd.Key])
@@ -81,7 +81,7 @@ namespace VotGES.Piramida.Report {
 				new RecordCalcDelegate((report, date) => {
 					return
 						(report[date, PiramidaRecords.P_GA7_Otd.Key] + report[date, PiramidaRecords.P_GA8_Otd.Key])
-						- (report[date, PiramidaRecords.P_GA7_Priem.Key] + report[date, PiramidaRecords.P_GA8_Priem.Key])
+						//- (report[date, PiramidaRecords.P_GA7_Priem.Key] + report[date, PiramidaRecords.P_GA8_Priem.Key])
 						- (report[date, PiramidaRecords.P_Vozb_GA7_Priem.Key] + report[date, PiramidaRecords.P_Vozb_GA8_Priem.Key])
 						- (report[date, PiramidaRecords.P_SN_17T_Priem.Key] + report[date, PiramidaRecords.P_SN_18T_Priem.Key])
 						- (report[date, PiramidaRecords.P_4T_220_Priem.Key] - report[date, PiramidaRecords.P_4T_220_Otd.Key]);

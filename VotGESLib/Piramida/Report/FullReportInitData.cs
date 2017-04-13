@@ -204,8 +204,8 @@ namespace VotGES.Piramida.Report {
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA5_Otd));
 
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.P_GA6));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA1_Priem));
-			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA1_Otd));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA6_Priem));
+			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_GA6_Otd));
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.Q_GA6));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA6_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.Q_GA6_Otd));

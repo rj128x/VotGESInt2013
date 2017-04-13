@@ -69,7 +69,11 @@ namespace VotGES.Piramida.Report
 			report.RecordTypes[PiramidaRecords.P_IKM_Nebalans_GES.Key].Visible = true;
 			report.RecordTypes[PiramidaRecords.P_IKM_SN.Key].Visible = true;
 			report.RecordTypes[PiramidaRecords.P_IKM_SP.Key].Visible = true;
-
+			try {
+				report.ReadData();
+			}catch (Exception e) {
+				Logger.Info("Ошибка при выборке данных "+e.ToString());
+			}
 
 		}
 
@@ -127,7 +131,7 @@ namespace VotGES.Piramida.Report
 			hasDiffCalc = false;
 
 			try {
-				report.ReadData();				
+							
 				foreach (DateTime date in report.Dates) {
 					double v500 = report[date,ReportLinesRecords.P_VL500_Nebalans.ID]*2;					
 					double v110 = report[date,ReportLinesRecords.P_VL110_Nebalans.ID]*2;
