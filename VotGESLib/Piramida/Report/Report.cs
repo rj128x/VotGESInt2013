@@ -25,6 +25,7 @@ namespace VotGES.Piramida.Report {
 		public bool Visible { get; set; }
 		public bool ToChart { get; set; }
 		public string FormatDouble { get; set; }
+		public bool IsNeed { get; set; }
 	}
 
 
@@ -131,6 +132,7 @@ namespace VotGES.Piramida.Report {
 
 	public class Report {
 		public bool UsePiramida2000 = false;
+		public bool UsePiramida0000 = false;
 		public DateTime DateStart { get; set; }
 		public DateTime DateEnd { get; set; }
 		public DateTime RealDateEnd { get; set; }
@@ -305,6 +307,8 @@ namespace VotGES.Piramida.Report {
 			foreach (string key in keys) {
 				if (!NeedRecords.Contains(key)) {
 					RecordTypes.Remove(key);
+				}else {
+					RecordTypes[key].IsNeed = true;
 				}
 			}
 		}
@@ -450,6 +454,8 @@ namespace VotGES.Piramida.Report {
 			connection = Interval != IntervalReportEnum.minute ? 
 				(UsePiramida2000? PiramidaAccess.getConnection("P2000"):PiramidaAccess.getConnection("P3000")) : 
 				PiramidaAccess.getConnection("PMin");
+			if (UsePiramida0000)
+				connection = PiramidaAccess.getConnection("P0000");
 			if (Interval != IntervalReportEnum.minute) {
 				if (objType == "2" && (obj == "3" || obj == "30")) {
 					connection = PiramidaAccess.getConnection("PSV");

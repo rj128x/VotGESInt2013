@@ -249,5 +249,25 @@ namespace VotGES.Web.Controllers
 			ViewResult view = View("MCMaketReport", reader);
 			return view;
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult CheckMaket(int year, int month, int day,bool ikm) {
+			Logger.Info(String.Format("Состояние макетов с начала месяца {0}-{1}-{2}", year, month, day));
+			DateTime dateStart = new DateTime(year, month, 1);
+			DateTime dateEnd = new DateTime(year, month, day);
+			DateTime date = dateStart.Date.AddDays(0);
+			string message = "";
+			while (date <= dateEnd.Date) {
+				ReportCheckMaket report = new ReportCheckMaket(date);
+				List<string> result = report.CheckData(ikm, false);
+				if (result.Count > 0)
+					message += String.Format("<h1>{0}</h1>{1}", date.ToString("dd.MM.yyyy"), string.Join("<br/>", result));
+				date = date.AddDays(1);
+			}
+			List<string> msgs = new List<string>();
+			msgs.Add(message);
+			ViewResult view = View("CheckMaketReport",msgs);
+			return view;
+		}
 	}
 }

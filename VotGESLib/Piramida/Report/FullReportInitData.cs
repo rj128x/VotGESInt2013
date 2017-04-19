@@ -522,6 +522,7 @@ namespace VotGES.Piramida.Report {
 
 
 			record = RootSN.addChild(GetFullReportRecord(ReportMainRecords.P_SP));
+			childRecord = record.addChild(GetFullReportRecord(ReportMainRecords.P_Poter));
 			childRecord = record.addChild(GetFullReportRecord(ReportGARecords.P_Vozb));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_Vozb_GA1_Priem));
 			childRecord.addChild(GetFullReportRecord(PiramidaRecords.P_Vozb_GA2_Priem));

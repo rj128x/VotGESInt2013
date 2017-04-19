@@ -82,10 +82,14 @@ namespace MainSL.Views
 			FloatWindow.OpenWindow(uri);
 		}
 
-		
+		private void btnCheckMaket_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/CheckMaket?year={0}&month={1}&day={2}&ikm=false", settings.Date.Year, settings.Date.Month, settings.Date.Day);
+			FloatWindow.OpenWindow(uri);
+		}
 
-
-
-
+		private void btnCheckMaketOKM_Click(object sender, RoutedEventArgs e) {
+			string uri = String.Format("Reports/CheckMaket?year={0}&month={1}&day={2}&ikm=true", settings.Date.Year, settings.Date.Month, settings.Date.Day);
+			FloatWindow.OpenWindow(uri);
+		}
 	}
 }

@@ -114,6 +114,10 @@ namespace ClearDB {
 			} else if (task == "checkMinData2000") {
 				CheckMinData rep = new CheckMinData(dateStart, dateEnd,true);
 				rep.checkData();
+			} else if (task == "checkMaket") {
+				CheckMaket.checkData(dateStart, dateEnd, false, false);				
+			} else if (task == "checkMaketIKM") {
+				CheckMaket.checkData(dateStart, dateEnd, true, false);
 			} else {
 				double hh = 24;
 				while (date <= dateEnd) {

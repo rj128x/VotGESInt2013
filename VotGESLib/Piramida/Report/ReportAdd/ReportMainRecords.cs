@@ -8,6 +8,7 @@ namespace VotGES.Piramida.Report
 	public class ReportMainRecords
 	{
 		public static RecordTypeCalc P_Nebalans=new RecordTypeCalc("P_Nebalans", "Небаланс P", null);
+		public static RecordTypeCalc P_Poter = new RecordTypeCalc("P_Poter", "Потери P", null);
 		public static RecordTypeCalc P_SP=new RecordTypeCalc("P_SP", "Собственное потребление", null);
 		public static RecordTypeCalc P_FullP = new RecordTypeCalc("P_FullP", "Полный переток", null);
 
@@ -58,6 +59,14 @@ namespace VotGES.Piramida.Report
 					report[date, ReportLinesRecords.P_VL_Nebalans.ID];
 			});
 
+			P_Poter.CalcFunction = new RecordCalcDelegate((report, date) => {
+				return
+					report[date, ReportGlTransformRecords.P_T_Nebalans.ID] +
+					report[date, ReportLinesRecords.P_VL_Nebalans.ID]
+					+report[date, PiramidaRecords.P_R500_Vyatka_priem.Key]
+					+report[date, PiramidaRecords.P_R500_Emelino_priem.Key];
+			});
+
 			P_FullP.CalcFunction = new RecordCalcDelegate((report, date) => {
 				return
 					report[date, ReportGlTransformRecords.P_T_FullP.ID] +
@@ -72,6 +81,7 @@ namespace VotGES.Piramida.Report
 		public static void AddCalcRecords(Report report, bool visible, bool toChart, ResultTypeEnum oper) {
 			report.AddRecordType(new RecordTypeCalc(P_SP, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(P_Nebalans, toChart, visible, oper));
+			report.AddRecordType(new RecordTypeCalc(P_Poter, toChart, visible, oper));
 			report.AddRecordType(new RecordTypeCalc(P_FullP, toChart, visible, oper));
 		}
 
@@ -89,6 +99,8 @@ namespace VotGES.Piramida.Report
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_SN, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_Nebalans_GES, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_SP, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Emelino_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
+			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_R500_Vyatka_priem, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_SK, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));
 			report.AddRecordType(new RecordTypeDB(PiramidaRecords.P_IKM_Saldo500Emelino, parNumber, visible: visible, toChart: toChart, divParam: scaleDiv, multParam: scaleMult, resultType: result, dbOper: oper));

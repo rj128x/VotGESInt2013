@@ -30,10 +30,15 @@
 							  Click="btnGet53500MC_Click"/>
                     <Button Content="Приложение 51 к приказу 20" Name="btnPrikaz20" Visibility="Collapsed"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
-							  Click="btnPrikaz20_Click"/>
-                    <Button Content="ВЭР" Name="btnVER"
+							  Click="btnPrikaz20_Click"/>                    
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button Content="Макет 80020 (ИСХ)" Name="btnCheckMaket" Width="150"
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
-							  Click="btnVER_Click"/>                    
+							  Click="btnCheckMaket_Click"/>
+                        <Button Content="Макет 80020 (ИКМ)" Name="btnCheckMaketOKM" Width="150"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnCheckMaketOKM_Click"/>
+                    </StackPanel>
                 </StackPanel>
 		</Grid>
 			<Grid Name="pnlReport" Width="300">
