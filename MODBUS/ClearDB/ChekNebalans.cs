@@ -10,18 +10,18 @@ namespace ClearDB
 {
 	public class ChekNebalans
 	{
-		public static void checkData(DateTime dateStart,DateTime dateEnd) {
+		public static void checkData(DateTime dateStart,DateTime dateEnd,bool isFull=false) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
 			ReportNebalans report = new ReportNebalans(dateStart, dateEnd);
 			bool hasNB=false;
 			bool hasEmpty=false;
 			bool hasEmptyCalc = false;
 			bool hasDiffCalc = false;
-			string dates = String.Format("Выборка данных за период  с {0} по {1} <br/><br/>", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm"));
+			string dates = String.Format("{2} выборка данных за период  с {0} по {1} <br/><br/>", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm"),!isFull?"Краткая":"Подробная");
 			string result = dates+report.checkData(Settings.single.Limits, Settings.single.AvailEmptyNBData, ref hasNB, ref hasEmpty,ref hasEmptyCalc,ref hasDiffCalc);
-			string header = string.Format("АСКУЭ{0}{1}{2}", hasNB ? ".Небаланс" : "", hasEmpty ? ".Счетчик" : "", hasEmptyCalc||hasDiffCalc ? ".РасчетБД":"");
+			string header = string.Format("{3}АСКУЭ{0}{1}{2}", hasNB ? ".Небаланс" : "", hasEmpty ? ".Счетчик" : "", hasEmptyCalc||hasDiffCalc ? ".РасчетБД":"",isFull?"!!!":"");
 			if (hasEmpty||hasNB||hasEmptyCalc||hasDiffCalc) {
-				MailClass.sendMail(header,result,Settings.single.NebalansMailTo);
+				MailClass.sendMail(header,result,isFull?Settings.single.ErrorMailTo:Settings.single.NebalansMailTo);
 			}		
 
 		}

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckMinData.cs" />
     <Compile Include="CheckModbusWater.cs" />
     <Compile Include="ChekNebalans.cs" />
     <Compile Include="Clear.cs" />

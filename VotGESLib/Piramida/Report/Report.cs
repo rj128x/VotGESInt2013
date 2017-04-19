@@ -459,6 +459,9 @@ namespace VotGES.Piramida.Report {
 				connection = PiramidaAccess.getConnection("PSec");
 			}
 
+			if (UsePiramida2000 && Interval==IntervalReportEnum.minute)
+				connection = PiramidaAccess.getConnection("P2000");
+
 			connection.Open();
 			SqlDataReader reader = null; SqlCommand command = null;
 			try {
