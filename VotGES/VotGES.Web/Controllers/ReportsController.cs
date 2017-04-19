@@ -264,6 +264,8 @@ namespace VotGES.Web.Controllers
 					message += String.Format("<h1>{0}</h1>{1}", date.ToString("dd.MM.yyyy"), string.Join("<br/>", result));
 				date = date.AddDays(1);
 			}
+			if (String.IsNullOrEmpty(message))
+				message = "<h1>Отклонений не найдено</h1>";
 			List<string> msgs = new List<string>();
 			msgs.Add(message);
 			ViewResult view = View("CheckMaketReport",msgs);

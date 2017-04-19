@@ -86,19 +86,19 @@ namespace VotGES.Piramida.Report
 							double v0000 = Math.Abs(Report0000[date, rec.ID]);
 
 							if (Math.Abs(v2000 - v0000) > 10) {
-								changes += String.Format("<tr><td width='100'>{0}</td><td width='200'>{1}</td><td width='100'>{2:0.00}</td><td width='100'>{3:0.00}</td><td width='100'>{4}</td></tr>",
+								changes += String.Format("<tr><td width='150'>{0}</td><td width='200'>{1}</td><td width='100'>{2:0.00}</td><td width='100'>{3:0.00}</td><td width='100'>{4}</td></tr>",
 									date.ToString("dd.MM.yyyy HH:mm"), rec.Title, v2000, v0000, rec is RecordTypeCalc ? "CALC" : "DB");
 							}
 						}
 					}
 				}catch (Exception e) {
-					Logger.Info("Ошибка при получении данных за " + date + e.ToString());
+					//Logger.Info("Ошибка при получении данных за " + date + e.ToString());
 				}
 				
 				date = date.AddMinutes(30);
 			}
 			if (!string.IsNullOrEmpty(changes)) {
-				changes = String.Format("<table><tr><td width='100'>Date</td><td width='200'>Title</td><td width='100'>V2000</td><td width='100'>V0000</td><td width='100'>Source</td></tr>{0}</table>", changes);
+				changes = String.Format("<table border=\"1\"><tr><td width='150'>Date</td><td width='200'>Title</td><td width='100'>V2000</td><td width='100'>V0000</td><td width='100'>Source</td></tr>{0}</table>", changes);
 			}
 			if (!string.IsNullOrEmpty(changes))
 				result.Add(changes);
