@@ -15,6 +15,8 @@ namespace ClearDB
 		public DateTime DateStart;
 		public DateTime DateEnd;
 		public bool UseP2000;
+		public bool checkSum;
+		public bool checkGA;
 		public Dictionary<DateTime, Dictionary<string, double>> newData;
 		public Dictionary<DateTime, double> GTP1;
 		public Dictionary<DateTime, double> GTP2;
@@ -225,8 +227,8 @@ namespace ClearDB
 			} catch { }
 
 			try {
-				if (log.Count>0)
-					MailClass.sendMail(String.Format("Корректировка минутных значений в БД {0}", UseP2000 ? "P2001" : "PMin"), String.Join("<br/>", log), Settings.single.ErrorMailTo);
+				/*if (log.Count>0)
+					MailClass.sendMail(String.Format("Корректировка минутных значений в БД {0}", UseP2000 ? "P2001" : "PMin"), String.Join("<br/>", log), Settings.single.ErrorMailTo);*/
 			} catch { }
 		}
 	}

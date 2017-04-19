@@ -44,10 +44,11 @@ namespace ClearDB {
 			string nameLog = task;
 
 			Logger.InitFileLogger(Settings.single.LogPath, nameLog);
-					
 
-			DateTime dateStart = getDate(ds, task == "copy4");
-			DateTime dateEnd = getDate(de, task == "copy4");
+			bool isMin = task == "copy4" || task == "checkMinData" || task == "checkMinData2000";
+
+			DateTime dateStart = getDate(ds, isMin);
+			DateTime dateEnd = getDate(de, isMin);
 
 			Logger.Info(dateStart.ToString());
 			Logger.Info(dateEnd.ToString());
