@@ -83,14 +83,14 @@ namespace VotGES.Piramida.Report
 
 		}
 
-		protected string checkLimit2(double val, double calc, double min, double max, string caption, ref bool hasDiffCalc) {
+		protected string checkLimit2(double val, double calc, double min, double max,double availDiff, string caption, ref bool hasDiffCalc) {
 			string result = "";
 			if (val > max || val < min) {
 				FoundNebalans = true;
 				caption = caption.PadRight(50, ' ').Replace("<br/>", "");
 				result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='200'><b><u>{1:0.##}</b></u></td> <td width='200'>[{2}]-[{3}]</tr>", caption, val, min, max);
 			}
-			if (Math.Abs(calc - val) > 10) {
+			if (Math.Abs(calc - val) > 10+Math.Abs(availDiff)) {
 				hasDiffCalc = true;
 				if (String.IsNullOrEmpty(result))
 					result = String.Format("<tr><td width='300'>&nbsp;&nbsp;&nbsp;&nbsp;<b>{0}</b></td><td width='200'></td><td width='200'></td> </tr>", caption.Replace("<br/>", ""));
@@ -139,6 +139,20 @@ namespace VotGES.Piramida.Report
 			try {
 
 				foreach (DateTime date in report.Dates) {
+
+					double priemGA = 0;
+					try {
+						priemGA = report[date, PiramidaRecords.P_GA1_Priem.Key] +
+							report[date, PiramidaRecords.P_GA2_Priem.Key] +
+							report[date, PiramidaRecords.P_GA3_Priem.Key] +
+							report[date, PiramidaRecords.P_GA4_Priem.Key] +
+							report[date, PiramidaRecords.P_GA5_Priem.Key] +
+							report[date, PiramidaRecords.P_GA6_Priem.Key] +
+							report[date, PiramidaRecords.P_GA7_Priem.Key] +
+							report[date, PiramidaRecords.P_GA8_Priem.Key] +
+							report[date, PiramidaRecords.P_GA9_Priem.Key] +
+							report[date, PiramidaRecords.P_GA10_Priem.Key];
+					}catch{ }
 					double v500 = report[date, ReportLinesRecords.P_VL500_Nebalans.ID] * 2;
 					double v110 = report[date, ReportLinesRecords.P_VL110_Nebalans.ID] * 2;
 					double v220 = report[date, ReportLinesRecords.P_VL220_Nebalans.ID] * 2;
@@ -168,10 +182,11 @@ namespace VotGES.Piramida.Report
 
 
 					string str =
-						checkLimit2(v500, ikm500, lim.NB500Min, lim.NB500Max, NB500Cap, ref hasDiffCalc) +
-						checkLimit2(v220, ikm220, lim.NB220Min, lim.NB220Max, NB220Cap, ref hasDiffCalc) +
-						checkLimit2(v110, ikm110, lim.NB110Min, lim.NB110Max, NB110Cap, ref hasDiffCalc) +
-						checkLimit2(vSP, ikmSP, lim.SPMin, lim.SPMax, SPCap, ref hasDiffCalc);
+						checkLimit2(v500, ikm500, lim.NB500Min, lim.NB500Max,0, NB500Cap, ref hasDiffCalc) +
+						checkLimit2(v220, ikm220, lim.NB220Min, lim.NB220Max,0, NB220Cap, ref hasDiffCalc) +
+						checkLimit2(v110, ikm110, lim.NB110Min, lim.NB110Max,0, NB110Cap, ref hasDiffCalc) +
+						checkLimit2(vSP, ikmSP, lim.SPMin, lim.SPMax,0, SPCap, ref hasDiffCalc) +
+						checkLimit2(vGES, ikmGES, lim.NBGESMin, lim.NBGESMax,priemGA, NBGESCap, ref hasDiffCalc);
 
 					if (IsFull) {
 						double v1T = -report[date, ReportGlTransformRecords.P_1T_Nebalans.ID] * 2;
@@ -182,13 +197,13 @@ namespace VotGES.Piramida.Report
 						double vTrans = -report[date, ReportGlTransformRecords.P_T_Nebalans.ID] * 2;
 						double vSN = report[date, ReportSNRecords.P_SN.ID] * 2;
 
-						str += checkLimit2(v1T, ikm1T, lim.NB1TMin, lim.NB1TMax, NB1TCap, ref hasDiffCalc) +
-						checkLimit2(v4T, ikm4T, lim.NB4TMin, lim.NB4TMax, NB4TCap, ref hasDiffCalc) +
-						checkLimit2(v2AT, ikm2AT, lim.NB2ATMin, lim.NB2ATMax, NB2ATCap, ref hasDiffCalc) +
-						checkLimit2(v3AT, ikm3AT, lim.NB3ATMin, lim.NB3ATMax, NB3ATCap, ref hasDiffCalc) +
-						checkLimit2(v56AT, ikm56AT, lim.NB56ATMin, lim.NB56ATMax, NB56ATCap, ref hasDiffCalc) +
-						checkLimit2(vTrans, ikmT, lim.NBTransMin, lim.NBTransMax, NBTransCap, ref hasDiffCalc) +
-						checkLimit2(vGES, ikmGES, lim.NBGESMin, lim.NBGESMax, NBGESCap, ref hasDiffCalc) + checkLimit2(vSN, ikmSN, lim.SNMin, lim.SNMax, SNCap, ref hasDiffCalc);
+						str += checkLimit2(v1T, ikm1T, lim.NB1TMin, lim.NB1TMax,priemGA, NB1TCap, ref hasDiffCalc) +
+						checkLimit2(v4T, ikm4T, lim.NB4TMin, lim.NB4TMax, priemGA, NB4TCap, ref hasDiffCalc) +
+						checkLimit2(v2AT, ikm2AT, lim.NB2ATMin, lim.NB2ATMax, priemGA, NB2ATCap, ref hasDiffCalc) +
+						checkLimit2(v3AT, ikm3AT, lim.NB3ATMin, lim.NB3ATMax, priemGA, NB3ATCap, ref hasDiffCalc) +
+						checkLimit2(v56AT, ikm56AT, lim.NB56ATMin, lim.NB56ATMax, priemGA, NB56ATCap, ref hasDiffCalc) +
+						checkLimit2(vTrans, ikmT, lim.NBTransMin, lim.NBTransMax, priemGA, NBTransCap, ref hasDiffCalc) +
+						checkLimit2(vSN, ikmSN, lim.SNMin, lim.SNMax, priemGA, SNCap, ref hasDiffCalc);
 					}
 
 					if (report.EmptyData.ContainsKey(date) || !String.IsNullOrEmpty(str)) {

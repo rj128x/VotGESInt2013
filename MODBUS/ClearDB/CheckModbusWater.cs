@@ -38,8 +38,8 @@ namespace ClearDB {
 				SqlDataReader reader = com.ExecuteReader();
 				List<int> gaS = new List<int>();
 				while (reader.Read()) {
-					int item = reader.GetInt32(0);
-					int cnt = reader.GetInt32(1);
+					int item = reader.GetInt32(1);
+					int cnt = reader.GetInt32(0);
 					if (cnt > 5)
 						gaS.Add(item - 200);
 				}				
