@@ -105,9 +105,11 @@ namespace ClearDB {
 			else if (task == "checkModbus") {
 				CheckModbusWater.CheckData();
 			}else if (task == "checkNebalans") {
-				ChekNebalans.checkData(dateStart, dateEnd);
+				ChekNebalans.checkData(dateStart, dateEnd,false,false);
+			} else if (task == "checkNebalansTU") {
+				ChekNebalans.checkData(dateStart, dateEnd, false, true);
 			} else if (task == "checkNebalansFull") {
-				ChekNebalans.checkData(dateStart, dateEnd,true);
+				ChekNebalans.checkData(dateStart, dateEnd,true,true);
 			} else if (task == "checkMinData") {
 				CheckMinData rep = new CheckMinData(dateStart, dateEnd,false);
 				rep.checkData();

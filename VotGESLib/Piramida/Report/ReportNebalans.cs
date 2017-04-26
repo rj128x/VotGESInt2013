@@ -42,6 +42,7 @@ namespace VotGES.Piramida.Report
 		public bool FoundNebalans = false;
 		public FullReport report;
 		public bool IsFull = false;
+		public bool ShowTU = true;
 		public ReportNebalans(DateTime dateStart, DateTime dateEnd) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
 			report = new FullReport(dateStart, dateEnd, IntervalReportEnum.halfHour, FullReportMembersType.def);
@@ -213,7 +214,7 @@ namespace VotGES.Piramida.Report
 						if (report.EmptyData.ContainsKey(date) && report.EmptyData[date].Count > 0) {
 							string strE = "";
 							foreach (RecordTypeDB rdb in report.EmptyData[date]) {
-								if (!EmptyIds.Contains(rdb.ID)) {
+								if (!EmptyIds.Contains(rdb.ID)&&(ShowTU||rdb.DBRecord.Obj==8737||rdb.DBRecord.Obj==878||rdb.DBRecord.Obj==0)) {
 									strE += String.Format("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==={0} [{1}] <br/>", rdb.Title, rdb.ID);
 									if (rdb.DBRecord.ObjType == 0)
 										hasEmpty = true;

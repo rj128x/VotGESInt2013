@@ -8,6 +8,7 @@
   
   <ErrorMailTo>ChekunovaMV@votges.rushydro.ru</ErrorMailTo>
   <NebalansMailTo>ChekunovaMV@votges.rushydro.ru</NebalansMailTo>
+  <NebalansFullMailTo>ChekunovaMV@votges.rushydro.ru</NebalansFullMailTo>
   <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
   <SMTPUser>chekunovamv</SMTPUser>
   <SMTPPassword>Qwerty2</SMTPPassword>

@@ -25,6 +25,7 @@ namespace ClearDB
 		public string SMTPFrom { get; set; }
 		public string ErrorMailTo { get; set; }
 		public string NebalansMailTo { get; set; }
+		public string NebalansFullMailTo { get; set; }
 
 		public NebalansLimits Limits { get; set; }
 		public string AvailEmptyNBData { get; set; }
