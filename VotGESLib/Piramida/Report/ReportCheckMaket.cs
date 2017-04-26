@@ -82,8 +82,8 @@ namespace VotGES.Piramida.Report
 							if (!TU && isTU)
 								continue;
 
-							double v2000 = Math.Abs(Report2000[date, rec.ID]);
-							double v0000 = Math.Abs(Report0000[date, rec.ID]);
+							double v2000 = Math.Abs(Report2000[date, rec.ID])*2;
+							double v0000 = Math.Abs(Report0000[date, rec.ID])*2;
 
 							if (Math.Abs(v2000 - v0000) > 10) {
 								changes += String.Format("<tr><td width='150'>{0}</td><td width='200'>{1}</td><td width='100'>{2:0.00}</td><td width='100'>{3:0.00}</td><td width='100'>{4}</td></tr>",

@@ -45,7 +45,7 @@ namespace VotGES.Piramida.Report
 		public bool ShowTU = true;
 		public ReportNebalans(DateTime dateStart, DateTime dateEnd,bool isFull,bool showTU) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
-			report = new FullReport(dateStart, dateEnd, IntervalReportEnum.halfHour, FullReportMembersType.def);
+			report = new FullReport(dateStart, dateEnd, IntervalReportEnum.halfHour, FullReportMembersType.def);			
 			IsFull = isFull;
 			ShowTU = showTU;
 			report.UsePiramida2000 = true;
@@ -156,6 +156,7 @@ namespace VotGES.Piramida.Report
 							report[date, PiramidaRecords.P_GA9_Priem.Key] +
 							report[date, PiramidaRecords.P_GA10_Priem.Key];
 					}catch{ }
+					priemGA *= 2;
 					double v500 = report[date, ReportLinesRecords.P_VL500_Nebalans.ID] * 2;
 					double v110 = report[date, ReportLinesRecords.P_VL110_Nebalans.ID] * 2;
 					double v220 = report[date, ReportLinesRecords.P_VL220_Nebalans.ID] * 2;
