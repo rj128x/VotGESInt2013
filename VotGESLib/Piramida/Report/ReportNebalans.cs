@@ -43,9 +43,11 @@ namespace VotGES.Piramida.Report
 		public FullReport report;
 		public bool IsFull = false;
 		public bool ShowTU = true;
-		public ReportNebalans(DateTime dateStart, DateTime dateEnd) {
+		public ReportNebalans(DateTime dateStart, DateTime dateEnd,bool isFull,bool showTU) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
 			report = new FullReport(dateStart, dateEnd, IntervalReportEnum.halfHour, FullReportMembersType.def);
+			IsFull = isFull;
+			ShowTU = showTU;
 			report.UsePiramida2000 = true;
 			report.RecordTypes[ReportLinesRecords.P_VL500_Nebalans.ID].Visible = true;
 			report.RecordTypes[ReportLinesRecords.P_VL110_Nebalans.ID].Visible = true;
@@ -223,10 +225,10 @@ namespace VotGES.Piramida.Report
 								}
 							}
 							if (!String.IsNullOrEmpty(strE))
-								msg += "<tr><td colspan='2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Нет данных:</b> <br/>" + strE + "</td>";
+								msg += "<tr><td colspan='3' width='700'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Нет данных:</b> <br/>" + strE + "</td>";
 						}
 						if (!String.IsNullOrEmpty(msg))
-							DatesMSG += String.Format("<b><u>{0}</u></b>:<br/><table>{1}</table>", date, msg);
+							DatesMSG += String.Format("<b><u>{0}</u></b>:<br/><table border=\"1\">{1}</table>", date, msg);
 					}
 				}
 

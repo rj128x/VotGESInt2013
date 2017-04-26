@@ -12,9 +12,7 @@ namespace ClearDB
 	{
 		public static void checkData(DateTime dateStart,DateTime dateEnd,bool isFull=false,bool showTU=true) {
 			Logger.Info(String.Format("Получение небаланса с {0} по {1} ", dateStart.ToString("dd.MM.yyyy HH:mm"), dateEnd.ToString("dd.MM.yyyy HH:mm")));
-			ReportNebalans report = new ReportNebalans(dateStart, dateEnd);
-			report.IsFull = isFull;
-			report.ShowTU = showTU;
+			ReportNebalans report = new ReportNebalans(dateStart, dateEnd,isFull,showTU);
 
 			bool hasNB=false;
 			bool hasEmpty=false;
