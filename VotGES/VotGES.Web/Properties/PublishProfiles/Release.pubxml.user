@@ -265,10 +265,10 @@
       <publishTime>11/18/2016 19:20:06</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>04/26/2017 12:29:34</publishTime>
+      <publishTime>04/27/2017 16:59:44</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>04/26/2017 12:29:37</publishTime>
+      <publishTime>04/27/2017 16:59:47</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
       <publishTime>04/12/2013 02:58:20</publishTime>
@@ -289,7 +289,7 @@
       <publishTime>12/04/2013 01:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/27/2017 17:00:30</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>

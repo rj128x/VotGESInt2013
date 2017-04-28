@@ -86,8 +86,8 @@ namespace VotGES.Piramida.Report
 							double v0000 = Math.Abs(Report0000[date, rec.ID])*2;
 
 							if (Math.Abs(v2000 - v0000) > 10) {
-								changes += String.Format("<tr><td width='150'>{0}</td><td width='200'>{1}</td><td width='100'>{2:0.00}</td><td width='100'>{3:0.00}</td><td width='100'>{4}</td></tr>",
-									date.ToString("dd.MM.yyyy HH:mm"), rec.Title, v2000, v0000, rec is RecordTypeCalc ? "CALC" : "DB");
+								changes += String.Format("<tr><td width='150'>{0}</td><td width='200'>{1}</td><td width='100'>{2:0.00}</td><td width='100'>{3:0.00}</td><td width='100'>{5:0.00}</td><td width='100'>{4}</td></tr>",
+									date.ToString("dd.MM.yyyy HH:mm"), rec.Title, v2000, v0000, rec is RecordTypeCalc ? "CALC" : "DB",v0000-v2000);
 							}
 						}
 					}
@@ -98,7 +98,7 @@ namespace VotGES.Piramida.Report
 				date = date.AddMinutes(30);
 			}
 			if (!string.IsNullOrEmpty(changes)) {
-				changes = String.Format("<table border=\"1\"><tr><td width='150'>Date</td><td width='200'>Title</td><td width='100'>V2000</td><td width='100'>V0000</td><td width='100'>Source</td></tr>{0}</table>", changes);
+				changes = String.Format("<table border=\"1\"><tr><td width='150'>Date</td><td width='200'>Title</td><td width='100'>V2000</td><td width='100'>V0000</td><td width='100'>Diff</td><td width='100'>Source</td></tr>{0}</table>", changes);
 			}
 			if (!string.IsNullOrEmpty(changes))
 				result.Add(changes);
