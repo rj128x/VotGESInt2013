@@ -27,7 +27,7 @@ namespace ClearDB {
 			return date;
 		}
 
-
+		[STAThread]
 		static void Main(string[] args) {		
 			DBSettings.init();
 			Settings.init();
@@ -120,6 +120,8 @@ namespace ClearDB {
 				CheckMaket.checkData(dateStart, dateEnd, false, false);				
 			} else if (task == "checkMaketIKM") {
 				CheckMaket.checkData(dateStart, dateEnd, true, false);
+			} else if (task == "avrchmReport") {
+				AVRCHMReader.readAVRCHM(dateStart, dateEnd);
 			} else {
 				double hh = 24;
 				while (date <= dateEnd) {

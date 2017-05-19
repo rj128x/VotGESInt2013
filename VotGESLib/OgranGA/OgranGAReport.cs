@@ -16,6 +16,7 @@ namespace VotGES.OgranGA {
 		public DateTime DateStart { get; protected set; }
 		public DateTime DateEnd { get; protected set; }
 
+		public bool IsKOTMI { get; protected set; }
 		public Dictionary<int, List<OgranGARecord>> Data {
 			get { return data; }
 		}
@@ -25,9 +26,10 @@ namespace VotGES.OgranGA {
 		}
 
 
-		public OgranGAReport(DateTime dateStart, DateTime dateEnd) {
+		public OgranGAReport(DateTime dateStart, DateTime dateEnd,bool isKOTMI= false) {
 			DateStart = dateStart;
 			DateEnd = dateEnd;
+			IsKOTMI = isKOTMI;
 			data = new Dictionary<int, List<OgranGARecord>>();
 			sumData = new Dictionary<int, OgranGARecord>();
 			for (int ga = 1; ga <= 10; ga++) {
@@ -45,7 +47,8 @@ namespace VotGES.OgranGA {
 			command.Parameters.AddWithValue("@dateStart", DateStart);
 			command.Parameters.AddWithValue("@dateEnd", DateEnd);
 			connection.Open();
-			command.CommandText = "Select gaNumber,dateStart,dateEnd,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG,timeNPRCH,timeOPRCH,timeAVRCHM,cntNPRCH,cntOPRCH,cntAVRCHM from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd";
+			command.CommandText = String.Format("Select gaNumber,dateStart,dateEnd,cntPusk,cntStop,cntAfterMax,cntLessMin,timeSK,timeGen,timeAfterMax,timeLessMin,timeRun,timeHHT,timeHHG,timeNPRCH,timeOPRCH,timeAVRCHM,cntNPRCH,cntOPRCH,cntAVRCHM {1} from {0} Where dateStart>=@dateStart and dateEnd<=@dateEnd",
+				IsKOTMI?"GAKOTMI":"PuskStopTable",IsKOTMI?",posAVRCHM,negAVRCHM ":"");
 			try {
 				reader = command.ExecuteReader();
 				while (reader.Read()) {
@@ -70,7 +73,10 @@ namespace VotGES.OgranGA {
 					rec.cntNPRCH = reader.GetInt32(17);
 					rec.cntOPRCH = reader.GetInt32(18);
 					rec.cntAVRCHM = reader.GetInt32(19);
-
+					if (IsKOTMI) {
+						rec.posAVRCHM = reader.GetDouble(20);
+						rec.negAVRCHM = reader.GetDouble(21);
+					}
 					data[rec.GA].Add(rec);
 				}
 			} finally {
@@ -88,7 +94,8 @@ namespace VotGES.OgranGA {
 			command.Parameters.AddWithValue("@dateStart", DateStart);
 			command.Parameters.AddWithValue("@dateEnd", DateEnd);
 			connection.Open();
-			command.CommandText = "Select gaNumber,sum(cntPusk),sum(cntStop),sum(cntAfterMax),sum(cntLessMin),sum(timeSK),sum(timeGen),sum(timeAfterMax),sum(timeLessMin),sum(timeRun),sum(timeHHT),sum(timeHHG),sum(timeNPRCH),sum(timeOPRCH),sum(timeAVRCHM),sum(cntNPRCH),sum(cntOPRCH),sum(cntAVRCHM) from PuskStopTable Where dateStart>=@dateStart and dateEnd<=@dateEnd group by gaNumber";
+			command.CommandText = String.Format("Select gaNumber,sum(cntPusk),sum(cntStop),sum(cntAfterMax),sum(cntLessMin),sum(timeSK),sum(timeGen),sum(timeAfterMax),sum(timeLessMin),sum(timeRun),sum(timeHHT),sum(timeHHG),sum(timeNPRCH),sum(timeOPRCH),sum(timeAVRCHM),sum(cntNPRCH),sum(cntOPRCH),sum(cntAVRCHM) {1} from {0} Where dateStart>=@dateStart and dateEnd<=@dateEnd group by gaNumber",
+				IsKOTMI ? "GAKOTMI" : "PuskStopTable", IsKOTMI ? ",sum(posAVRCHM),sum(negAVRCHM) " : "");
 			sumRecord = new OgranGARecord();
 			try {
 				reader = command.ExecuteReader();
@@ -114,6 +121,11 @@ namespace VotGES.OgranGA {
 					rec.cntNPRCH = reader.GetInt32(15);
 					rec.cntOPRCH = reader.GetInt32(16);
 					rec.cntAVRCHM = reader.GetInt32(17);
+					if (IsKOTMI) {
+						rec.posAVRCHM = reader.GetDouble(18);
+						rec.negAVRCHM = reader.GetDouble(19);
+					}
+
 					rec.timeStop = OgranGARecord.dateDiff(DateStart, DateEnd) - rec.timeRun;
 
 					sumRecord.cntAfterMax += rec.cntAfterMax;
@@ -133,6 +145,8 @@ namespace VotGES.OgranGA {
 					sumRecord.cntNPRCH += rec.cntNPRCH;
 					sumRecord.cntOPRCH += rec.cntOPRCH;
 					sumRecord.cntAVRCHM += rec.cntAVRCHM;
+					sumRecord.posAVRCHM += rec.posAVRCHM;
+					sumRecord.negAVRCHM += rec.negAVRCHM;
 
 					rec.processStr();
 					sumData[rec.GA] = rec;

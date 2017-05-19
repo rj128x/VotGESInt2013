@@ -1361,6 +1361,10 @@ namespace VotGES.OgranGA
         
         private int _ga;
         
+        private double _negAVRCHM;
+        
+        private double _posAVRCHM;
+        
         private double _timeAfterMax;
         
         private string _timeAfterMaxStr;
@@ -1444,6 +1448,10 @@ namespace VotGES.OgranGA
         partial void OndateStartChanged();
         partial void OnGAChanging(int value);
         partial void OnGAChanged();
+        partial void OnnegAVRCHMChanging(double value);
+        partial void OnnegAVRCHMChanged();
+        partial void OnposAVRCHMChanging(double value);
+        partial void OnposAVRCHMChanged();
         partial void OntimeAfterMaxChanging(double value);
         partial void OntimeAfterMaxChanged();
         partial void OnTimeAfterMaxStrChanging(string value);
@@ -1792,6 +1800,54 @@ namespace VotGES.OgranGA
                     this._ga = value;
                     this.RaiseDataMemberChanged("GA");
                     this.OnGAChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "negAVRCHM".
+        /// </summary>
+        [DataMember()]
+        public double negAVRCHM
+        {
+            get
+            {
+                return this._negAVRCHM;
+            }
+            set
+            {
+                if ((this._negAVRCHM != value))
+                {
+                    this.OnnegAVRCHMChanging(value);
+                    this.RaiseDataMemberChanging("negAVRCHM");
+                    this.ValidateProperty("negAVRCHM", value);
+                    this._negAVRCHM = value;
+                    this.RaiseDataMemberChanged("negAVRCHM");
+                    this.OnnegAVRCHMChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "posAVRCHM".
+        /// </summary>
+        [DataMember()]
+        public double posAVRCHM
+        {
+            get
+            {
+                return this._posAVRCHM;
+            }
+            set
+            {
+                if ((this._posAVRCHM != value))
+                {
+                    this.OnposAVRCHMChanging(value);
+                    this.RaiseDataMemberChanging("posAVRCHM");
+                    this.ValidateProperty("posAVRCHM", value);
+                    this._posAVRCHM = value;
+                    this.RaiseDataMemberChanged("posAVRCHM");
+                    this.OnposAVRCHMChanged();
                 }
             }
         }

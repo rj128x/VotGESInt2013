@@ -78,6 +78,9 @@
 </head>
 <body>
 	<h1>Работа генераторов с <%=Model.DateStart.ToString("dd.MM.yyyy HH:mm") %> по <%=Model.DateEnd.ToString("dd.MM.yyyy HH:mm") %></h1>
+    <%if (Model.IsKOTMI) { %>
+        <h2>(Данные из КОТМИ)</h2>
+    <%} %>
     <table class='cifr'>
 		<tr>
 			<th>Параметр</th>
@@ -140,9 +143,10 @@
 			</td>
 		</tr>
 			
+        <%if (!Model.IsKOTMI) { %>
 		<tr>
 			<th>Время работы</th>
-			<%for (int ga=1;ga<=10;ga++){ %>
+			<%for (int ga = 1; ga <= 10; ga++) { %>
 				<td>
 					<%=Model.sumData[ga].TimeRunStr %>
 				</td>
@@ -151,6 +155,8 @@
 				<%=Model.sumRecord.TimeRunStr %>
 			</td>
 		</tr>	
+        <%} %>
+
 
         <tr>
 			<th>Время генерации</th>
@@ -164,6 +170,7 @@
 			</td>
 		</tr>	
         
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Время СК</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -175,7 +182,9 @@
 				<%=Model.sumRecord.TimeSKStr %>
 			</td>
 		</tr>
+        <%} %>
 
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Время ХХТ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -187,7 +196,9 @@
 				<%=Model.sumRecord.TimeHHTStr %>
 			</td>
 		</tr>	
+        <%} %>
 
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Время ХХГ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -199,6 +210,7 @@
 				<%=Model.sumRecord.TimeHHGStr %>
 			</td>
 		</tr>
+        <%} %>
 
         <tr>
 			<th>Время НОВЗР</th>
@@ -224,6 +236,7 @@
 			</td>
 		</tr>
 
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Время НПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -235,7 +248,9 @@
 				<%=Model.sumRecord.TimeNPRCHStr %>
 			</td>
 		</tr>
+        <%} %>
 
+        <%if (!Model.IsKOTMI) { %>
          <tr>
 			<th>Переходов в НПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -247,7 +262,9 @@
 				<%=Model.sumRecord.cntNPRCH.ToString() %>
 			</td>
 		</tr>
+        <%} %>
 
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Время ОПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -259,7 +276,9 @@
 				<%=Model.sumRecord.TimeOPRCHStr %>
 			</td>
 		</tr>
+        <%} %>
 
+        <%if (!Model.IsKOTMI) { %>
         <tr>
 			<th>Переходов в ОПРЧ</th>
 			<%for (int ga=1;ga<=10;ga++){ %>
@@ -271,8 +290,58 @@
 				<%=Model.sumRecord.cntOPRCH.ToString() %>
 			</td>
 		</tr>
-
+        <%} %>
         
+        <%if (Model.IsKOTMI) { %>
+        <tr>
+			<th>Время АВРЧМ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].TimeAVRCHMStr %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.TimeAVRCHMStr %>
+			</td>
+		</tr>
+        <%} %>
+
+        <%if (Model.IsKOTMI) { %>
+        <tr>
+			<th>Переходов в АВРЧМ</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].cntAVRCHM.ToString() %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.cntAVRCHM.ToString() %>
+			</td>
+		</tr>
+        <tr>
+			<th>АВРЧМ+</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].posAVRCHM.ToString("0.00") %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.posAVRCHM.ToString("0.00") %>
+			</td>
+		</tr>
+        <tr>
+			<th>АВРЧМ-</th>
+			<%for (int ga=1;ga<=10;ga++){ %>
+				<td>
+					<%=Model.sumData[ga].negAVRCHM.ToString("0.00") %>
+				</td>
+			<%} %>
+			<td>
+				<%=Model.sumRecord.negAVRCHM.ToString("0.00") %>
+			</td>
+		</tr>
+        <%} %>
+
 
 	</table>
 </body>

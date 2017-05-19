@@ -36,6 +36,9 @@ namespace VotGES.OgranGA {
 		public double timeOPRCH { get; set; }
 		public double timeAVRCHM { get; set; }
 
+		public double posAVRCHM { get; set; }
+		public double negAVRCHM { get; set; }
+
 		public string TimeSKStr { get; protected set; }
 		public string TimeRunStr { get; protected set; }
 		public string TimeStopStr { get; protected set; }
