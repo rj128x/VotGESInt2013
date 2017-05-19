@@ -45,6 +45,8 @@ namespace KotmiLib
 		public String User { get; set; }
 		public string Password { get; set; }
 		public List<String> KotmiFields { get; set; }
+		[XmlIgnore]
+		public Dictionary<string,ArcField> KotmiDict { get; protected  set; }
 		public String DBServer { get; set; }
 		public String DBName { get; set; }
 		public String DBUser { get; set; }
@@ -56,6 +58,19 @@ namespace KotmiLib
 			try {
 				KOTMISettings single = XMLSer<KOTMISettings>.fromXML( filename);
 				Single = single;
+				Single.KotmiDict = new Dictionary<string, ArcField>();
+				foreach (string str in single.KotmiFields) {
+					try {
+						string[] data = str.Split('=');
+						string[] codeArr = data[0].Split('_');
+						string val = data[0];
+						string name = data[1];
+						ArcField field = new ArcField(val);
+						field.Name = String.Format("{0,-8} {1}", val, name);
+						single.KotmiDict.Add(val, field);
+
+					} catch { }
+				}
 				//single.KotmiFields = new List<string>();
 				/*single.KotmiFields.Add("214235345");
 				XMLSer<Settings>.toXML(single, "C:/test.xml");*/

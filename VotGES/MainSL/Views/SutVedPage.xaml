@@ -39,6 +39,9 @@
 							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
 							  Click="btnCheckMaketOKM_Click"/>
                     </StackPanel>
+                    <Button Content="TEST" Name="btnKotmi" Width="150"
+							  IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"
+							  Click="btnKotmi_Click"/>
                 </StackPanel>
 		</Grid>
 			<Grid Name="pnlReport" Width="300">

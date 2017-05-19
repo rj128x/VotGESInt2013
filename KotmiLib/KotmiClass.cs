@@ -15,12 +15,18 @@ namespace KotmiLib
 		public int ID { get; set; }
 		public bool PTI { get; set; }
 		public string Code { get; set; }
+		public string Name { get; set; }
 
 		public ArcField(string name) {
 			string[] arr = name.Split('_');
 			ID = Int32.Parse(arr[1]);
 			PTI = arr[0] == "PTI";
 			Code = name;
+
+		}
+
+		public ArcField() {
+
 		}
 	}
 

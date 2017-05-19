@@ -1,6 +1,7 @@
 ﻿
 namespace VotGES.Web.Services
 {
+	using KotmiLib;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -94,6 +95,10 @@ namespace VotGES.Web.Services
 			}
 		}
 
+		public List<ArcField> GetKOTMI() {
+			return KOTMISettings.Single.KotmiDict.Values.ToList();
+		}
+		
 	}
 }
 

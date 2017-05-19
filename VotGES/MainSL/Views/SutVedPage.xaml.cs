@@ -27,7 +27,9 @@ namespace MainSL.Views
 			settings.Date = DateTime.Now.Date;
 			pnlSettings.DataContext = settings;
 			context = new ReportBaseDomainContext();
-			
+			/*if (!WebContext.Current.User.ToString().ToLower().Contains("chekunovamv") && !String.IsNullOrEmpty(WebContext.Current.User.ToString())) {
+				btnKotmi.Visibility = Visibility.Collapsed;
+			}*/
 			
 		}
 		
@@ -90,6 +92,10 @@ namespace MainSL.Views
 		private void btnCheckMaketOKM_Click(object sender, RoutedEventArgs e) {
 			string uri = String.Format("Reports/CheckMaket?year={0}&month={1}&day={2}&ikm=true", settings.Date.Year, settings.Date.Month, settings.Date.Day);
 			FloatWindow.OpenWindow(uri);
+		}
+
+		private void btnKotmi_Click(object sender, RoutedEventArgs e) {
+			(new KOTMIWindow()).Show();
 		}
 	}
 }

@@ -8,6 +8,158 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+namespace KotmiLib
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    
+    
+    /// <summary>
+    /// Класс "ArcField".
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/KotmiLib")]
+    public sealed partial class ArcField : ComplexObject
+    {
+        
+        private string _code;
+        
+        private int _id;
+        
+        private string _name;
+        
+        private bool _pti;
+        
+        #region Определение методов расширяемости
+
+        /// <summary>
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnCodeChanging(string value);
+        partial void OnCodeChanged();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        partial void OnPTIChanging(bool value);
+        partial void OnPTIChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Инициализация нового экземпляра класса <see cref="ArcField"/>.
+        /// </summary>
+        public ArcField()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Code".
+        /// </summary>
+        [DataMember()]
+        public string Code
+        {
+            get
+            {
+                return this._code;
+            }
+            set
+            {
+                if ((this._code != value))
+                {
+                    this.OnCodeChanging(value);
+                    this.RaiseDataMemberChanging("Code");
+                    this.ValidateProperty("Code", value);
+                    this._code = value;
+                    this.RaiseDataMemberChanged("Code");
+                    this.OnCodeChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "ID".
+        /// </summary>
+        [DataMember()]
+        public int ID
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnIDChanging(value);
+                    this.RaiseDataMemberChanging("ID");
+                    this.ValidateProperty("ID", value);
+                    this._id = value;
+                    this.RaiseDataMemberChanged("ID");
+                    this.OnIDChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Name".
+        /// </summary>
+        [DataMember()]
+        public string Name
+        {
+            get
+            {
+                return this._name;
+            }
+            set
+            {
+                if ((this._name != value))
+                {
+                    this.OnNameChanging(value);
+                    this.RaiseDataMemberChanging("Name");
+                    this.ValidateProperty("Name", value);
+                    this._name = value;
+                    this.RaiseDataMemberChanged("Name");
+                    this.OnNameChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "PTI".
+        /// </summary>
+        [DataMember()]
+        public bool PTI
+        {
+            get
+            {
+                return this._pti;
+            }
+            set
+            {
+                if ((this._pti != value))
+                {
+                    this.OnPTIChanging(value);
+                    this.RaiseDataMemberChanging("PTI");
+                    this.ValidateProperty("PTI", value);
+                    this._pti = value;
+                    this.RaiseDataMemberChanged("PTI");
+                    this.OnPTIChanged();
+                }
+            }
+        }
+    }
+}
 namespace MainSL
 {
     using System;
@@ -9413,6 +9565,7 @@ namespace VotGES.Web.Services
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
+    using KotmiLib;
     using VotGES.Chart;
     using VotGES.PBR;
     using VotGES.Piramida.Report;
@@ -11060,6 +11213,28 @@ namespace VotGES.Web.Services
         }
         
         /// <summary>
+        /// Асинхронно вызывает метод "GetKOTMI" службы DomainService.
+        /// </summary>
+        /// <param name="callback">Функция обратного вызова вызывается после завершения операции.</param>
+        /// <param name="userState">Параметр для передачи в функцию обратного вызова. Может быть равен <c>null</c>.</param>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<List<ArcField>> GetKOTMI(Action<InvokeOperation<List<ArcField>>> callback, object userState)
+        {
+            this.ValidateMethod("GetKOTMI", null);
+            return ((InvokeOperation<List<ArcField>>)(this.InvokeOperation("GetKOTMI", typeof(List<ArcField>), null, true, callback, userState)));
+        }
+        
+        /// <summary>
+        /// Асинхронно вызывает метод "GetKOTMI" службы DomainService.
+        /// </summary>
+        /// <returns>Экземпляр операции, который может быть использован для управления асинхронным запросом.</returns>
+        public InvokeOperation<List<ArcField>> GetKOTMI()
+        {
+            this.ValidateMethod("GetKOTMI", null);
+            return ((InvokeOperation<List<ArcField>>)(this.InvokeOperation("GetKOTMI", typeof(List<ArcField>), null, true, null, null)));
+        }
+        
+        /// <summary>
         /// Асинхронно вызывает метод "GetSutVedReport" службы DomainService.
         /// </summary>
         /// <param name="date">Значение параметра "date" для данного действия.</param>
@@ -11176,6 +11351,23 @@ namespace VotGES.Web.Services
             /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BeginGetFullReportRoot".</param>
             /// <returns>Объект "FullReportRoot", возвращенный из операции "GetFullReportRoot".</returns>
             FullReportRoot EndGetFullReportRoot(IAsyncResult result);
+            
+            /// <summary>
+            /// Асинхронно вызывает операцию "GetKOTMI".
+            /// </summary>
+            /// <param name="callback">Функция обратного вызова вызывается после завершения.</param>
+            /// <param name="asyncState">Необязательный объект состояния.</param>
+            /// <returns>Интерфейс IAsyncResult, который может быть использован для отслеживания запроса.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/ReportBaseDomainService/GetKOTMIDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/ReportBaseDomainService/GetKOTMI", ReplyAction="http://tempuri.org/ReportBaseDomainService/GetKOTMIResponse")]
+            IAsyncResult BeginGetKOTMI(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Завершает асинхронную операцию, начатую "BeginGetKOTMI".
+            /// </summary>
+            /// <param name="result">Интерфейс IAsyncResult, возвращенный из "BeginGetKOTMI".</param>
+            /// <returns>Объект "List`1", возвращенный из операции "GetKOTMI".</returns>
+            List<ArcField> EndGetKOTMI(IAsyncResult result);
             
             /// <summary>
             /// Асинхронно вызывает операцию "GetSutVedReport".

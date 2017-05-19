@@ -8,6 +8,7 @@ using VotGES.Web.Logging;
 using VotGES.Piramida;
 using VotGES.OgranGA;
 using VotGES.ModesCentre;
+using KotmiLib;
 
 namespace VotGES.Web
 {
@@ -36,11 +37,18 @@ namespace VotGES.Web
 				Logger.Info(KapRemontsData.Single.Data.Count.ToString());
 			}
 			catch { }
+			
 			VotGES.GlobalVotGES.setCulture();
 
 			Logger logger=new WebLogger();
 			Logger.InitFileLogger(Server.MapPath("/logs/"), "orders", new Web.Logging.WebLogger());
-			Logger.Info("Старт приложения "+DateTime.Now);			
+			Logger.Info("Старт приложения "+DateTime.Now);
+
+			try {
+				KOTMISettings.init(Server.MapPath("/bin/Data/KOTMISettings.xml"));
+				KotmiClass.init();
+			} catch { }
+
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);

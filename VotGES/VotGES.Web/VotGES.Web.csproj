@@ -248,6 +248,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KotmiLib\KotmiLib.csproj">
+      <Project>{bb39e10c-d274-4a68-9a6e-024d54adde53}</Project>
+      <Name>KotmiLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\VotGESLib\VotGESLib.csproj">
       <Project>{C4806689-AB9A-4F1F-998A-97B67D0DC9FE}</Project>
       <Name>VotGESLib</Name>

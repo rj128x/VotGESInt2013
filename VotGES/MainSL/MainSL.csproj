@@ -153,6 +153,9 @@
     <Compile Include="Views\FullReportPage.xaml.cs">
       <DependentUpon>FullReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\KOTMIWindow.xaml.cs">
+      <DependentUpon>KOTMIWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OgranPage.xaml.cs">
       <DependentUpon>OgranPage.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\KOTMIWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReportBaseControl.xaml">
       <SubType>Designer</SubType>

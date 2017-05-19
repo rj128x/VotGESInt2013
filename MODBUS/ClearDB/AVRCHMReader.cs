@@ -18,7 +18,7 @@ namespace ClearDB
 			Logger.Info(KOTMISettings.Single.Server);
 			KotmiClass.init();
 
-			DateTime date = dateStart.Date;
+			DateTime date = dateStart;
 			while (date <= dateEnd) {
 				try {
 					Logger.Info(String.Format("Чтение блока {0} - {1}", date, date.AddHours(1)));
