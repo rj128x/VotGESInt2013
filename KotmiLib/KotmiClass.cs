@@ -134,10 +134,10 @@ namespace KotmiLib
 					}
 					if (NegPos) {
 						foreach (KeyValuePair<DateTime, double> de in CNTPos) {
-							PosValues[field][de.Key] /= de.Value;
+							PosValues[field][de.Key] = PosValues[field][de.Key]  / CNTS[de.Key];
 						}
 						foreach (KeyValuePair<DateTime, double> de in CNTNeg) {
-							NegValues[field][de.Key] /= de.Value;
+							NegValues[field][de.Key] = NegValues[field][de.Key] / CNTS[de.Key];
 						}
 					}
 				}

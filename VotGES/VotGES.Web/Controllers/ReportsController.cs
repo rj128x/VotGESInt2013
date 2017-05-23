@@ -294,9 +294,12 @@ namespace VotGES.Web.Controllers
 
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult GetKotmiData(int year, int month, int day, int stepSeconds, string mode, bool negPos, string fields) {
-			Logger.Info(String.Format("Данные КОТМИ за {0}-{1}-{2}", year, month, day));
-			DateTime date = new DateTime(year, month, day);
+		public ActionResult GetKotmiData(int year1, int month1, int day1,int hh1,
+			int year2, int month2, int day2, int hh2,int stepSeconds, string mode, bool negPos, string fields) {
+			
+			DateTime dateStart = new DateTime(year1, month1, day1,hh1,0,0);
+			DateTime dateEnd = new DateTime(year2, month2, day2, hh2, 0, 0);
+			Logger.Info(String.Format("Данные КОТМИ за {0}-{1}", dateStart, dateEnd));
 
 			string[] fieldsArr = fields.Split(new char[] { '~' });
 			List<ArcField> Fields = new List<ArcField>();
@@ -304,7 +307,7 @@ namespace VotGES.Web.Controllers
 				Fields.Add(KOTMISettings.Single.KotmiDict[fieldStr]);
 			}
 
-			KotmiResult res = new KotmiResult(date, date.AddHours(24), Fields, stepSeconds, mode,negPos);
+			KotmiResult res = new KotmiResult(dateStart,dateEnd, Fields, stepSeconds, mode,negPos);
 			Thread th = new Thread(new ParameterizedThreadStart(Read));
 			th.SetApartmentState(ApartmentState.STA);
 			th.Start(res);

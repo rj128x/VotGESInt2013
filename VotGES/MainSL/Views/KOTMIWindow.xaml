@@ -17,10 +17,23 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <StackPanel >
+                    
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Date:" Width="100"/>
-                        <controls:Calendar  x:Name="dtCalend"/>
-                    </StackPanel>                    
+                        <TextBlock Text="DateStart:" Width="100"/>
+                        <sdk:DatePicker Width="110" SelectedDateFormat="Short" Name="dtStart" SelectedDateChanged="dtStart_SelectedDateChanged"/>
+                        
+                        <TextBox Text="00" Name="tmStart" Margin="10,0,0,0" TextChanged="tmStart_TextChanged"/>
+                        <TextBlock Text=" : "/>
+                        <TextBox Text="00" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="DateEnd:" Width="100"/>
+                        <sdk:DatePicker Width="110" SelectedDateFormat="Short" Name="dtEnd" SelectedDateChanged="dtEnd_SelectedDateChanged"/>
+
+                        <TextBox Text="00" Name="tmEnd" Margin="10,0,0,0" TextChanged="tmEnd_TextChanged"/>
+                        <TextBlock Text=" : "/>
+                        <TextBox Text="00" IsEnabled="False"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Aggr:" Width="100"/>
                         <RadioButton Name="rbHH" Content="HH" IsChecked="True"/>

@@ -18,10 +18,12 @@ namespace ClearDB
 			Logger.Info(KOTMISettings.Single.Server);
 
 			DateTime date = dateStart;
-			while (date <= dateEnd) {
+			while (date < dateEnd) {
 				try {
-					Logger.Info(String.Format("Чтение блока {0} - {1}", date, date.AddHours(1)));
-					AVRCHMReport report = new AVRCHMReport(date, date.AddHours(1), 1);
+					DateTime de = date.AddHours(1);
+					de = de < dateEnd ? de : dateEnd;
+					Logger.Info(String.Format("Чтение блока {0} - {1}", date, de));
+					AVRCHMReport report = new AVRCHMReport(date, de, 1);
 					report.ReadData(2);
 					report.WriteToDB();
 					AVRCHMResult result = report.Result;

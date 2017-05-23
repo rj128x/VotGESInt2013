@@ -94,10 +94,10 @@
         <tr>
             <th><%=date.ToString("dd.MM.yyyy HH:mm:ss") %></th>
             <%foreach (KotmiLib.ArcField field in Model.Fields) {  %>
-                <td><%=Model.Values[field][date].ToString("0.00") %></td>
+                <td><%=Model.Values[field][date].ToString("0.000") %></td>
                 <%if (Model.NegPos){ %>		
-                    <td><%=Model.NegValues[field][date].ToString("0.00")%></td>
-                    <td><%=Model.PosValues[field][date].ToString("0.00")%></td>
+                    <td><%=Model.NegValues[field][date].ToString("0.000")%></td>
+                    <td><%=Model.PosValues[field][date].ToString("0.000")%></td>
                 <%} %>
             <%} %>
         </tr>

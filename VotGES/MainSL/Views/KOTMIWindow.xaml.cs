@@ -25,7 +25,10 @@ namespace MainSL.Views
 			InitializeComponent();
 			Context = new ReportBaseDomainContext();
 			loadRoot();
-			dtCalend.SelectedDate = DateTime.Now.Date;
+			dtStart.SelectedDate = DateTime.Now.Date;
+			dtEnd.SelectedDate = DateTime.Now.Date;
+			tmEnd.Text = DateTime.Now.Hour.ToString("0");
+			tmStart.Text = "0";
 			FilteredKotmiFields = new Dictionary<string, ArcField>();
 		}
 
@@ -71,8 +74,13 @@ namespace MainSL.Views
 				if (field.Sel)
 					selected.Add(field.Code);
 			}
-			DateTime date = dtCalend.SelectedDate.Value;
-			string uri = String.Format("Reports/GetKotmiData?year={0}&month={1}&day={2}&mode={3}&stepSeconds={4}&negPos={5}&Fields={6}", date.Year, date.Month, date.Day,rbHH.IsChecked.Value?"HH":"Step",txtStep.Text,chbNegPos.IsChecked, String.Join("~", selected));
+			DateTime dateStart = dtStart.SelectedDate.Value.Date.AddHours(Int32.Parse(tmStart.Text));
+			DateTime dateEnd = dtEnd.SelectedDate.Value.Date.AddHours(Int32.Parse(tmEnd.Text));
+
+			string uri = String.Format("Reports/GetKotmiData?year1={0}&month1={1}&day1={2}&hh1={3}&year2={4}&month2={5}&day2={6}&hh2={7}&mode={8}&stepSeconds={9}&negPos={10}&Fields={11}",
+				dateStart.Year, dateStart.Month, dateStart.Day, dateStart.Hour,
+				dateEnd.Year, dateEnd.Month, dateEnd.Day, dateEnd.Hour, 
+				rbHH.IsChecked.Value?"HH":"Step",txtStep.Text,chbNegPos.IsChecked, String.Join("~", selected));
 			FloatWindow.OpenWindow(uri);
 			//MessageBox.Show(String.Join("~", selected));
 		}
@@ -87,6 +95,50 @@ namespace MainSL.Views
 				}
 			}
 			grdItems.ItemsSource = FilteredKotmiFields.Values;
+		}
+
+		private void dtStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
+			checkDateStart();
+		}
+
+		private void tmStart_TextChanged(object sender, TextChangedEventArgs e) {
+			int h = Int32.Parse(tmStart.Text);
+			h = h < 0 ? 0:h;
+			h = h > 24 ? 24 : h;
+			tmStart.Text = h.ToString("0");
+			checkDateStart();
+		}
+
+		private void dtEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
+			checkDateEnd();
+		}
+
+		private void tmEnd_TextChanged(object sender, TextChangedEventArgs e) {
+			int h = Int32.Parse(tmEnd.Text);
+			h = h < 0 ? 0 : h;
+			h = h > 24 ? 24 : h;
+			tmEnd.Text = h.ToString("0");
+			checkDateEnd();
+		}
+
+		protected void checkDateEnd() {
+			DateTime dateStart = dtStart.SelectedDate.Value.Date.AddHours(Int32.Parse(tmStart.Text));
+			DateTime dateEnd = dtEnd.SelectedDate.Value.Date.AddHours(Int32.Parse(tmEnd.Text));
+			if (dateStart.AddHours(24) < dateEnd) {
+				dateEnd = dateStart.AddHours(24);
+				dtEnd.SelectedDate = dateEnd.Date;
+				tmEnd.Text = dateEnd.Hour.ToString("0");
+			}
+		}
+
+		protected void checkDateStart() {
+			DateTime dateStart = dtStart.SelectedDate.Value.Date.AddHours(Int32.Parse(tmStart.Text));
+			DateTime dateEnd = dtEnd.SelectedDate.Value.Date.AddHours(Int32.Parse(tmEnd.Text));
+			if (dateStart.AddHours(24) < dateEnd) {
+				dateStart = dateEnd.AddHours(-24);
+				dtStart.SelectedDate = dateStart.Date;
+				tmStart.Text = dateStart.Hour.ToString("0");
+			}
 		}
 	}
 }
