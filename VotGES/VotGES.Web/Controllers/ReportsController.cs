@@ -287,12 +287,30 @@ namespace VotGES.Web.Controllers
 			return view;
 		}
 
+		protected void Read(Object res) {
+			KotmiResult resK = res as KotmiResult;
+			resK.ReadData();
+		}
+
+
 		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult GetKotmiData(int year, int month, int day, int stepSeconds, string mode, string fields) {
-			Logger.Info(String.Format("Состояние макетов с начала месяца {0}-{1}-{2}", year, month, day));
+		public ActionResult GetKotmiData(int year, int month, int day, int stepSeconds, string mode, bool negPos, string fields) {
+			Logger.Info(String.Format("Данные КОТМИ за {0}-{1}-{2}", year, month, day));
 			DateTime date = new DateTime(year, month, day);
 
-			String path = "C:/int/Modbus/DB";
+			string[] fieldsArr = fields.Split(new char[] { '~' });
+			List<ArcField> Fields = new List<ArcField>();
+			foreach (string fieldStr in fieldsArr) {
+				Fields.Add(KOTMISettings.Single.KotmiDict[fieldStr]);
+			}
+
+			KotmiResult res = new KotmiResult(date, date.AddHours(24), Fields, stepSeconds, mode,negPos);
+			Thread th = new Thread(new ParameterizedThreadStart(Read));
+			th.SetApartmentState(ApartmentState.STA);
+			th.Start(res);
+			th.Join();
+
+			/*String path = "C:/int/Modbus/DB";
 			string fileName = String.Format("{0}/{1}_{2}.dat", Server.MapPath("/temp"), mode, DateTime.Now.ToString("yyyyMMddHHmmss"));
 
 			ProcessStartInfo pi = new ProcessStartInfo();
@@ -314,7 +332,7 @@ namespace VotGES.Web.Controllers
 			using (Stream fStream = new FileStream(fileName,
 			FileMode.Open, FileAccess.Read, FileShare.None)) {
 				res=binFormat.Deserialize(fStream) as KotmiResult;
-			}
+			}*/
 
 			ViewResult view = View("GetKotmiData", res);
 			return view;

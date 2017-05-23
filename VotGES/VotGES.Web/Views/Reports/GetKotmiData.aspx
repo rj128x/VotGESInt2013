@@ -83,14 +83,22 @@
 		<tr>
 			<th>Параметр</th>
             <%foreach (KotmiLib.ArcField field in Model.Fields) {  %>
-			<th><%=field.Name %></th>			
+			<th><%=field.Name %></th>	
+                <%if (Model.NegPos){ %>		
+                    <th><%=field.Name + "<br/>NEG" %></th>
+                    <th><%=field.Name + "<br/>POS" %></th>
+                <%} %>
             <%} %>
 		</tr>
         <%foreach (DateTime date in Model.Dates) { %>
         <tr>
             <th><%=date.ToString("dd.MM.yyyy HH:mm:ss") %></th>
             <%foreach (KotmiLib.ArcField field in Model.Fields) {  %>
-                <th><%=Model.Values[field][date].ToString("0.00") %></th>
+                <td><%=Model.Values[field][date].ToString("0.00") %></td>
+                <%if (Model.NegPos){ %>		
+                    <td><%=Model.NegValues[field][date].ToString("0.00")%></td>
+                    <td><%=Model.PosValues[field][date].ToString("0.00")%></td>
+                <%} %>
             <%} %>
         </tr>
         <%} %>

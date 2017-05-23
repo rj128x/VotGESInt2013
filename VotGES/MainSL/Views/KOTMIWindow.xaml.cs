@@ -19,12 +19,14 @@ namespace MainSL.Views
 	public partial class KOTMIWindow : ChildWindow
 	{
 		public Dictionary<string, ArcField> KotmiFields;
+		public Dictionary<string, ArcField> FilteredKotmiFields;
 		ReportBaseDomainContext Context { get; set; }
 		public KOTMIWindow() {
 			InitializeComponent();
 			Context = new ReportBaseDomainContext();
 			loadRoot();
-			
+			dtCalend.SelectedDate = DateTime.Now.Date;
+			FilteredKotmiFields = new Dictionary<string, ArcField>();
 		}
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
@@ -70,9 +72,21 @@ namespace MainSL.Views
 					selected.Add(field.Code);
 			}
 			DateTime date = dtCalend.SelectedDate.Value;
-			string uri = String.Format("Reports/GetKotmiData?year={0}&month={1}&day={2}&mode={3}&stepSeconds={4}&Fields={5}", date.Year, date.Month, date.Day,"HH",txtStep.Text, String.Join("~", selected));
+			string uri = String.Format("Reports/GetKotmiData?year={0}&month={1}&day={2}&mode={3}&stepSeconds={4}&negPos={5}&Fields={6}", date.Year, date.Month, date.Day,rbHH.IsChecked.Value?"HH":"Step",txtStep.Text,chbNegPos.IsChecked, String.Join("~", selected));
 			FloatWindow.OpenWindow(uri);
 			//MessageBox.Show(String.Join("~", selected));
+		}
+
+
+		private void txtFilter_TextChanged(object sender, TextChangedEventArgs e) {
+			FilteredKotmiFields.Clear();
+			string filter = txtFilter.Text.ToLower();
+			foreach (KeyValuePair<string, ArcField> de in KotmiFields) {
+				if (de.Value.Name.ToLower().Contains(filter) || de.Value.Sel) {
+					FilteredKotmiFields.Add(de.Key, de.Value);
+				}
+			}
+			grdItems.ItemsSource = FilteredKotmiFields.Values;
 		}
 	}
 }

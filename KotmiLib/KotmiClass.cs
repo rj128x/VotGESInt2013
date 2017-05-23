@@ -42,6 +42,9 @@ namespace KotmiLib
 
 		public List<DateTime> Dates { get; set; }
 		public Dictionary<ArcField,SortedList<DateTime,double>> Values { get; set; }
+		public Dictionary<ArcField, SortedList<DateTime, double>> NegValues { get; set; }
+		public Dictionary<ArcField, SortedList<DateTime, double>> PosValues { get; set; }
+		public bool NegPos { get; set; }
 
 		public int StepSeconds { get; set; }
 
@@ -51,26 +54,41 @@ namespace KotmiLib
 
 		}
 
-		public KotmiResult(DateTime dateStart,DateTime dateEnd, List<ArcField> fields, int stepSeconds, string mode) {
+		public KotmiResult(DateTime dateStart,DateTime dateEnd, List<ArcField> fields, int stepSeconds, string mode,bool negPos) {
 			Mode = mode;
 			DateStart = dateStart;
 			DateEnd = dateEnd;
 			StepSeconds = stepSeconds;
-			Fields = fields;			
+			Fields = fields;
+			NegPos = negPos;
+			if (mode != "HH")
+				NegPos = false;
 			Values = new Dictionary<ArcField, SortedList<DateTime, double>>();
+			if (NegPos) {
+				NegValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
+				PosValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
+			}
 			Dates = new List<DateTime>();
 			foreach (ArcField field in Fields) {
 				Values.Add(field, new SortedList<DateTime, double>());
-				DateTime date = DateStart.AddHours(0);
+				if (NegPos) {
+					NegValues.Add(field, new SortedList<DateTime, double>());
+					PosValues.Add(field, new SortedList<DateTime, double>());
+				}
+				DateTime date = DateStart.AddMinutes(mode=="HH"?30:0);
 				while (date <= DateEnd) {
-					Dates.Add(date);
+					if (!Dates.Contains(date))
+						Dates.Add(date);
 					Values[field].Add(date, 0);
+					if (NegPos) {
+						NegValues[field].Add(date, 0);
+						PosValues[field].Add(date, 0);
+					}
 					if (mode == "HH")
 						date = date.AddMinutes(30);
 					else
 						date = date.AddSeconds(StepSeconds);
-				}
-				
+				}				
 			}
 		}
 
@@ -80,24 +98,50 @@ namespace KotmiLib
 				Logger.Info(String.Format("{0} - {1}", DateStart, DateEnd));
 				Kotmi.ReadVals(DateStart, DateEnd, field, StepSeconds);
 				SortedList<DateTime, double> Data = Kotmi.FullData;
-				DateTime prevDate = DateStart;
-				double sum = 0;
-				double cnt = 1;
-				foreach (KeyValuePair<DateTime, double> de in Data) {
-					DateTime date = Dates.First(d => d >= de.Key);
+				Dictionary<DateTime, double> CNTS = new Dictionary<DateTime, double>();
+				Dictionary<DateTime, double> CNTPos = new Dictionary<DateTime, double>();
+				Dictionary<DateTime, double> CNTNeg = new Dictionary<DateTime, double>();
+				foreach (KeyValuePair<DateTime, double> de in Data) {					
+					DateTime date = Dates.First(d => d >= de.Key);					
 					if (Mode == "HH") {
-						if (date > prevDate) {
-							Values[field][prevDate] = sum / cnt;
-							prevDate = date.AddHours(0) ;
-							sum = 0;
-							cnt = 1;
-						} 
-						sum += de.Value;
-						cnt++;
+						Values[field][date] += de.Value;
+						if (!CNTS.ContainsKey(date))
+							CNTS.Add(date, 0);
+						CNTS[date]++;
+
+						if (NegPos) {
+							if (de.Value > 0) {
+								PosValues[field][date] += de.Value;
+								if (!CNTPos.ContainsKey(date))
+									CNTPos.Add(date, 0);
+								CNTPos[date]++;								
+							}
+							if (de.Value < 0) {
+								NegValues[field][date] += de.Value;
+								if (!CNTNeg.ContainsKey(date))
+									CNTNeg.Add(date, 0);
+								CNTNeg[date]++;
+							}
+						}
 					} else {						
 						Values[field][date] = de.Value;
 					}
 				}
+
+				if (Mode == "HH") {
+					foreach (KeyValuePair<DateTime,double>de in CNTS) {
+						Values[field][de.Key] /= de.Value;
+					}
+					if (NegPos) {
+						foreach (KeyValuePair<DateTime, double> de in CNTPos) {
+							PosValues[field][de.Key] /= de.Value;
+						}
+						foreach (KeyValuePair<DateTime, double> de in CNTNeg) {
+							NegValues[field][de.Key] /= de.Value;
+						}
+					}
+				}
+
 			}
 		}
 

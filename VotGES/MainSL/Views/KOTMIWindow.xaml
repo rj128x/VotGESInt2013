@@ -3,7 +3,7 @@
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
            xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="MainSL.Views.KOTMIWindow"
-           Width="1000" Height="800" 
+           Width="1000" Height="600" 
            Title="KOTMIWindow">
     <Grid x:Name="LayoutRoot" Margin="2">
         <Grid.RowDefinitions>
@@ -23,8 +23,14 @@
                     </StackPanel>                    
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Aggr:" Width="100"/>
-                        <ComboBox x:Name="cmbAcggr" Width="150"/>
+                        <RadioButton Name="rbHH" Content="HH" IsChecked="True"/>
+                        <RadioButton Name="rbStep" Content="rbStep"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Aggr:" Width="100"/>
+                        <CheckBox Name="chbNegPos" Content="Neg/Pos" IsChecked="False"/>
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Step:" Width="100"/>
                         <TextBox Name="txtStep" Width="150" Text="60"/>
@@ -37,7 +43,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBox x:Name="txtFilter" Grid.Row="0"/>
+                <TextBox x:Name="txtFilter" Grid.Row="0" Height="30" TextChanged="txtFilter_TextChanged"/>
                 <Grid Grid.Row="1">
                     <sdk:DataGrid Name="grdItems"  AutoGenerateColumns="False">
                         <sdk:DataGrid.Columns>

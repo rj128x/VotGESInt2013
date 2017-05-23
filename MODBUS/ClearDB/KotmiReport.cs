@@ -18,7 +18,7 @@ namespace ClearDB
 			foreach (string fieldStr in fieldsArr) {
 				Fields.Add(KOTMISettings.Single.KotmiDict[fieldStr]);
 			}
-			KotmiResult res = new KotmiResult(dateStart, dateEnd, Fields, stepSeconds, mode);
+			KotmiResult res = new KotmiResult(dateStart, dateEnd, Fields, stepSeconds, mode,false);
 			res.ReadData();
 			BinaryFormatter binFormat = new BinaryFormatter();
 			using (Stream fStream = new FileStream(fileName,
