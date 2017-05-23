@@ -5,6 +5,7 @@ using System.Text;
 using System.Globalization;
 using VotGES.Piramida;
 using VotGES.XMLSer;
+using System.IO;
 
 namespace VotGES.Piramida
 {
@@ -33,7 +34,7 @@ namespace VotGES.Piramida
 
 		public static void init(string filename=null) {
 			if (filename == null) {
-				filename="Data\\DBSettings.xml";
+				filename= Directory.GetCurrentDirectory().ToString()+"\\Data\\DBSettings.xml";
 			}
 			DBSettings settings=XMLSer<DBSettings>.fromXML(filename);
 			DBSettings.settings = settings;

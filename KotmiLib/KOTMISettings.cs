@@ -52,7 +52,6 @@ namespace KotmiLib
 		public String DBUser { get; set; }
 		public String DBPassword { get; set; }
 
-
 		public static KOTMISettings Single { get; protected set; }
 		public static void init(string filename) {
 			try {

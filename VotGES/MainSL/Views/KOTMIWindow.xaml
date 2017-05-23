@@ -13,7 +13,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <StackPanel >
@@ -29,6 +29,7 @@
                         <TextBlock Text="Step:" Width="100"/>
                         <TextBox Name="txtStep" Width="150" Text="60"/>
                     </StackPanel>
+                    <Button Name="btnShow" Content="Show" Click="btnShow_Click"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
@@ -38,7 +39,24 @@
                 </Grid.RowDefinitions>
                 <TextBox x:Name="txtFilter" Grid.Row="0"/>
                 <Grid Grid.Row="1">
-                    <sdk:DataGrid Name="grdItems" />
+                    <sdk:DataGrid Name="grdItems"  AutoGenerateColumns="False">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTemplateColumn Header="Name" SortMemberPath="Name" Width="400"  >
+                                <sdk:DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding Name}" />
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTemplateColumn Header="Sel" SortMemberPath="Sel" Width="80"  >
+                                <sdk:DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Sel,Mode=TwoWay}"/>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
                 </Grid>
 
             </Grid>

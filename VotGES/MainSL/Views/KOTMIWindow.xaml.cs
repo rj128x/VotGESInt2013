@@ -1,4 +1,5 @@
 ﻿using KotmiLib;
+using MainSL.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace MainSL.Views
 		public KOTMIWindow() {
 			InitializeComponent();
 			Context = new ReportBaseDomainContext();
-			
+			loadRoot();
 			
 		}
 
@@ -40,13 +41,16 @@ namespace MainSL.Views
 				if (oper.IsCanceled) {
 					return;
 				}
-				try {
+				try {					
 					GlobalStatus.Current.StartProcess();
 					List<ArcField> result = oper.Value;
 					KotmiFields = new Dictionary<string, ArcField>();
+					
 					foreach (ArcField field in result) {
 						KotmiFields.Add(field.Code, field);
 					}
+					//MessageBox.Show(result.Count.ToString());
+					grdItems.ItemsSource = KotmiFields.Values;
 				} catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());
 					GlobalStatus.Current.ErrorLoad("Ошибка при получении дерева");
@@ -56,6 +60,19 @@ namespace MainSL.Views
 
 			}, null);
 			GlobalStatus.Current.StartLoad(currentOper);
+		}
+
+		private void btnShow_Click(object sender, RoutedEventArgs e) {
+			List<string> selected = new List<string>();
+			foreach (Object item in grdItems.ItemsSource) {
+				ArcField field = item as ArcField;
+				if (field.Sel)
+					selected.Add(field.Code);
+			}
+			DateTime date = dtCalend.SelectedDate.Value;
+			string uri = String.Format("Reports/GetKotmiData?year={0}&month={1}&day={2}&mode={3}&stepSeconds={4}&Fields={5}", date.Year, date.Month, date.Day,"HH",txtStep.Text, String.Join("~", selected));
+			FloatWindow.OpenWindow(uri);
+			//MessageBox.Show(String.Join("~", selected));
 		}
 	}
 }

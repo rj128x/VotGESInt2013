@@ -36,6 +36,8 @@ namespace KotmiLib
         
         private bool _pti;
         
+        private bool _sel;
+        
         #region Определение методов расширяемости
 
         /// <summary>
@@ -51,6 +53,8 @@ namespace KotmiLib
         partial void OnNameChanged();
         partial void OnPTIChanging(bool value);
         partial void OnPTIChanged();
+        partial void OnSelChanging(bool value);
+        partial void OnSelChanged();
 
         #endregion
         
@@ -155,6 +159,30 @@ namespace KotmiLib
                     this._pti = value;
                     this.RaiseDataMemberChanged("PTI");
                     this.OnPTIChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "Sel".
+        /// </summary>
+        [DataMember()]
+        public bool Sel
+        {
+            get
+            {
+                return this._sel;
+            }
+            set
+            {
+                if ((this._sel != value))
+                {
+                    this.OnSelChanging(value);
+                    this.RaiseDataMemberChanging("Sel");
+                    this.ValidateProperty("Sel", value);
+                    this._sel = value;
+                    this.RaiseDataMemberChanged("Sel");
+                    this.OnSelChanged();
                 }
             }
         }

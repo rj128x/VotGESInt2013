@@ -27,9 +27,13 @@ namespace MainSL.Views
 			settings.Date = DateTime.Now.Date;
 			pnlSettings.DataContext = settings;
 			context = new ReportBaseDomainContext();
-			/*if (!WebContext.Current.User.ToString().ToLower().Contains("chekunovamv") && !String.IsNullOrEmpty(WebContext.Current.User.ToString())) {
+			string user = WebContext.Current.User.Name.ToString().ToLower();
+			//MessageBox.Show("_"+user+"_");
+			if (user.Contains("chekunovamv") || user.Length<3) {
+				btnKotmi.Visibility = Visibility.Visible;
+			} else {
 				btnKotmi.Visibility = Visibility.Collapsed;
-			}*/
+			}
 			
 		}
 		

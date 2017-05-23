@@ -54,6 +54,7 @@
     <Compile Include="ChekNebalans.cs" />
     <Compile Include="Clear.cs" />
     <Compile Include="DBClass.cs" />
+    <Compile Include="KotmiReport.cs" />
     <Compile Include="MailClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

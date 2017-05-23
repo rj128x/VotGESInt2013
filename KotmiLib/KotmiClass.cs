@@ -10,12 +10,14 @@ using System.Threading;
 
 namespace KotmiLib
 {
+	[Serializable]
 	public class ArcField
 	{
 		public int ID { get; set; }
 		public bool PTI { get; set; }
 		public string Code { get; set; }
 		public string Name { get; set; }
+		public bool Sel { get; set; }
 
 		public ArcField(string name) {
 			string[] arr = name.Split('_');
@@ -30,6 +32,77 @@ namespace KotmiLib
 		}
 	}
 
+	[Serializable]
+	public class KotmiResult
+	{
+		public DateTime DateStart { get; set; }
+		public DateTime DateEnd { get; set; }
+
+		public string Mode { get; set; }
+
+		public List<DateTime> Dates { get; set; }
+		public Dictionary<ArcField,SortedList<DateTime,double>> Values { get; set; }
+
+		public int StepSeconds { get; set; }
+
+		public List<ArcField> Fields { get; set; }
+
+		public KotmiResult() {
+
+		}
+
+		public KotmiResult(DateTime dateStart,DateTime dateEnd, List<ArcField> fields, int stepSeconds, string mode) {
+			Mode = mode;
+			DateStart = dateStart;
+			DateEnd = dateEnd;
+			StepSeconds = stepSeconds;
+			Fields = fields;			
+			Values = new Dictionary<ArcField, SortedList<DateTime, double>>();
+			Dates = new List<DateTime>();
+			foreach (ArcField field in Fields) {
+				Values.Add(field, new SortedList<DateTime, double>());
+				DateTime date = DateStart.AddHours(0);
+				while (date <= DateEnd) {
+					Dates.Add(date);
+					Values[field].Add(date, 0);
+					if (mode == "HH")
+						date = date.AddMinutes(30);
+					else
+						date = date.AddSeconds(StepSeconds);
+				}
+				
+			}
+		}
+
+		public void ReadData() {
+			KotmiClass Kotmi = new KotmiClass();
+			foreach (ArcField field in Fields) {
+				Logger.Info(String.Format("{0} - {1}", DateStart, DateEnd));
+				Kotmi.ReadVals(DateStart, DateEnd, field, StepSeconds);
+				SortedList<DateTime, double> Data = Kotmi.FullData;
+				DateTime prevDate = DateStart;
+				double sum = 0;
+				double cnt = 1;
+				foreach (KeyValuePair<DateTime, double> de in Data) {
+					DateTime date = Dates.First(d => d >= de.Key);
+					if (Mode == "HH") {
+						if (date > prevDate) {
+							Values[field][prevDate] = sum / cnt;
+							prevDate = date.AddHours(0) ;
+							sum = 0;
+							cnt = 1;
+						} 
+						sum += de.Value;
+						cnt++;
+					} else {						
+						Values[field][date] = de.Value;
+					}
+				}
+			}
+		}
+
+
+	}
 
 	public delegate void OnFinishReadDelegate(SortedList<DateTime, double> Data);
 	public class KotmiClass
@@ -44,15 +117,17 @@ namespace KotmiLib
 		protected bool AllSent = false;
 		protected bool Break = false;
 
-		public static KotmiClass Single { get; protected set; }
+		public KotmiClass() {
+			CreateClients();
+		}
 
-		protected KotmiClass() {
-			
-
+		protected void CreateClients() {
 			Form Form1 = new Form();
+
 			//System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KotmiClass));
 			AxScadaCli cli = new AxScadaCli();
 			AxScadaAbo abo = new AxScadaAbo();
+
 			((System.ComponentModel.ISupportInitialize)(cli)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(abo)).BeginInit();
 			//cli.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cli.OcxState")));
@@ -67,11 +142,6 @@ namespace KotmiLib
 			this.Abo = abo;
 			abo.CliHWnd = cli.hWnd;
 			initEvents();
-		}
-
-		public static void init() {
-			Single = new KotmiClass();
-			
 		}
 
 		protected void initEvents() {
@@ -113,14 +183,14 @@ namespace KotmiLib
 			return Client.CliActive;
 		}
 
-		public static bool Connect() {
-			if (!Single.Client.CliActive)
-				return Single._Connect();
+		public bool Connect() {
+			if (!Client.CliActive)
+				return _Connect();
 			return ISConnected();
 		}
 
-		public static bool ISConnected() {
-			return Single.Client.CliActive;
+		public bool ISConnected() {
+			return Client.CliActive;
 		}
 
 		public void ReadVals(DateTime dateStart, DateTime dateEnd, ArcField field, int stepSeconds) {
@@ -183,18 +253,20 @@ namespace KotmiLib
 			}
 		}
 
-		public static void Close() {
+		public void Close() {
 			try {
-				Single.Client.Close();
+				Client.Close();
 			} catch {
 
 			}
 		}
 
-		public static void BreakRead() {
+		public void BreakRead() {
 			Logger.Info("Прерывание запроса");
-			Single.Break = true;
+			Break = true;
 		}
+
+		
 
 	}
 }

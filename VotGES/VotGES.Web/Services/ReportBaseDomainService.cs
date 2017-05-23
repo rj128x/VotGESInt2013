@@ -96,7 +96,15 @@ namespace VotGES.Web.Services
 		}
 
 		public List<ArcField> GetKOTMI() {
-			return KOTMISettings.Single.KotmiDict.Values.ToList();
+			Logger.Info("Получение полей КОТМИ");
+			try {				
+				List<ArcField> res= KOTMISettings.Single.KotmiDict.Values.ToList();
+				Logger.Info(res.Count.ToString());				
+				return res;
+			}catch (Exception e) {
+				Logger.Info(e.ToString());
+			}
+			return new List<ArcField>();
 		}
 		
 	}

@@ -29,6 +29,7 @@ namespace ClearDB {
 
 		[STAThread]
 		static void Main(string[] args) {		
+			
 			DBSettings.init();
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;
@@ -122,6 +123,8 @@ namespace ClearDB {
 				CheckMaket.checkData(dateStart, dateEnd, true, false);
 			} else if (task == "avrchmReport") {
 				AVRCHMReader.readAVRCHM(dateStart, dateEnd);
+			} else if (task == "kotmiReport") {
+				KotmiReport.ReadData(dateStart, dateEnd, Int32.Parse(args[3]), args[4], args[5],args[6]);
 			} else {
 				double hh = 24;
 				while (date <= dateEnd) {

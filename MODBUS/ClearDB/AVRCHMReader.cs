@@ -16,7 +16,6 @@ namespace ClearDB
 			Logger.Info(String.Format("Получение АВРЧМ: {0} - {1}", dateStart, dateEnd));
 			KOTMISettings.init(Directory.GetCurrentDirectory().ToString() + "\\Data\\KOTMISettings.xml");
 			Logger.Info(KOTMISettings.Single.Server);
-			KotmiClass.init();
 
 			DateTime date = dateStart;
 			while (date <= dateEnd) {

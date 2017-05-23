@@ -97,6 +97,7 @@ namespace KotmiLib
 		public void ReadData(int hhDiff) {
 			//KotmiClass.Single.OnFinishRead = FinishRead;
 
+			KotmiClass Kotmi = new KotmiClass();
 			InitData = new Dictionary<DateTime, Dictionary<string, double>>();
 			DateTime dt = DateStart.AddSeconds(-StepSec);
 			while (dt <= DateEnd) {
@@ -108,12 +109,13 @@ namespace KotmiLib
 			}
 
 			foreach (KeyValuePair<string, ArcField> de in DescArr) {
-				KotmiClass.Single.ReadVals(DateStart.AddHours(hhDiff).AddSeconds(-StepSec), DateEnd.AddHours(hhDiff), de.Value, StepSec);
-				SortedList<DateTime, double> data = KotmiClass.Single.FullData;
+				Kotmi.ReadVals(DateStart.AddHours(hhDiff).AddSeconds(-StepSec), DateEnd.AddHours(hhDiff), de.Value, StepSec);
+				SortedList<DateTime, double> data = Kotmi.FullData;
 				foreach (DateTime dtt in data.Keys) {
 					InitData[dtt.AddHours(-hhDiff)][de.Key] = data[dtt];
 				}
 			}
+			Kotmi.Close();
 
 
 			foreach (DateTime dtt in InitData.Keys) {

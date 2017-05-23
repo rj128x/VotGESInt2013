@@ -18,6 +18,9 @@ using VotGES.Rashod;
 using VotGES.Web.Models;
 using VotGES.NPRCH;
 using VotGES.ModesCentre;
+using KotmiLib;
+using System.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace VotGES.Web.Controllers
 {	
@@ -283,5 +286,39 @@ namespace VotGES.Web.Controllers
 			ViewResult view = View("CheckMaketReport",msgs);
 			return view;
 		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult GetKotmiData(int year, int month, int day, int stepSeconds, string mode, string fields) {
+			Logger.Info(String.Format("Состояние макетов с начала месяца {0}-{1}-{2}", year, month, day));
+			DateTime date = new DateTime(year, month, day);
+
+			String path = "C:/int/Modbus/DB";
+			string fileName = String.Format("{0}/{1}_{2}.dat", Server.MapPath("/temp"), mode, DateTime.Now.ToString("yyyyMMddHHmmss"));
+
+			ProcessStartInfo pi = new ProcessStartInfo();
+			pi.Arguments = String.Format("\"{0}\" \"{1}\" {2} {3} {4} {5} \"{6}\"", 				
+				date, date.AddHours(24),"kotmiReport", stepSeconds, mode, fields,fileName);
+			pi.WorkingDirectory= path;
+			Logger.Info(pi.Arguments);
+			pi.FileName = path+"/ClearDB.exe";
+			pi.WindowStyle = ProcessWindowStyle.Hidden;
+
+			Process process = new Process();
+			process.StartInfo = pi;
+			process.Start();
+			process.WaitForExit();
+			
+
+			BinaryFormatter binFormat = new BinaryFormatter();
+			KotmiResult res = null;
+			using (Stream fStream = new FileStream(fileName,
+			FileMode.Open, FileAccess.Read, FileShare.None)) {
+				res=binFormat.Deserialize(fStream) as KotmiResult;
+			}
+
+			ViewResult view = View("GetKotmiData", res);
+			return view;
+		}
+
 	}
 }

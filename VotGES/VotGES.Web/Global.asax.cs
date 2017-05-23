@@ -46,7 +46,6 @@ namespace VotGES.Web
 
 			try {
 				KOTMISettings.init(Server.MapPath("/bin/Data/KOTMISettings.xml"));
-				KotmiClass.init();
 			} catch { }
 
 			AreaRegistration.RegisterAllAreas();

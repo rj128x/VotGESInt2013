@@ -6,6 +6,7 @@ using System.Globalization;
 using VotGES.Piramida;
 using VotGES.XMLSer;
 using VotGES.Piramida.Report;
+using System.IO;
 
 namespace ClearDB
 {
@@ -52,7 +53,7 @@ namespace ClearDB
 			System.Threading.Thread.CurrentThread.CurrentUICulture = ci;	
 						
 
-			Settings settings=XMLSer<Settings>.fromXML("Data\\Settings.xml");
+			Settings settings=XMLSer<Settings>.fromXML(Directory.GetCurrentDirectory().ToString()+"\\Data\\Settings.xml");
 			Settings.settings = settings;
 						
 		}
