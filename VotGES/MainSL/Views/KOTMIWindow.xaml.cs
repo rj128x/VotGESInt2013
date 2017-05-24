@@ -2,6 +2,7 @@
 using MainSL.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.ServiceModel.DomainServices.Client;
@@ -19,7 +20,7 @@ namespace MainSL.Views
 	public partial class KOTMIWindow : ChildWindow
 	{
 		public Dictionary<string, ArcField> KotmiFields;
-		public Dictionary<string, ArcField> FilteredKotmiFields;
+		public ObservableCollection<ArcField> FilteredKotmiFields;
 		ReportBaseDomainContext Context { get; set; }
 		public KOTMIWindow() {
 			InitializeComponent();
@@ -29,7 +30,8 @@ namespace MainSL.Views
 			dtEnd.SelectedDate = DateTime.Now.Date;
 			tmEnd.Text = DateTime.Now.Hour.ToString("0");
 			tmStart.Text = "0";
-			FilteredKotmiFields = new Dictionary<string, ArcField>();
+			FilteredKotmiFields = new ObservableCollection<ArcField>() ;
+			grdItems.ItemsSource = FilteredKotmiFields;
 		}
 
 		private void OKButton_Click(object sender, RoutedEventArgs e) {
@@ -53,9 +55,10 @@ namespace MainSL.Views
 					
 					foreach (ArcField field in result) {
 						KotmiFields.Add(field.Code, field);
+						FilteredKotmiFields.Add(field);
 					}
 					//MessageBox.Show(result.Count.ToString());
-					grdItems.ItemsSource = KotmiFields.Values;
+					grdItems.ItemsSource = FilteredKotmiFields;
 				} catch (Exception ex) {
 					Logging.Logger.info(ex.ToString());
 					GlobalStatus.Current.ErrorLoad("Ошибка при получении дерева");
@@ -87,14 +90,13 @@ namespace MainSL.Views
 
 
 		private void txtFilter_TextChanged(object sender, TextChangedEventArgs e) {
-			FilteredKotmiFields.Clear();
+			FilteredKotmiFields.Clear();			
 			string filter = txtFilter.Text.ToLower();
 			foreach (KeyValuePair<string, ArcField> de in KotmiFields) {
 				if (de.Value.Name.ToLower().Contains(filter) || de.Value.Sel) {
-					FilteredKotmiFields.Add(de.Key, de.Value);
+					FilteredKotmiFields.Add(de.Value);
 				}
 			}
-			grdItems.ItemsSource = FilteredKotmiFields.Values;
 		}
 
 		private void dtStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
