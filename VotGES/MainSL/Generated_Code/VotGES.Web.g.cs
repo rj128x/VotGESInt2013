@@ -34,6 +34,8 @@ namespace KotmiLib
         
         private string _name;
         
+        private string _piramidaCode;
+        
         private bool _pti;
         
         private bool _sel;
@@ -51,6 +53,8 @@ namespace KotmiLib
         partial void OnIDChanged();
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        partial void OnPiramidaCodeChanging(string value);
+        partial void OnPiramidaCodeChanged();
         partial void OnPTIChanging(bool value);
         partial void OnPTIChanged();
         partial void OnSelChanging(bool value);
@@ -135,6 +139,30 @@ namespace KotmiLib
                     this._name = value;
                     this.RaiseDataMemberChanged("Name");
                     this.OnNameChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "PiramidaCode".
+        /// </summary>
+        [DataMember()]
+        public string PiramidaCode
+        {
+            get
+            {
+                return this._piramidaCode;
+            }
+            set
+            {
+                if ((this._piramidaCode != value))
+                {
+                    this.OnPiramidaCodeChanging(value);
+                    this.RaiseDataMemberChanging("PiramidaCode");
+                    this.ValidateProperty("PiramidaCode", value);
+                    this._piramidaCode = value;
+                    this.RaiseDataMemberChanged("PiramidaCode");
+                    this.OnPiramidaCodeChanged();
                 }
             }
         }

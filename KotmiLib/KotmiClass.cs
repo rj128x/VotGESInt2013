@@ -17,13 +17,15 @@ namespace KotmiLib
 		public bool PTI { get; set; }
 		public string Code { get; set; }
 		public string Name { get; set; }
+		public string PiramidaCode { get; set; }
 		public bool Sel { get; set; }
 
-		public ArcField(string name) {
+		public ArcField(string name, string pCode = "") {
 			string[] arr = name.Split('_');
 			ID = Int32.Parse(arr[1]);
 			PTI = arr[0] == "PTI";
 			Code = name;
+			PiramidaCode = pCode;
 
 		}
 
@@ -41,10 +43,13 @@ namespace KotmiLib
 		public string Mode { get; set; }
 
 		public List<DateTime> Dates { get; set; }
-		public Dictionary<ArcField,SortedList<DateTime,double>> Values { get; set; }
+		public List<DateTime> MinDates { get; set; }
+		public Dictionary<ArcField, SortedList<DateTime, double>> Values { get; set; }
 		public Dictionary<ArcField, SortedList<DateTime, double>> NegValues { get; set; }
 		public Dictionary<ArcField, SortedList<DateTime, double>> PosValues { get; set; }
+		public Dictionary<ArcField, SortedList<DateTime, double>> MinValues { get; set; }
 		public bool NegPos { get; set; }
+		public bool Minutes { get; set; }
 
 		public int StepSeconds { get; set; }
 
@@ -54,28 +59,33 @@ namespace KotmiLib
 
 		}
 
-		public KotmiResult(DateTime dateStart,DateTime dateEnd, List<ArcField> fields, int stepSeconds, string mode,bool negPos) {
+		public KotmiResult(DateTime dateStart, DateTime dateEnd, List<ArcField> fields, int stepSeconds, string mode, bool negPos, bool minutes = false) {
 			Mode = mode;
 			DateStart = dateStart;
 			DateEnd = dateEnd;
 			StepSeconds = stepSeconds;
 			Fields = fields;
 			NegPos = negPos;
+			Minutes = minutes;
 			if (mode != "HH")
 				NegPos = false;
 			Values = new Dictionary<ArcField, SortedList<DateTime, double>>();
+			MinValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
 			if (NegPos) {
 				NegValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
 				PosValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
 			}
 			Dates = new List<DateTime>();
+			if (Minutes) {
+				MinDates = new List<DateTime>();
+			}
 			foreach (ArcField field in Fields) {
 				Values.Add(field, new SortedList<DateTime, double>());
 				if (NegPos) {
 					NegValues.Add(field, new SortedList<DateTime, double>());
 					PosValues.Add(field, new SortedList<DateTime, double>());
 				}
-				DateTime date = DateStart.AddMinutes(mode=="HH"?30:0);
+				DateTime date = DateStart.AddMinutes(mode == "HH" ? 30 : 0);
 				while (date <= DateEnd) {
 					if (!Dates.Contains(date))
 						Dates.Add(date);
@@ -88,7 +98,20 @@ namespace KotmiLib
 						date = date.AddMinutes(30);
 					else
 						date = date.AddSeconds(StepSeconds);
-				}				
+				}
+			}
+
+			if (Minutes) {
+				foreach (ArcField field in Fields) {
+					MinValues.Add(field, new SortedList<DateTime, double>());
+					DateTime date = DateStart.AddMinutes(1);
+					while (date <= DateEnd) {
+						if (!MinDates.Contains(date))
+							MinDates.Add(date);
+						MinValues[field].Add(date, 0);
+						date = date.AddMinutes(1);
+					}
+				}
 			}
 		}
 
@@ -99,50 +122,60 @@ namespace KotmiLib
 				Kotmi.ReadVals(DateStart, DateEnd, field, StepSeconds);
 				SortedList<DateTime, double> Data = Kotmi.FullData;
 				Dictionary<DateTime, double> CNTS = new Dictionary<DateTime, double>();
-				Dictionary<DateTime, double> CNTPos = new Dictionary<DateTime, double>();
-				Dictionary<DateTime, double> CNTNeg = new Dictionary<DateTime, double>();
-				foreach (KeyValuePair<DateTime, double> de in Data) {					
+				Dictionary<DateTime, double> CNTSMin = new Dictionary<DateTime, double>();
+				foreach (KeyValuePair<DateTime, double> de in Data) {
 					DateTime date = Dates.First(d => d >= de.Key);					
+					
 					if (Mode == "HH") {
 						Values[field][date] += de.Value;
 						if (!CNTS.ContainsKey(date))
 							CNTS.Add(date, 0);
 						CNTS[date]++;
 
+						if (Minutes) {
+							DateTime minDate = MinDates.First(d => d >= de.Key);
+							MinValues[field][minDate] += de.Value;
+							if (!CNTSMin.ContainsKey(minDate))
+								CNTSMin.Add(minDate, 0);
+							CNTSMin[minDate]++;
+						}
+
 						if (NegPos) {
 							if (de.Value > 0) {
 								PosValues[field][date] += de.Value;
-								if (!CNTPos.ContainsKey(date))
-									CNTPos.Add(date, 0);
-								CNTPos[date]++;								
+
 							}
 							if (de.Value < 0) {
 								NegValues[field][date] += de.Value;
-								if (!CNTNeg.ContainsKey(date))
-									CNTNeg.Add(date, 0);
-								CNTNeg[date]++;
+
 							}
 						}
-					} else {						
+					} else {
 						Values[field][date] = de.Value;
 					}
 				}
 
 				if (Mode == "HH") {
-					foreach (KeyValuePair<DateTime,double>de in CNTS) {
+					foreach (KeyValuePair<DateTime, double> de in CNTS) {
 						Values[field][de.Key] /= de.Value;
 					}
 					if (NegPos) {
-						foreach (KeyValuePair<DateTime, double> de in CNTPos) {
-							PosValues[field][de.Key] = PosValues[field][de.Key]  / CNTS[de.Key];
+						foreach (KeyValuePair<DateTime, double> de in PosValues[field]) {
+							PosValues[field][de.Key] = PosValues[field][de.Key] / CNTS[de.Key];
 						}
-						foreach (KeyValuePair<DateTime, double> de in CNTNeg) {
+						foreach (KeyValuePair<DateTime, double> de in NegValues[field]) {
 							NegValues[field][de.Key] = NegValues[field][de.Key] / CNTS[de.Key];
 						}
 					}
 				}
+				if (Minutes) {
+					foreach (KeyValuePair<DateTime, double> de in CNTSMin) {
+						MinValues[field][de.Key] /= de.Value;
+					}
+				}
 
 			}
+			Kotmi.Close();
 		}
 
 
@@ -185,6 +218,7 @@ namespace KotmiLib
 			this.Client = cli;
 			this.Abo = abo;
 			abo.CliHWnd = cli.hWnd;
+			_Connect();
 			initEvents();
 		}
 
@@ -228,13 +262,13 @@ namespace KotmiLib
 		}
 
 		public bool Connect() {
-			if (!Client.CliActive)
-				return _Connect();
-			return ISConnected();
-		}
-
-		public bool ISConnected() {
-			return Client.CliActive;
+			//Logger.Info("Check connect");
+			if (!Client.CliActive) {
+				Logger.Info("reconnect");
+				Client.Open();
+				
+			}
+			return Client.CliActive; ;
 		}
 
 		public void ReadVals(DateTime dateStart, DateTime dateEnd, ArcField field, int stepSeconds) {
@@ -310,7 +344,7 @@ namespace KotmiLib
 			Break = true;
 		}
 
-		
+
 
 	}
 }

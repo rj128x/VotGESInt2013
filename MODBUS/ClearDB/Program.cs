@@ -9,10 +9,12 @@ using VotGES.Rashod;
 using VotGES.OgranGA;
 using VotGES.XMLSer;
 
-namespace ClearDB {
+namespace ClearDB
+{
 
 
-	class Program {
+	class Program
+	{
 
 		protected static DateTime getDate(string ds, bool minutes = false) {
 			DateTime date;
@@ -28,8 +30,8 @@ namespace ClearDB {
 		}
 
 		[STAThread]
-		static void Main(string[] args) {		
-			
+		static void Main(string[] args) {
+
 			DBSettings.init();
 			Settings.init();
 			DBClass.DateFormat = Settings.single.DBDateFormat;
@@ -102,29 +104,28 @@ namespace ClearDB {
 
 			if (task == "sutVed") {
 				SutVed.ProcessFolder(Settings.single.SutVedPath, Settings.single.SutVedPathTo);
-			}
-			else if (task == "checkModbus") {
+			} else if (task == "checkModbus") {
 				CheckModbusWater.CheckData();
-			}else if (task == "checkNebalans") {
-				ChekNebalans.checkData(dateStart, dateEnd,false,false);
+			} else if (task == "checkNebalans") {
+				ChekNebalans.checkData(dateStart, dateEnd, false, false);
 			} else if (task == "checkNebalansTU") {
 				ChekNebalans.checkData(dateStart, dateEnd, false, true);
 			} else if (task == "checkNebalansFull") {
-				ChekNebalans.checkData(dateStart, dateEnd,true,true);
+				ChekNebalans.checkData(dateStart, dateEnd, true, true);
 			} else if (task == "checkMinData") {
-				CheckMinData rep = new CheckMinData(dateStart, dateEnd,false);
+				CheckMinData rep = new CheckMinData(dateStart, dateEnd, false);
 				rep.checkData();
 			} else if (task == "checkMinData2000") {
-				CheckMinData rep = new CheckMinData(dateStart, dateEnd,true);
+				CheckMinData rep = new CheckMinData(dateStart, dateEnd, true);
 				rep.checkData();
 			} else if (task == "checkMaket") {
-				CheckMaket.checkData(dateStart, dateEnd, false, false);				
+				CheckMaket.checkData(dateStart, dateEnd, false, false);
 			} else if (task == "checkMaketIKM") {
 				CheckMaket.checkData(dateStart, dateEnd, true, false);
 			} else if (task == "avrchmReport") {
 				AVRCHMReader.readAVRCHM(dateStart, dateEnd);
-			} else if (task == "kotmiReport") {
-				KotmiReport.ReadData(dateStart, dateEnd, Int32.Parse(args[3]), args[4], args[5],args[6]);
+			} else if (task == "kotmiReportHH") {
+				KotmiReport.ReadData(dateStart, dateEnd);
 			} else {
 				double hh = 24;
 				while (date <= dateEnd) {

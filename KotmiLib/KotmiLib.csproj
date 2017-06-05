@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AVRCHMReport.cs" />
     <Compile Include="KotmiClass.cs" />
+    <Compile Include="OUReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KOTMISettings.cs" />
   </ItemGroup>
