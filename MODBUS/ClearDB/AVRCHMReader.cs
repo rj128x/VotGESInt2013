@@ -28,7 +28,7 @@ namespace ClearDB
 					report.WriteToDB();
 					AVRCHMResult result = report.Result;
 					for (int ga = 1; ga <= 10; ga++) {
-						Logger.Info(String.Format("GA {0}: WORK: {1:0.00} STOP: {2:0.00} AVRCHM: {3:0.00} ", ga, result.TimeWork[ga] / 60, result.TimeStop[ga] / 60, result.TimeAVRCHM[ga] / 60));
+						Logger.Info(String.Format("GA {0}: Run: {1:0.00} work: {2:0.00} AVRCHM: {3:0.00}  oprch:{4:0.00}", ga, result.TimeWork[ga] / 60, result.TimeGen[ga] / 60, result.TimeAVRCHM[ga] / 60, result.TimeOPRCH[ga] / 60));
 					}					
 				}catch (Exception e) {
 					Logger.Info(e.ToString());

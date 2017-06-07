@@ -15,6 +15,8 @@ namespace KotmiLib
 	{
 		public int ID { get; set; }
 		public bool PTI { get; set; }
+		public bool TS { get; set; }
+		public bool PTS { get; set; }
 		public string Code { get; set; }
 		public string Name { get; set; }
 		public string PiramidaCode { get; set; }
@@ -24,6 +26,8 @@ namespace KotmiLib
 			string[] arr = name.Split('_');
 			ID = Int32.Parse(arr[1]);
 			PTI = arr[0] == "PTI";
+			PTS = arr[0] == "PTS";
+			TS = arr[0] == "TS";
 			Code = name;
 			PiramidaCode = pCode;
 
@@ -294,7 +298,7 @@ namespace KotmiLib
 					}
 					cnt++;
 					Abo.RequestPrmSet("PROC", "READ_ARCH");
-					Abo.RequestPrmSet("TABLE_NAME", field.PTI ? "T_ARCH_PTI" : "T_ARCH_TI");
+					Abo.RequestPrmSet("TABLE_NAME", field.PTI ? "T_ARCH_PTI" : (field.TS ? "T_ARCH_TS" : (field.PTS ? "T_ARCH_PTS" : "T_ARCH_TI")));
 					Abo.Proc();
 
 					Abo.FieldValue("ID", ScdSys.EFieldType.eftInt, field.ID);

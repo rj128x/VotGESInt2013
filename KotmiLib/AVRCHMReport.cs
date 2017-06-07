@@ -12,11 +12,17 @@ namespace KotmiLib
 	{
 
 		public Dictionary<int, double> TimeWork { get; set; }
+		public Dictionary<int, double> TimeGen { get; set; }
+		public Dictionary<int, double> TimeHHG { get; set; }
+		public Dictionary<int, double> TimeHHT { get; set; }
 		public Dictionary<int, double> TimeStop { get; set; }
 		public Dictionary<int, double> TimeAVRCHM { get; set; }
+		public Dictionary<int, double> TimeOPRCH { get; set; }
 		public Dictionary<int, int> CntPusk { get; set; }
 		public Dictionary<int, int> CntStop { get; set; }
 		public Dictionary<int, int> CntAVRCHM { get; set; }
+		public Dictionary<int, int> CntOPRCH { get; set; }
+
 		public Dictionary<int, double> TimeLessMin { get; set; }
 		public Dictionary<int, double> TimeAfterMax { get; set; }
 		public Dictionary<int, int> CntLessMin { get; set; }
@@ -29,10 +35,15 @@ namespace KotmiLib
 
 			TimeWork = new Dictionary<int, double>();
 			TimeAVRCHM = new Dictionary<int, double>();
+			TimeOPRCH = new Dictionary<int, double>();
 			TimeStop = new Dictionary<int, double>();
+			TimeGen = new Dictionary<int, double>();
+			TimeHHT = new Dictionary<int, double>();
+			TimeHHG = new Dictionary<int, double>();
 			CntPusk = new Dictionary<int, int>();
 			CntStop = new Dictionary<int, int>();
 			CntAVRCHM = new Dictionary<int, int>();
+			CntOPRCH = new Dictionary<int, int>();
 			TimeLessMin = new Dictionary<int, double>();
 			TimeAfterMax = new Dictionary<int, double>();
 			CntAfterMax = new Dictionary<int, int>();
@@ -54,6 +65,11 @@ namespace KotmiLib
 				CntLessMin.Add(GA, 0);
 				PosAVRCHM.Add(GA, 0);
 				NegAVRCHM.Add(GA, 0);
+				CntOPRCH.Add(GA, 0);
+				TimeOPRCH.Add(GA, 0);
+				TimeGen.Add(GA, 0);
+				TimeHHG.Add(GA, 0);
+				TimeHHT.Add(GA, 0);
 			}
 		}
 	}
@@ -80,6 +96,9 @@ namespace KotmiLib
 
 			for (int ga = 1; ga <= 10; ga++) {
 				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_40{0}4", ga - 1)));
+				DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_40{0}8", ga - 1)));
+				DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
+				DescArr.Add("UR_GA_" + ga, new ArcField(String.Format("TI_40{0}2", ga - 1)));
 			}
 
 		}
@@ -175,24 +194,45 @@ namespace KotmiLib
 					for (int ga = 1; ga <= 10; ga++) {
 						double p = data["P_GA_" + ga];
 						double prevP = prevData["P_GA_" + ga];
+						double f = data["F_GA_" + ga];
+						double prevF = prevData["F_GA_" + ga];
 						double maxP = ga <= 2 ? 115 : 105;
-						if (p > 0) {
+						bool V = data["V_GA_" + ga] > 0 && data["UR_GA_" + ga] > 0;
+						bool prevV = prevData["V_GA_" + ga] > 0 && prevData["UR_GA_" + ga] > 0;
+
+						if (V) {
 							Result.TimeWork[ga] += StepSec;
-							if (prevP == 0)
-								Result.CntPusk[ga]++;
-							if (p < 33) {
-								Result.TimeLessMin[ga] += StepSec;
-								if (prevP == 0 || prevP >= 33)
-									Result.CntLessMin[ga]++;
+
+							if (p > 0) {
+								Result.TimeGen[ga] += StepSec;
+								if (p < 33) {
+									Result.TimeLessMin[ga] += StepSec;
+									if (prevP == 0 || prevP >= 33)
+										Result.CntLessMin[ga]++;
+								}
+								if (p > maxP) {
+									Result.TimeAfterMax[ga] += StepSec;
+									if (prevP <= maxP)
+										Result.CntAfterMax[ga]++;
+								}
 							}
-							if (p > maxP) {
-								Result.TimeAfterMax[ga] += StepSec;
-								if (prevP <= maxP)
-									Result.CntAfterMax[ga]++;
+
+							if (f > 40 && (f < 49.925 || f > 50.075)) {
+								Result.TimeOPRCH[ga] += StepSec;
+								if (prevF > 40 && (prevF > 49.925 && prevF < 50.075)) {
+									Result.CntOPRCH[ga]++;
+								}
+							}
+							if (f < 40 ) {
+								Result.TimeHHT[ga] += StepSec * 3 / 4;
+								Result.TimeHHG[ga] += StepSec / 4;
+							} 
+							if (!prevV) {
+								Result.CntPusk[ga]++;
 							}
 						} else {
 							Result.TimeStop[ga] += StepSec;
-							if (prevP > 0)
+							if (prevV)
 								Result.CntStop[ga]++;
 						}
 					}
@@ -214,8 +254,8 @@ namespace KotmiLib
 				command.Transaction = trans;
 				command.ExecuteNonQuery();
 
-				string insertStr = "INSERT INTO GAKOTMI (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeGen,timeAfterMax,timeLessMin, timeAVRCHM,cntAVRCHM,posAVRCHM,negAVRCHM)";
-				string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7:0.00}, {8:0.00}, {9:0.00}, {10:0.00}, {11}, {12:0.00}, {13:0.00}";
+				string insertStr = "INSERT INTO GAKOTMI (dateStart,dateEnd,gaNumber,cntPusk,cntStop,cntAfterMax,cntLessMin,timeGen,timeAfterMax,timeLessMin, timeAVRCHM,cntAVRCHM,posAVRCHM,negAVRCHM,cntOPRCH,timeOPRCH,timeRun,timeHHG,timeHHT)";
+				string dataFormat = "SELECT '{0}','{1}', {2}, {3}, {4}, {5}, {6}, {7:0.00}, {8:0.00}, {9:0.00}, {10:0.00}, {11}, {12:0.00}, {13:0.00},{14}, {15:0.00}, {16:0.00}, {17:0.00}, {18:0.00}";
 				List<string> dataStrList = new List<string>();
 				double seconds = (DateEnd - DateStart).TotalSeconds;
 
@@ -228,7 +268,12 @@ namespace KotmiLib
 						(Result.TimeAVRCHM[ga] / 60).ToString().Replace(",", "."),
 						Result.CntAVRCHM[ga],
 						(Result.PosAVRCHM[ga] / seconds).ToString().Replace(",", "."),
-						(Result.NegAVRCHM[ga] / seconds).ToString().Replace(",", "."));
+						(Result.NegAVRCHM[ga] / seconds).ToString().Replace(",", "."),
+						Result.CntOPRCH[ga],
+						(Result.TimeOPRCH[ga] / 60).ToString().Replace(",", "."),
+						(Result.TimeWork[ga] / 60).ToString().Replace(",", "."),
+						(Result.TimeHHG[ga] / 60).ToString().Replace(",", "."),
+						(Result.TimeHHT[ga] / 60).ToString().Replace(",", "."));
 
 					dataStrList.Add(dataStr);
 				}

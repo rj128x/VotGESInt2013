@@ -38,7 +38,11 @@ namespace KotmiLib
         
         private bool _pti;
         
+        private bool _pts;
+        
         private bool _sel;
+        
+        private bool _ts;
         
         #region Определение методов расширяемости
 
@@ -57,8 +61,12 @@ namespace KotmiLib
         partial void OnPiramidaCodeChanged();
         partial void OnPTIChanging(bool value);
         partial void OnPTIChanged();
+        partial void OnPTSChanging(bool value);
+        partial void OnPTSChanged();
         partial void OnSelChanging(bool value);
         partial void OnSelChanged();
+        partial void OnTSChanging(bool value);
+        partial void OnTSChanged();
 
         #endregion
         
@@ -192,6 +200,30 @@ namespace KotmiLib
         }
         
         /// <summary>
+        /// Возвращает или задает значение параметра "PTS".
+        /// </summary>
+        [DataMember()]
+        public bool PTS
+        {
+            get
+            {
+                return this._pts;
+            }
+            set
+            {
+                if ((this._pts != value))
+                {
+                    this.OnPTSChanging(value);
+                    this.RaiseDataMemberChanging("PTS");
+                    this.ValidateProperty("PTS", value);
+                    this._pts = value;
+                    this.RaiseDataMemberChanged("PTS");
+                    this.OnPTSChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Возвращает или задает значение параметра "Sel".
         /// </summary>
         [DataMember()]
@@ -211,6 +243,30 @@ namespace KotmiLib
                     this._sel = value;
                     this.RaiseDataMemberChanged("Sel");
                     this.OnSelChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Возвращает или задает значение параметра "TS".
+        /// </summary>
+        [DataMember()]
+        public bool TS
+        {
+            get
+            {
+                return this._ts;
+            }
+            set
+            {
+                if ((this._ts != value))
+                {
+                    this.OnTSChanging(value);
+                    this.RaiseDataMemberChanging("TS");
+                    this.ValidateProperty("TS", value);
+                    this._ts = value;
+                    this.RaiseDataMemberChanged("TS");
+                    this.OnTSChanged();
                 }
             }
         }
