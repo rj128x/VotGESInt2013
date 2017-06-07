@@ -124,8 +124,8 @@ namespace KotmiLib
 				Dictionary<DateTime, double> CNTS = new Dictionary<DateTime, double>();
 				Dictionary<DateTime, double> CNTSMin = new Dictionary<DateTime, double>();
 				foreach (KeyValuePair<DateTime, double> de in Data) {
-					DateTime date = Dates.First(d => d >= de.Key);					
-					
+					DateTime date = Dates.First(d => d >= de.Key);
+
 					if (Mode == "HH") {
 						Values[field][date] += de.Value;
 						if (!CNTS.ContainsKey(date))
@@ -256,7 +256,7 @@ namespace KotmiLib
 			Client.SrvAddress = KOTMISettings.Single.Server;
 			Client.UserName = KOTMISettings.Single.User;
 			Client.UserPassword = KOTMISettings.Single.Password;
-			Client.ReconnectAuto = true;
+			Client.ReconnectAuto = false;
 			Client.Open();
 			return Client.CliActive;
 		}
@@ -266,7 +266,7 @@ namespace KotmiLib
 			if (!Client.CliActive) {
 				Logger.Info("reconnect");
 				Client.Open();
-				
+
 			}
 			return Client.CliActive; ;
 		}

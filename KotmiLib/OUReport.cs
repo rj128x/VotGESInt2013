@@ -37,8 +37,8 @@ namespace KotmiLib
 			DescArr.Add("U2SH110", new ArcField("TI_2044", "PSV~3~13"));
 			DescArr.Add("U1SH220", new ArcField("TI_2041", "PSV~3~14"));
 			DescArr.Add("U2SH220", new ArcField("TI_2042", "PSV~3~15"));
-			DescArr.Add("U500Karm", new ArcField("TI_337", "PSV~3~17"));
-			DescArr.Add("U500Eml", new ArcField("TI_307", "PSV~3~16"));
+			DescArr.Add("U500Karm", new ArcField("TI_337", "PSV~3~16"));
+			DescArr.Add("U500Eml", new ArcField("TI_307", "PSV~3~17"));
 			DescArr.Add("U500Vyat", new ArcField("TI_367", "PSV~3~18"));
 
 			for (int ga = 1; ga <= 10; ga++) {
@@ -78,7 +78,7 @@ namespace KotmiLib
 					Logger.Info(String.Format("==Чтение из котми по параметру {0}", de.Value.Code));
 					List<ArcField> fields = new List<ArcField>();
 					fields.Add(de.Value);
-					KotmiResult result = new KotmiResult(DateStart, DateEnd, fields, 10, "HH", false, true);
+					KotmiResult result = new KotmiResult(DateStart.AddHours(2), DateEnd.AddHours(2), fields, 10, "HH", false, true);
 					result.ReadData();
 					SortedList<DateTime, double> data = result.Values[de.Value];
 					foreach (KeyValuePair<DateTime, double> kde in data) {
