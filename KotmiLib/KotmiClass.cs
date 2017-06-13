@@ -260,7 +260,7 @@ namespace KotmiLib
 			Client.SrvAddress = KOTMISettings.Single.Server;
 			Client.UserName = KOTMISettings.Single.User;
 			Client.UserPassword = KOTMISettings.Single.Password;
-			Client.ReconnectAuto = false;
+			Client.ReconnectAuto = true;
 			Client.Open();
 			return Client.CliActive;
 		}

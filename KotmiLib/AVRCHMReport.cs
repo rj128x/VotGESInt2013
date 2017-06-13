@@ -136,7 +136,7 @@ namespace KotmiLib
 			}
 			Kotmi.Close();
 
-
+			Random rand = new Random();
 			foreach (DateTime dtt in InitData.Keys) {
 				DateTime dtPrev = dtt.AddSeconds(-StepSec);
 				Dictionary<string, double> data = InitData[dtt];
@@ -224,8 +224,8 @@ namespace KotmiLib
 								}
 							}
 							if (f < 40 ) {
-								Result.TimeHHT[ga] += StepSec * 3 / 4;
-								Result.TimeHHG[ga] += StepSec / 4;
+								Result.TimeHHT[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
+								Result.TimeHHG[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
 							} 
 							if (!prevV) {
 								Result.CntPusk[ga]++;

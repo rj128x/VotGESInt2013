@@ -54,7 +54,7 @@ namespace KotmiLib
 				//DescArr.Add(String.Format("PFGA_{0}", ga), new ArcField(string.Format("TI41_{0}", ga)));
 			}
 
-			DescArr.Add("NaporGES", new ArcField("PTI_0", "PSV~3~4"));
+			DescArr.Add("NaporGES", new ArcField("PTI_0", "PSV~3~4;P3000~1~276"));
 			DescArr.Add("U110", new ArcField("PTI_0", "PSV~3~9"));
 			DescArr.Add("U220", new ArcField("PTI_0", "PSV~3~10"));
 			DescArr.Add("U500", new ArcField("PTI_0", "PSV~3~11"));
