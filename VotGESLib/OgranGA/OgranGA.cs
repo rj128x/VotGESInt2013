@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using VotGES.Piramida;
 
-namespace VotGES.OgranGA {
+namespace VotGES.OgranGA
+{
 
-	public class OgranGARecord {
+	public class OgranGARecord
+	{
 		public enum ITEM_ENUM { rezNone, pAfterMax, pLessMin, rezSK, rezGen, rezHHT, rezHHG, rezRun, rezNPRCH, rezOPRCH, rezAVRCHM }
 		public int GA { get; set; }
 		public DateTime dateStart { get; set; }
@@ -58,14 +60,14 @@ namespace VotGES.OgranGA {
 		protected string getTimeSTR(double time) {
 			int hours = (int)(time / 60.0);
 			int min = (int)(time - hours * 60);
-			int sec = (int)(time*60 - hours * 60*60 - min*60);
+			int sec = (int)(time * 60 - hours * 60 * 60 - min * 60);
 			if (hours > 10000)
 				return ((int)(hours / 1000)).ToString() + "т.ч";
 			if (hours > 100)
-				return hours.ToString()+"ч";
+				return hours.ToString() + "ч";
 
-			if (hours == 0 && min<10) {
-				return String.Format("{0}м{1:0}с",  min,sec);
+			if (hours == 0 && min < 10) {
+				return String.Format("{0}м{1:0}с", min, sec);
 			}
 			return String.Format("{0}ч{1:0}м", hours, min);
 		}
@@ -90,7 +92,7 @@ namespace VotGES.OgranGA {
 			timeZapr = 0;
 			timeOgran = timeLessMin + timeAfterMax;
 			cntZapr = 0;
-			cntOgran = cntLessMin + cntAfterMax;			
+			cntOgran = cntLessMin + cntAfterMax;
 			TimeSKStr = getTimeSTR(timeSK);
 			TimeRunStr = getTimeSTR(timeRun);
 			TimeGenStr = getTimeSTR(timeGen);
@@ -137,7 +139,8 @@ namespace VotGES.OgranGA {
 
 	}
 
-	public class OgranGA {
+	public class OgranGA
+	{
 
 		public static List<PiramidaEnrty> GetPrevData(DateTime dateStart, int gaNumber, bool onlyRun = false) {
 			List<PiramidaEnrty> prevData = new List<PiramidaEnrty>();
@@ -168,12 +171,9 @@ namespace VotGES.OgranGA {
 					reader.Close();
 				}
 
-			}
-			finally {
-				try { command.Dispose(); }
-				catch { }
-				try { connection.Close(); }
-				catch { }
+			} finally {
+				try { command.Dispose(); } catch { }
+				try { connection.Close(); } catch { }
 			}
 
 			return prevData;
@@ -183,49 +183,48 @@ namespace VotGES.OgranGA {
 			Dictionary<int, string> timeStopGA = new Dictionary<int, string>();
 			List<int> items = new List<int>();
 			for (int ga = 1; ga <= 10; ga++) {
-				items.Add(700 + ga);
+				items.Add(200 + ga);
 			}
 
 			SqlConnection connection = PiramidaAccess.getConnection("PSV");
 			SqlCommand command = connection.CreateCommand();
 			command.Parameters.AddWithValue("@date", date);
-			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=30 and parnumber=13 and data_date<@date and item={0} order by data_date desc ";
+			command.Parameters.AddWithValue("@dateStart", date.AddDays(-30));
+			string cmdFormat = "SELECT top 1 data_date,item,value0 from data WHERE objtype=2 and object=3 and parnumber=12 and data_date<@date and data_date>=@dateStart and item={0} and value0>0 order by data_date desc ";
 			List<string> cmdParts = new List<string>();
 			try {
 				connection.Open();
 
 				foreach (int item in items) {
 					command.CommandText = String.Format(cmdFormat, item);
+					int ga = item % 100;
+					string res = String.Format(" --- ");
+					timeStopGA.Add(ga, res);
 					SqlDataReader reader = command.ExecuteReader();
-
+					
 					while (reader.Read()) {
 						PiramidaEnrty rec = new PiramidaEnrty();
-						int ga = reader.GetInt32(1) % 100;
 						DateTime lastDate = reader.GetDateTime(0);
 						int val = (int)reader.GetDouble(2);
 
-						if (val == 1) {
-							timeStopGA.Add(ga, "0");
-						}
-						else {
+						if (lastDate.AddHours(2) > date) {
+							timeStopGA[ga] = "0";
+						} else {
 							double diff = OgranGARecord.dateDiff(lastDate, date);
 							int days = (int)(diff / 60 / 24);
 							int hours = (int)(diff % (60 * 24)) / 60;
 							int minutes = (int)(diff - days * 60 * 24 - hours * 60);
-							string res = String.Format(" {0}:{1:00}:{2:00} ", days, hours, minutes);
-							timeStopGA.Add(ga, res);
+							res = String.Format(" {0}:{1:00}:{2:00} ", days, hours, minutes);
+							timeStopGA[ga] = res;
 						}
 
 					}
 					reader.Close();
 				}
 
-			}
-			finally {
-				try { command.Dispose(); }
-				catch { }
-				try { connection.Close(); }
-				catch { }
+			} finally {
+				try { command.Dispose(); } catch { }
+				try { connection.Close(); } catch { }
 			}
 
 			return timeStopGA;
@@ -271,8 +270,7 @@ namespace VotGES.OgranGA {
 						addTime += diffFromStart;
 					else
 						addTime += record.Value1;
-				}
-				else {
+				} else {
 					addCnt++;
 					timeToEnd = OgranGARecord.dateDiff(record.Date, dateEnd);
 					addTime = 0;
@@ -471,7 +469,7 @@ namespace VotGES.OgranGA {
 		}
 
 		public static void processData(DateTime dateStart, DateTime dateEnd, int minutes) {
-			Logger.Info(String.Format("Обработка пусков-остановов {0}-{1} ",dateStart,dateEnd), Logger.LoggerSource.service);
+			Logger.Info(String.Format("Обработка пусков-остановов {0}-{1} ", dateStart, dateEnd), Logger.LoggerSource.service);
 			for (int ga = 1; ga <= 10; ga++) {
 				Logger.Info("===GA" + ga, Logger.LoggerSource.service);
 				procesPuskStopData(dateStart, dateEnd, minutes, ga);
@@ -482,7 +480,7 @@ namespace VotGES.OgranGA {
 			string insertIntoHeader = "INSERT INTO Data (parnumber,object,item,value0,value1,valueMin,valueMax,valueEq,objtype,data_date,rcvstamp,season)";
 			string frmt = "SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, '{9}', '{10}', {11}";
 			List<string> allData = new List<string>();
-			int[] items={2,6,18,22,26,30,42,46,50,54};
+			int[] items = { 2, 6, 18, 22, 26, 30, 42, 46, 50, 54 };
 			Dictionary<int, int> prevVal = new Dictionary<int, int>();
 			Dictionary<int, DateTime> prevDate = new Dictionary<int, DateTime>();
 			for (int ga = 1; ga <= 10; ga++) {
@@ -492,15 +490,15 @@ namespace VotGES.OgranGA {
 			List<PiramidaEnrty> data = PiramidaAccess.GetDataFromDB(dateStart, dateEnd, 8738, 0, 4, items.ToList(), true, true, "PMin");
 			foreach (PiramidaEnrty rec in data) {
 				int ga = 0;
-				foreach (int item in items){
+				foreach (int item in items) {
 					ga++;
 					if (rec.Item == item)
 						break;
 				}
 				/*if (ga != 3)
 					continue;*/
-				int val=rec.Value0>0?1:0;
-				if (prevVal[ga] != val && OgranGARecord.dateDiff(prevDate[ga],rec.Date)>5) {
+				int val = rec.Value0 > 0 ? 1 : 0;
+				if (prevVal[ga] != val && OgranGARecord.dateDiff(prevDate[ga], rec.Date) > 5) {
 					String insertStr = String.Format(frmt, 13, 30, ga + 700, val, 0, 0, 0, 0, 2, rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), DBSettings.getSeason(rec.Date));
 					allData.Add(insertStr);
 					insertStr = String.Format(frmt, 13, 30, ga + 400, val, 0, 0, 0, 0, 2, rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), rec.Date.ToString("yyyy-MM-dd HH:mm:ss"), DBSettings.getSeason(rec.Date));
@@ -508,9 +506,9 @@ namespace VotGES.OgranGA {
 					prevVal[ga] = val;
 					prevDate[ga] = rec.Date;
 				}
-				
-			}			
-			Logger.Info(insertIntoHeader+" \n "+String.Join("\n UNION ALL \n", allData));
+
+			}
+			Logger.Info(insertIntoHeader + " \n " + String.Join("\n UNION ALL \n", allData));
 
 		}
 
@@ -550,8 +548,8 @@ namespace VotGES.OgranGA {
 				foreach (OgranGARecord record in data) {
 					string insert = string.Format(dataFormat, record.dateStart.ToString(DBInfo.DateFormat), record.dateEnd.ToString(DBInfo.DateFormat),
 							record.GA, record.cntPusk, record.cntStop, record.cntAfterMax, record.cntLessMin,
-							record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG, 
-							record.timeNPRCH,record.timeOPRCH,record.timeAVRCHM,record.cntNPRCH,record.cntOPRCH,record.cntAVRCHM);
+							record.timeSK, record.timeGen, record.timeAfterMax, record.timeLessMin, record.timeRun, record.timeHHT, record.timeHHG,
+							record.timeNPRCH, record.timeOPRCH, record.timeAVRCHM, record.cntNPRCH, record.cntOPRCH, record.cntAVRCHM);
 					insertList.Add(insert);
 					if (index == 20 || record == data.Last()) {
 						command.CommandText = insertStr + " \n " + String.Join(" \nUNION ALL\n ", insertList);
@@ -561,12 +559,9 @@ namespace VotGES.OgranGA {
 						index = 0;
 					}
 				}
-			}
-			finally {
-				try { command.Dispose(); }
-				catch { }
-				try { connection.Close(); }
-				catch { }
+			} finally {
+				try { command.Dispose(); } catch { }
+				try { connection.Close(); } catch { }
 			}
 		}
 

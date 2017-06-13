@@ -26,7 +26,7 @@ namespace VotGES.OgranGA {
 		}
 
 
-		public OgranGAReport(DateTime dateStart, DateTime dateEnd,bool isKOTMI= false) {
+		public OgranGAReport(DateTime dateStart, DateTime dateEnd,bool isKOTMI= true) {
 			DateStart = dateStart;
 			DateEnd = dateEnd;
 			IsKOTMI = isKOTMI;

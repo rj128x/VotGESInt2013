@@ -245,10 +245,10 @@
                         <StackPanel >
                             <usr:ReportSettingsControl x:Name="SettingsControl" 
 														IsEnabled="{Binding IsBusy, Source={StaticResource globalStatus}, Converter={StaticResource logicNotConverter}}"/>
-                            <Button Name="btnGetPuskStop" Content="Получить пуски/остановы" Click="btnGetPuskStop_Click"/>
+                            <Button Name="btnGetPuskStop" Content="Получить пуски/остановы" Click="btnGetPuskStop_Click" Visibility="Collapsed"/>
                             <Button Name="btnGetPuskStopKotmi" Content="Получить пуски/остановы КОТМИ" Click="btnGetPuskStopKotmi_Click"/>
-                            <Button Name="btnGetPuskStopByDays" Content="Получить пуски/остановы по дням" Click="btnGetPuskStopByDays_Click"/>
-                            <Button Name="btnGetPuskStopFull" Content="Получить пуски/остановы график" Click="btnGetPuskStopFull_Click"/>
+                            <Button Name="btnGetPuskStopByDays" Content="Получить пуски/остановы по дням" Click="btnGetPuskStopByDays_Click" Visibility="Collapsed"/>
+                            <Button Name="btnGetPuskStopFull" Content="Получить пуски/остановы график" Click="btnGetPuskStopFull_Click" Visibility="Collapsed"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
