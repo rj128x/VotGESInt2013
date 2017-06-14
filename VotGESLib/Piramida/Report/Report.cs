@@ -463,9 +463,9 @@ namespace VotGES.Piramida.Report {
 			}
 			
 			if (UsePiramida2000 && Interval==IntervalReportEnum.minute)
-				connection = PiramidaAccess.getConnection("PMin");
+				connection = PiramidaAccess.getConnection("P2000");
 
-			if ((obj == "8739" || obj == "8740"))
+			if ((obj == "8739" || obj == "8740") )
 				connection = PiramidaAccess.getConnection("PTU");
 
 			connection.Open();
