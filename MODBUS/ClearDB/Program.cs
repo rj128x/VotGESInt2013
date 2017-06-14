@@ -87,6 +87,12 @@ namespace ClearDB
 						minutes = 30;
 						db = "P3000";
 						break;
+					case "copyTU":
+						pn = pn12;
+						dts = dateStart.AddDays(-1);
+						minutes = 30;
+						db = "P3000";
+						break;
 					case "copy212":
 						pn = pn212;
 						dts = dateStart.AddDays(-1);
@@ -126,6 +132,8 @@ namespace ClearDB
 				AVRCHMReader.readAVRCHM(dateStart, dateEnd);
 			} else if (task == "kotmiReportHH") {
 				KotmiReport.ReadData(dateStart, dateEnd);
+			} else if (task == "kotmiReportTemp") {
+				KotmiReport.ReadData(dateStart, dateEnd,false);
 			} else {
 				double hh = 24;
 				while (date <= dateEnd) {
@@ -135,7 +143,7 @@ namespace ClearDB
 							ClearDB.Clear(date, date.AddHours(hh), "P3000");
 							break;
 						case "clearMin":
-							hh = 24;
+							hh = 1;
 							ClearDB.Clear(date, date.AddHours(hh), "PMin");
 							break;
 						case "clearSec":
@@ -161,6 +169,10 @@ namespace ClearDB
 						case "copy12":
 							hh = 4;
 							CopyData.WriteCopy(date, date.AddHours(hh), (new int[] { 12 }).ToList(), "P3000");
+							break;
+						case "copyTU":
+							hh = 4;
+							CopyData.WriteCopyObj(date, date.AddHours(hh), (new int[] { 8739, 8740 }).ToList(), "PTU", "P2000");
 							break;
 						case "copy12_0000":
 							hh = 4;

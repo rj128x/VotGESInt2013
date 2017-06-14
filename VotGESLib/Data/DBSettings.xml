@@ -38,11 +38,11 @@
       <Password>pswd</Password>
     </DBInfo>
     <DBInfo>
-      <ID>PSec</ID>
-      <Address>sr-votges-int\sqlexpress</Address>
-      <DBName>PiramidaSec</DBName>
+      <ID>PTU</ID>
+      <Address>sr-votges-015\sqlexpress</Address>
+      <DBName>PiramidaTU</DBName>
       <User>sa</User>
-      <Password>pswd</Password>
+      <Password>psWD!159!</Password>
     </DBInfo>
   </Databases>
 </DBSettings>

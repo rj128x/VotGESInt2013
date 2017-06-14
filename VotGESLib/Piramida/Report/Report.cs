@@ -450,7 +450,7 @@ namespace VotGES.Piramida.Report {
 			string obj = paramsArr[3];
 
 
-
+						
 			connection = Interval != IntervalReportEnum.minute ? 
 				(UsePiramida2000? PiramidaAccess.getConnection("P2000"):PiramidaAccess.getConnection("P3000")) : 
 				PiramidaAccess.getConnection("PMin");
@@ -461,12 +461,12 @@ namespace VotGES.Piramida.Report {
 					connection = PiramidaAccess.getConnection("PSV");
 				}
 			}
-			if (Interval == IntervalReportEnum.second) {
-				connection = PiramidaAccess.getConnection("PSec");
-			}
-
+			
 			if (UsePiramida2000 && Interval==IntervalReportEnum.minute)
-				connection = PiramidaAccess.getConnection("P2000");
+				connection = PiramidaAccess.getConnection("PMin");
+
+			if ((obj == "8739" || obj == "8740"))
+				connection = PiramidaAccess.getConnection("PTU");
 
 			connection.Open();
 			SqlDataReader reader = null; SqlCommand command = null;

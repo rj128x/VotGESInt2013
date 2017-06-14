@@ -69,7 +69,7 @@ namespace KotmiLib
 			DescArr.Add("QGESCalc", new ArcField("PTI_0", "PSV~30~4"));
 		}
 
-		public void processData() {
+		public void processData(bool min=true) {
 			Logger.Info(String.Format("Чтение данных котми с {0} по {1}", DateStart, DateEnd));
 			Data = new Dictionary<DateTime, Dictionary<string, double>>();
 			MinData = new Dictionary<DateTime, Dictionary<string, double>>();
@@ -78,7 +78,7 @@ namespace KotmiLib
 					Logger.Info(String.Format("==Чтение из котми по параметру {0}", de.Value.Code));
 					List<ArcField> fields = new List<ArcField>();
 					fields.Add(de.Value);
-					KotmiResult result = new KotmiResult(DateStart.AddHours(2), DateEnd.AddHours(2), fields, 10, "HH", false, true);
+					KotmiResult result = new KotmiResult(DateStart.AddHours(2), DateEnd.AddHours(2), fields, min?10:60, "HH", false, true);
 					result.ReadData();
 					SortedList<DateTime, double> data = result.Values[de.Value];
 					foreach (KeyValuePair<DateTime, double> kde in data) {
@@ -119,7 +119,7 @@ namespace KotmiLib
 				foreach (string dbKey in pArr) {
 					string[] dbArr = dbKey.Split('~');
 					string db = dbArr[0];
-					bool needMin = db == "PSV";
+					bool needMin = db == "PSV"&&min;
 
 					string obj = dbArr[1];
 					string item = dbArr[2];
