@@ -15,7 +15,7 @@ namespace ClearDB
 			DateTime date = dateStart.Date.AddDays(0);
 			bool send = false;
 			string message = "";
-			while (date <= dateEnd.Date) {
+			while (date < dateEnd.Date) {
 				ReportCheckMaket report = new ReportCheckMaket(date);
 				List<string> result = report.CheckData(isIKM, isTU);
 				if (result.Count > 0) {
