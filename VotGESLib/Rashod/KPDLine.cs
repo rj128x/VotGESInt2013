@@ -123,17 +123,23 @@ namespace VotGES.Rashod
 
 			for (double napor = 15; napor < 23; napor += table.stepNapor) {
 				double minP = ga == 4 ? 40 : 35;
-				double nap = OgranLineTable.OgranData[ga].Keys.First(n => n >= napor);
-				double maxP = OgranLineTable.OgranData[ga][nap];
-				for (double power = minP; power <= maxP; power += table.stepPower) {
+				double nap = 15;
+				double maxP = 1100;
+				double step = 10;
+				if (ga >= 1 && ga <= 10) {
+					nap = OgranLineTable.OgranData[ga].Keys.First(n => n >= napor);
+					maxP = OgranLineTable.OgranData[ga][nap];
+					step = table.stepPower;
+				}
+				for (double power = minP; power <= maxP; power += step) {
 					double rashod = RashodTable.getRashod(ga, power, napor);
 					double kpd = RashodTable.KPD(power, napor, rashod);
 					int kpdInt = (int)Math.Round(kpd * 100);
-					if (kpdInt >= 70 && kpdInt <= 95) {
-						int kpdRes = kpds.First(k => k >= kpdInt);
-						if (kpds.Contains(kpdRes)) {
-							dataSeries[kpdRes].Points.Add(new ChartDataPoint(power, napor));
-						}
+					kpdInt = kpdInt < 70 ? 70 : kpdInt;
+					kpdInt = kpdInt > 95 ? 95 : kpdInt;
+					int kpdRes = kpds.First(k => k >= kpdInt);
+					if (kpds.Contains(kpdRes)) {
+						dataSeries[kpdRes].Points.Add(new ChartDataPoint(power, napor));
 					}
 				}
 			}

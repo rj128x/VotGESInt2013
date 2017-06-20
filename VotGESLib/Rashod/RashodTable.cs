@@ -161,7 +161,7 @@ namespace VotGES
 				//Logger.debug(String.Format("Расход мощность: {0} napor: {1} ({2})", power, napor, rashod));
 				return rashod;
 			} catch (Exception e) {
-				Logger.Error(String.Format("Ошибка получения расхода мощность: {0} napor: {1} ({2})",power,napor,e.Message));
+				//Logger.Error(String.Format("Ошибка получения расхода мощность: {0} napor: {1} ({2})",power,napor,e.Message));
 				return 0;
 			}
 		}
@@ -170,6 +170,7 @@ namespace VotGES
 
 		protected double getPower(double rashod, double napor) {
 			try {
+				napor = napor < 14 ? napor + 0.001 : napor - 0.001;
 				KeyValuePair<double,SortedList<double,double>> naporRashod1=rashodsByNapor.Last(de => de.Key <= napor);
 				KeyValuePair<double,SortedList<double,double>> naporRashod2=rashodsByNapor.First(de => de.Key >= napor);
 				KeyValuePair<double,double>powerRashod11=naporRashod1.Value.Last(de => de.Value <= rashod);
@@ -191,7 +192,7 @@ namespace VotGES
 				//Logger.debug(String.Format("Мощность расход: {0} napor: {1} ({2})", rashod, napor, power));
 				return power;
 			} catch (Exception e) {
-				Logger.Error(String.Format("Ошибка получения мощности расход: {0} napor: {1} ({2})", rashod, napor, e.Message));
+				//Logger.Error(String.Format("Ошибка получения мощности расход: {0} napor: {1} ({2})", rashod, napor, e.Message));
 				return 0;
 			}
 		}
