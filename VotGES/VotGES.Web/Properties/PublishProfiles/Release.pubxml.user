@@ -379,7 +379,7 @@
       <publishTime>12/04/2013 01:58:10</publishTime>
     </File>
     <File Include="bin/KotmiLib.dll">
-      <publishTime>06/20/2017 08:28:26</publishTime>
+      <publishTime>06/20/2017 10:21:25</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>06/28/2015 13:20:58</publishTime>
@@ -502,10 +502,10 @@
       <publishTime>11/18/2016 19:20:06</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>06/20/2017 08:28:25</publishTime>
+      <publishTime>06/20/2017 10:21:24</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>06/20/2017 08:28:26</publishTime>
+      <publishTime>06/20/2017 10:21:25</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
       <publishTime>04/12/2013 02:58:20</publishTime>
@@ -526,7 +526,7 @@
       <publishTime>12/04/2013 01:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>06/20/2017 07:49:32</publishTime>
+      <publishTime>06/20/2017 10:21:34</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>

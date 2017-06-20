@@ -66,8 +66,8 @@ namespace VotGES.Rashod
 				//Logger.Info(String.Format("Получение оптимального расхода для напора {0} и мощности {1} : {2}",napor,power,minRashod));
 				return min ? minRashod : maxRashod;
 			} catch (Exception e) {
-				Logger.Error(String.Format("Ошибка получения оптимпльного расхода мощность: {0} napor: {1} ({2})", power, napor, e.Message));
-				Logger.Error(e.StackTrace);
+				/*Logger.Error(String.Format("Ошибка получения оптимпльного расхода мощность: {0} napor: {1} ({2})", power, napor, e.Message));
+				Logger.Error(e.StackTrace);*/
 				return 0;
 			}
 		}

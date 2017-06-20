@@ -121,7 +121,7 @@ namespace VotGES.Rashod
 				dataSeries.Add(kpd, data);
 			}
 
-			for (double napor = table.minNapor; napor < table.maxNapor; napor += table.stepNapor) {
+			for (double napor = 15; napor < 23; napor += table.stepNapor) {
 				double minP = ga == 4 ? 40 : 35;
 				double nap = OgranLineTable.OgranData[ga].Keys.First(n => n >= napor);
 				double maxP = OgranLineTable.OgranData[ga][nap];
@@ -150,8 +150,10 @@ namespace VotGES.Rashod
 				ogranMax.Name = "ogrMax";
 
 				foreach (KeyValuePair<double, double> de in OgranLineTable.OgranData[ga]) {
-					ogranMax.Points.Add(new ChartDataPoint(de.Value, de.Key));
-					ogranMin.Points.Add(new ChartDataPoint(ga == 4 ? 40 : 35, de.Key));
+					if (de.Key >= 15) {
+						ogranMax.Points.Add(new ChartDataPoint(de.Value, de.Key));
+						ogranMin.Points.Add(new ChartDataPoint(ga == 4 ? 40 : 35, de.Key));
+					}
 				}
 				answer.Data.addSerie(ogranMin);
 				answer.Data.addSerie(ogranMax);

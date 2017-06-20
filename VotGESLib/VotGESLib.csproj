@@ -164,6 +164,7 @@
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="Data\nnet\vges_nb.net" />
+    <None Include="Data\rashodsGA4.xls" />
     <None Include="Data\rashods\1.csv" />
     <None Include="Data\rashods\10.csv" />
     <None Include="Data\rashods\2.csv" />

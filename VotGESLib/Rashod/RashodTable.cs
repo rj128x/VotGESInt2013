@@ -141,7 +141,8 @@ namespace VotGES
 		}
 
 		protected double getRashod(double power, double napor) {
-			try {				
+			try {
+				napor = napor < 14 ? napor + 0.001 : napor - 0.001;
 				KeyValuePair<double,SortedList<double,double>> naporRashod1=rashodsByNapor.Last(de => de.Key <= napor);
 				KeyValuePair<double,SortedList<double,double>> naporRashod2=rashodsByNapor.First(de => de.Key >= napor);
 				KeyValuePair<double,double>powerRashod11=naporRashod1.Value.Last(de => de.Key <= power);
@@ -227,7 +228,7 @@ namespace VotGES
 		}
 
 		public static double getRashod(int ga, double power, double napor) {
-			if (power == 0) return 0;
+			if (power == 0) return 0;			
 			return getRashodTable(ga).getRashod(power, napor);
 		}
 
