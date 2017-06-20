@@ -138,6 +138,7 @@
       <DependentUpon>rashods.resx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Rashod\InerpolationRashod.cs" />
     <Compile Include="Rashod\KPDLine.cs" />
     <Compile Include="Rashod\OgranLineTable.cs" />
     <Compile Include="Rashod\RashodHars.cs" />

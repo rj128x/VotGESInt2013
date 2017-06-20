@@ -25,7 +25,13 @@ namespace VotGES.Chart
 			Colors.Add(7, GetColorStr(Color.Purple));
 			Colors.Add(8, GetColorStr(Color.Brown));
 			Colors.Add(9, GetColorStr(Color.LightBlue));
-			Colors.Add(10, GetColorStr(Color.LightGreen));			
+			Colors.Add(10, GetColorStr(Color.LightGreen));
+			Colors.Add(11, GetColorStr(Color.Aqua));
+			Colors.Add(12, GetColorStr(Color.Brown));
+			Colors.Add(13, GetColorStr(Color.Coral));
+			Colors.Add(14, GetColorStr(Color.DarkGoldenrod));
+			Colors.Add(15, GetColorStr(Color.DarkGreen));
+			Colors.Add(16, GetColorStr(Color.DarkSlateGray));
 		}
 
 		public static string GetColorStr(Color color) {

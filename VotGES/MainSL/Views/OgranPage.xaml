@@ -52,14 +52,14 @@
 
                     <Grid Grid.Row="1">
                         <sdk:TabControl >
-                            <sdk:TabItem Name="tabImage" Header="Изображение" >
+                            <sdk:TabItem Name="tabImage" Header="Изображение" Visibility="Collapsed" >
                                 <Grid >
                                     <Image Name="imgHar" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                     <Canvas Name="canvas"/>
                                 </Grid>
 
                             </sdk:TabItem>
-                            <sdk:TabItem Name="tabTable" Header="***"  >
+                            <sdk:TabItem Name="tabTable" Header="***"  IsSelected="True">
                                 <usr:ChartControl x:Name="chartControl" VerticalAlignment="Stretch"/>
                             </sdk:TabItem>
                         </sdk:TabControl>
