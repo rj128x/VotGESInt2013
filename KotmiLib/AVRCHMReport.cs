@@ -95,10 +95,10 @@ namespace KotmiLib
 			DescArr.Add("P_Zad_GTP2", new ArcField("TI_4105"));
 
 			for (int ga = 1; ga <= 10; ga++) {
-				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_40{0}4", ga - 1)));
-				DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_40{0}8", ga - 1)));
+				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_{0}", 15+30*(ga - 1))));
+				DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_{0}", 24+30*(ga - 1))));
 				DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
-				DescArr.Add("UR_GA_" + ga, new ArcField(String.Format("TI_40{0}2", ga - 1)));
+				//DescArr.Add("UR_GA_" + ga, new ArcField(String.Format("TI_45{0}1", ga - 1)));
 			}
 
 		}
@@ -197,13 +197,13 @@ namespace KotmiLib
 						double f = data["F_GA_" + ga];
 						double prevF = prevData["F_GA_" + ga];
 						double maxP = ga <= 2 ? 115 : 105;
-						bool V = data["V_GA_" + ga] > 0 && data["UR_GA_" + ga] > 0;
-						bool prevV = prevData["V_GA_" + ga] > 0 && prevData["UR_GA_" + ga] > 0;
+						bool V = data["V_GA_" + ga] > 0;
+						bool prevV = prevData["V_GA_" + ga]>0;
 
-						if (V) {
+						if (f>40) {
 							Result.TimeWork[ga] += StepSec;
 
-							if (p > 0) {
+							if (V && p>0) {
 								Result.TimeGen[ga] += StepSec;
 								if (p < 33) {
 									Result.TimeLessMin[ga] += StepSec;
@@ -217,22 +217,22 @@ namespace KotmiLib
 								}
 							}
 
-							if (f > 40 && (f < 49.925 || f > 50.075)) {
+							if (f > 40 && (f < 49.925 || f > 50.075)&&V) {
 								Result.TimeOPRCH[ga] += StepSec;
 								if (prevF > 40 && (prevF > 49.925 && prevF < 50.075)) {
 									Result.CntOPRCH[ga]++;
 								}
 							}
-							if (f < 40 ) {
+							if (!V ) {
 								Result.TimeHHT[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
 								Result.TimeHHG[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
 							} 
-							if (!prevV) {
+							if (prevF<40) {
 								Result.CntPusk[ga]++;
 							}
 						} else {
 							Result.TimeStop[ga] += StepSec;
-							if (prevV)
+							if (prevF>40)
 								Result.CntStop[ga]++;
 						}
 					}
