@@ -14,6 +14,7 @@ namespace Rashods
 		static void Main(string[] args) {
 			Logger.InitFileLogger("C:/logs/", "rashods.txt");
 			int ga = Int32.Parse(args[0]);
+			bool ish = args[1] == "ish";
 			double napor = 13;
 			double minPower = ga <= 10 ? 0 : 35;
 			double maxPower = ga <= 10 ? 120 : 1100;
@@ -34,10 +35,10 @@ namespace Rashods
 					if (ga == 12)
 						q *= 1.1;
 					text += string.Format(";{0:0.00}", q);
-					napor += 0.1;
+					napor += ish?1:0.1;
 				}
 				text += "\r\n";
-				power += 1;
+				power += ish?10:1;
 			}
 			Console.WriteLine(firstString+"\r\n"+text);
 		}
