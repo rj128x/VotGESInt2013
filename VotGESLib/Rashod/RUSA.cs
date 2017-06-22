@@ -22,7 +22,7 @@ namespace VotGES.Rashod
 				for (int count=1; count <= avail.Count; count++) {					
 					double divPower=(double)power / (double)count;
 					
-					if ((divPower < 35) || (divPower > 110))
+					if ((divPower < 35) || (divPower > 120))
 						continue;
 					SortedList<double,int>rashods=new SortedList<double, int>();
 					foreach(int ga in avail) {

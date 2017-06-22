@@ -114,7 +114,7 @@ namespace VotGES.Web.Services {
 			}
 
 			try {
-				List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddMinutes(-130), DateTime.Now.AddHours(-2), 3, 2, 4, (new int[] { 1,4 }).ToList(), true, true, "PMin");
+				List<PiramidaEnrty> list = PiramidaAccess.GetDataFromDB(DateTime.Now.AddHours(-12), DateTime.Now.AddHours(-2), 3, 2, 12, (new int[] { 1,4 }).ToList(), true, true, "PSV");
 				foreach (PiramidaEnrty entry in list) {
 					switch (entry.Item) {
 						case 1:

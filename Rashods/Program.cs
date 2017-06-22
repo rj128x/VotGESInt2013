@@ -16,8 +16,8 @@ namespace Rashods
 			int ga = Int32.Parse(args[0]);
 			bool ish = args[1] == "ish";
 			double napor = 13;
-			double minPower = ga <= 10 ? 0 : 35;
-			double maxPower = ga <= 10 ? 120 : 1100;
+			double minPower = ga <= 10 ? 0 : 0;
+			double maxPower = ga <= 10 ? 120 : 1200;
 			
 
 			double power = minPower;
