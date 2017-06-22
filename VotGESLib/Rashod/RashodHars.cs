@@ -15,7 +15,7 @@ namespace VotGES.Rashod
 	};
 	public class RashodHars
 	{
-		public static int CountPoints=100;
+		public static int CountPoints=120;
 
 		protected static ChartProperties getChartPropertiesNapors(double[] napors) {
 			ChartProperties props=new ChartProperties();
@@ -174,7 +174,7 @@ namespace VotGES.Rashod
 				answer.Title = isKPD ? "КПД ГА-{0} при разных напорах" : "Расходная характеристика ГА-{0} при разных напорах";
 				answer.Title = String.Format(answer.Title, ga);
 			}
-			double[]napors=new double[] { 16, 17, 18, 19, 20, 21, 22, napor };
+			double[]napors=new double[] { 16, 17, 18, 19, 20, 21, 22,23, napor };
 			answer.Properties = getChartPropertiesNapors(napors);
 			answer.Data = new ChartData();
 			RashodTable table=RashodTable.getRashodTable(ga);
@@ -213,7 +213,7 @@ namespace VotGES.Rashod
 			if (ga > 10) {
 				powers = new double[] { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, power };
 			} else {
-				powers = new double[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, power };
+				powers = new double[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,120, power };
 			}
 			answer.Properties = getChartPropertiesPowers(powers);
 			answer.Data = new ChartData();
@@ -295,7 +295,7 @@ namespace VotGES.Rashod
 			ChartAnswer answer=new ChartAnswer();
 			answer.Title = isKPD ? "Оптимальный и средний КПД станции при разных напорах" : "Оптимальная и средняя расходная характеристика станции при разных напорах";
 
-			double[]napors=new double[] { 16, 17, 18, 19, 20, 21, 22, napor };
+			double[]napors=new double[] { 16, 17, 18, 19, 20, 21, 22,23, napor };
 			answer.Properties = getChartPropertiesNaporsCMP(napors);
 			answer.Data = new ChartData();
 			RashodTable table=RashodTable.getRashodTable(11);

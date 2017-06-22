@@ -35,15 +35,15 @@ namespace VotGES
 		protected RashodTable(int ga) {
 			
 			string str=null;
-			int len=111;
+			int len=121;
 			switch (ga) {
 				case 12:
 					str = VotGES.rashods.opt;
-					len = 1035;
+					len = 1200;
 					break;
 				case 11:
 					str = VotGES.rashods.avg;
-					len = 1035;
+					len = 1200;
 					break;
 				case 1:
 					str = VotGES.rashods._1;
@@ -77,6 +77,7 @@ namespace VotGES
 					break;
 			}
 			string[]rows=str.Split('\n');
+			len = rows.Count();
 			int Row = 0;
 			minPower = double.MaxValue;
 			maxPower = double.MinValue;

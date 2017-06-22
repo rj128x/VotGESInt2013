@@ -65,7 +65,7 @@ namespace VotGES.Rashod
 		public static ChartAnswer createKPDTable(int ga) {
 			ChartAnswer answer = new ChartAnswer();
 
-			int[] kpds = { 70, 75, 80, 83, 85, 86, 87, 88, 89, 90, 95 };
+			int[] kpds = { 80, 83, 85, 86, 87, 88, 89, 90, 95 };
 			/*switch (ga) {
 				case 1:
 					int[] ks1={78,79,80,81,82,83,84,85,86,87};
@@ -109,6 +109,10 @@ namespace VotGES.Rashod
 					break;
 
 			}*/
+			if (ga == 4) {
+				int[] ks4 = { 90,93,94,95,96,97,98 };
+				kpds = ks4;
+			}
 			RashodTable table = RashodTable.getRashodTable(ga);
 
 			answer.Properties = getChartPropertiesKPDS(kpds, (ga >= 1 && ga <= 10));
@@ -122,9 +126,9 @@ namespace VotGES.Rashod
 			}
 
 			for (double napor = 15; napor < 23; napor += table.stepNapor) {
-				double minP = ga == 4 ? 40 : 35;
+				double minP = 35;
 				double nap = 15;
-				double maxP = 1100;
+				double maxP = 1200;
 				double step = 10;
 				if (ga >= 1 && ga <= 10) {
 					nap = OgranLineTable.OgranData[ga].Keys.First(n => n >= napor);
@@ -135,8 +139,8 @@ namespace VotGES.Rashod
 					double rashod = RashodTable.getRashod(ga, power, napor);
 					double kpd = RashodTable.KPD(power, napor, rashod);
 					int kpdInt = (int)Math.Round(kpd * 100);
-					kpdInt = kpdInt < 70 ? 70 : kpdInt;
-					kpdInt = kpdInt > 95 ? 95 : kpdInt;
+					kpdInt = kpdInt < kpds.Min() ? kpds.Min() : kpdInt;
+					kpdInt = kpdInt > kpds.Max() ? kpds.Max() : kpdInt;
 					int kpdRes = kpds.First(k => k >= kpdInt);
 					if (kpds.Contains(kpdRes)) {
 						dataSeries[kpdRes].Points.Add(new ChartDataPoint(power, napor));
@@ -158,7 +162,7 @@ namespace VotGES.Rashod
 				foreach (KeyValuePair<double, double> de in OgranLineTable.OgranData[ga]) {
 					if (de.Key >= 15) {
 						ogranMax.Points.Add(new ChartDataPoint(de.Value, de.Key));
-						ogranMin.Points.Add(new ChartDataPoint(ga == 4 ? 40 : 35, de.Key));
+						ogranMin.Points.Add(new ChartDataPoint(35, de.Key));
 					}
 				}
 				answer.Data.addSerie(ogranMin);
