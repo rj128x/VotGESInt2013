@@ -298,7 +298,7 @@
       <publishTime>06/14/2017 08:27:48</publishTime>
     </File>
     <File Include="bin/Data/KapRemontsData.xml">
-      <publishTime>04/25/2016 10:16:22</publishTime>
+      <publishTime>06/23/2017 08:29:44</publishTime>
     </File>
     <File Include="bin/Data/KOTMISettings.xml">
       <publishTime>02/06/2017 13:32:57</publishTime>
@@ -526,7 +526,7 @@
       <publishTime>12/04/2013 01:58:20</publishTime>
     </File>
     <File Include="ClientBin/MainSL.xap">
-      <publishTime>06/22/2017 12:45:34</publishTime>
+      <publishTime>06/23/2017 08:13:35</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>09/16/2014 08:17:16</publishTime>
