@@ -88,17 +88,28 @@ namespace KotmiLib
 
 		static AVRCHMReport() {
 			DescArr = new Dictionary<string, ArcField>();
-			DescArr.Add("P_Plan_GTP1", new ArcField("TI_4111"));
+
+			for (int group = 0; group <= 8; group++) {
+				DescArr.Add(String.Format("P_ZVN_GR{0}", group), new ArcField(String.Format("TI_{0}", 30300 + group)));
+			}
+			/*DescArr.Add("P_Plan_GTP1", new ArcField("TI_4111"));
 			DescArr.Add("P_Plan_GTP2", new ArcField("TI_4115"));
 
 			DescArr.Add("P_Zad_GTP1", new ArcField("TI_4101"));
-			DescArr.Add("P_Zad_GTP2", new ArcField("TI_4105"));
+			DescArr.Add("P_Zad_GTP2", new ArcField("TI_4105"));*/
 
 			for (int ga = 1; ga <= 10; ga++) {
-				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_{0}", 15+30*(ga - 1))));
-				DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_{0}", 24+30*(ga - 1))));
-				DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
-				//DescArr.Add("UR_GA_" + ga, new ArcField(String.Format("TI_45{0}1", ga - 1)));
+				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_{0}", 30015 + (ga - 1) * 30)));
+				//DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_{0}", 24+30*(ga - 1))));
+				DescArr.Add("PF_GA_" + ga, new ArcField(String.Format("TI_{0}", 30024 + 30 * (ga - 1))));
+				DescArr.Add("MAXP_GA_" + ga, new ArcField(String.Format("TI_{0}", 30025 + 30 * (ga - 1))));
+				//DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
+				DescArr.Add("GA_NPRCH_" + ga, new ArcField(String.Format("TS_{0}", 30009 + 11 * (ga - 1))));
+				DescArr.Add("GA_GR_" + ga, new ArcField(String.Format("TS_{0}", 30008 + 11 * (ga - 1))));
+				DescArr.Add("GA_HHG_" + ga, new ArcField(String.Format("TS_{0}", 30007 + 11 * (ga - 1))));
+				DescArr.Add("GA_HHT_" + ga, new ArcField(String.Format("TS_{0}", 30006 + 11 * (ga - 1))));
+				DescArr.Add("GA_STOP_" + ga, new ArcField(String.Format("TS_{0}", 30005 + 11 * (ga - 1))));
+				DescArr.Add("GA_GROUP_" + ga, new ArcField(String.Format("TI_{0}", 30023 + 30 * (ga - 1))));
 			}
 
 		}
@@ -143,69 +154,60 @@ namespace KotmiLib
 
 				if (dtt >= DateStart) {
 					Dictionary<string, double> prevData = InitData[dtPrev];
-					double ZVN1 = data["P_Zad_GTP1"] - data["P_Plan_GTP1"];
-					double ZVN2 = data["P_Zad_GTP2"] - data["P_Plan_GTP2"];
 
-					double prevZVN1 = prevData["P_Zad_GTP1"] - prevData["P_Plan_GTP1"];
-					double prevZVN2 = prevData["P_Zad_GTP2"] - prevData["P_Plan_GTP2"];
-
-					if (Math.Abs(ZVN1) > 0.1) {
-						int cnt = 0;
-						for (int ga = 1; ga <= 2; ga++) {
-							if (data["P_GA_" + ga] > 0)
-								cnt++;
-						}
-						for (int ga = 1; ga <= 2; ga++) {
-							if (data["P_GA_" + ga] > 0) {
-								Result.TimeAVRCHM[ga] += StepSec;
-								if (Math.Abs(prevZVN1) < 0.1)
-									Result.CntAVRCHM[ga]++;
-								if (cnt > 0) {
-									if (ZVN1 > 0)
-										Result.PosAVRCHM[ga] += (ZVN1 / cnt) * StepSec;
-									else
-										Result.NegAVRCHM[ga] += (ZVN1 / cnt) * StepSec;
+					for (int group = 1; group <= 8; group++) {
+						double ZVN = data[String.Format("P_ZVN_GR{0}", group)];
+						double prevZVN = data[String.Format("P_ZVN_GR{0}", group)];
+						if (Math.Abs(ZVN) > 0.1) {
+							int cnt = 0;
+							List<int> ggs = new List<int>();
+							for (int ga = 1; ga <= 10; ga++) {
+								if (Math.Abs(data["GA_GROUP_" + ga] - group) < 0.1) {
+									cnt++;
+									ggs.Add(ga);
+								}
+							}
+							foreach (int ga in ggs) {
+								if (data["GA_GR_" + ga] > 0) {
+									Result.TimeAVRCHM[ga] += StepSec;
+									if (Math.Abs(prevZVN) < 0.1)
+										Result.CntAVRCHM[ga]++;
+									if (cnt > 0) {
+										if (ZVN > 0)
+											Result.PosAVRCHM[ga] += (ZVN / cnt) * StepSec;
+										else
+											Result.NegAVRCHM[ga] += (ZVN / cnt) * StepSec;
+									}
 								}
 							}
 						}
 					}
-
-					if (Math.Abs(ZVN2) > 0.1) {
-						int cnt = 0;
-						for (int ga = 3; ga <= 10; ga++) {
-							if (data["P_GA_" + ga] > 0)
-								cnt++;
-						}
-						for (int ga = 3; ga <= 10; ga++) {
-							if (data["P_GA_" + ga] > 0) {
-								Result.TimeAVRCHM[ga] += StepSec;
-								if (Math.Abs(prevZVN2) < 0.1)
-									Result.CntAVRCHM[ga]++;
-								if (cnt > 0) {
-									if (ZVN2 > 0)
-										Result.PosAVRCHM[ga] += (ZVN2 / cnt) * StepSec;
-									else
-										Result.NegAVRCHM[ga] += (ZVN2 / cnt) * StepSec;
-								}
-							}
-						}
-					}
+					
 
 					for (int ga = 1; ga <= 10; ga++) {
+						double pf = data["PF_GA_" + ga];
+						double prevPF = prevData["PF_GA_" + ga];
 						double p = data["P_GA_" + ga];
 						double prevP = prevData["P_GA_" + ga];
-						double f = data["F_GA_" + ga];
-						double prevF = prevData["F_GA_" + ga];
-						double maxP = ga <= 2 ? 115 : 105;
-						bool V = data["V_GA_" + ga] > 0;
-						bool prevV = prevData["V_GA_" + ga]>0;
+						double maxP = data["MAXP_GA_" + ga]; ;
+						bool V = (data["GA_STOP_" + ga] == 0);
+						bool prevV = (prevData["GA_STOP_" + ga] == 0);
 
-						if (f>40) {
+						bool GR = (data["GA_GR_" + ga] == 1);
+						bool prevGR = (prevData["GA_GR_" + ga] == 1);
+
+						bool NPRCH = (data["GA_NPRCH_" + ga] == 1);
+						bool prevNPRCH = (prevData["GA_NPRCH_" + ga] == 1);
+
+						bool HHG = (data["GA_HHG_" + ga] == 1);
+						bool HHT = (data["GA_HHT_" + ga] == 1);
+
+						if (V&& (HHG||HHT||GR)) {
 							Result.TimeWork[ga] += StepSec;
 
-							if (V && p>0) {
+							if (V && GR) {
 								Result.TimeGen[ga] += StepSec;
-								if (p < 33) {
+								if (p < 33 && p>10) {
 									Result.TimeLessMin[ga] += StepSec;
 									if (prevP == 0 || prevP >= 33)
 										Result.CntLessMin[ga]++;
@@ -217,22 +219,24 @@ namespace KotmiLib
 								}
 							}
 
-							if (f > 40 && (f < 49.925 || f > 50.075)&&V) {
+							if (V&&GR&&(Math.Abs(pf)>0.01)&&(Math.Abs(p)>10)&&!NPRCH) {
 								Result.TimeOPRCH[ga] += StepSec;
-								if (prevF > 40 && (prevF > 49.925 && prevF < 50.075)) {
+								if (Math.Abs(prevPF) < 0.01 &&!NPRCH) {
 									Result.CntOPRCH[ga]++;
 								}
 							}
-							if (!V ) {
-								Result.TimeHHT[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
-								Result.TimeHHG[ga] += StepSec * rand.Next(1, 4) / (rand.Next(30, 50) / 10.0);
+							if (HHG ) {
+								Result.TimeHHG[ga] += StepSec;
 							} 
-							if (prevF<40) {
+							if (HHT) {
+								Result.TimeHHT[ga] += StepSec;
+							}
+							if (!prevV) {
 								Result.CntPusk[ga]++;
 							}
 						} else {
 							Result.TimeStop[ga] += StepSec;
-							if (prevF>40)
+							if (prevV)
 								Result.CntStop[ga]++;
 						}
 					}

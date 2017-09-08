@@ -75,10 +75,9 @@ namespace KotmiLib
 				NegPos = false;
 			Values = new Dictionary<ArcField, SortedList<DateTime, double>>();
 			MinValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
-			if (NegPos) {
-				NegValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
-				PosValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
-			}
+			NegValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
+			PosValues = new Dictionary<ArcField, SortedList<DateTime, double>>();
+
 			Dates = new List<DateTime>();
 			if (Minutes) {
 				MinDates = new List<DateTime>();

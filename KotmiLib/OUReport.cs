@@ -42,16 +42,18 @@ namespace KotmiLib
 			DescArr.Add("U500Vyat", new ArcField("TI_367", "PSV~3~18"));
 
 			for (int ga = 1; ga <= 10; ga++) {
-				DescArr.Add(String.Format("RashodGA_{0}", ga), new ArcField(String.Format("PTI_20{0}", ga - 1),
+				DescArr.Add(String.Format("RashodGA_{0}", ga), new ArcField(String.Format("TI_{0}", 30028+(ga - 1)*30),
 					String.Format("PSV~3~{0};P3000~1~{1}", 100 + ga, 104 + (ga - 1) * 25)));
-				DescArr.Add(String.Format("PGA_{0}", ga), new ArcField(String.Format("TI_40{0}4", ga - 1),
+				DescArr.Add(String.Format("PGA_{0}", ga), new ArcField(String.Format("TI_{0}", 30015+(ga - 1)*30),
 					String.Format("PSV~3~{0}", 200 + ga)));
-				/*DescArr.Add(String.Format("NAGA_{0}", ga), new ArcField(string.Format("TI_58{0}", ga + 10),
-					string.Format("PSV~3~{0}", 400 + ga)));*/
-				//DescArr.Add(String.Format("RKGA_{0}", ga), new ArcField(string.Format("TI41_{0}", ga)));
-				DescArr.Add(String.Format("NaporGA_{0}", ga), new ArcField(String.Format("TI_41{0}", 37 + ga),
+				DescArr.Add(String.Format("NAGA_{0}", ga), new ArcField(string.Format("TI_{0}", 30021+(ga-1)*30),
+					string.Format("PSV~3~{0}", 400 + ga)));
+				DescArr.Add(String.Format("RKGA_{0}", ga), new ArcField(string.Format("TI_{0}", 30022+(ga-1)*30),
+					String.Format("PSV~3~{0}", 500 + ga)));
+				DescArr.Add(String.Format("NaporGA_{0}", ga), new ArcField(String.Format("TI_{0}", 30027+(ga-1)*30),
 					String.Format("PSV~3~{0}", 600 + ga)));
-				//DescArr.Add(String.Format("PFGA_{0}", ga), new ArcField(string.Format("TI41_{0}", ga)));
+				DescArr.Add(String.Format("PSV~3~{0}",  ga), new ArcField(string.Format("TI_{0}", 30024+(ga-1)*30), 
+					String.Format("PSV~3~{0}", 300 + ga)));
 			}
 
 			DescArr.Add("NaporGES", new ArcField("PTI_0", "PSV~3~4;P3000~1~276"));
@@ -70,7 +72,7 @@ namespace KotmiLib
 		}
 
 		public void processData(bool min=true) {
-			Logger.Info(String.Format("Чтение данных котми с {0} по {1}", DateStart, DateEnd));
+			//Logger.Info(String.Format("Чтение данных котми с {0} по {1}", DateStart, DateEnd));
 			Data = new Dictionary<DateTime, Dictionary<string, double>>();
 			MinData = new Dictionary<DateTime, Dictionary<string, double>>();
 			foreach (KeyValuePair<string, ArcField> de in DescArr) {
@@ -115,52 +117,55 @@ namespace KotmiLib
 
 			foreach (KeyValuePair<string, ArcField> de in DescArr) {
 				//Logger.Info(de.Key);
-				string[] pArr = de.Value.PiramidaCode.Split(';');
-				foreach (string dbKey in pArr) {
-					string[] dbArr = dbKey.Split('~');
-					string db = dbArr[0];
-					bool needMin = db == "PSV"&&min;
+				try {
+					string[] pArr = de.Value.PiramidaCode.Split(';');
+					foreach (string dbKey in pArr) {
+						string[] dbArr = dbKey.Split('~');
+						string db = dbArr[0];
+						bool needMin = db == "PSV" && min;
 
-					string obj = dbArr[1];
-					string item = dbArr[2];
-					if (!SqlDel.ContainsKey(db)) {
-						SqlDel.Add(db, new List<string>());
-						SQLIns.Add(db, new List<string>());
+						string obj = dbArr[1];
+						string item = dbArr[2];
+						if (!SqlDel.ContainsKey(db)) {
+							SqlDel.Add(db, new List<string>());
+							SQLIns.Add(db, new List<string>());
+
+							if (needMin) {
+								SqlDel.Add("PMin", new List<string>());
+								SQLIns.Add("PMin", new List<string>());
+							}
+						}
+
+						string delFormat = "DELETE from data where objtype=2 and object={0} and item={1} and parnumber={2} and data_date>='{3}' and data_date<='{4}'";
+
+						string delHH = String.Format(delFormat,
+							obj, item, 12, Data.First().Key.ToString(DateFormat), Data.Last().Key.ToString(DateFormat));
+						string delMin = String.Format(delFormat,
+							obj, item, 4, MinData.First().Key.ToString(DateFormat), MinData.Last().Key.ToString(DateFormat));
+						SqlDel[db].Add(delHH);
+						if (needMin) {
+							SqlDel["PMin"].Add(delMin);
+						}
+
+						string format = "SELECT {0}, {1}, {2}, {3}, {4}, '{5}', '{6}', {7}";
+
+						foreach (DateTime date in Data.Keys) {
+							string insert = string.Format(format, 12, obj, item, Data[date][de.Key].ToString().Replace(",", "."), 2, date.ToString(DateFormat), date.ToString(DateFormat), 0);
+							//Logger.Info(insert);
+							SQLIns[db].Add(insert);
+						}
 
 						if (needMin) {
-							SqlDel.Add("PMin", new List<string>());
-							SQLIns.Add("PMin", new List<string>());
+							foreach (DateTime date in MinData.Keys) {
+								string insert = string.Format(format, 4, obj, item, MinData[date][de.Key].ToString().Replace(",", "."), 2, date.ToString(DateFormat), date.ToString(DateFormat), 0);
+								//Logger.Info(insert);
+								SQLIns["PMin"].Add(insert);
+							}
 						}
 					}
-
-					string delFormat = "DELETE from data where objtype=2 and object={0} and item={1} and parnumber={2} and data_date>='{3}' and data_date<='{4}'";
-
-					string delHH = String.Format(delFormat,
-						obj, item, 12, Data.First().Key.ToString(DateFormat), Data.Last().Key.ToString(DateFormat));
-					string delMin = String.Format(delFormat,
-						obj, item, 4, MinData.First().Key.ToString(DateFormat), MinData.Last().Key.ToString(DateFormat));
-					SqlDel[db].Add(delHH);
-					if (needMin) {
-						SqlDel["PMin"].Add(delMin);
-					}
-
-					string format = "SELECT {0}, {1}, {2}, {3}, {4}, '{5}', '{6}', {7}";
-
-					foreach (DateTime date in Data.Keys) {
-						string insert = string.Format(format, 12, obj, item, Data[date][de.Key].ToString().Replace(",", "."), 2, date.ToString(DateFormat), date.ToString(DateFormat), 0);
-						//Logger.Info(insert);
-						SQLIns[db].Add(insert);
-					}
-
-					if (needMin) {
-						foreach (DateTime date in MinData.Keys) {
-							string insert = string.Format(format, 4, obj, item, MinData[date][de.Key].ToString().Replace(",", "."), 2, date.ToString(DateFormat), date.ToString(DateFormat), 0);
-							//Logger.Info(insert);
-							SQLIns["PMin"].Add(insert);
-						}
-					}
+				}catch (Exception e) {
+					Logger.Info(e.ToString());
 				}
-
 			}
 
 			Logger.Info("Запись данных в БД");

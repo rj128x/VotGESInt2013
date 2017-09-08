@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KapRemontsData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Data>
+    <KapRemontsRecord>
+      <GA>1</GA>
+      <Date>15.04.2015</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>2</GA>
+      <Date>16.04.2014</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>3</GA>
+      <Date>13.04.2013</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>4</GA>
+      <Date>16.06.2017</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>5</GA>
+      <Date>29.11.2012</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>6</GA>
+      <Date>13.04.2016</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>7</GA>
+      <Date>18.04.2012</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>8</GA>
+      <Date>17.12.2015</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>9</GA>
+      <Date>24.11.2014</Date>
+    </KapRemontsRecord>
+    <KapRemontsRecord>
+      <GA>10</GA>
+      <Date>28.11.2013</Date>
+    </KapRemontsRecord>
+  </Data>
+</KapRemontsData>

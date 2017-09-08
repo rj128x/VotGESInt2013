@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MCSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MCServer>sr-vm-062.corp.gidroogk.com</MCServer>
+  <MCUser>egschu_votges</MCUser>
+  <MCPassword>A@a70352</MCPassword>
+  <!--
+  <MCUser>egshu_votges</MCUser>
+  <MCPassword>A@a70352</MCPassword>
+  -->
+
+  <SMTPServer>mx-votges-021.corp.gidroogk.com</SMTPServer>
+  <SMTPUser>autooper_votges</SMTPUser>
+  <SMTPPassword>Qaz12345</SMTPPassword>
+  <SMTPPort>25</SMTPPort>
+  <SMTPDomain>corp</SMTPDomain>
+  <SMTPFrom>autooper_votges@votges.rushydro.ru</SMTPFrom>
+  <AutooperMail>autooper_votges@votges.rushydro.ru</AutooperMail>
+  <ErrorMail>chekunovaMV@votges.rushydro.ru</ErrorMail>
+  <InfoMail>chekunovaMV@votges.rushydro.ru</InfoMail>
+  <MCData>
+    <MCSettingsRecord>
+      <MCCode>4432</MCCode><!--ГТП ГЭС-->
+      <MCName>338730</MCName>
+      <PiramidaCode>1</PiramidaCode>
+      <WriteIntegratedData>1</WriteIntegratedData>
+      <Autooper>0</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--ГТП 1-->
+      <MCCode>2299</MCCode>
+      <MCName>1045</MCName>
+      <PiramidaCode>2</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>0</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--ГТП 2-->
+      <MCCode>2375</MCCode>
+      <MCName>1948</MCName>
+      <PiramidaCode>3</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>0</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--РГЕ ГГ1,2-->
+      <MCCode>4568</MCCode>
+      <MCName>1045</MCName>
+      <PiramidaCode>1045</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--РГЕ ГГ7-10-->
+      <MCCode>4569</MCCode>
+      <MCName>1046</MCName>
+      <PiramidaCode>1046</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--РГЕ ГГ3,4-->
+      <MCCode>4570</MCCode>
+      <MCName>1703</MCName>
+      <PiramidaCode>1703</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
+    </MCSettingsRecord>
+    <MCSettingsRecord><!--РГЕ ГГ5,6-->
+      <MCCode>4571</MCCode>
+      <MCName>1704</MCName>
+      <PiramidaCode>1704</PiramidaCode>
+      <WriteIntegratedData>0</WriteIntegratedData>
+      <Autooper>1</Autooper>
+    </MCSettingsRecord>
+  </MCData>
+
+  <MaketData>
+    <MCMaketRecord>
+      <MCcode>338730</MCcode>
+      <GA>0</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>61</MCCode>
+          <PiramidaCode>0</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100320</MCcode>
+      <GA>1</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>1</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100321</MCcode>
+      <GA>2</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>2</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100323</MCcode>
+      <GA>3</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>3</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100324</MCcode>
+      <GA>4</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>4</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100325</MCcode>
+      <GA>5</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>5</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100326</MCcode>
+      <GA>6</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>6</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100327</MCcode>
+      <GA>7</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>7</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100328</MCcode>
+      <GA>8</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>8</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100329</MCcode>
+      <GA>9</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>9</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+    <MCMaketRecord>
+      <MCcode>100322</MCcode>
+      <GA>10</GA>
+      <Vars>
+        <MCMaketVar>
+          <MCCode>54</MCCode>
+          <PiramidaCode>10</PiramidaCode>
+        </MCMaketVar>
+      </Vars>
+    </MCMaketRecord>
+
+  </MaketData>
+</MCSettings>
