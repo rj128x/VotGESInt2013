@@ -182,7 +182,7 @@ namespace KotmiLib
 							}
 						}
 					}
-					
+
 
 					for (int ga = 1; ga <= 10; ga++) {
 						double pf = data["PF_GA_" + ga];
@@ -190,24 +190,27 @@ namespace KotmiLib
 						double p = data["P_GA_" + ga];
 						double prevP = prevData["P_GA_" + ga];
 						double maxP = data["MAXP_GA_" + ga]; ;
-						bool V = (data["GA_STOP_" + ga] == 0);
-						bool prevV = (prevData["GA_STOP_" + ga] == 0);
+						bool V = (Math.Abs(data["GA_STOP_" + ga]) < 0.01);
+						bool prevV = (Math.Abs(prevData["GA_STOP_" + ga]) < 0.01);
 
-						bool GR = (data["GA_GR_" + ga] == 1);
-						bool prevGR = (prevData["GA_GR_" + ga] == 1);
+						bool GR = (Math.Abs(data["GA_GR_" + ga] - 1) <= 0.01);
+						bool prevGR = (Math.Abs(prevData["GA_GR_" + ga] - 1) <= 0.01);
 
-						bool NPRCH = (data["GA_NPRCH_" + ga] == 1);
-						bool prevNPRCH = (prevData["GA_NPRCH_" + ga] == 1);
+						bool NPRCH = (Math.Abs(data["GA_NPRCH_" + ga] - 1) <= 0.01);
+						bool prevNPRCH = (Math.Abs(prevData["GA_NPRCH_" + ga] - 1) <= 0.01);
 
-						bool HHG = (data["GA_HHG_" + ga] == 1);
-						bool HHT = (data["GA_HHT_" + ga] == 1);
+						bool HHG = (Math.Abs(data["GA_HHG_" + ga] - 1) <= 0.01);
+						bool prevHHG= (Math.Abs(prevData["GA_HHG_" + ga] - 1) <= 0.01);
+						bool HHT = (Math.Abs(data["GA_HHT_" + ga] - 1) <= 0.01);
+						bool prevHHT = (Math.Abs(prevData["GA_HHT_" + ga] - 1) <= 0.01);
 
-						if (V&& (HHG||HHT||GR)) {
-							Result.TimeWork[ga] += StepSec;
+						bool Run = V && (HHG || HHT || GR);
+						bool prevRun= prevV && (prevHHG || prevHHT || prevGR);
 
+						if (Run) {
 							if (V && GR) {
 								Result.TimeGen[ga] += StepSec;
-								if (p < 33 && p>10) {
+								if (p < 33 && p > 10) {
 									Result.TimeLessMin[ga] += StepSec;
 									if (prevP == 0 || prevP >= 33)
 										Result.CntLessMin[ga]++;
@@ -219,24 +222,26 @@ namespace KotmiLib
 								}
 							}
 
-							if (V&&GR&&(Math.Abs(pf)>0.01)&&(Math.Abs(p)>10)&&!NPRCH) {
+							if (V && GR && (Math.Abs(pf) > 0.1) && (Math.Abs(p) > 10) && !NPRCH) {
 								Result.TimeOPRCH[ga] += StepSec;
-								if (Math.Abs(prevPF) < 0.01 &&!NPRCH) {
+								if (Math.Abs(prevPF) < 0.1) {
 									Result.CntOPRCH[ga]++;
 								}
 							}
-							if (HHG ) {
+							if (HHG) {
 								Result.TimeHHG[ga] += StepSec;
-							} 
+							}
 							if (HHT) {
 								Result.TimeHHT[ga] += StepSec;
 							}
-							if (!prevV) {
+
+							Result.TimeWork[ga] += StepSec;
+							if (!prevRun) {
 								Result.CntPusk[ga]++;
 							}
 						} else {
 							Result.TimeStop[ga] += StepSec;
-							if (prevV)
+							if (prevRun)
 								Result.CntStop[ga]++;
 						}
 					}
