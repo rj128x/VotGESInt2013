@@ -102,9 +102,9 @@ namespace KotmiLib
 				DescArr.Add("P_GA_" + ga, new ArcField(String.Format("TI_{0}", 30015 + (ga - 1) * 30)));
 				//DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_{0}", 24+30*(ga - 1))));
 				DescArr.Add("PF_GA_" + ga, new ArcField(String.Format("TI_{0}", 30024 + 30 * (ga - 1))));
-				DescArr.Add("MAXP_GA_" + ga, new ArcField(String.Format("TI_{0}", 30025 + 30 * (ga - 1))));
+				//DescArr.Add("MAXP_GA_" + ga, new ArcField(String.Format("TI_{0}", 30025 + 30 * (ga - 1))));
 				//DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
-				DescArr.Add("GA_NPRCH_" + ga, new ArcField(String.Format("TS_{0}", 30009 + 11 * (ga - 1))));
+				//DescArr.Add("GA_NPRCH_" + ga, new ArcField(String.Format("TS_{0}", 30009 + 11 * (ga - 1))));
 				DescArr.Add("GA_GR_" + ga, new ArcField(String.Format("TS_{0}", 30008 + 11 * (ga - 1))));
 				DescArr.Add("GA_HHG_" + ga, new ArcField(String.Format("TS_{0}", 30007 + 11 * (ga - 1))));
 				DescArr.Add("GA_HHT_" + ga, new ArcField(String.Format("TS_{0}", 30006 + 11 * (ga - 1))));
@@ -189,15 +189,15 @@ namespace KotmiLib
 						double prevPF = prevData["PF_GA_" + ga];
 						double p = data["P_GA_" + ga];
 						double prevP = prevData["P_GA_" + ga];
-						double maxP = data["MAXP_GA_" + ga]; ;
+						double maxP = ga <= 2 || ga == 4 ? 115 : 105;
 						bool V = (Math.Abs(data["GA_STOP_" + ga]) < 0.01);
 						bool prevV = (Math.Abs(prevData["GA_STOP_" + ga]) < 0.01);
 
 						bool GR = (Math.Abs(data["GA_GR_" + ga] - 1) <= 0.01);
 						bool prevGR = (Math.Abs(prevData["GA_GR_" + ga] - 1) <= 0.01);
 
-						bool NPRCH = (Math.Abs(data["GA_NPRCH_" + ga] - 1) <= 0.01);
-						bool prevNPRCH = (Math.Abs(prevData["GA_NPRCH_" + ga] - 1) <= 0.01);
+						/*bool NPRCH = (Math.Abs(data["GA_NPRCH_" + ga] - 1) <= 0.01);
+						bool prevNPRCH = (Math.Abs(prevData["GA_NPRCH_" + ga] - 1) <= 0.01);*/
 
 						bool HHG = (Math.Abs(data["GA_HHG_" + ga] - 1) <= 0.01);
 						bool prevHHG= (Math.Abs(prevData["GA_HHG_" + ga] - 1) <= 0.01);
@@ -222,7 +222,7 @@ namespace KotmiLib
 								}
 							}
 
-							if (V && GR && (Math.Abs(pf) > 0.1) && (Math.Abs(p) > 10) && !NPRCH) {
+							if (V && GR && (Math.Abs(pf) > 0.1) && (Math.Abs(p) > 10) ) {
 								Result.TimeOPRCH[ga] += StepSec;
 								if (Math.Abs(prevPF) < 0.1) {
 									Result.CntOPRCH[ga]++;
