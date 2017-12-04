@@ -70,6 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,6 +148,11 @@
     <Compile Include="Rashod\RUSADiffPower.cs" />
     <Compile Include="Rashod\RusaUtils.cs" />
     <Compile Include="Rashod\VERFolderWriter.cs" />
+    <Compile Include="Service References\EDSService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UNCAccessWithCredentials.cs" />
     <Compile Include="XMLSer\XMLSer.cs" />
   </ItemGroup>
@@ -162,7 +168,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\nnet\vges_nb.net" />
     <None Include="Data\rashodsGA4.xls" />
     <None Include="Data\rashods\1.csv" />
@@ -178,6 +186,148 @@
     <None Include="Data\rashods\avg.csv" />
     <None Include="Data\rashods\opt.csv" />
     <None Include="Data\rashods\rashod.xls" />
+    <None Include="Service References\EDSService\eds.wsdl" />
+    <None Include="Service References\EDSService\VotGES.EDSService.Event.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getCustomReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getGfxSrvFeaturesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getLicenseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getModifiedPointsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getObjectsMetadataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getObjectsSourcesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getPointsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getPointsSourcesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getReportsConfigsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getRequestStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getServerConfigResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getServerStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getServerTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getShadesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getTabularResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getTechnologicalGroupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.getTrendResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.Group.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.interactWithScriptResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.LicenseParameter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.ObjectMetadata.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.ObjectSource.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.openDiagramResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.Point.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.PointId.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.ReportConfig.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.ReportResultRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestCustomReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestGlobalReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestScriptRunResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestShadesClearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestShadesCopyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestShadesReadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestShadesWriteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.RequestStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestTabularResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.requestTrendResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.Shade.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.TabularRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.TimeDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.Timestamp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSService\VotGES.EDSService.TrendRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\MCSettings.xml">
@@ -197,8 +347,19 @@
     <Content Include="Data\rem.sql" />
     <Content Include="Piramida\full.xml" />
     <Content Include="Piramida\sensors.xml" />
+    <None Include="Service References\EDSService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\EDSService\configuration.svcinfo" />
+    <None Include="Service References\EDSService\configuration91.svcinfo" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\EDSService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

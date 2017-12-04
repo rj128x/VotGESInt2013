@@ -50,7 +50,6 @@ D:\Projects\VotGESInt2013\KotmiLib\bin\Release\VotGES.pdb
 D:\Projects\VotGESInt2013\KotmiLib\bin\Release\log4net.xml
 D:\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.dll
 D:\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.pdb
-D:\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.csprojResolveAssemblyReference.cache
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\bin\Release\Data\MCSettings.xml
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\bin\Release\Data\KapRemontsData.xml
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\bin\Release\Data\DBSettings.xml
@@ -92,3 +91,4 @@ C:\DiscD\Projects\VotGESInt2013\KotmiLib\bin\Release\log4net.xml
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.csprojResolveAssemblyReference.cache
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.dll
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.pdb
+D:\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.csprojResolveAssemblyReference.cache

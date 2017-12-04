@@ -36,4 +36,3 @@ D:\Projects\VotGESInt2013\Rashods\bin\Release\VotGES.pdb
 D:\Projects\VotGESInt2013\Rashods\obj\Release\Rashods.csproj.Rashods.exe.config
 D:\Projects\VotGESInt2013\Rashods\obj\Release\Rashods.exe
 D:\Projects\VotGESInt2013\Rashods\obj\Release\Rashods.pdb
-D:\Projects\VotGESInt2013\Rashods\obj\Release\Rashods.csprojResolveAssemblyReference.cache

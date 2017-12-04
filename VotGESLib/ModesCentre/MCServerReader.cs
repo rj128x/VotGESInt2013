@@ -114,6 +114,7 @@ namespace VotGES.ModesCentre
 							LogInfo.Add("Ошибка при записи ПБР в базу");
 							sendError = true;
 						}
+
 					}
 					if (writeNPBR) {
 						try {

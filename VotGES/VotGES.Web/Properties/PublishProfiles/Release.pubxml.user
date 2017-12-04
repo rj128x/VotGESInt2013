@@ -153,6 +153,9 @@
     <File Include="bat/VERDataMonth.bat">
       <publishTime>10/28/2015 13:37:16</publishTime>
     </File>
+    <File Include="bin/App.Config">
+      <publishTime>10/26/2017 13:31:18</publishTime>
+    </File>
     <File Include="bin/AxScdSys.dll">
       <publishTime>09/12/2017 10:18:04</publishTime>
     </File>
@@ -301,10 +304,10 @@
       <publishTime>06/23/2017 08:29:44</publishTime>
     </File>
     <File Include="bin/Data/KOTMISettings.xml">
-      <publishTime>10/04/2017 12:42:23</publishTime>
+      <publishTime>10/26/2017 14:49:20</publishTime>
     </File>
     <File Include="bin/Data/MCSettings.xml">
-      <publishTime>12/14/2016 15:27:20</publishTime>
+      <publishTime>02/11/2017 09:42:56</publishTime>
     </File>
     <File Include="bin/DataAccess.dll">
       <publishTime>01/12/2016 18:15:35</publishTime>
@@ -379,7 +382,7 @@
       <publishTime>04/12/2013 01:58:10</publishTime>
     </File>
     <File Include="bin/KotmiLib.dll">
-      <publishTime>10/04/2017 12:43:26</publishTime>
+      <publishTime>11/10/2017 17:53:38</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>06/28/2015 13:20:58</publishTime>
@@ -502,10 +505,10 @@
       <publishTime>11/18/2016 19:20:06</publishTime>
     </File>
     <File Include="bin/VotGES.dll">
-      <publishTime>10/04/2017 12:43:24</publishTime>
+      <publishTime>11/10/2017 17:53:38</publishTime>
     </File>
     <File Include="bin/VotGES.Web.dll">
-      <publishTime>10/04/2017 12:43:29</publishTime>
+      <publishTime>11/10/2017 17:53:38</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
       <publishTime>12/04/2013 02:58:20</publishTime>
@@ -654,6 +657,147 @@
     <File Include="Scripts/MicrosoftMvcValidation.js">
       <publishTime>09/16/2014 08:17:16</publishTime>
     </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.Event.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getCustomReportResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getEventsResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getGfxSrvFeaturesResponse.datasource">
+      <publishTime>10/26/2017 15:11:55</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getLicenseResponse.datasource">
+      <publishTime>10/26/2017 15:11:55</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getModifiedPointsResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getObjectsMetadataResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getObjectsSourcesResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getPointsResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getPointsSourcesResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getReportsConfigsResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getRequestStatusResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getServerConfigResponse.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getServerStatusResponse.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getServerTimeResponse.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getShadesResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getTabularResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getTechnologicalGroupsResponse.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.getTrendResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.Group.datasource">
+      <publishTime>10/26/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.interactWithScriptResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.LicenseParameter.datasource">
+      <publishTime>10/26/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.loginResponse.datasource">
+      <publishTime>10/26/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.logoutResponse.datasource">
+      <publishTime>10/26/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.ObjectMetadata.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.ObjectSource.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.openDiagramResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.Point.datasource">
+      <publishTime>10/26/2017 15:11:51</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.PointId.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.ReportConfig.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.ReportResultRow.datasource">
+      <publishTime>10/26/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestCustomReportResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestEventsResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestGlobalReportResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestScriptRunResponse.datasource">
+      <publishTime>10/26/2017 15:11:54</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestShadesClearResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestShadesCopyResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestShadesReadResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestShadesWriteResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.RequestStatus.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestTabularResponse.datasource">
+      <publishTime>10/26/2017 15:11:53</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.requestTrendResponse.datasource">
+      <publishTime>10/26/2017 15:11:52</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.Shade.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.TabularRow.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.TimeDuration.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.Timestamp.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
+    <File Include="Service References/EDSService/VotGES.Web.EDSService.TrendRow.datasource">
+      <publishTime>10/26/2017 15:11:50</publishTime>
+    </File>
     <File Include="Silverlight.js">
       <publishTime>09/16/2014 08:17:16</publishTime>
     </File>
@@ -745,7 +889,7 @@
       <publishTime>08/02/2017 14:45:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/04/2017 12:43:41</publishTime>
+      <publishTime>11/10/2017 15:55:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

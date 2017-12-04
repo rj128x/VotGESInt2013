@@ -11,6 +11,7 @@ namespace VotGES.ModesCentre {
 		public bool WriteIntegratedData { get; set; }
 		public bool Autooper { get; set; }
 		public string MCName { get; set; }
+		public string EDSPoint { get; set; }
 	}
 
 	public class MCMaketVar {
