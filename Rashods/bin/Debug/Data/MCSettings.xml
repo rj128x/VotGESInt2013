@@ -23,6 +23,7 @@
       <MCCode>4432</MCCode><!--ГТП ГЭС-->
       <MCName>338730</MCName>
       <PiramidaCode>1</PiramidaCode>
+      <EDSPoint>PBR_GES.EDS@CALC</EDSPoint>
       <WriteIntegratedData>1</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>
@@ -30,6 +31,7 @@
       <MCCode>2299</MCCode>
       <MCName>1045</MCName>
       <PiramidaCode>2</PiramidaCode>
+      <EDSPoint>PBR_GTP1.EDS@CALC</EDSPoint>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>
@@ -37,6 +39,7 @@
       <MCCode>2375</MCCode>
       <MCName>1948</MCName>
       <PiramidaCode>3</PiramidaCode>
+      <EDSPoint>PBR_GTP2.EDS@CALC</EDSPoint>
       <WriteIntegratedData>0</WriteIntegratedData>
       <Autooper>0</Autooper>
     </MCSettingsRecord>

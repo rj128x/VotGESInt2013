@@ -103,7 +103,7 @@ namespace KotmiLib
 				//DescArr.Add("F_GA_" + ga, new ArcField(String.Format("TI_{0}", 24+30*(ga - 1))));
 				DescArr.Add("PF_GA_" + ga, new ArcField(String.Format("TI_{0}", 30024 + 30 * (ga - 1))));
 				//DescArr.Add("MAXP_GA_" + ga, new ArcField(String.Format("TI_{0}", 30025 + 30 * (ga - 1))));
-				//DescArr.Add("V_GA_" + ga, new ArcField(String.Format("TS_{0}", 10001 + (ga - 1) * 4)));
+				DescArr.Add("GA_VG_" + ga, new ArcField(String.Format("TS_{0}", 30001 + 11 * (ga - 1))));
 				//DescArr.Add("GA_NPRCH_" + ga, new ArcField(String.Format("TS_{0}", 30009 + 11 * (ga - 1))));
 				DescArr.Add("GA_GR_" + ga, new ArcField(String.Format("TS_{0}", 30008 + 11 * (ga - 1))));
 				DescArr.Add("GA_HHG_" + ga, new ArcField(String.Format("TS_{0}", 30007 + 11 * (ga - 1))));
@@ -193,6 +193,8 @@ namespace KotmiLib
 						bool V = (Math.Abs(data["GA_STOP_" + ga]) < 0.01);
 						bool prevV = (Math.Abs(prevData["GA_STOP_" + ga]) < 0.01);
 
+						
+
 						bool GR = (Math.Abs(data["GA_GR_" + ga] - 1) <= 0.01);
 						bool prevGR = (Math.Abs(prevData["GA_GR_" + ga] - 1) <= 0.01);
 
@@ -200,19 +202,21 @@ namespace KotmiLib
 						bool prevNPRCH = (Math.Abs(prevData["GA_NPRCH_" + ga] - 1) <= 0.01);*/
 
 						bool HHG = (Math.Abs(data["GA_HHG_" + ga] - 1) <= 0.01);
-						bool prevHHG= (Math.Abs(prevData["GA_HHG_" + ga] - 1) <= 0.01);
+						bool prevHHG = (Math.Abs(prevData["GA_HHG_" + ga] - 1) <= 0.01);
 						bool HHT = (Math.Abs(data["GA_HHT_" + ga] - 1) <= 0.01);
 						bool prevHHT = (Math.Abs(prevData["GA_HHT_" + ga] - 1) <= 0.01);
+						bool VG = (Math.Abs(data["GA_VG_" + ga] - 1) <= 0.01);
+						bool prevVG = (Math.Abs(prevData["GA_VG_" + ga] - 1) <= 0.01);
 
-						bool Run = V && (HHG || HHT || GR);
-						bool prevRun= prevV && (prevHHG || prevHHT || prevGR);
+						bool Run = V && (HHG || HHT || GR||VG);
+						bool prevRun = prevV && (prevHHG || prevHHT || prevGR||prevVG);
 
 						if (Run) {
 							if (V && GR) {
 								Result.TimeGen[ga] += StepSec;
 								if (p < 33 && p > 10) {
 									Result.TimeLessMin[ga] += StepSec;
-									if (prevP == 0 || prevP >= 33)
+									if (prevP <= 10 || prevP >= 33)
 										Result.CntLessMin[ga]++;
 								}
 								if (p > maxP) {
@@ -222,7 +226,7 @@ namespace KotmiLib
 								}
 							}
 
-							if (V && GR && (Math.Abs(pf) > 0.1) && (Math.Abs(p) > 10) ) {
+							if (V && GR && (Math.Abs(pf) > 0.1) && (Math.Abs(p) > 10)) {
 								Result.TimeOPRCH[ga] += StepSec;
 								if (Math.Abs(prevPF) < 0.1) {
 									Result.CntOPRCH[ga]++;

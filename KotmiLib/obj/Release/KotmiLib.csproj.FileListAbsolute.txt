@@ -92,3 +92,4 @@ C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.csprojResolveAssem
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.dll
 C:\DiscD\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.pdb
 D:\Projects\VotGESInt2013\KotmiLib\obj\Release\KotmiLib.csprojResolveAssemblyReference.cache
+C:\DiscD\Projects\VotGESInt2013\KotmiLib\bin\Release\ScdSys.dll

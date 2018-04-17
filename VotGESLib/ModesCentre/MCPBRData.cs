@@ -284,14 +284,14 @@ namespace VotGES.ModesCentre
 				ok = ok && writeToDB("P3000", DataHH, 212);
 				ok = ok && writeToDB("P2000", DataHH, 212);
 				ok = ok && writeToDB("P2000", data15, 213);
-				if (!String.IsNullOrEmpty(this.PointName)) {
+				/*if (!String.IsNullOrEmpty(this.PointName)) {
 					Logger.Info("Запись в ЕДС");
 					this.writeToEDS(this.PointName,createHH15Data(),true);
-				}
+				}*/
 				if (DataSettings.WriteIntegratedData) {
 					SortedList<DateTime, double> integr = createInegratedData();
-					Logger.Info("Запись в ЕДС");
-					this.writeToEDS("PBR_GES_VYR_PLAN.EDS@CALC", integr, false);
+					//Logger.Info("Запись в ЕДС");
+					//this.writeToEDS("PBR_GES_VYR_PLAN.EDS@CALC", integr, false);
 					ok = ok && writeToDB("P3000", integr, 204);
 					ok = ok && writeToDB("P2000", integr, 204);
 				}

@@ -2,7 +2,7 @@
 <KOTMISettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-  <Server>192.168.140.251,192.168.140.252</Server>
+  <Server>192.168.141.251,192.168.141.252</Server>
   <User>EVA</User>
   <Password>q1234e</Password>
 

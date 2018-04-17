@@ -8,6 +8,7 @@ using VotGES;
 using VotGES.Rashod;
 using VotGES.OgranGA;
 using VotGES.XMLSer;
+using VotGES.ModesCentre;
 
 namespace ClearDB
 {
@@ -34,6 +35,13 @@ namespace ClearDB
 
 			DBSettings.init();
 			Settings.init();
+
+			/*Logger.InitFileLogger(Settings.single.LogPath, "tst");
+			MCSettings.init("Data/MCSettings.xml");
+			MCServerReader reader = new MCServerReader(DateTime.Now.Date);
+			Console.ReadLine();
+			return;*/
+
 			DBClass.DateFormat = Settings.single.DBDateFormat;
 
 

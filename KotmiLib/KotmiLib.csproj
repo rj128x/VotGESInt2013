@@ -36,14 +36,15 @@
   <ItemGroup>
     <Reference Include="AxScdSys, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\DiscD\Projects\VotGESInt2013\libs\kotmidll\AxScdSys.dll</HintPath>
+      <HintPath>..\libs\kotmidll\AxScdSys.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>C:\DiscD\Projects\AISKotmi\AISKotmi\libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="ScdSys">
-      <HintPath>C:\DiscD\Projects\VotGESInt2013\libs\kotmidll\ScdSys.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="ScdSys, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\libs\kotmidll\ScdSys.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
